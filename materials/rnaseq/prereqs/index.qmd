@@ -1,0 +1,10 @@
+---
+title: "RNA-Seq"
+format:
+  html:
+    toc: true
+---
+
+> Instructions for running the rna seq pipeline
+
+rnaseq-specific installations, nfcore

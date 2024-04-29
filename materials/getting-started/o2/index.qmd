@@ -1,0 +1,40 @@
+---
+title: "O2"
+format:
+  html:
+    toc: true
+---
+
+> Instructions for getting access and onto O2
+
+### Ask for access to /n/groups/kwon
+
+email rchelp@hms.harvard.edu, copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu, ask for access to the group folder /n/groups/kwon on o2.
+
+### Get Duo Push for Android / IOS  and register with hms
+
+first download the app : https://it.hms.harvard.edu/duo-mobile-app
+
+then, email [itservicedesk@hms.harvard.edu](mailto:itservicedesk@hms.harvard.edu). or call 617-432-2000 to ask HMS IT to get registered with Duo
+
+### Set default 2-factor authentication option to call or push:
+
+For push (recommended, but only if you already have duo push!):
+
+echo 'export DUO_PASSCODE=push' >> $HOME/.bashrc
+
+For phone
+
+echo 'export DUO_PASSCODE=phone' >> $HOME/.bashrc
+
+DO NOT set text as your default
+
+### Setup passwordless login (ssh keys):
+
+**https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys**
+
+### Make a scratch directory.
+
+Note, the scratch directory is automatically cleaned every 30 days, this is **truly truly truly for temporary storage**. **Everything you want to keep** needs to be moved to **your folder in /n/groups/kwon**
+
+Run the following on o2: /n/cluster/bin/scratch3_create.sh

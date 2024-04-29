@@ -1,0 +1,78 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "!materials/*/exercises/"
+  output-dir: docs
+  resources:
+    - "datasets/*/*.csv"
+    - "materials/1-workshop1/6-hypothesis-testing/hands-on.qmd"
+
+from: markdown+emoji
+
+website:
+  bread-crumbs: false
+  title: "Kwon Lab Pipelines"
+  page-navigation: true
+  navbar:
+    background: light
+    foreground: dark
+    right:
+      # - text: "AWS Instance IPs"
+      #   href: instance_ips.qmd
+      # - text: "Installation"
+      #   href: installation-instructions.qmd
+      # - text: "Datasets"
+      #   href: datasets.qmd
+      # - text: "Resources"
+      #   href: resources.qmd
+      # - text: "Past Workshops"
+      #   href: past_workshops.qmd
+      - text: "About the Kwon Lab"
+        href: "https://kwonlab.mgh.harvard.edu/"
+      - icon: github
+        href: https://github.com/orgs/kwonlabpipelines/repositories
+        aria-label: GitHub
+  sidebar:
+      collapse-level: 1
+    # - title: Materials
+      style: docked
+      align: left
+      contents:
+          - section: "1. Getting Started"
+            contents:
+            - text: "</b> O2"
+              contents:
+              href: materials/getting-started/o2/index.qmd
+            - text: "</b> Intro to Linux and the Command Line"
+              contents:
+              href: materials/getting-started/intro/index.qmd
+            - text: "</b> Installations"
+              contents:
+              href: materials/getting-started/installations/index.qmd
+
+          - section: "2. RNA sequencing analysis pipeline"
+            contents:
+            - text: "Prerequisites"
+              contents:
+              href: materials/rnaseq/prereqs/index.qmd
+            - text: "Running the pipeline"
+              contents:
+              href: materials/rnaseq/running-rnaseq/index.qmd
+
+          - section: "<em>3. 16S  - Coming soon</em>"
+  page-footer:
+    right: "This page is built with {{< fa heart >}} and [Quarto](https://quarto.org/)."
+    left: "&copy; 2023. Huge thanks to [Andrew P. Bray](https://github.com/andrewpbray) and [Claus O. Wilke](https://github.com/clauswilke) for open source code and sharing content."
+
+format:   
+  html:
+    theme: [default, assets/custom.scss]
+    toc: false
+  
+
+# Design tips:
+# 1. maggieappleton.com
+# 2. Palette: https://www.jpl.nasa.gov/images/the-grand-tour-jpl-travel-poster
+
+  

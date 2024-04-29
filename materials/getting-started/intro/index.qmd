@@ -1,0 +1,10 @@
+---
+title: "Intro to navigating Linux and the Command Line"
+format:
+  html:
+    toc: true
+---
+
+> Instructions for basic linux commands
+
+ls, cd, pwd, cp, mv, etc.

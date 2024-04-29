@@ -1,0 +1,37 @@
+---
+anchor-sections: false
+section-divs: false
+css: assets/index.css
+toc: false
+---
+
+::: {.grid}
+
+::: {.g-col-12}
+
+# Kwon Lab Pipelines
+###### by Kwondry
+:::
+
+::: {.g-col-6}
+#### Documentation and tutorials for reproducible research in the Kwon Lab
+<!-- This week of content will prepare you to use R, RStudio, and Quarto for data analysis in clinical research. -->
+:::
+
+::: {.g-col-6 .text-start}
+
+<!-- ![](assets/images/durban_workshop_stickers_front_page.png){width=50%}  -->
+
+:::
+
+
+:::
+
+<!-- ## Welcome to the workshop!
+
+1. [Fill out the pre-workshop survey here](https://forms.gle/7sdT7YRJerdgFJcc7)  
+2. [Join the discord here](https://discord.gg/Mb7pRTptqm) (once you've joined, you can bookmark [https://discord.com/channels/1158136582201692202/](https://discord.com/channels/1227264067899621427) to go straight to the channel.)  
+3. Await instructions on logging into your AWS instance.
+
+\ -->
+

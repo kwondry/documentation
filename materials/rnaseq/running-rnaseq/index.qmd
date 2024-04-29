@@ -1,0 +1,10 @@
+---
+title: "RNA-Seq"
+format:
+  html:
+    toc: true
+---
+
+> Running the rnaseq pipeline
+
+rnaseq tutorial
