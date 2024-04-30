@@ -140,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Intro to Linux and the Command Line</span></a>
+ <span class="menu-text"> Navigating Linux and the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -188,11 +188,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ask-for-access-to-ngroupskwon" id="toc-ask-for-access-to-ngroupskwon" class="nav-link active" data-scroll-target="#ask-for-access-to-ngroupskwon">Ask for access to /n/groups/kwon</a></li>
-  <li><a href="#get-duo-push-for-android-ios-and-register-with-hms" id="toc-get-duo-push-for-android-ios-and-register-with-hms" class="nav-link" data-scroll-target="#get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with hms</a></li>
-  <li><a href="#set-default-2-factor-authentication-option-to-call-or-push" id="toc-set-default-2-factor-authentication-option-to-call-or-push" class="nav-link" data-scroll-target="#set-default-2-factor-authentication-option-to-call-or-push">Set default 2-factor authentication option to call or push:</a></li>
-  <li><a href="#setup-passwordless-login-ssh-keys" id="toc-setup-passwordless-login-ssh-keys" class="nav-link" data-scroll-target="#setup-passwordless-login-ssh-keys">Setup passwordless login (ssh keys):</a></li>
+  <li><a href="#requesting-access-to-the-ngroupskwon-groups-folder" id="toc-requesting-access-to-the-ngroupskwon-groups-folder" class="nav-link active" data-scroll-target="#requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon groups folder</a></li>
   <li><a href="#make-a-scratch-directory." id="toc-make-a-scratch-directory." class="nav-link" data-scroll-target="#make-a-scratch-directory.">Make a scratch directory.</a></li>
+  <li><a href="#get-duo-push-for-android-ios-and-register-with-hms" id="toc-get-duo-push-for-android-ios-and-register-with-hms" class="nav-link" data-scroll-target="#get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with HMS</a></li>
+  <li><a href="#setting-up-2-factor-authentication" id="toc-setting-up-2-factor-authentication" class="nav-link" data-scroll-target="#setting-up-2-factor-authentication">Setting up 2-Factor Authentication</a></li>
+  <li><a href="#setup-passwordless-login-ssh-keys" id="toc-setup-passwordless-login-ssh-keys" class="nav-link" data-scroll-target="#setup-passwordless-login-ssh-keys">Setup passwordless login (ssh keys):</a></li>
   </ul>
 </nav>
     </div>
@@ -219,33 +219,45 @@ ul.task-list li input[type="checkbox"] {
 
 
 <blockquote class="blockquote">
-<p>Instructions for getting access and onto O2</p>
+<p>Accessing the HMS O2 cluster</p>
 </blockquote>
-<section id="ask-for-access-to-ngroupskwon" class="level3">
-<h3 class="anchored" data-anchor-id="ask-for-access-to-ngroupskwon">Ask for access to /n/groups/kwon</h3>
-<p>email rchelp@hms.harvard.edu, copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu, ask for access to the group folder /n/groups/kwon on o2.</p>
+<p>Online status: <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status" target="_blank">O2 Status</a><br>
+</p>
+<section id="requesting-access-to-the-ngroupskwon-groups-folder" class="level3">
+<h3 class="anchored" data-anchor-id="requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon groups folder</h3>
+<p>To request access, email <code>rchelp@hms.harvard.edu</code> to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu as well.</p>
+</section>
+<section id="make-a-scratch-directory." class="level3">
+<h3 class="anchored" data-anchor-id="make-a-scratch-directory.">Make a scratch directory.</h3>
+<p>Note, the scratch directory is automatically cleaned every 30 days, this is <strong>ONLY FOR TEMPORARY STORAGE</strong>. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).</p>
+<p>(ON LOGIN NODE) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh</p>
+<p><br>
+</p>
 </section>
 <section id="get-duo-push-for-android-ios-and-register-with-hms" class="level3">
-<h3 class="anchored" data-anchor-id="get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with hms</h3>
-<p>first download the app : https://it.hms.harvard.edu/duo-mobile-app</p>
-<p>then, email <a href="mailto:itservicedesk@hms.harvard.edu">itservicedesk@hms.harvard.edu</a>. or call 617-432-2000 to ask HMS IT to get registered with Duo</p>
+<h3 class="anchored" data-anchor-id="get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with HMS</h3>
+<ul>
+<li>Download the app : https://it.hms.harvard.edu/duo-mobile-app</li>
+<li>Email <a href="mailto:itservicedesk@hms.harvard.edu">itservicedesk@hms.harvard.edu</a>. or call 617-432-2000 to ask HMS IT to get registered with Duo</li>
+</ul>
 </section>
-<section id="set-default-2-factor-authentication-option-to-call-or-push" class="level3">
-<h3 class="anchored" data-anchor-id="set-default-2-factor-authentication-option-to-call-or-push">Set default 2-factor authentication option to call or push:</h3>
-<p>For push (recommended, but only if you already have duo push!):</p>
-<p>echo ‘export DUO_PASSCODE=push’ &gt;&gt; $HOME/.bashrc</p>
+<section id="setting-up-2-factor-authentication" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-2-factor-authentication">Setting up 2-Factor Authentication</h3>
+<p>To set default 2-factor authentication option to call or push:<br>
+For push (recommended, but only if you already have Duo push!):</p>
+<pre><code>echo 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc</code></pre>
 <p>For phone</p>
-<p>echo ‘export DUO_PASSCODE=phone’ &gt;&gt; $HOME/.bashrc</p>
+<pre><code>echo 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc</code></pre>
 <p>DO NOT set text as your default</p>
 </section>
 <section id="setup-passwordless-login-ssh-keys" class="level3">
 <h3 class="anchored" data-anchor-id="setup-passwordless-login-ssh-keys">Setup passwordless login (ssh keys):</h3>
-<p><strong>https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys</strong></p>
-</section>
-<section id="make-a-scratch-directory." class="level3">
-<h3 class="anchored" data-anchor-id="make-a-scratch-directory.">Make a scratch directory.</h3>
-<p>Note, the scratch directory is automatically cleaned every 30 days, this is <strong>truly truly truly for temporary storage</strong>. <strong>Everything you want to keep</strong> needs to be moved to <strong>your folder in /n/groups/kwon</strong></p>
-<p>Run the following on o2: /n/cluster/bin/scratch3_create.sh</p>
+<p>To set passwordless login, follow the SSH keys tutorial <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys" target="_blank">here</a><br>
+</p>
+<p><br>
+<br>
+<a href="https://harvardmed.atlassian.net/wiki/spaces/O2/overview" target="_blank">For more information on the O2 Cluster</a><br>
+</p>
 
 
 </section>
@@ -664,8 +676,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/getting-started/intro/index.html" class="pagination-link" aria-label="</b> Intro to Linux and the Command Line">
-        <span class="nav-page-text"> Intro to Linux and the Command Line</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../materials/getting-started/intro/index.html" class="pagination-link" aria-label="</b> Navigating Linux and the Command Line">
+        <span class="nav-page-text"> Navigating Linux and the Command Line</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

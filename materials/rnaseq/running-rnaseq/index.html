@@ -140,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Intro to Linux and the Command Line</span></a>
+ <span class="menu-text"> Navigating Linux and the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -211,9 +211,28 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>Running the rnaseq pipeline</p>
 </blockquote>
-<p>rnaseq tutorial</p>
+<section id="run-the-kraken-pipeline" class="level4">
+<h4 class="anchored" data-anchor-id="run-the-kraken-pipeline">Run the kraken pipeline</h4>
+<p>Each sample takes up to a couple hours, but each sample runs independently on the cluster<br>
+</p>
+<pre><code>sbatch submit_kraken.sh</code></pre>
+</section>
+<section id="run-the-nfcore-pipeline" class="level4">
+<h4 class="anchored" data-anchor-id="run-the-nfcore-pipeline">Run the nfcore pipeline</h4>
+<pre><code>conda activate nfcore
+nf-core download rnaseq
+sbatch submit_nfcore_rnaseq.sh</code></pre>
+</section>
+<section id="move-the-results-to-your-lab-folder-in-ngroups" class="level4">
+<h4 class="anchored" data-anchor-id="move-the-results-to-your-lab-folder-in-ngroups">Move the results to your lab folder in /n/groups</h4>
+<pre><code>salmon.merged.gene_counts.tsv
+salmon.merged.gene_tpms.tsv
+Nfcore_rnaseq_multiqc_report.html</code></pre>
+<p>If you are in your smartseq_kraken-main folder:</p>
+<pre><code>cp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html /n/groups/kwon/(your_group_folder_name)</code></pre>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
