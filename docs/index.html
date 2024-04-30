@@ -139,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Intro to Linux and the Command Line</span></a>
+ <span class="menu-text"> Navigating Linux and the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,7 +287,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/kwonlabpipelines\.github\.io\/kwon_lab_pipelines\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

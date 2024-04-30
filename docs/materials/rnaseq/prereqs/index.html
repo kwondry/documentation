@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - RNA-Seq</title>
+<title>Kwon Lab Pipelines - Prequisites for running the nf-core RNA-Seq pipeline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">RNA-Seq</h1>
+          <h1 class="quarto-secondary-nav-title">Prequisites for running the nf-core RNA-Seq pipeline</h1>
         </a>     
     </div>
   </nav>
@@ -141,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Intro to Linux and the Command Line</span></a>
+ <span class="menu-text"> Navigating Linux and the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -192,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">RNA-Seq</h1>
+<h1 class="title d-none d-lg-block">Prequisites for running the nf-core RNA-Seq pipeline</h1>
 </div>
 
 
@@ -209,12 +209,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<blockquote class="blockquote">
-<p>Instructions for running the rna seq pipeline</p>
-</blockquote>
-<p>rnaseq-specific installations, nfcore</p>
+<!-- > Prequisites for running the nfcore RNA-Seq pipeline -->
+<p>Ensure you have <code>mamba</code>, <code>snakemake</code>, and <code>nf-core</code> installed on your platform.</p>
+<section id="download-the-repo-to-your-scratch-folder" class="level4">
+<h4 class="anchored" data-anchor-id="download-the-repo-to-your-scratch-folder">Download the repo to your scratch folder</h4>
+<p>Replace the filepath with your scratch folder</p>
+<pre><code>cd /n/scratch3/users/j/je112
+wget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip</code></pre>
+</section>
+<section id="unzip-and-rename-the-folder" class="level4">
+<h4 class="anchored" data-anchor-id="unzip-and-rename-the-folder">Unzip and rename the folder</h4>
+<pre><code>unzip main.zip -d my_new_rnaseq_run</code></pre>
+</section>
+<section id="adding-your-samples" class="level4">
+<h4 class="anchored" data-anchor-id="adding-your-samples">Adding your samples</h4>
+<p>Open <code>my_new_rnaseq_run/input/sample_sheet.csv</code> with an editor and add your samples with the corresponding filepaths.</p>
+<p>Columns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.</p>
+<p>To get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)</p>
+<pre><code>rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username</code></pre>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -298,7 +313,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/kwonlabpipelines\.github\.io\/kwon_lab_pipelines\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -71,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -170,7 +141,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Intro to Linux and the Command Line</span></a>
+ <span class="menu-text"> Navigating Linux and the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -218,7 +189,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installationsset-up" id="toc-installationsset-up" class="nav-link active" data-scroll-target="#installationsset-up">Installations/Set-up</a></li>
+  <li><a href="#installing-minimamba" id="toc-installing-minimamba" class="nav-link active" data-scroll-target="#installing-minimamba">Installing minimamba</a></li>
+  <li><a href="#installing-snakemake" id="toc-installing-snakemake" class="nav-link" data-scroll-target="#installing-snakemake">Installing Snakemake</a></li>
+  <li><a href="#installing-nfcore" id="toc-installing-nfcore" class="nav-link" data-scroll-target="#installing-nfcore">Installing nfcore</a></li>
   </ul>
 </nav>
     </div>
@@ -247,11 +220,20 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p>Instructions for installing various package managers and pipelines</p>
 </blockquote>
-<p>how to install mamba, snakemake, nfcore, etc</p>
-<section id="installationsset-up" class="level2">
-<h2 class="anchored" data-anchor-id="installationsset-up">Installations/Set-up</h2>
-<p>Installing package managers and pipelines A. Install minimamba cd ~; curl -L -O “https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-<span class="math inline">\((uname)-\)</span>(uname -m).sh”; bash Mambaforge-<span class="math inline">\((uname)-\)</span>(uname -m).sh;</p>
-<p>B. Install snakemake mamba create -n snakemake -c bioconda -c conda-forge “python&gt;=3.10” “snakemake &gt;=7.32”</p>
+<p>If on the O2 cluster, please make sure to be on an interactive node.</p>
+<section id="installing-minimamba" class="level3">
+<h3 class="anchored" data-anchor-id="installing-minimamba">Installing minimamba</h3>
+<pre><code>cd ~;
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh";
+bash Mambaforge-$(uname)-$(uname -m).sh;</code></pre>
+</section>
+<section id="installing-snakemake" class="level3">
+<h3 class="anchored" data-anchor-id="installing-snakemake">Installing Snakemake</h3>
+<pre><code>mamba create -n snakemake -c bioconda -c conda-forge "python&gt;=3.10" "snakemake &gt;=7.32"</code></pre>
+</section>
+<section id="installing-nfcore" class="level3">
+<h3 class="anchored" data-anchor-id="installing-nfcore">Installing nfcore</h3>
+<pre><code>mamba create -n nfcore -c bioconda -c conda-forge "python&gt;=3.10" nextflow nf-core</code></pre>
 
 
 </section>
@@ -338,7 +320,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/kwonlabpipelines\.github\.io\/kwon_lab_pipelines\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -668,8 +650,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../materials/getting-started/intro/index.html" class="pagination-link" aria-label="</b> Intro to Linux and the Command Line">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"> Intro to Linux and the Command Line</span>
+      <a href="../../../materials/getting-started/intro/index.html" class="pagination-link" aria-label="</b> Navigating Linux and the Command Line">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"> Navigating Linux and the Command Line</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

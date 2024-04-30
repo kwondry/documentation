@@ -4,7 +4,7 @@
     "href": "materials/rnaseq/running-rnaseq/index.html",
     "title": "RNA-Seq",
     "section": "",
-    "text": "Running the rnaseq pipeline\n\nrnaseq tutorial",
+    "text": "Running the rnaseq pipeline\n\n\nRun the kraken pipeline\nEach sample takes up to a couple hours, but each sample runs independently on the cluster\n\nsbatch submit_kraken.sh\n\n\nRun the nfcore pipeline\nconda activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\n\n\nMove the results to your lab folder in /n/groups\nsalmon.merged.gene_counts.tsv\nsalmon.merged.gene_tpms.tsv\nNfcore_rnaseq_multiqc_report.html\nIf you are in your smartseq_kraken-main folder:\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html /n/groups/kwon/(your_group_folder_name)",
     "crumbs": [
       "About the Kwon Lab",
       "2. RNA sequencing analysis pipeline",
@@ -16,7 +16,7 @@
     "href": "materials/getting-started/o2/index.html",
     "title": "O2",
     "section": "",
-    "text": "Instructions for getting access and onto O2\n\n\nAsk for access to /n/groups/kwon\nemail rchelp@hms.harvard.edu, copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu, ask for access to the group folder /n/groups/kwon on o2.\n\n\nGet Duo Push for Android / IOS and register with hms\nfirst download the app : https://it.hms.harvard.edu/duo-mobile-app\nthen, email itservicedesk@hms.harvard.edu. or call 617-432-2000 to ask HMS IT to get registered with Duo\n\n\nSet default 2-factor authentication option to call or push:\nFor push (recommended, but only if you already have duo push!):\necho ‘export DUO_PASSCODE=push’ &gt;&gt; $HOME/.bashrc\nFor phone\necho ‘export DUO_PASSCODE=phone’ &gt;&gt; $HOME/.bashrc\nDO NOT set text as your default\n\n\nSetup passwordless login (ssh keys):\nhttps://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys\n\n\nMake a scratch directory.\nNote, the scratch directory is automatically cleaned every 30 days, this is truly truly truly for temporary storage. Everything you want to keep needs to be moved to your folder in /n/groups/kwon\nRun the following on o2: /n/cluster/bin/scratch3_create.sh",
+    "text": "Accessing the HMS O2 cluster\n\nOnline status: O2 Status\n\n\nRequesting access to the /n/groups/kwon groups folder\nTo request access, email rchelp@hms.harvard.edu to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu as well.\n\n\nMake a scratch directory.\nNote, the scratch directory is automatically cleaned every 30 days, this is ONLY FOR TEMPORARY STORAGE. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).\n(ON LOGIN NODE) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh\n\n\n\n\nGet Duo Push for Android / IOS and register with HMS\n\nDownload the app : https://it.hms.harvard.edu/duo-mobile-app\nEmail itservicedesk@hms.harvard.edu. or call 617-432-2000 to ask HMS IT to get registered with Duo\n\n\n\nSetting up 2-Factor Authentication\nTo set default 2-factor authentication option to call or push:\nFor push (recommended, but only if you already have Duo push!):\necho 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc\nFor phone\necho 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc\nDO NOT set text as your default\n\n\nSetup passwordless login (ssh keys):\nTo set passwordless login, follow the SSH keys tutorial here\n\n\n\nFor more information on the O2 Cluster",
     "crumbs": [
       "About the Kwon Lab",
       "1. Getting Started",
@@ -28,7 +28,7 @@
     "href": "materials/getting-started/installations/index.html",
     "title": "Installations",
     "section": "",
-    "text": "Instructions for installing various package managers and pipelines\nhow to install mamba, snakemake, nfcore, etc",
+    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please make sure to be on an interactive node.\n\nInstalling minimamba\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\nInstalling Snakemake\nmamba create -n snakemake -c bioconda -c conda-forge \"python&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\nInstalling nfcore\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
     "crumbs": [
       "About the Kwon Lab",
       "1. Getting Started",
@@ -120,25 +120,37 @@
   {
     "objectID": "materials/getting-started/intro/index.html",
     "href": "materials/getting-started/intro/index.html",
-    "title": "Intro to navigating Linux and the Command Line",
+    "title": "Navigating Linux and the Command Line",
     "section": "",
-    "text": "Instructions for basic linux commands\n\nls, cd, pwd, cp, mv, etc.",
+    "text": "Instructions for basic linux commands\n\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\nAdditional Resources",
     "crumbs": [
       "About the Kwon Lab",
       "1. Getting Started",
-      "</b> Intro to Linux and the Command Line"
+      "</b> Navigating Linux and the Command Line"
     ]
   },
   {
     "objectID": "materials/rnaseq/prereqs/index.html",
     "href": "materials/rnaseq/prereqs/index.html",
-    "title": "RNA-Seq",
+    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
     "section": "",
-    "text": "Instructions for running the rna seq pipeline\n\nrnaseq-specific installations, nfcore",
+    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username",
     "crumbs": [
       "About the Kwon Lab",
       "2. RNA sequencing analysis pipeline",
       "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installations/index.html#installing-minimamba",
+    "href": "materials/getting-started/installations/index.html#installing-minimamba",
+    "title": "Installations",
+    "section": "Installing minimamba",
+    "text": "Installing minimamba\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\nB. Install snakemake mamba create -n snakemake -c bioconda -c conda-forge “python&gt;=3.10” “snakemake &gt;=7.32”",
+    "crumbs": [
+      "About the Kwon Lab",
+      "1. Getting Started",
+      "</b> Installations"
     ]
   }
 ]

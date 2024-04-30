@@ -1,10 +1,35 @@
 ---
-title: "RNA-Seq"
+title: "Prequisites for running the nf-core RNA-Seq pipeline"
 format:
   html:
     toc: true
 ---
 
-> Instructions for running the rna seq pipeline
+<!-- > Prequisites for running the nfcore RNA-Seq pipeline -->
 
-rnaseq-specific installations, nfcore
+Ensure you have `mamba`, `snakemake`, and `nf-core` installed on your platform.
+
+#### Download the repo to your scratch folder
+
+Replace the filepath with your scratch folder
+```
+cd /n/scratch3/users/j/je112
+wget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip
+```
+
+#### Unzip and rename the folder
+```
+unzip main.zip -d my_new_rnaseq_run
+```
+
+#### Adding your samples
+Open `my_new_rnaseq_run/input/sample_sheet.csv` with an editor and add your samples with the corresponding filepaths.
+
+Columns are named sample,fastq_1,fastq_2,strandedness
+You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.
+
+To get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)
+
+```
+rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username
+```

@@ -7,4 +7,29 @@ format:
 
 > Running the rnaseq pipeline
 
-rnaseq tutorial
+
+#### Run the kraken pipeline
+Each sample takes up to a couple hours, but each sample runs independently on the cluster\
+```
+sbatch submit_kraken.sh
+```
+
+#### Run the nfcore pipeline 
+
+```
+conda activate nfcore
+nf-core download rnaseq
+sbatch submit_nfcore_rnaseq.sh
+```
+
+#### Move the results to your lab folder in /n/groups
+```
+salmon.merged.gene_counts.tsv
+salmon.merged.gene_tpms.tsv
+Nfcore_rnaseq_multiqc_report.html
+```
+
+If you are in your smartseq_kraken-main folder:
+```
+cp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html /n/groups/kwon/(your_group_folder_name)
+```

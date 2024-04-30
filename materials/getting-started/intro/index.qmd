@@ -1,5 +1,5 @@
 ---
-title: "Intro to navigating Linux and the Command Line"
+title: "Navigating Linux and the Command Line"
 format:
   html:
     toc: true
@@ -7,4 +7,34 @@ format:
 
 > Instructions for basic linux commands
 
-ls, cd, pwd, cp, mv, etc.
+`ls`: Lists all files and directories in the present working directory
+
+`ls -R`: Lists all files in sub-directories too
+
+`ls -a`: Lists all hidden files too
+
+`pwd`: Displays current file path
+
+`cd`: Mavigates to a directory
+
+`cd ~`: HOME directory
+
+`cd ..`: Navigates one level up
+
+`cat > filename`: Creates new 
+
+`cat filename`: Displays file content
+
+`mv file new_file`: Moves file to new file location and changes name
+
+`rm filename`: Deletes a file, use `-r` to delete a folder
+
+`cp filename new_file`: Copies a file, use `-r` to copy a folder
+
+`history`: Gives a list of all past commands
+
+`Ctrl + l` or `clear`: Clears the terminal
+
+
+
+[Additional Resources](https://missing.csail.mit.edu/2020/course-shell/){target="_blank"}

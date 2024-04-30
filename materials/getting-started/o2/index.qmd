@@ -5,36 +5,57 @@ format:
     toc: true
 ---
 
-> Instructions for getting access and onto O2
+> Accessing the HMS O2 cluster
 
-### Ask for access to /n/groups/kwon
 
-email rchelp@hms.harvard.edu, copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu, ask for access to the group folder /n/groups/kwon on o2.
+Online status: [O2 Status](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status){target="_blank"} \
 
-### Get Duo Push for Android / IOS  and register with hms
 
-first download the app : https://it.hms.harvard.edu/duo-mobile-app
 
-then, email [itservicedesk@hms.harvard.edu](mailto:itservicedesk@hms.harvard.edu). or call 617-432-2000 to ask HMS IT to get registered with Duo
 
-### Set default 2-factor authentication option to call or push:
+### Requesting access to the /n/groups/kwon groups folder
 
-For push (recommended, but only if you already have duo push!):
+To request access, email `rchelp@hms.harvard.edu` to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu as well. 
 
-echo 'export DUO_PASSCODE=push' >> $HOME/.bashrc
 
-For phone
 
-echo 'export DUO_PASSCODE=phone' >> $HOME/.bashrc
 
-DO NOT set text as your default
-
-### Setup passwordless login (ssh keys):
-
-**https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys**
 
 ### Make a scratch directory.
 
-Note, the scratch directory is automatically cleaned every 30 days, this is **truly truly truly for temporary storage**. **Everything you want to keep** needs to be moved to **your folder in /n/groups/kwon**
+Note, the scratch directory is automatically cleaned every 30 days, this is **ONLY FOR TEMPORARY STORAGE**. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).
 
-Run the following on o2: /n/cluster/bin/scratch3_create.sh
+(ON LOGIN NODE) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh
+
+
+\
+
+### Get Duo Push for Android / IOS  and register with HMS
+
+- Download the app : https://it.hms.harvard.edu/duo-mobile-app
+- Email [itservicedesk@hms.harvard.edu](mailto:itservicedesk@hms.harvard.edu). or call 617-432-2000 to ask HMS IT to get registered with Duo
+
+
+### Setting up 2-Factor Authentication
+
+To set default 2-factor authentication option to call or push: \
+For push (recommended, but only if you already have Duo push!):
+```
+echo 'export DUO_PASSCODE=push' >> $HOME/.bashrc
+```
+For phone
+```
+echo 'export DUO_PASSCODE=phone' >> $HOME/.bashrc
+```
+DO NOT set text as your default
+
+### Setup passwordless login (ssh keys):
+To set passwordless login, follow the SSH keys tutorial [here](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys){target="_blank"} \
+
+
+
+
+
+\
+\
+[For more information on the O2 Cluster](https://harvardmed.atlassian.net/wiki/spaces/O2/overview){target="_blank"} \
