@@ -8,7 +8,7 @@ format:
 > Producing an gene expression matrix and an extensive QC report for downstream analysis
 \
 
-## Prequisites
+# Prequisites
 ### Required software
 
 Ensure you have `mamba`, `snakemake`, and `nf-core` installed on O2. For installation instructions, visit [here](../../getting-started/installations/index.qmd).
@@ -37,16 +37,23 @@ You will now have a `my_new_rnaseq_run` folder that contains all the required sc
 
 
 ### Adding your samples
-Download a sample sheet [here](https://github.com/kwondry/smartseq_kraken/blob/main/input/sample_sheet.csv "download"){target="_blank"} and add your samples with the corresponding filepaths. 
-You can edit the raw csv in any editor you'd like and save as csv. Columns are named sample, fastq_1, fastq_2, strandedness. If sequences are single-end, leave the fastq_2 column empty.
+Download a sample sheet [here](https://github.com/kwondry/smartseq_kraken/blob/main/input/sample_sheet.csv "download"){target="_blank"} and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you'd like and save as csv. Columns are named **sample, fastq_1, fastq_2, strandedness** with fastq_1 being the forward reads and fastq_2 for the reverse reads. If sequences are single-end, leave the fastq_2 column empty. The fastq files should be within `/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/{your sequencing run}`.
+\
 
-Then, you can upload your edited sample sheet onto O2 using your **local** terminal and the following command.
+Next, upload your sample sheet onto O2. You can use **rsync** to upload your edited sample sheet onto O2 using your **local** terminal. Or, you can use the [O2 Portal](https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard){target="_blank"} to upload your sample_sheet.csv into the pipeline input folder in your scratch.
 ```{python}
 #| eval: false
 rsync -avt path_to_downloaded_file hms_username@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/input
 ```
 
 
+![](../../images/o2_portal_step1.png){width=49%}
+![](../../images/o2_portal_step2.png){width=43%}
+
+Log into the O2 portal with your HMS credentials, click the Files > Scratch, navigate to the input folder, and upload your sample_sheet.
+
+
+<!-- ![Elephant](elephant.png){width=300} -->
 <!-- Open `my_new_rnaseq_run/input/sample_sheet.csv` with an editor and add your samples with the corresponding filepaths.
 
 Columns are named sample,fastq_1,fastq_2,strandedness
@@ -60,8 +67,9 @@ rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_usern
 
 
 \
+\
 
-## Running the pipeline
+# Running the pipeline
 
 #### Navigate to your pipeline folder
 ```{python}
