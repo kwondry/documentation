@@ -1,1 +1,1 @@
-Sitemap: https://kwonlabpipelines.github.io/kwon-lab-pipelines/sitemap.xml
+Sitemap: https://kwondry.github.io/documentation/sitemap.xml

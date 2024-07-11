@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kwonlabpipelines.github.io/kwon-lab-pipelines/materials/rnaseq/running-rnaseq/index.html</loc>
-    <lastmod>2024-04-30T00:43:34.169Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/rnaseq/running-rnaseq/index.html</loc>
+    <lastmod>2024-07-11T18:54:22.109Z</lastmod>
   </url>
   <url>
-    <loc>https://kwonlabpipelines.github.io/kwon-lab-pipelines/materials/getting-started/o2/index.html</loc>
-    <lastmod>2024-04-29T23:46:00.839Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/getting-started/o2/index.html</loc>
+    <lastmod>2024-07-11T18:09:12.035Z</lastmod>
   </url>
   <url>
-    <loc>https://kwonlabpipelines.github.io/kwon-lab-pipelines/materials/getting-started/installations/index.html</loc>
-    <lastmod>2024-04-29T23:46:22.768Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/getting-started/installations/index.html</loc>
+    <lastmod>2024-07-11T18:23:53.402Z</lastmod>
   </url>
   <url>
-    <loc>https://kwonlabpipelines.github.io/kwon-lab-pipelines/index.html</loc>
-    <lastmod>2024-04-29T16:59:54.435Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/index.html</loc>
+    <lastmod>2024-07-11T18:35:11.285Z</lastmod>
   </url>
   <url>
-    <loc>https://kwonlabpipelines.github.io/kwon-lab-pipelines/materials/getting-started/intro/index.html</loc>
-    <lastmod>2024-04-29T23:40:20.395Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/getting-started/intro_cli/index.html</loc>
+    <lastmod>2024-07-11T18:25:08.051Z</lastmod>
   </url>
   <url>
-    <loc>https://kwonlabpipelines.github.io/kwon-lab-pipelines/materials/rnaseq/prereqs/index.html</loc>
-    <lastmod>2024-04-29T23:52:59.743Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/rnaseq/background/index.html</loc>
+    <lastmod>2024-07-11T18:57:36.447Z</lastmod>
   </url>
 </urlset>

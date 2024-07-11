@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/getting-started/intro/index.html" rel="next">
+<link href="../../../materials/getting-started/intro_cli/index.html" rel="next">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -139,8 +173,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Navigating Linux and the Command Line</span></a>
+  <a href="../../../materials/getting-started/intro_cli/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Navigating the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -154,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">2. RNA sequencing analysis pipeline</span></a>
+ <span class="menu-text">2. RNA sequencing pipeline</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -162,8 +196,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/rnaseq/prereqs/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Prerequisites</span></a>
+  <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Background</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -188,11 +222,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#requesting-access-to-the-ngroupskwon-groups-folder" id="toc-requesting-access-to-the-ngroupskwon-groups-folder" class="nav-link active" data-scroll-target="#requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon groups folder</a></li>
-  <li><a href="#make-a-scratch-directory." id="toc-make-a-scratch-directory." class="nav-link" data-scroll-target="#make-a-scratch-directory.">Make a scratch directory.</a></li>
+  <li><a href="#setting-up-your-o2-account" id="toc-setting-up-your-o2-account" class="nav-link active" data-scroll-target="#setting-up-your-o2-account">Setting up your O2 account</a>
+  <ul class="collapse">
+  <li><a href="#obtain-your-o2-account" id="toc-obtain-your-o2-account" class="nav-link" data-scroll-target="#obtain-your-o2-account">Obtain your O2 account</a></li>
+  <li><a href="#getting-on-o2" id="toc-getting-on-o2" class="nav-link" data-scroll-target="#getting-on-o2">Getting on O2</a></li>
+  <li><a href="#requesting-access-to-the-ngroupskwon-groups-folder" id="toc-requesting-access-to-the-ngroupskwon-groups-folder" class="nav-link" data-scroll-target="#requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon/ groups folder</a></li>
+  <li><a href="#making-a-scratch-directory." id="toc-making-a-scratch-directory." class="nav-link" data-scroll-target="#making-a-scratch-directory.">Making a scratch directory.</a></li>
   <li><a href="#get-duo-push-for-android-ios-and-register-with-hms" id="toc-get-duo-push-for-android-ios-and-register-with-hms" class="nav-link" data-scroll-target="#get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with HMS</a></li>
   <li><a href="#setting-up-2-factor-authentication" id="toc-setting-up-2-factor-authentication" class="nav-link" data-scroll-target="#setting-up-2-factor-authentication">Setting up 2-Factor Authentication</a></li>
   <li><a href="#setup-passwordless-login-ssh-keys" id="toc-setup-passwordless-login-ssh-keys" class="nav-link" data-scroll-target="#setup-passwordless-login-ssh-keys">Setup passwordless login (ssh keys):</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -219,20 +258,33 @@ ul.task-list li input[type="checkbox"] {
 
 
 <blockquote class="blockquote">
-<p>Accessing the HMS O2 cluster</p>
+<p>Working with the HMS O2 cluster</p>
 </blockquote>
-<p>Online status: <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status" target="_blank">O2 Status</a><br>
+<p>O2 status: <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status" target="_blank">O2 Status</a><br>
+<a href="https://harvardmed.atlassian.net/wiki/spaces/O2/overview" target="_blank">More Information on the O2 Cluster</a><br>
 </p>
-<section id="requesting-access-to-the-ngroupskwon-groups-folder" class="level3">
-<h3 class="anchored" data-anchor-id="requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon groups folder</h3>
-<p>To request access, email <code>rchelp@hms.harvard.edu</code> to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu as well.</p>
+<section id="setting-up-your-o2-account" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-your-o2-account">Setting up your O2 account</h2>
+<section id="obtain-your-o2-account" class="level3">
+<h3 class="anchored" data-anchor-id="obtain-your-o2-account">Obtain your O2 account</h3>
+<p><a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1918304257/How+to+request+or+retain+an+O2+account" target="_blank">Info</a><br>
+</p>
 </section>
-<section id="make-a-scratch-directory." class="level3">
-<h3 class="anchored" data-anchor-id="make-a-scratch-directory.">Make a scratch directory.</h3>
-<p>Note, the scratch directory is automatically cleaned every 30 days, this is <strong>ONLY FOR TEMPORARY STORAGE</strong>. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).</p>
-<p>(ON LOGIN NODE) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh</p>
-<p><br>
-</p>
+<section id="getting-on-o2" class="level3">
+<h3 class="anchored" data-anchor-id="getting-on-o2">Getting on O2</h3>
+<p>Using your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.</p>
+<div id="62bf0f12" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh (hms_username)<span class="op">@</span>o2.hms.harvard.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="requesting-access-to-the-ngroupskwon-groups-folder" class="level3">
+<h3 class="anchored" data-anchor-id="requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon/ groups folder</h3>
+<p>To request access, email <code>rchelp@hms.harvard.edu</code> to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu.</p>
+</section>
+<section id="making-a-scratch-directory." class="level3">
+<h3 class="anchored" data-anchor-id="making-a-scratch-directory.">Making a scratch directory.</h3>
+<p>Note, files on the scratch directory are automatically deleted <strong>45 days</strong> after their last modificaiton date. This is only for <strong>TEMPORARY STORAGE</strong>. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).</p>
+<p><strong>(On the login node)</strong> Run the following on O2: /n/cluster/bin/scratch_create_directory.sh</p>
 </section>
 <section id="get-duo-push-for-android-ios-and-register-with-hms" class="level3">
 <h3 class="anchored" data-anchor-id="get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with HMS</h3>
@@ -245,9 +297,13 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="setting-up-2-factor-authentication">Setting up 2-Factor Authentication</h3>
 <p>To set default 2-factor authentication option to call or push:<br>
 For push (recommended, but only if you already have Duo push!):</p>
-<pre><code>echo 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc</code></pre>
+<div id="65e278f8" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=push'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>For phone</p>
-<pre><code>echo 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc</code></pre>
+<div id="79f68e75" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=phone'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>DO NOT set text as your default</p>
 </section>
 <section id="setup-passwordless-login-ssh-keys" class="level3">
@@ -256,10 +312,10 @@ For push (recommended, but only if you already have Duo push!):</p>
 </p>
 <p><br>
 <br>
-<a href="https://harvardmed.atlassian.net/wiki/spaces/O2/overview" target="_blank">For more information on the O2 Cluster</a><br>
 </p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -344,7 +400,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/kwonlabpipelines\.github\.io\/kwon-lab-pipelines\/");
+      var filterRegex = new RegExp("https:\/\/kwondry\.github\.io\/documentation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -676,8 +732,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/getting-started/intro/index.html" class="pagination-link" aria-label="</b> Navigating Linux and the Command Line">
-        <span class="nav-page-text"> Navigating Linux and the Command Line</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../materials/getting-started/intro_cli/index.html" class="pagination-link" aria-label="</b> Navigating the Command Line">
+        <span class="nav-page-text"> Navigating the Command Line</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
