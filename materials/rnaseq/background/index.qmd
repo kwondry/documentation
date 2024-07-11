@@ -1,0 +1,36 @@
+---
+title: "Background"
+format:
+  html:
+    toc: true
+---
+
+> *Work in progress*
+
+### Introduction to the pipeline
+This pipeline quantifies RNA-sequenced reads relative to genes/transcripts in the genome and normalizes the resulting data. It uses `Kraken2` for filtering human reads and `nf-core/rnaseq` for the core trimming, alignments, and quantification. It does not compare the samples statistically, so for downstream analyses, the output files from this pipeline can be analysed directly in statistical environments like R.
+
+### Inputs
+This pipeline takes a sample sheet and fastq files (ideally in `/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/`) as input and works for both single and paired-end reads.
+
+
+### Outputs
+QC report, gene counts, normalized gene counts, QC reports, etc.
+
+
+
+
+
+
+
+
+
+
+
+\
+\
+\
+\
+\
+\
+Credits to **Kraken2** and **nf-core/rnaseq**

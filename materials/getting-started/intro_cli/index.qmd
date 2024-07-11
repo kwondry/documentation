@@ -1,11 +1,13 @@
 ---
-title: "Navigating Linux and the Command Line"
+title: "Navigating the Command Line"
 format:
   html:
     toc: true
 ---
 
 > Instructions for basic linux commands
+
+### Basic linux commands 
 
 `ls`: Lists all files and directories in the present working directory
 
@@ -35,6 +37,8 @@ format:
 
 `Ctrl + l` or `clear`: Clears the terminal
 
+### Managing environments
 
+mamba/conda functions
 
 [Additional Resources](https://missing.csail.mit.edu/2020/course-shell/){target="_blank"}

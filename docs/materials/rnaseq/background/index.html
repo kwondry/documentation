@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - Installing R and RStudio</title>
+<title>Kwon Lab Pipelines - Background</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,61 +20,29 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../materials/rnaseq/running-rnaseq/index.html" rel="next">
+<link href="../../../materials/getting-started/installations/index.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Kwon Lab Pipelines</span>
     </a>
   </div>
@@ -144,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Installing R and RStudio</h1>
+          <h1 class="quarto-secondary-nav-title">Background</h1>
         </a>     
     </div>
   </nav>
@@ -166,42 +134,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Intro to Linux and the Command Line</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"> O2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./materials/getting-started/mamba/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Mamba</span></a>
+  <a href="../../../materials/getting-started/intro_cli/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Navigating the Command Line</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../materials/getting-started/installations/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Installations</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">2. RNA sequencing analysis pipeline</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">2. RNA sequencing pipeline</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./materials/rnaseq/prereqs/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Prerequisites</span></a>
+  <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Background</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./materials/rnaseq/running-rnaseq/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../materials/rnaseq/running-rnaseq/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Running the pipeline</span></a>
   </div>
 </li>
@@ -221,24 +189,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#step-1---follow-instructions-for-your-operating-system" id="toc-step-1---follow-instructions-for-your-operating-system" class="nav-link active" data-scroll-target="#step-1---follow-instructions-for-your-operating-system"><span class="header-section-number">1</span> Step 1 - follow instructions for your operating system</a></li>
-  <li><a href="#step-2---install-r-packages" id="toc-step-2---install-r-packages" class="nav-link" data-scroll-target="#step-2---install-r-packages"><span class="header-section-number">2</span> Step 2 - install R packages</a></li>
-  <li><a href="#sec-windows" id="toc-sec-windows" class="nav-link" data-scroll-target="#sec-windows"><span class="header-section-number">3</span> Windows</a>
-  <ul class="collapse">
-  <li><a href="#if-you-dont-have-r-and-rstudio-installed" id="toc-if-you-dont-have-r-and-rstudio-installed" class="nav-link" data-scroll-target="#if-you-dont-have-r-and-rstudio-installed"><span class="header-section-number">3.1</span> If you don’t have R and RStudio installed:</a></li>
-  <li><a href="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available." id="toc-if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available." class="nav-link" data-scroll-target="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available."><span class="header-section-number">3.2</span> If you already have R and RStudio installed, check to see if updates are available.</a></li>
-  </ul></li>
-  <li><a href="#sec-mac" id="toc-sec-mac" class="nav-link" data-scroll-target="#sec-mac"><span class="header-section-number">4</span> MacOs</a>
-  <ul class="collapse">
-  <li><a href="#check-your-processor" id="toc-check-your-processor" class="nav-link" data-scroll-target="#check-your-processor"><span class="header-section-number">4.1</span> Check your processor</a></li>
-  <li><a href="#if-you-dont-have-r-and-rstudio-installed-1" id="toc-if-you-dont-have-r-and-rstudio-installed-1" class="nav-link" data-scroll-target="#if-you-dont-have-r-and-rstudio-installed-1"><span class="header-section-number">4.2</span> If you don’t have R and RStudio installed:</a></li>
-  <li><a href="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1" id="toc-if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1" class="nav-link" data-scroll-target="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1"><span class="header-section-number">4.3</span> If you already have R and RStudio installed, check to see if updates are available.</a></li>
-  </ul></li>
-  <li><a href="#sec-linux" id="toc-sec-linux" class="nav-link" data-scroll-target="#sec-linux"><span class="header-section-number">5</span> Linux</a>
-  <ul class="collapse">
-  <li><a href="#if-you-dont-have-r-and-rstudio-installed-2" id="toc-if-you-dont-have-r-and-rstudio-installed-2" class="nav-link" data-scroll-target="#if-you-dont-have-r-and-rstudio-installed-2"><span class="header-section-number">5.1</span> If you don’t have R and RStudio installed:</a></li>
-  <li><a href="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2" id="toc-if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2" class="nav-link" data-scroll-target="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2"><span class="header-section-number">5.2</span> If you already have R and RStudio installed, check to see if updates are available.</a></li>
-  </ul></li>
+  <li><a href="#introduction-to-the-pipeline" id="toc-introduction-to-the-pipeline" class="nav-link active" data-scroll-target="#introduction-to-the-pipeline">Introduction to the pipeline</a></li>
+  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
+  <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
   </ul>
 </nav>
     </div>
@@ -247,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Installing R and RStudio</h1>
+<h1 class="title d-none d-lg-block">Background</h1>
 </div>
 
 
@@ -264,91 +217,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>adapted from <a href="datacarpentry.org">datacarpentry.org</a></p>
-<p>For this workshop, we will need R as well RStudio. R and RStudio are both completely free and open source software. While R is the underlying statistical computing environment, RStudio is the graphical IDE (integrated development environment) that makes using R easier, more intuitive, and interactive. Both are separate downloads and installations, and you will need to install R first, followed by RStudio. Once both are installed, you would just open and work in RStudio, which will run R in the background. Then you will install some R packages (collections of functions you can use in your own coding) which we are using for this workshop. Please install <code>R version 4.3.1</code> or later and <code>RStudio version 2023.09.0</code> or later.</p>
-<section id="step-1---follow-instructions-for-your-operating-system" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="step-1---follow-instructions-for-your-operating-system"><span class="header-section-number">1</span> Step 1 - follow instructions for your operating system</h2>
-<section id="for-windows-see-sec-windows" class="level4" data-number="1.0.1">
-<h4 data-number="1.0.1" class="anchored" data-anchor-id="for-windows-see-sec-windows"><span class="header-section-number">1.0.1</span> For Windows see <strong><a href="#sec-windows" class="quarto-xref">Section&nbsp;3</a></strong></h4>
+<blockquote class="blockquote">
+<p><em>Work in progress</em></p>
+</blockquote>
+<section id="introduction-to-the-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-the-pipeline">Introduction to the pipeline</h3>
+<p>This pipeline quantifies RNA-sequenced reads relative to genes/transcripts in the genome and normalizes the resulting data. It uses <code>Kraken2</code> for filtering human reads and <code>nf-core/rnaseq</code> for the core trimming, alignments, and quantification. It does not compare the samples statistically, so for downstream analyses, the output files from this pipeline can be analysed directly in statistical environments like R.</p>
 </section>
-<section id="for-macos-see-sec-mac" class="level4" data-number="1.0.2">
-<h4 data-number="1.0.2" class="anchored" data-anchor-id="for-macos-see-sec-mac"><span class="header-section-number">1.0.2</span> For MacOS see <strong><a href="#sec-mac" class="quarto-xref">Section&nbsp;4</a></strong></h4>
+<section id="inputs" class="level3">
+<h3 class="anchored" data-anchor-id="inputs">Inputs</h3>
+<p>This pipeline takes a sample sheet and fastq files (ideally in <code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/</code>) as input and works for both single and paired-end reads.</p>
 </section>
-<section id="for-linux-see-sec-linux" class="level4" data-number="1.0.3">
-<h4 data-number="1.0.3" class="anchored" data-anchor-id="for-linux-see-sec-linux"><span class="header-section-number">1.0.3</span> For Linux see <strong><a href="#sec-linux" class="quarto-xref">Section&nbsp;5</a></strong></h4>
-</section>
-</section>
-<section id="step-2---install-r-packages" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="step-2---install-r-packages"><span class="header-section-number">2</span> Step 2 - install R packages</h2>
-<p>Open RStudio and <i class="fa-solid fa-paste" aria-label="paste"></i>Paste the following into your console on the left/bottom-left.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"broom"</span>, <span class="st">"cluster"</span>, <span class="st">"colorspace"</span>, <span class="st">"cowplot"</span>, <span class="st">"distill"</span>, <span class="st">"gapminder"</span>, <span class="st">"GGally"</span>, <span class="st">"gganimate"</span>, <span class="st">"ggbeeswarm"</span>, <span class="st">"ggiraph"</span>, <span class="st">"ggdendro"</span>, <span class="st">"ggdist"</span>, <span class="st">"ggforce"</span>,<span class="st">"ggplot2movies"</span>, <span class="st">"ggrepel"</span>, <span class="st">"ggridges"</span>, <span class="st">"ggthemes"</span>, <span class="st">"gifski"</span>, <span class="st">"glue"</span>,<span class="st">"knitr"</span>, <span class="st">"learnr"</span>, <span class="st">"naniar"</span>, <span class="st">"margins"</span>, <span class="st">"MASS"</span>, <span class="st">"Matrix"</span>,<span class="st">"nycflights13"</span>, <span class="st">"palmerpenguins"</span>, <span class="st">"patchwork"</span>, <span class="st">"quarto"</span>, <span class="st">"rgdal"</span>, <span class="st">"rmarkdown"</span>,<span class="st">"rnaturalearth"</span>, <span class="st">"sf"</span>, <span class="st">"shinyjs"</span>, <span class="st">"tableone"</span>, <span class="st">"tidyverse"</span>, <span class="st">"transformr"</span>, <span class="st">"umap"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="sec-windows" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-windows"><span class="header-section-number">3</span> Windows</h2>
-<section id="if-you-dont-have-r-and-rstudio-installed" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="if-you-dont-have-r-and-rstudio-installed"><span class="header-section-number">3.1</span> If you don’t have R and RStudio installed:</h3>
-<p>Go to <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a> and follow this instruction for windows.</p>
-</section>
-<section id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available." class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available."><span class="header-section-number">3.2</span> If you already have R and RStudio installed, check to see if updates are available.</h3>
-<p>RStudio: Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.</p>
-<p>R: Upon starting RStudio, the version of R you are running will appear on the console. You can also type <code>sessionInfo()</code> in the console to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. You can update R using the <code>installr</code> package, by running:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># installr is for windows only!</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>( <span class="sc">!</span>(<span class="st">"installr"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()) ){<span class="fu">install.packages</span>(<span class="st">"installr"</span>)} </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>installr<span class="sc">::</span><span class="fu">updateR</span>(<span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="sec-mac" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="sec-mac"><span class="header-section-number">4</span> MacOs</h2>
-<section id="check-your-processor" class="level3 text-left" data-number="4.1">
-<h3 class="text-left anchored" data-number="4.1" data-anchor-id="check-your-processor"><span class="header-section-number">4.1</span> Check your processor</h3>
-<p><em>adapted from <a href="https://docs.cse.lehigh.edu/determine-mac-architecture/">https://docs.cse.lehigh.edu/determine-mac-architecture/</a></em></p>
-<p>Make sure you are downloading and installing the right version of R and R Studio for your laptop’s CPU. Some Macs have an intel chip (also known as x64 or x86_64 architecture), while the newest macs have M1 or M2 chips (also known as ARM architecture).</p>
-<p>To determine whether a Mac is running an Intel Processor or Apple ARM M1 or M2, click on the <i class="fa-brands fa-apple" aria-label="apple"></i> Apple Menu and select ‘About this Mac’:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/determine-mac-architecture01.png" class="img-fluid figure-img"></p>
-<figcaption>click about this mac</figcaption>
-</figure>
-</div>
-<p>From the ‘About this Mac’ screen, on the ‘Overview’ tab, look for a line that indicates either ‘Chip’ or ‘Processor’. If the line contains M1 or M2, the machine is running Apple Silicon. Alternatively, the word Intel indicates that the machine is running an Intel-based Core series processor.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/determine-mac-architecture-m1.png" class="img-fluid figure-img"></p>
-<figcaption>M1 or M2</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/determine-mac-architecture-intel.png" class="img-fluid figure-img"></p>
-<figcaption>intel</figcaption>
-</figure>
-</div>
-</section>
-<section id="if-you-dont-have-r-and-rstudio-installed-1" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="if-you-dont-have-r-and-rstudio-installed-1"><span class="header-section-number">4.2</span> If you don’t have R and RStudio installed:</h3>
-<p>Go to <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a> and follow this instruction for MacOS.</p>
-</section>
-<section id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1"><span class="header-section-number">4.3</span> If you already have R and RStudio installed, check to see if updates are available.</h3>
-<p><strong>RStudio:</strong> Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.</p>
-<p><strong>R:</strong> Upon starting RStudio, the version of R you are running will appear on the console. You can also type sessionInfo() to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. For this workshop install version 4.3.1 of R</p>
-</section>
-</section>
-<section id="sec-linux" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sec-linux"><span class="header-section-number">5</span> Linux</h2>
-<section id="if-you-dont-have-r-and-rstudio-installed-2" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="if-you-dont-have-r-and-rstudio-installed-2"><span class="header-section-number">5.1</span> If you don’t have R and RStudio installed:</h3>
-<p>Go to <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a> and follow this instruction for your Linux OS.</p>
-</section>
-<section id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2"><span class="header-section-number">5.2</span> If you already have R and RStudio installed, check to see if updates are available.</h3>
-<p><strong>RStudio:</strong> Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.</p>
-<p><strong>R:</strong> Upon starting RStudio, the version of R you are running will appear on the console. You can also type sessionInfo() to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. For this workshop install version 4.3.1 of R</p>
+<section id="outputs" class="level3">
+<h3 class="anchored" data-anchor-id="outputs">Outputs</h3>
+<p>QC report, gene counts, normalized gene counts, QC reports, etc.</p>
+<p><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Credits to <strong>Kraken2</strong> and <strong>nf-core/rnaseq</strong></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -761,6 +652,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../materials/getting-started/installations/index.html" class="pagination-link" aria-label="</b> Installations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"> Installations</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../materials/rnaseq/running-rnaseq/index.html" class="pagination-link" aria-label="Running the pipeline">
+        <span class="nav-page-text">Running the pipeline</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

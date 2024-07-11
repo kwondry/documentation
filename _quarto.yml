@@ -44,18 +44,18 @@ website:
             - text: "</b> O2"
               contents:
               href: materials/getting-started/o2/index.qmd
-            - text: "</b> Navigating Linux and the Command Line"
+            - text: "</b> Navigating the Command Line"
               contents:
-              href: materials/getting-started/intro/index.qmd
+              href: materials/getting-started/intro_cli/index.qmd
             - text: "</b> Installations"
               contents:
               href: materials/getting-started/installations/index.qmd
 
-          - section: "2. RNA sequencing analysis pipeline"
+          - section: "2. RNA sequencing pipeline"
             contents:
-            - text: "Prerequisites"
+            - text: "Background"
               contents:
-              href: materials/rnaseq/prereqs/index.qmd
+              href: materials/rnaseq/background/index.qmd
             - text: "Running the pipeline"
               contents:
               href: materials/rnaseq/running-rnaseq/index.qmd

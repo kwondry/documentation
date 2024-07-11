@@ -2,12 +2,12 @@
   {
     "objectID": "materials/rnaseq/running-rnaseq/index.html",
     "href": "materials/rnaseq/running-rnaseq/index.html",
-    "title": "RNA-Seq",
+    "title": "Running the RNA-Seq pipeline",
     "section": "",
-    "text": "Running the rnaseq pipeline\n\n\nRun the kraken pipeline\nEach sample takes up to a couple hours, but each sample runs independently on the cluster\n\nsbatch submit_kraken.sh\n\n\nRun the nfcore pipeline\nconda activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\n\n\nMove the results to your lab folder in /n/groups\nsalmon.merged.gene_counts.tsv\nsalmon.merged.gene_tpms.tsv\nNfcore_rnaseq_multiqc_report.html\nIf you are in your smartseq_kraken-main folder:\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html /n/groups/kwon/(your_group_folder_name)",
+    "text": "Producing an gene expression matrix and an extensive QC report for downstream analysis",
     "crumbs": [
       "About the Kwon Lab",
-      "2. RNA sequencing analysis pipeline",
+      "2. RNA sequencing pipeline",
       "Running the pipeline"
     ]
   },
@@ -16,7 +16,7 @@
     "href": "materials/getting-started/o2/index.html",
     "title": "O2",
     "section": "",
-    "text": "Accessing the HMS O2 cluster\n\nOnline status: O2 Status\n\n\nRequesting access to the /n/groups/kwon groups folder\nTo request access, email rchelp@hms.harvard.edu to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu as well.\n\n\nMake a scratch directory.\nNote, the scratch directory is automatically cleaned every 30 days, this is ONLY FOR TEMPORARY STORAGE. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).\n(ON LOGIN NODE) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh\n\n\n\n\nGet Duo Push for Android / IOS and register with HMS\n\nDownload the app : https://it.hms.harvard.edu/duo-mobile-app\nEmail itservicedesk@hms.harvard.edu. or call 617-432-2000 to ask HMS IT to get registered with Duo\n\n\n\nSetting up 2-Factor Authentication\nTo set default 2-factor authentication option to call or push:\nFor push (recommended, but only if you already have Duo push!):\necho 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc\nFor phone\necho 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc\nDO NOT set text as your default\n\n\nSetup passwordless login (ssh keys):\nTo set passwordless login, follow the SSH keys tutorial here\n\n\n\nFor more information on the O2 Cluster",
+    "text": "Working with the HMS O2 cluster\nO2 status: O2 Status\nMore Information on the O2 Cluster",
     "crumbs": [
       "About the Kwon Lab",
       "1. Getting Started",
@@ -26,89 +26,14 @@
   {
     "objectID": "materials/getting-started/installations/index.html",
     "href": "materials/getting-started/installations/index.html",
-    "title": "Installations",
+    "title": "Installation instructions",
     "section": "",
-    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please make sure to be on an interactive node.\n\nInstalling minimamba\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\nInstalling Snakemake\nmamba create -n snakemake -c bioconda -c conda-forge \"python&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\nInstalling nfcore\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
+    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please be sure to be on an interactive node.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash\n\n\nmamba/minimamba\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\n\nSnakemake\n\nmamba create -n snakemake -c bioconda -c conda-forge \"python&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\n\nnfcore\n\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
     "crumbs": [
       "About the Kwon Lab",
       "1. Getting Started",
       "</b> Installations"
     ]
-  },
-  {
-    "objectID": "materials/getting-started/installations/index.html#installationsset-up",
-    "href": "materials/getting-started/installations/index.html#installationsset-up",
-    "title": "Installations",
-    "section": "Installations/Set-up",
-    "text": "Installations/Set-up\nInstalling package managers and pipelines A. Install minimamba cd ~; curl -L -O “https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-\\((uname)-\\)(uname -m).sh”; bash Mambaforge-\\((uname)-\\)(uname -m).sh;\nB. Install snakemake mamba create -n snakemake -c bioconda -c conda-forge “python&gt;=3.10” “snakemake &gt;=7.32”",
-    "crumbs": [
-      "About the Kwon Lab",
-      "1. Getting Started",
-      "</b> Installations"
-    ]
-  },
-  {
-    "objectID": "datasets.html",
-    "href": "datasets.html",
-    "title": "Datasets",
-    "section": "",
-    "text": "Download here"
-  },
-  {
-    "objectID": "datasets.html#icebreaker-survey",
-    "href": "datasets.html#icebreaker-survey",
-    "title": "Datasets",
-    "section": "",
-    "text": "Download here"
-  },
-  {
-    "objectID": "datasets.html#download-the-instructional-dataset",
-    "href": "datasets.html#download-the-instructional-dataset",
-    "title": "Datasets",
-    "section": "Download the instructional dataset:",
-    "text": "Download the instructional dataset:\nThe main data set for use in lectures is split into 5 tables. The idea of this dataset is that there is a randomized controlled trial of a drug aimed at reducing HIV risk by reducing inflammation. There were 23 participants in the placebo arm and 21 in the treatment arm. There were 3 visits for the trial – baseline (before any treatment occurred), week_1 (1 week after treatment) and week_7 (7 weeks after treatment). At each time point inflammation was measured using luminex (elisa_cytokines table) and immune cells counts were measured from a pap-smear (flow_cytometry table).\n\n00_sample_ids_UKZN_workshop_2023.csv\n\npid – participant id\ntime_point – “baseline”, “week_1”, or “week_7” arm – “treatment” or “placebo”\nsample_id – the “wet-lab” sample id associated with this timepoint\n\n01_participant_metadata_UKZN_workshop_2023.csv\n\npid - participant id\narm - “treatment” or “placebo”\nsmoker - “yes” or “no”\nage – integer age in years\neducation – 4 options (“less than grade 9”, “grade 10-12, not matriculated”, “grade 10-12, matriculated”, “post-secondary”)\nsex – all participants are “F”\n\n02_visit_clinical_measurements_UKZN_workshop_2023.csv\n\npid – particpant id\ntime_point – “baseline”, “week_1”, or “week_7”\narm – “treatment” or “placebo”\nnugent_score – Nugent Score, a number from 0-10. 0-3 is no BV, 4-6 is intermediate BV, and 7-10 is BV . crp_blood – decimal number representing C-reactive protein blood test (CRP) ph – vaginal pH\n\n03_elisa_cytokines_UKZN_workshop_2023.csv\n\nsample_id - the “wet-lab” sample id associated with this timepoint\ncytokine - “IL-1a”, “IL-10”, “IL-1b”, “IL-8”, “IL-6”, “TNFa”, “IP-10”, “MIG”, “IFN-Y”, “MIP-3a”\nconc – decimal number representing concentration\nlimits – either “within limits” or “out of range”\n\n04_flow_cytometry_UKZN_workshop_2023.csv\n\nsample_id - the “wet-lab” sample id associated with this timepoint\nAll other columns – the integer count of this type of cell in this sample\ncd4_t_cells might best be analyzed as a proportion of cd3_t_cells…"
-  },
-  {
-    "objectID": "datasets.html#download-the-yogurt-dataset-odd-number-groups",
-    "href": "datasets.html#download-the-yogurt-dataset-odd-number-groups",
-    "title": "Datasets",
-    "section": "Download the yogurt dataset (Odd number groups)",
-    "text": "Download the yogurt dataset (Odd number groups)\n\n00_sample_ids_yogurt.csv\n01_participant_metadata_yogurt.csv\n02_qpcr_results_yogurt.csv\n03_luminex_results_yogurt.csv"
-  },
-  {
-    "objectID": "datasets.html#download-the-birth-control-dataset-even-number-groups",
-    "href": "datasets.html#download-the-birth-control-dataset-even-number-groups",
-    "title": "Datasets",
-    "section": "Download the birth control dataset (Even number groups)",
-    "text": "Download the birth control dataset (Even number groups)\n\n00_sample_ids_period.csv\n01_participant_metadata_period.csv\n02_luminex_period.csv\n03_flow_cytometry_period.csv"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Series Organizer and Instructor\nDr. Scott Handley\nProfessor\nWashington University School of Medicine\nDepartment of Pathology and Immunology\n\n\n\n\n\n\n\n\n\nSeries Organizer and Instructor\nDr. Joseph Elsherbini\nData Scientist\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Jacques Ravel\nProfessor\nUniversity of Maryland School of Medicine Department of Microbiology and Immunology\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Sinaye Ngcapu\nSenior Scientist\nCAPRISA\nHIV Mucosal Immunology Laboratory\n\n\n\n\n\n\n\n\n\nInstructor\nLindsay Droit\nResearch Laboratory Manager Washington University School of Medicine\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Elizabeth Costello\nResearch Scientist\nStanford University\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Michael France\nBioinformatician\nUniversity of Maryland School of Medicine\n\n\n\n\n\n\n\n\n\nSeries Organizer and Instructor\nChandani Desai\nProject Manager\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nInstructor\nAsavela Kama\nBioinformatician\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nInstructor\nJohnathan Shih\nBioinformatics\nResearch Technician\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nSeries Logistics and Management\nSarah Eisa\nProgram Manager\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nSeries Logistics and Management\nRenee Schumm\nStaff Assistant II\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nAaron Abai\nResearch Technician\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nDerek Tshiabuila\nPhD Research Fellow\nCentre for Epidemic Response and Innovation (CERI) - Stellenbosch\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nDr. Afrah Khairallah\nPostdoctoral Research Fellow Africa Health Research Institute (AHRI) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nJohan van der Molen\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nWasim Abdool Karim\nBioinformatician\nCentre for Epidemic Response and Innovation (CERI) - Stellenbosch"
-  },
-  {
-    "objectID": "about.html#working-with-high-dimensional-data-in-r---teaching-team",
-    "href": "about.html#working-with-high-dimensional-data-in-r---teaching-team",
-    "title": "About",
-    "section": "",
-    "text": "Series Organizer and Instructor\nDr. Scott Handley\nProfessor\nWashington University School of Medicine\nDepartment of Pathology and Immunology\n\n\n\n\n\n\n\n\n\nSeries Organizer and Instructor\nDr. Joseph Elsherbini\nData Scientist\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Jacques Ravel\nProfessor\nUniversity of Maryland School of Medicine Department of Microbiology and Immunology\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Sinaye Ngcapu\nSenior Scientist\nCAPRISA\nHIV Mucosal Immunology Laboratory\n\n\n\n\n\n\n\n\n\nInstructor\nLindsay Droit\nResearch Laboratory Manager Washington University School of Medicine\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Elizabeth Costello\nResearch Scientist\nStanford University\n\n\n\n\n\n\n\n\n\nInstructor\nDr. Michael France\nBioinformatician\nUniversity of Maryland School of Medicine\n\n\n\n\n\n\n\n\n\nSeries Organizer and Instructor\nChandani Desai\nProject Manager\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nInstructor\nAsavela Kama\nBioinformatician\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nInstructor\nJohnathan Shih\nBioinformatics\nResearch Technician\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nSeries Logistics and Management\nSarah Eisa\nProgram Manager\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nSeries Logistics and Management\nRenee Schumm\nStaff Assistant II\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nAaron Abai\nResearch Technician\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nDerek Tshiabuila\nPhD Research Fellow\nCentre for Epidemic Response and Innovation (CERI) - Stellenbosch\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nDr. Afrah Khairallah\nPostdoctoral Research Fellow Africa Health Research Institute (AHRI) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nJohan van der Molen\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nWasim Abdool Karim\nBioinformatician\nCentre for Epidemic Response and Innovation (CERI) - Stellenbosch"
-  },
-  {
-    "objectID": "about.html#reproducible-data-analysis-with-r---teaching-team",
-    "href": "about.html#reproducible-data-analysis-with-r---teaching-team",
-    "title": "About",
-    "section": "Reproducible Data Analysis with R - Teaching Team",
-    "text": "Reproducible Data Analysis with R - Teaching Team\n\n\n\n\n\n\n\n\n\nKeynote Speaker\nDr. Lenine Liebenberg\nChief Researcher\nCentre for Epidemic Response and Innovation (CERI) - Stellenbosch\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nWorkshop Instructor\nDr. Laura Symul\nAssistant Professor\nUCLouvain Institute of Statistics, Biostatistics and Actuarial Sciences\n\n\n\n\n\n\n\n\n\nWorkshop Instructor\nMarothi Peter Letsoalo\nSenior Biostatistician\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nWorkshop Instructor\nSalina Hussain\nResearch Technician\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nWorkshop Instructor\nSuuba Demby\nResearch Technician\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nSeries Organizer and Instructor\nDr. Scott Handley\nProfessor\nWashington University School of Medicine\nDepartment of Pathology and Immunology\n\n\n\n\n\n\n\n\n\nSeries Organizer and Instructor\nDr. Joseph Elsherbini\nData Scientist\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nSeries Organizer and Instructor\nChandani Desai\nProject Manager\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nSeries Logistics and Management\nSarah Eisa\nProgram Manager\nRagon Institute of MGH, MIT and Harvard\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nDerek Tshiabuila\nPhD Research Fellow\nCentre for Epidemic Response and Innovation (CERI) - Stellenbosch\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nAsavela Kama\nBioinformatician\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nAfrah Khairallah\nPostdoctoral research fellow Africa Health Research Institute (AHRI) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nKwabena Asare\nStatistician\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nJohan van der Molen\nCentre for the AIDS Programme of Research in South Africa (CAPRISA) - UKZN\n\n\n\n\n\n\n\n\n\nTeaching Assistant\nWasim Abdool Karim\nBioinformatician Centre for Epidemic Response and Innovation (CERI) - Stellenbosch"
-  },
-  {
-    "objectID": "about.html#about-these-materials",
-    "href": "about.html#about-these-materials",
-    "title": "About",
-    "section": "About these materials",
-    "text": "About these materials\nThis website started with the code from Andrew P. Bray’s workshop website and much of the R content has been remixed and adapted from SDS375, a course by Claus O. Wilke."
   },
   {
     "objectID": "index.html",
@@ -120,37 +45,97 @@
   {
     "objectID": "materials/getting-started/intro/index.html",
     "href": "materials/getting-started/intro/index.html",
-    "title": "Navigating Linux and the Command Line",
+    "title": "Navigating the Command Line",
     "section": "",
     "text": "Instructions for basic linux commands\n\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\nAdditional Resources",
     "crumbs": [
       "About the Kwon Lab",
       "1. Getting Started",
-      "</b> Navigating Linux and the Command Line"
+      "</b> Navigating the Command Line"
     ]
   },
   {
     "objectID": "materials/rnaseq/prereqs/index.html",
     "href": "materials/rnaseq/prereqs/index.html",
-    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "title": "Background",
     "section": "",
-    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username",
+    "text": "Why would you run this:\nInputs:\nOutputs:",
     "crumbs": [
       "About the Kwon Lab",
-      "2. RNA sequencing analysis pipeline",
+      "2. RNA sequencing pipeline",
       "Prerequisites"
     ]
   },
   {
-    "objectID": "materials/getting-started/installations/index.html#installing-minimamba",
-    "href": "materials/getting-started/installations/index.html#installing-minimamba",
-    "title": "Installations",
-    "section": "Installing minimamba",
-    "text": "Installing minimamba\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\nB. Install snakemake mamba create -n snakemake -c bioconda -c conda-forge “python&gt;=3.10” “snakemake &gt;=7.32”",
+    "objectID": "materials/rnaseq/background/index.html",
+    "href": "materials/rnaseq/background/index.html",
+    "title": "Background",
+    "section": "",
+    "text": "Work in progress\n\n\nIntroduction to the pipeline\nThis pipeline quantifies RNA-sequenced reads relative to genes/transcripts in the genome and normalizes the resulting data. It uses Kraken2 for filtering human reads and nf-core/rnaseq for the core trimming, alignments, and quantification. It does not compare the samples statistically, so for downstream analyses, the output files from this pipeline can be analysed directly in statistical environments like R.\n\n\nInputs\nThis pipeline takes a sample sheet and fastq files (ideally in /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/) as input and works for both single and paired-end reads.\n\n\nOutputs\nQC report, gene counts, normalized gene counts, QC reports, etc.\n\n\n\n\n\n\nCredits to Kraken2 and nf-core/rnaseq",
+    "crumbs": [
+      "About the Kwon Lab",
+      "2. RNA sequencing pipeline",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "materials/rnaseq/running-rnaseq/index.html#prequisites",
+    "href": "materials/rnaseq/running-rnaseq/index.html#prequisites",
+    "title": "Running the RNA-Seq pipeline",
+    "section": "Prequisites",
+    "text": "Prequisites\n\nRequired software\nEnsure you have mamba, snakemake, and nf-core installed on O2. For installation instructions, visit here.\n\n\nData\nYour sequencing data should be uploaded onto O2.\n\n\nDownloading the pipeline to your scratch folder\nAfter logging onto O2 via a terminal, we can download the pipeline with the following commands.\n\n# Accessing your scratch folder on O2\ncd /n/scratch/users/{first_initial}/{hms_username}\n\n# Downloading the pipeline\nwget https://github.com/kwondry/smartseq_kraken/archive/refs/heads/main.zip\n\n# Unzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\nYou will now have a my_new_rnaseq_run folder that contains all the required scripts and files.\n\n\n\nAdding your samples\nDownload a sample sheet here and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you’d like and save as csv. Columns are named sample, fastq_1, fastq_2, strandedness. If sequences are single-end, leave the fastq_2 column empty.\nThen, you can upload your edited sample sheet onto O2 using your local terminal and the following command.\n\nrsync -avt path_to_downloaded_file hms_username@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/input",
+    "crumbs": [
+      "About the Kwon Lab",
+      "2. RNA sequencing pipeline",
+      "Running the pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/rnaseq/running-rnaseq/index.html#running-the-pipline",
+    "href": "materials/rnaseq/running-rnaseq/index.html#running-the-pipline",
+    "title": "Running the RNA-Seq pipeline",
+    "section": "Running the pipline",
+    "text": "Running the pipline\n\nRun the kraken pipeline\nEach sample takes up to a couple hours, but each sample runs independently on the cluster\n\n\nsbatch submit_kraken.sh\n\n\n\nRun the nfcore pipeline\n\nconda activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\n\n\n\nMove the results to your lab folder in /n/groups\n\nsalmon.merged.gene_counts.tsv\nsalmon.merged.gene_tpms.tsv\nNfcore_rnaseq_multiqc_report.html\n\nIf you are in your smartseq_kraken-main folder:\n\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html /n/groups/kwon/(your_group_folder_name)",
+    "crumbs": [
+      "About the Kwon Lab",
+      "2. RNA sequencing pipeline",
+      "Running the pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
+    "href": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
+    "title": "Running the RNA-Seq pipeline",
+    "section": "Running the pipeline",
+    "text": "Running the pipeline\n\nNavigate to your pipeline folder\n\ncd /n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/\n\n\n\nKraken2\nThe following run a Snakemake pipeline that runs Kraken2. Each sample can takes up to a couple hours, but each sample runs independently on the cluster.\n\nmamba activate snakemake\nsbatch submit_kraken.sh\n\nAfter the pipeline completes, you should see a results/kraken folder which includes the Kraken2 classifications of the sequences for each sample.\n\n\nnf-core pipeline\nThe following takes the Kraken2 filtered samples and runs the nfcore/rnaseq pipeline. The run time can range from a couple of hours to a few days. Additional information about the pipeline can be found here.\n\nmamba activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\n\nFollowing completion of the nfcore pipeline, you should see a results/nfcore folder that has QC, alignments, and gene counts for the samples. The main outputs of interest are in results/nfcore/star_salmon.\n\n#gene counts in each sample\nsalmon.merged.gene_counts.tsv\n\n#normalized gene counts\nsalmon.merged.gene_tpms.tsv\n\n#complete QC report of the samples\nNfcore_rnaseq_multiqc_report.html\n\n\n\nSaving the outputs\nFiles in the scratch directory are automatically deleted 45 days after the last modification date. To ensure your results are safe, copy them to /n/groups/.\n\nIf you are in your smartseq_kraken-main folder you can use the following:\n\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv \\\n results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv \\\n results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html \\\n /n/groups/kwon/(your_group_folder_name)/",
+    "crumbs": [
+      "About the Kwon Lab",
+      "2. RNA sequencing pipeline",
+      "Running the pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/intro_cli/index.html",
+    "href": "materials/getting-started/intro_cli/index.html",
+    "title": "Navigating the Command Line",
+    "section": "",
+    "text": "Instructions for basic linux commands\n\n\nBasic linux commands\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\n\n\nManaging environments\nmamba/conda functions\nAdditional Resources",
     "crumbs": [
       "About the Kwon Lab",
       "1. Getting Started",
-      "</b> Installations"
+      "</b> Navigating the Command Line"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/o2/index.html#setting-up-your-o2-account",
+    "href": "materials/getting-started/o2/index.html#setting-up-your-o2-account",
+    "title": "O2",
+    "section": "Setting up your O2 account",
+    "text": "Setting up your O2 account\n\nObtain your O2 account\nInfo\n\n\n\nGetting on O2\nUsing your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.\n\nssh (hms_username)@o2.hms.harvard.edu\n\n\n\nRequesting access to the /n/groups/kwon/ groups folder\nTo request access, email rchelp@hms.harvard.edu to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu.\n\n\nMaking a scratch directory.\nNote, files on the scratch directory are automatically deleted 45 days after their last modificaiton date. This is only for TEMPORARY STORAGE. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).\n(On the login node) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh\n\n\nGet Duo Push for Android / IOS and register with HMS\n\nDownload the app : https://it.hms.harvard.edu/duo-mobile-app\nEmail itservicedesk@hms.harvard.edu. or call 617-432-2000 to ask HMS IT to get registered with Duo\n\n\n\nSetting up 2-Factor Authentication\nTo set default 2-factor authentication option to call or push:\nFor push (recommended, but only if you already have Duo push!):\n\necho 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc\n\nFor phone\n\necho 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc\n\nDO NOT set text as your default\n\n\nSetup passwordless login (ssh keys):\nTo set passwordless login, follow the SSH keys tutorial here",
+    "crumbs": [
+      "About the Kwon Lab",
+      "1. Getting Started",
+      "</b> O2"
     ]
   }
 ]
