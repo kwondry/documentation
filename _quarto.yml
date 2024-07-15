@@ -51,7 +51,7 @@ website:
               contents:
               href: materials/getting-started/installations/index.qmd
 
-          - section: "2. RNA sequencing pipeline"
+          - section: "RNAseq"
             contents:
             - text: "Background"
               contents:
@@ -60,7 +60,13 @@ website:
               contents:
               href: materials/rnaseq/running-rnaseq/index.qmd
 
-          - section: "<em>3. 16S  - Coming soon</em>"
+          - section: "16S"
+            contents:
+            - text: "Running dada2 *coming soon*"
+            - text: "Assigning CSTs with Valencia"
+              contents:
+              href: materials/16S/valencia/index.qmd
+
   page-footer:
     right: "This page is built with {{< fa heart >}} and [Quarto](https://quarto.org/)."
     left: "&copy; 2023. Huge thanks to [Andrew P. Bray](https://github.com/andrewpbray) and [Claus O. Wilke](https://github.com/clauswilke) for open source code and sharing content."
