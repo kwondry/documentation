@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">Running dada2 *coming soon*</span>
+ <span class="menu-text"><em>3. Running DADA2 - Coming soon </em></span>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -281,18 +281,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.</p>
 <p>Valencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="centroids.png" class="img-fluid figure-img"></p>
-<figcaption>centroids</figcaption>
-</figure>
-</div>
+<p><img src="centroids.png" class="img-fluid"></p>
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <section id="install-r-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="install-r-rstudio">Install R, RStudio</h3>
-<p>Follow the instructions on <a href="https://elsherbini.github.io/durban-data-science-for-biology/installation-instructions.html">the Durban workshop series website</a>.</p>
+<p>Follow the instructions on the <a href="https://elsherbini.github.io/durban-data-science-for-biology/installation-instructions.html" target="_blank">Durban workshop series website</a>.</p>
 </section>
 <section id="install-r-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="install-r-dependencies">Install R dependencies</h3>
@@ -304,26 +299,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">"phyloseq"</span>, <span class="st">"microbiome"</span>, <span class="st">"ComplexHeatmap"</span>), <span class="at">update =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"microViz"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="fu">c</span>(<span class="at">davidbarnett =</span> <span class="st">"https://david-barnett.r-universe.dev"</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"microViz"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="fu">c</span>(<span class="at">davidbarnett =</span> <span class="st">"https://david-barnett.r-universe.dev"</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="install-conda-for-package-management" class="level3">
 <h3 class="anchored" data-anchor-id="install-conda-for-package-management">Install conda for package management</h3>
 <p>Check if you have conda installed:</p>
 <ol type="1">
-<li>Open a terminal</li>
-<li>type <code>which conda</code></li>
+<li><p>Open a terminal</p></li>
+<li><p>Type <code>which conda</code></p>
+<p>If it says <code>conda not found</code> or nothing shows up, run the following:</p></li>
 </ol>
-<p>If it says <code>conda not found</code>, run the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span><span class="dt">\n</span>bash Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~<span class="kw">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span><span class="kw">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Mambaforge-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh<span class="kw">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>When prompted agree to the lisence with <code>yes</code> and ask it to add itself to your shell startup with <code>yes</code>. Then close and reopen your terminal.</p>
-<p>If you conda is already installed, run the following:</p>
+<ol start="3" type="1">
+<li>When prompted agree to the lisence with <code>yes</code> and ask it to add itself to your shell startup with <code>yes</code>.</li>
+<li>Close and reopen your terminal.</li>
+</ol>
+<p>If you conda is already installed, run the following to ensure you have the most recent version:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update conda <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> install mamba <span class="at">-n</span> base <span class="at">-c</span> conda-forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -334,23 +333,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> speciateit_valencia <span class="at">-c</span> conda-forge python pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then, follow the instructions on <a href="https://github.com/ravel-lab/speciateIT/">https://github.com/ravel-lab/speciateIT/</a> to install. <strong>Make note of the location where you put the speciateIT folder.</strong></p>
-<p>To install Valencia, <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py">download the script by going here, then right click, Save As, and save where you want.</a>. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia</p>
+<p>Then, follow the instructions on <a href="https://github.com/ravel-lab/speciateIT/" target="_blank">https://github.com/ravel-lab/speciateIT/</a> to install. <strong>Make note of the location where you put the speciateIT folder.</strong></p>
+<p>To install Valencia, <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py" target="_blank">download the script by going here</a> , then right click, Save As, and save where you want. This version of the script is from Michael France as of <strong>June 2024</strong> and as of that time was the correct way to run Valencia.</p>
 </section>
 </section>
 <section id="running-the-steps" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-steps">Running the steps</h2>
-<p>Phew, we’ve installed everything. Now we can run the steps. Download the phyloseq object we’ll use</p>
+<p>Phew, we’ve installed everything. Now we can run the next steps.</p>
 </section>
 <section id="get-your-asvs-and-count-table-from-your-phyloseq-object" class="level2">
 <h2 class="anchored" data-anchor-id="get-your-asvs-and-count-table-from-your-phyloseq-object">Get your ASVs and count table from your phyloseq object</h2>
-<p>First, make a new rstudio project in a new folder. (<a href="https://elsherbini.github.io/durban-data-science-for-biology/materials/2-workshop2/2-r-refresher/slides.html#/create-an-r-project">instructions here if you need them</a>)</p>
-<p>Download the example phyloseq and put it in the new project folder you just created. <a href="https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS">Download from here</a></p>
-<p>Open up a new quarto document, and make a code chunk for the following code.</p>
-<p>The following code reads in your phyloseq object, and writes out two files:</p>
 <ol type="1">
+<li><p>First, make a new RStudio project in a new folder. (<a href="https://elsherbini.github.io/durban-data-science-for-biology/materials/2-workshop2/2-r-refresher/slides.html#/create-an-r-project">instructions here if you need them</a>)</p></li>
+<li><p>Download the example phyloseq and put it in the new project folder you just created. <a href="https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS">Download from here</a></p></li>
+<li><p>Open up a new quarto document, and make a code chunk for the following code.</p>
+<p>The following code reads in your phyloseq object, and writes out two files:</p>
+<ul>
 <li>a fasta file containing your ASVs</li>
 <li>a count table with samples as rows and ASVs as columns.</li>
+</ul></li>
 </ol>
 <p>Both these files are required for CST assignment.</p>
 <div class="cell">
@@ -375,19 +376,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="run-speciateit-and-valencia" class="level3">
 <h3 class="anchored" data-anchor-id="run-speciateit-and-valencia">Run SpeciateIT and Valencia</h3>
-<p>First, run SpeciatIT’s <code>classify</code> program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the “V4V4” databse, although newer data will start to be “V3V4”)</p>
+<p>First, run SpeciateIT’s <code>classify</code> program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the “V4V4” databse, although newer data will start to be “V3V4”)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate speciateit_valencia</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">classify</span> <span class="at">-d</span> ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 <span class="at">-i</span> asvs.fa <span class="at">-o</span> speciateit_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">classify</span> <span class="at">-d</span> ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-i</span> asvs.fa <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> speciateit_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, take the output from classify and your count table and use it to prepare the input for Valencia. Make sure to replace the path to <code>count_table.py</code> so it is correct for your system:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/dev/speciateIT-master/bin/count_table.py <span class="at">-c</span> count_table.csv <span class="at">-s</span> speciateit_output/MC_order7_results.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/dev/speciateIT-master/bin/count_table.py <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-c</span> count_table.csv <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-s</span> speciateit_output/MC_order7_results.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now run Valencia. The CST centroids file should be from the SpeciateIT github repository (download here for convenience)[https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/VALENCIA2_CST_centroids_20Mar2024.csv], and the Valencia python script should be downloaded from <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py">here</a> (which you may have already done in the installation section above).</p>
+<p>Now run Valencia. The CST centroids file should be from the SpeciateIT github repository <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/VALENCIA2_CST_centroids_20Mar2024.csv">download here for convenience</a>, and the Valencia python script should be downloaded from <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py">here</a> (which you may have already done in the installation section above).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Valencia_v1.1.py <span class="at">-ref</span> VALENCIA2_CST_centroids_20Mar2024.csv <span class="at">-i</span> count_table_speciateIT.csv <span class="at">-o</span> cst_assignments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Valencia_v1.1.py <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-ref</span> VALENCIA2_CST_centroids_20Mar2024.csv <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-i</span> count_table_speciateIT.csv <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> cst_assignments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="add-csts-back-to-phyloseq-object" class="level3">
