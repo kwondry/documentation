@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - Background</title>
+<title>Kwon Lab Pipelines - Prequisites for running the nf-core RNA-Seq pipeline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/rnaseq/running-rnaseq/index.html" rel="next">
-<link href="../../../materials/getting-started/installations/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -112,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Background</h1>
+          <h1 class="quarto-secondary-nav-title">Prequisites for running the nf-core RNA-Seq pipeline</h1>
         </a>     
     </div>
   </nav>
@@ -140,8 +138,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Navigating Linux and the Command Line</span></a>
+  <a href="../../../materials/getting-started/intro_cli/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Navigating the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -154,17 +152,17 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">2. RNA sequencing pipeline</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">RNAseq</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/rnaseq/prereqs/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Prerequisites</span></a>
+  <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Background</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -176,8 +174,24 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text"><em>3. 16S  - Coming soon</em></span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">16S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">Running dada2 *coming soon*</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../materials/16S/valencia/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assigning CSTs with Valencia</span></a>
+  </div>
+</li>
+      </ul>
   </li>
     </ul>
     </div>
@@ -192,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Background</h1>
+<h1 class="title d-none d-lg-block">Prequisites for running the nf-core RNA-Seq pipeline</h1>
 </div>
 
 
@@ -209,11 +223,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Why would you run this:</p>
-<p>Inputs:</p>
-<p>Outputs:</p>
+<!-- > Prequisites for running the nfcore RNA-Seq pipeline -->
+<p>Ensure you have <code>mamba</code>, <code>snakemake</code>, and <code>nf-core</code> installed on your platform.</p>
+<section id="download-the-repo-to-your-scratch-folder" class="level4">
+<h4 class="anchored" data-anchor-id="download-the-repo-to-your-scratch-folder">Download the repo to your scratch folder</h4>
+<p>Replace the filepath with your scratch folder</p>
+<pre><code>cd /n/scratch3/users/j/je112
+wget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip</code></pre>
+</section>
+<section id="unzip-and-rename-the-folder" class="level4">
+<h4 class="anchored" data-anchor-id="unzip-and-rename-the-folder">Unzip and rename the folder</h4>
+<pre><code>unzip main.zip -d my_new_rnaseq_run</code></pre>
+</section>
+<section id="adding-your-samples" class="level4">
+<h4 class="anchored" data-anchor-id="adding-your-samples">Adding your samples</h4>
+<p>Open <code>my_new_rnaseq_run/input/sample_sheet.csv</code> with an editor and add your samples with the corresponding filepaths.</p>
+<p>Columns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.</p>
+<p>To get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)</p>
+<pre><code>rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username</code></pre>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -297,7 +327,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/kwondry\.github\.io\/documentation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -625,18 +655,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../materials/getting-started/installations/index.html" class="pagination-link" aria-label="</b> Installations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"> Installations</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../materials/rnaseq/running-rnaseq/index.html" class="pagination-link" aria-label="Running the pipeline">
-        <span class="nav-page-text">Running the pipeline</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

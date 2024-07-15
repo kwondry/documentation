@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - O2</title>
+<title>Kwon Lab Pipelines - Generating CSTs with Valencia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/getting-started/intro_cli/index.html" rel="next">
+<link href="../../../materials/rnaseq/running-rnaseq/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">O2</h1>
+          <h1 class="quarto-secondary-nav-title">Generating CSTs with Valencia</h1>
         </a>     
     </div>
   </nav>
@@ -158,16 +158,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">1. Getting Started</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"> O2</span></a>
   </div>
 </li>
@@ -210,19 +210,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">16S</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">Running dada2 *coming soon*</span>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/16S/valencia/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../materials/16S/valencia/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Assigning CSTs with Valencia</span></a>
   </div>
 </li>
@@ -238,15 +238,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up-your-o2-account" id="toc-setting-up-your-o2-account" class="nav-link active" data-scroll-target="#setting-up-your-o2-account">Setting up your O2 account</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a>
   <ul class="collapse">
-  <li><a href="#obtain-your-o2-account" id="toc-obtain-your-o2-account" class="nav-link" data-scroll-target="#obtain-your-o2-account">Obtain your O2 account</a></li>
-  <li><a href="#getting-on-o2" id="toc-getting-on-o2" class="nav-link" data-scroll-target="#getting-on-o2">Getting on O2</a></li>
-  <li><a href="#requesting-access-to-the-ngroupskwon-groups-folder" id="toc-requesting-access-to-the-ngroupskwon-groups-folder" class="nav-link" data-scroll-target="#requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon/ groups folder</a></li>
-  <li><a href="#making-a-scratch-directory." id="toc-making-a-scratch-directory." class="nav-link" data-scroll-target="#making-a-scratch-directory.">Making a scratch directory.</a></li>
-  <li><a href="#get-duo-push-for-android-ios-and-register-with-hms" id="toc-get-duo-push-for-android-ios-and-register-with-hms" class="nav-link" data-scroll-target="#get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with HMS</a></li>
-  <li><a href="#setting-up-2-factor-authentication" id="toc-setting-up-2-factor-authentication" class="nav-link" data-scroll-target="#setting-up-2-factor-authentication">Setting up 2-Factor Authentication</a></li>
-  <li><a href="#setup-passwordless-login-ssh-keys" id="toc-setup-passwordless-login-ssh-keys" class="nav-link" data-scroll-target="#setup-passwordless-login-ssh-keys">Setup passwordless login (ssh keys):</a></li>
+  <li><a href="#install-r-rstudio" id="toc-install-r-rstudio" class="nav-link" data-scroll-target="#install-r-rstudio">Install R, RStudio</a></li>
+  <li><a href="#install-r-dependencies" id="toc-install-r-dependencies" class="nav-link" data-scroll-target="#install-r-dependencies">Install R dependencies</a></li>
+  <li><a href="#install-conda-for-package-management" id="toc-install-conda-for-package-management" class="nav-link" data-scroll-target="#install-conda-for-package-management">Install conda for package management</a></li>
+  <li><a href="#install-speciateit-and-valencia" id="toc-install-speciateit-and-valencia" class="nav-link" data-scroll-target="#install-speciateit-and-valencia">Install SpeciateIT and Valencia</a></li>
+  </ul></li>
+  <li><a href="#running-the-steps" id="toc-running-the-steps" class="nav-link" data-scroll-target="#running-the-steps">Running the steps</a></li>
+  <li><a href="#get-your-asvs-and-count-table-from-your-phyloseq-object" id="toc-get-your-asvs-and-count-table-from-your-phyloseq-object" class="nav-link" data-scroll-target="#get-your-asvs-and-count-table-from-your-phyloseq-object">Get your ASVs and count table from your phyloseq object</a>
+  <ul class="collapse">
+  <li><a href="#run-speciateit-and-valencia" id="toc-run-speciateit-and-valencia" class="nav-link" data-scroll-target="#run-speciateit-and-valencia">Run SpeciateIT and Valencia</a></li>
+  <li><a href="#add-csts-back-to-phyloseq-object" id="toc-add-csts-back-to-phyloseq-object" class="nav-link" data-scroll-target="#add-csts-back-to-phyloseq-object">Add CSTs back to phyloseq object</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -256,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">O2</h1>
+<h1 class="title d-none d-lg-block">Generating CSTs with Valencia</h1>
 </div>
 
 
@@ -273,62 +277,147 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p>Working with the HMS O2 cluster</p>
-</blockquote>
-<p>O2 status: <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status" target="_blank">O2 Status</a><br>
-<a href="https://harvardmed.atlassian.net/wiki/spaces/O2/overview" target="_blank">More Information on the O2 Cluster</a><br>
-</p>
-<section id="setting-up-your-o2-account" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-your-o2-account">Setting up your O2 account</h2>
-<section id="obtain-your-o2-account" class="level3">
-<h3 class="anchored" data-anchor-id="obtain-your-o2-account">Obtain your O2 account</h3>
-<p><a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1918304257/How+to+request+or+retain+an+O2+account" target="_blank">Info</a><br>
-</p>
-</section>
-<section id="getting-on-o2" class="level3">
-<h3 class="anchored" data-anchor-id="getting-on-o2">Getting on O2</h3>
-<p>Using your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.</p>
-<div id="24423c9e" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh (hms_username)<span class="op">@</span>o2.hms.harvard.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.</p>
+<p>Valencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="centroids.png" class="img-fluid figure-img"></p>
+<figcaption>centroids</figcaption>
+</figure>
 </div>
 </section>
-<section id="requesting-access-to-the-ngroupskwon-groups-folder" class="level3">
-<h3 class="anchored" data-anchor-id="requesting-access-to-the-ngroupskwon-groups-folder">Requesting access to the /n/groups/kwon/ groups folder</h3>
-<p>To request access, email <code>rchelp@hms.harvard.edu</code> to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu.</p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<section id="install-r-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="install-r-rstudio">Install R, RStudio</h3>
+<p>Follow the instructions on <a href="https://elsherbini.github.io/durban-data-science-for-biology/installation-instructions.html">the Durban workshop series website</a>.</p>
 </section>
-<section id="making-a-scratch-directory." class="level3">
-<h3 class="anchored" data-anchor-id="making-a-scratch-directory.">Making a scratch directory.</h3>
-<p>Note, files on the scratch directory are automatically deleted <strong>45 days</strong> after their last modificaiton date. This is only for <strong>TEMPORARY STORAGE</strong>. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).</p>
-<p><strong>(On the login node)</strong> Run the following on O2: /n/cluster/bin/scratch_create_directory.sh</p>
-</section>
-<section id="get-duo-push-for-android-ios-and-register-with-hms" class="level3">
-<h3 class="anchored" data-anchor-id="get-duo-push-for-android-ios-and-register-with-hms">Get Duo Push for Android / IOS and register with HMS</h3>
-<ul>
-<li>Download the app : https://it.hms.harvard.edu/duo-mobile-app</li>
-<li>Email <a href="mailto:itservicedesk@hms.harvard.edu">itservicedesk@hms.harvard.edu</a>. or call 617-432-2000 to ask HMS IT to get registered with Duo</li>
-</ul>
-</section>
-<section id="setting-up-2-factor-authentication" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-2-factor-authentication">Setting up 2-Factor Authentication</h3>
-<p>To set default 2-factor authentication option to call or push:<br>
-For push (recommended, but only if you already have Duo push!):</p>
-<div id="7951a03b" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=push'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="install-r-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="install-r-dependencies">Install R dependencies</h3>
+<p>After you’ve installed the packages on there, you can also install <code>phyloseq</code> and <code>microViz</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"cowplot"</span>, <span class="st">"gtsummary"</span>, <span class="st">"ggdendro"</span>, <span class="st">"ggdist"</span>, <span class="st">"ggforce"</span>,<span class="st">"ggplot2movies"</span>, <span class="st">"ggrepel"</span>, <span class="st">"ggridges"</span>, <span class="st">"ggthemes"</span>, <span class="st">"colorspace"</span>, <span class="st">"patchwork"</span>, <span class="st">"quarto"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For phone</p>
-<div id="f8617dc1" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=phone'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">"phyloseq"</span>, <span class="st">"microbiome"</span>, <span class="st">"ComplexHeatmap"</span>), <span class="at">update =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"microViz"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="fu">c</span>(<span class="at">davidbarnett =</span> <span class="st">"https://david-barnett.r-universe.dev"</span>, <span class="fu">getOption</span>(<span class="st">"repos"</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>DO NOT set text as your default</p>
 </section>
-<section id="setup-passwordless-login-ssh-keys" class="level3">
-<h3 class="anchored" data-anchor-id="setup-passwordless-login-ssh-keys">Setup passwordless login (ssh keys):</h3>
-<p>To set passwordless login, follow the SSH keys tutorial <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys" target="_blank">here</a><br>
-</p>
-<p><br>
-<br>
-</p>
+<section id="install-conda-for-package-management" class="level3">
+<h3 class="anchored" data-anchor-id="install-conda-for-package-management">Install conda for package management</h3>
+<p>Check if you have conda installed:</p>
+<ol type="1">
+<li>Open a terminal</li>
+<li>type <code>which conda</code></li>
+</ol>
+<p>If it says <code>conda not found</code>, run the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span><span class="dt">\n</span>bash Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When prompted agree to the lisence with <code>yes</code> and ask it to add itself to your shell startup with <code>yes</code>. Then close and reopen your terminal.</p>
+<p>If you conda is already installed, run the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update conda <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> install mamba <span class="at">-n</span> base <span class="at">-c</span> conda-forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="install-speciateit-and-valencia" class="level3">
+<h3 class="anchored" data-anchor-id="install-speciateit-and-valencia">Install SpeciateIT and Valencia</h3>
+<p>Make a new conda environment for these pieces of software:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> speciateit_valencia <span class="at">-c</span> conda-forge python pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. <em>Make note of the path you put the speciateIT folder.</em></p>
+<p>To install Valencia, download the script here. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia</p>
+</section>
+</section>
+<section id="running-the-steps" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-steps">Running the steps</h2>
+<p>Phew, we’ve installed everything. Now we can run the steps. Download the phyloseq object we’ll use</p>
+</section>
+<section id="get-your-asvs-and-count-table-from-your-phyloseq-object" class="level2">
+<h2 class="anchored" data-anchor-id="get-your-asvs-and-count-table-from-your-phyloseq-object">Get your ASVs and count table from your phyloseq object</h2>
+<p>This code reads in your phyloseq object, and writes out two files:</p>
+<ol type="1">
+<li>a fasta file containing your ASVs</li>
+<li>a count table with samples as rows and ASVs as columns.</li>
+</ol>
+<p>Both these files are required for CST assignment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microViz)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ps <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"example_phyloseq.RDS"</span>) </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>asvs_to_write <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">asv=</span>microViz<span class="sc">::</span><span class="fu">otu_get</span>(ps) <span class="sc">%&gt;%</span> <span class="fu">colnames</span>()) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">fasta_id=</span><span class="fu">str_c</span>(<span class="st">"&gt;"</span>,asv, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">asv =</span> <span class="fu">str_c</span>(asv, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>asvs_to_write <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">line_to_write=</span><span class="fu">map2_chr</span>(fasta_id, asv, str_c)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(line_to_write) <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reduce</span>(str_c) <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_file</span>(<span class="st">"asvs.fa"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ps <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">otu_get</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(<span class="st">"count_table.csv"</span>) <span class="co"># using base R write.csv since we need the rownames</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="run-speciateit-and-valencia" class="level3">
+<h3 class="anchored" data-anchor-id="run-speciateit-and-valencia">Run SpeciateIT and Valencia</h3>
+<p>First, run SpeciatIT’s <code>classify</code> program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the “V4V4” databse, although newer data will start to be “V3V4”)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate speciateit_valencia</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">classify</span> <span class="at">-d</span> ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 <span class="at">-i</span> asvs.fa <span class="at">-o</span> speciateit_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, take the output from classify and your count table and use it to prepare the input for Valencia. Make sure to replace the path to <code>count_table.py</code> so it is correct for your system:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/dev/speciateIT-master/bin/count_table.py <span class="at">-c</span> count_table.csv <span class="at">-s</span> speciateit_output/MC_order7_results.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now run Valencia. The CST centroids file should be from the SpeciateIT github repository, and the Valencia python script should be downloaded from here.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Valencia_v1.1.py <span class="at">-ref</span> VALENCIA2_CST_centroids_20Mar2024.csv <span class="at">-i</span> count_table_speciateIT.csv <span class="at">-o</span> cst_assignments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-csts-back-to-phyloseq-object" class="level3">
+<h3 class="anchored" data-anchor-id="add-csts-back-to-phyloseq-object">Add CSTs back to phyloseq object</h3>
+<p>Now we have CST assignments for each sample. We need to add it back to the phyloseq object so we can use them in R.</p>
+<p>We’ll use <code>ps_join()</code> from the microViz package to add the CSTs back to the phyloseq object</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cst_assignments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"cst_assignments.csv"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ps_with_csts <span class="ot">&lt;-</span> <span class="fu">ps_join</span>(ps, <span class="at">match_sample_names =</span> <span class="st">"sampleID"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  cst_assignments <span class="sc">%&gt;%</span> <span class="fu">select</span>(sampleID, CST, subCST, score))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ps_with_csts <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">tax_transform</span>(<span class="at">rank =</span> <span class="st">"unique"</span>, <span class="at">trans =</span> <span class="st">"compositional"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">dist_calc</span>(<span class="at">dist =</span> <span class="st">"bray"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">ord_calc</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"auto"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a> ) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">ord_plot</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="st">"subCST"</span>, <span class="at">fill =</span> <span class="st">"subCST"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">shape =</span> <span class="st">"circle"</span>, <span class="at">alpha =</span> <span class="st">"score"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">2</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To save your phyloseq object with the added CSTs, run the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ps_with_csts <span class="sc">%&gt;%</span> <span class="fu">saveRDS</span>(<span class="st">"phyloseq_object_with_csts.RDS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code will be useful for exploring the phyloseq object interactively.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ps_with_csts <span class="sc">%&gt;%</span> <span class="fu">ord_explore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
@@ -746,11 +835,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../../materials/rnaseq/running-rnaseq/index.html" class="pagination-link" aria-label="Running the pipeline">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Running the pipeline</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/getting-started/intro_cli/index.html" class="pagination-link" aria-label="</b> Navigating the Command Line">
-        <span class="nav-page-text"> Navigating the Command Line</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
