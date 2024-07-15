@@ -19,7 +19,7 @@
     "text": "Working with the HMS O2 cluster\nO2 status: O2 Status\nMore Information on the O2 Cluster",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> O2"
     ]
   },
@@ -31,7 +31,7 @@
     "text": "Setting up your O2 account\n\nObtain your O2 account\nInfo\n\n\n\nGetting on O2\nUsing your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.\n\nssh (hms_username)@o2.hms.harvard.edu\n\n\n\nRequesting access to the /n/groups/kwon/ groups folder\nTo request access, email rchelp@hms.harvard.edu to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu.\n\n\nMaking a scratch directory.\nNote, files on the scratch directory are automatically deleted 45 days after their last modificaiton date. This is only for TEMPORARY STORAGE. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).\n(On the login node) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh\n\n\nGet Duo Push for Android / IOS and register with HMS\n\nDownload the app : https://it.hms.harvard.edu/duo-mobile-app\nEmail itservicedesk@hms.harvard.edu. or call 617-432-2000 to ask HMS IT to get registered with Duo\n\n\n\nSetting up 2-Factor Authentication\nTo set default 2-factor authentication option to call or push:\nFor push (recommended, but only if you already have Duo push!):\n\necho 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc\n\nFor phone\n\necho 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc\n\nDO NOT set text as your default\n\n\nSetup passwordless login (ssh keys):\nTo set passwordless login, follow the SSH keys tutorial here",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> O2"
     ]
   },
@@ -40,10 +40,10 @@
     "href": "materials/getting-started/installations/index.html",
     "title": "Installation instructions",
     "section": "",
-    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please be sure to be on an interactive node.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash\n\n\nmamba/minimamba\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\n\nSnakemake\n\nmamba create -n snakemake -c bioconda -c conda-forge \"python&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\n\nnfcore\n\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
+    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please be sure to be on an interactive node.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash\n\n\nmamba/minimamba\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\n\nSnakemake\n\nmamba create -n snakemake -c bioconda -c conda-forge \"bash&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\n\nnfcore\n\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> Installations"
     ]
   },
@@ -136,7 +136,7 @@
     "text": "Instructions for basic linux commands\n\n\nBasic linux commands\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\n\n\nManaging environments\nmamba/conda functions\nAdditional Resources",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> Navigating the Command Line"
     ]
   },
