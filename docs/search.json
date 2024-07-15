@@ -7,31 +7,7 @@
     "text": "Producing an gene expression matrix and an extensive QC report for downstream analysis\n\n\n\nPrequisites\n\nRequired software\nEnsure you have mamba, snakemake, and nf-core installed on O2. For installation instructions, visit here.\n\n\nData\nYour sequencing data should be uploaded onto O2.\n\n\nDownloading the pipeline to your scratch folder\nAfter logging onto O2 via a terminal, we can download the pipeline with the following commands.\n\n# Accessing your scratch folder on O2\ncd /n/scratch/users/{first_initial}/{hms_username}\n\n# Downloading the pipeline\nwget https://github.com/kwondry/smartseq_kraken/archive/refs/heads/main.zip\n\n# Unzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\nYou will now have a my_new_rnaseq_run folder that contains all the required scripts and files.\n\n\n\nAdding your samples\nDownload a sample sheet here and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you’d like and save as csv. Columns are named sample, fastq_1, fastq_2, strandedness with fastq_1 being the forward reads and fastq_2 for the reverse reads. If sequences are single-end, leave the fastq_2 column empty. The fastq files should be within /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/{your sequencing run}.\n\nNext, upload your sample sheet onto O2. You can use rsync to upload your edited sample sheet onto O2 using your local terminal. Or, you can use the O2 Portal to upload your sample_sheet.csv into the pipeline input folder in your scratch.\n\nrsync -avt path_to_downloaded_file hms_username@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/input\n\n \nLog into the O2 portal with your HMS credentials, click the Files &gt; Scratch, navigate to the input folder, and upload your sample_sheet.\n\n\n\n\n\n\n\n\nRunning the pipeline\n\nNavigate to your pipeline folder\n\ncd /n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/\n\n\n\nKraken2\nThe following run a Snakemake pipeline that runs Kraken2. Each sample can takes up to a couple hours, but each sample runs independently on the cluster.\n\nmamba activate snakemake\nsbatch submit_kraken.sh\n\nAfter the pipeline completes, you should see a results/kraken folder which includes the Kraken2 classifications of the sequences for each sample.\n\n\nnf-core pipeline\nThe following takes the Kraken2 filtered samples and runs the nfcore/rnaseq pipeline. The run time can range from a couple of hours to a few days. Additional information about the pipeline can be found here.\n\nmamba activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\n\nFollowing completion of the nfcore pipeline, you should see a results/nfcore folder that has QC, alignments, and gene counts for the samples. The main outputs of interest are in results/nfcore/star_salmon.\n\n#gene counts in each sample\nsalmon.merged.gene_counts.tsv\n\n#normalized gene counts\nsalmon.merged.gene_tpms.tsv\n\n#complete QC report of the samples\nNfcore_rnaseq_multiqc_report.html\n\n\n\nSaving the outputs\nFiles in the scratch directory are automatically deleted 45 days after the last modification date. To ensure your results are safe, copy them to /n/groups/.\n\nIf you are in your smartseq_kraken-main folder you can use the following:\n\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv \\\n results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv \\\n results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html \\\n /n/groups/kwon/(your_group_folder_name)/",
     "crumbs": [
       "About the Kwon Lab",
-      "2. RNA sequencing pipeline",
-      "Running the pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/rnaseq/running-rnaseq/index.html#prequisites",
-    "href": "materials/rnaseq/running-rnaseq/index.html#prequisites",
-    "title": "Running the RNA-Seq pipeline",
-    "section": "Prequisites",
-    "text": "Prequisites\n\nRequired software\nEnsure you have mamba, snakemake, and nf-core installed on O2. For installation instructions, visit here.\n\n\nData\nYour sequencing data should be uploaded onto O2.\n\n\nDownloading the pipeline to your scratch folder\nAfter logging onto O2 via a terminal, we can download the pipeline with the following commands.\n\n# Accessing your scratch folder on O2\ncd /n/scratch/users/{first_initial}/{hms_username}\n\n# Downloading the pipeline\nwget https://github.com/kwondry/smartseq_kraken/archive/refs/heads/main.zip\n\n# Unzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\nYou will now have a my_new_rnaseq_run folder that contains all the required scripts and files.\n\n\n\nAdding your samples\nDownload a sample sheet here and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you’d like and save as csv. Columns are named sample, fastq_1, fastq_2, strandedness. If sequences are single-end, leave the fastq_2 column empty.\nNext, upload your sample sheet onto O2. You can use rsync to upload your edited sample sheet onto O2 using your local terminal. Or, you can use the O2 Portal to upload your sample_sheet.csv into the pipeline input folder in your scratch.\n\nrsync -avt path_to_downloaded_file hms_username@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/input\n\n \nLog into the O2 portal with your HMS credentials, click the Files &gt; Scratch, navigate to the input folder, and upload your sample_sheet.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "2. RNA sequencing pipeline",
-      "Running the pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
-    "href": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
-    "title": "Running the RNA-Seq pipeline",
-    "section": "Running the pipeline",
-    "text": "Running the pipeline\n\nNavigate to your pipeline folder\n\ncd /n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/\n\n\n\nKraken2\nThe following run a Snakemake pipeline that runs Kraken2. Each sample can takes up to a couple hours, but each sample runs independently on the cluster.\n\nmamba activate snakemake\nsbatch submit_kraken.sh\n\nAfter the pipeline completes, you should see a results/kraken folder which includes the Kraken2 classifications of the sequences for each sample.\n\n\nnf-core pipeline\nThe following takes the Kraken2 filtered samples and runs the nfcore/rnaseq pipeline. The run time can range from a couple of hours to a few days. Additional information about the pipeline can be found here.\n\nmamba activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\n\nFollowing completion of the nfcore pipeline, you should see a results/nfcore folder that has QC, alignments, and gene counts for the samples. The main outputs of interest are in results/nfcore/star_salmon.\n\n#gene counts in each sample\nsalmon.merged.gene_counts.tsv\n\n#normalized gene counts\nsalmon.merged.gene_tpms.tsv\n\n#complete QC report of the samples\nNfcore_rnaseq_multiqc_report.html\n\n\n\nSaving the outputs\nFiles in the scratch directory are automatically deleted 45 days after the last modification date. To ensure your results are safe, copy them to /n/groups/.\n\nIf you are in your smartseq_kraken-main folder you can use the following:\n\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv \\\n results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv \\\n results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html \\\n /n/groups/kwon/(your_group_folder_name)/",
-    "crumbs": [
-      "About the Kwon Lab",
-      "2. RNA sequencing pipeline",
+      "RNAseq",
       "Running the pipeline"
     ]
   },
@@ -98,8 +74,106 @@
     "text": "Work in progress\n\n\nIntroduction to the pipeline\nThis pipeline quantifies RNA-sequenced reads relative to genes/transcripts in the genome and normalizes the resulting data. It uses Kraken2 for filtering human reads and nf-core/rnaseq for the core trimming, alignments, and quantification. It does not compare the samples statistically, so for downstream analyses, the output files from this pipeline can be analysed directly in statistical environments like R.\n\n\nInputs\nThis pipeline takes a sample sheet and fastq files (ideally in /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/) as input and works for both single and paired-end reads.\n\n\nOutputs\nQC report, gene counts, normalized gene counts, QC reports, etc.\n\n\n\n\n\n\nCredits to Kraken2 and nf-core/rnaseq",
     "crumbs": [
       "About the Kwon Lab",
-      "2. RNA sequencing pipeline",
+      "RNAseq",
       "Background"
+    ]
+  },
+  {
+    "objectID": "materials/16S/prereqs/index.html",
+    "href": "materials/16S/prereqs/index.html",
+    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "section": "",
+    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
+  },
+  {
+    "objectID": "materials/16S/dada2/index.html",
+    "href": "materials/16S/dada2/index.html",
+    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "section": "",
+    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html",
+    "href": "materials/16S/valencia/index.html",
+    "title": "Generating CSTs with Valencia",
+    "section": "",
+    "text": "The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.\nValencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#introduction",
+    "href": "materials/16S/valencia/index.html#introduction",
+    "title": "Generating CSTs with Valencia",
+    "section": "",
+    "text": "The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.\nValencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#installation",
+    "href": "materials/16S/valencia/index.html#installation",
+    "title": "Generating CSTs with Valencia",
+    "section": "Installation",
+    "text": "Installation\n\nInstall R, RStudio\nFollow the instructions on the Durban workshop series website.\n\n\nInstall R dependencies\nAfter you’ve installed the packages on there, you can also install phyloseq and microViz:\n\ninstall.packages(c(\"tidyverse\", \"cowplot\", \"gtsummary\", \"ggdendro\", \"ggdist\", \"ggforce\",\"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"colorspace\", \"patchwork\", \"quarto\"))\n\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) install.packages(\"BiocManager\")\nBiocManager::install(c(\"phyloseq\", \"microbiome\", \"ComplexHeatmap\"), update = FALSE)\n\ninstall.packages(\n  \"microViz\",\n  repos = c(davidbarnett = \"https://david-barnett.r-universe.dev\", getOption(\"repos\"))\n)\n\n\n\nInstall conda for package management\nCheck if you have conda installed:\n\nOpen a terminal\nType which conda\nIf it says conda not found or nothing shows up, run the following:\n\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\nWhen prompted agree to the lisence with yes and ask it to add itself to your shell startup with yes.\nClose and reopen your terminal.\n\nIf you conda is already installed, run the following to ensure you have the most recent version:\n\nconda update conda && conda install mamba -n base -c conda-forge\n\n\n\nInstall SpeciateIT and Valencia\nMake a new conda environment for these pieces of software:\n\nmamba create -n speciateit_valencia -c conda-forge python pandas\n\nThen, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. Make note of the location where you put the speciateIT folder.\nTo install Valencia, download the script by going here , then right click, Save As, and save where you want. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#running-the-steps",
+    "href": "materials/16S/valencia/index.html#running-the-steps",
+    "title": "Generating CSTs with Valencia",
+    "section": "Running the steps",
+    "text": "Running the steps\nPhew, we’ve installed everything. Now we can run the next steps.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#get-your-asvs-and-count-table-from-your-phyloseq-object",
+    "href": "materials/16S/valencia/index.html#get-your-asvs-and-count-table-from-your-phyloseq-object",
+    "title": "Generating CSTs with Valencia",
+    "section": "Get your ASVs and count table from your phyloseq object",
+    "text": "Get your ASVs and count table from your phyloseq object\n\nFirst, make a new RStudio project in a new folder. (instructions here if you need them)\nDownload the example phyloseq and put it in the new project folder you just created. Download from here\nOpen up a new quarto document, and make a code chunk for the following code.\nThe following code reads in your phyloseq object, and writes out two files:\n\na fasta file containing your ASVs\na count table with samples as rows and ASVs as columns.\n\n\nBoth these files are required for CST assignment.\n\nlibrary(tidyverse)\nlibrary(phyloseq)\nlibrary(microViz)\n\nps &lt;- readRDS(\"example_phyloseq.RDS\") \n\nasvs_to_write &lt;- tibble(asv=microViz::otu_get(ps) %&gt;% colnames()) %&gt;% mutate(fasta_id=str_c(\"&gt;\",asv, \"\\n\")) %&gt;% mutate(asv = str_c(asv, \"\\n\"))\n\nasvs_to_write %&gt;%\n  mutate(line_to_write=map2_chr(fasta_id, asv, str_c)) %&gt;%\n  pull(line_to_write) %&gt;%\n  reduce(str_c) %&gt;%\n  write_file(\"asvs.fa\")\n\nps %&gt;%\n  otu_get() %&gt;%\n  as.data.frame() %&gt;%\n  write.csv(\"count_table.csv\") # using base R write.csv since we need the rownames\n\n\nRun SpeciateIT and Valencia\nFirst, run SpeciateIT’s classify program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the “V4V4” databse, although newer data will start to be “V3V4”)\n\nconda activate speciateit_valencia\n\nclassify -d ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 \\\n  -i asvs.fa \\\n  -o speciateit_output\n\nThen, take the output from classify and your count table and use it to prepare the input for Valencia. Make sure to replace the path to count_table.py so it is correct for your system:\n\npython ~/dev/speciateIT-master/bin/count_table.py \\\n  -c count_table.csv \\\n  -s speciateit_output/MC_order7_results.txt\n\nNow run Valencia. The CST centroids file should be from the SpeciateIT github repository download here for convenience, and the Valencia python script should be downloaded from here (which you may have already done in the installation section above).\n\npython Valencia_v1.1.py \\\n  -ref VALENCIA2_CST_centroids_20Mar2024.csv \\\n  -i count_table_speciateIT.csv \\\n  -o cst_assignments\n\n\n\nAdd CSTs back to phyloseq object\nNow we have CST assignments for each sample. We need to add it back to the phyloseq object so we can use them in R.\nWe’ll use ps_join() from the microViz package to add the CSTs back to the phyloseq object\n\ncst_assignments &lt;- read_csv(\"cst_assignments.csv\")\n\nps_with_csts &lt;- ps_join(ps, match_sample_names = \"sampleID\",\n  cst_assignments %&gt;% select(sampleID, CST, subCST, score))\n\nps_with_csts %&gt;%\n tax_transform(rank = \"unique\", trans = \"compositional\") %&gt;%\n dist_calc(dist = \"bray\") %&gt;%\n ord_calc(\n  method = \"auto\"\n ) %&gt;% \n ord_plot(\n  axes = c(1, 2),\n  colour = \"subCST\", fill = \"subCST\",\n  shape = \"circle\", alpha = \"score\",\n  size = 2\n )\n\nTo save your phyloseq object with the added CSTs, run the following:\n\nps_with_csts %&gt;% saveRDS(\"phyloseq_object_with_csts.RDS\")\n\nThis code will be useful for exploring the phyloseq object interactively.\n\nps_with_csts %&gt;% ord_explore()",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/rnaseq/running-rnaseq/index.html#prequisites",
+    "href": "materials/rnaseq/running-rnaseq/index.html#prequisites",
+    "title": "Running the RNA-Seq pipeline",
+    "section": "Prequisites",
+    "text": "Prequisites\n\nRequired software\nEnsure you have mamba, snakemake, and nf-core installed on O2. For installation instructions, visit here.\n\n\nData\nYour sequencing data should be uploaded onto O2.\n\n\nDownloading the pipeline to your scratch folder\n#| eval: false\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\nAfter logging onto O2 via a terminal, we can download the pipeline with the following commands.\n#| eval: false\n\n# Accessing your scratch folder on O2 t\ncd /n/scratch/users/{first_initial}/{hms_username}\n\n# Downloading the pipeline\nwget https://github.com/kwondry/smartseq_kraken/archive/refs/heads/main.zip\n\n# Unzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\nYou will now have a my_new_rnaseq_run folder that contains all the required scripts and files.\n\n\n\nAdding your samples\nDownload a sample sheet here and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you’d like and save as csv. Columns are named sample, fastq_1, fastq_2, strandedness with fastq_1 being the forward reads and fastq_2 for the reverse reads. If sequences are single-end, leave the fastq_2 column empty. The fastq files should be within /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/{your sequencing run}.\n\nNext, upload your sample sheet onto O2. You can use rsync to upload your edited sample sheet onto O2 using your local terminal. Or, you can use the O2 Portal to upload your sample_sheet.csv into the pipeline input folder in your scratch.\n#| eval: false\nrsync -avt path_to_downloaded_file hms_username@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/input\n \nLog into the O2 portal with your HMS credentials, click the Files &gt; Scratch, navigate to the input folder, and upload your sample_sheet.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RNAseq",
+      "Running the pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
+    "href": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
+    "title": "Running the RNA-Seq pipeline",
+    "section": "Running the pipeline",
+    "text": "Running the pipeline\n\nNavigate to your pipeline folder\n#| eval: false\ncd /n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/\n\n\nKraken2\nThe following run a Snakemake pipeline that runs Kraken2. Each sample can takes up to a couple hours, but each sample runs independently on the cluster.\n#| eval: false\nmamba activate snakemake\nsbatch submit_kraken.sh\nAfter the pipeline completes, you should see a results/kraken folder which includes the Kraken2 classifications of the sequences for each sample.\n\n\nnf-core pipeline\nThe following takes the Kraken2 filtered samples and runs the nfcore/rnaseq pipeline. The run time can range from a couple of hours to a few days. Additional information about the pipeline can be found here.\n#| eval: false\nmamba activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\nFollowing completion of the nfcore pipeline, you should see a results/nfcore folder that has QC, alignments, and gene counts for the samples. The main outputs of interest are in results/nfcore/star_salmon.\n#| eval: false\n\n#gene counts in each sample\nsalmon.merged.gene_counts.tsv\n\n#normalized gene counts\nsalmon.merged.gene_tpms.tsv\n\n#complete QC report of the samples\nNfcore_rnaseq_multiqc_report.html\n\n\nSaving the outputs\nFiles in the scratch directory are automatically deleted 45 days after the last modification date. To ensure your results are safe, copy them to /n/groups/.\n\nIf you are in your smartseq_kraken-main folder you can use the following:\n#| eval: false\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv \\\n results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv \\\n results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html \\\n /n/groups/kwon/(your_group_folder_name)/",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RNAseq",
+      "Running the pipeline"
     ]
   }
 ]

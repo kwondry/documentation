@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - Running the RNA-Seq pipeline</title>
+<title>Kwon Lab Pipelines - Prequisites for running the nf-core RNA-Seq pipeline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/16S/valencia/index.html" rel="next">
-<link href="../../../materials/rnaseq/background/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -146,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Running the RNA-Seq pipeline</h1>
+          <h1 class="quarto-secondary-nav-title">Prequisites for running the nf-core RNA-Seq pipeline</h1>
         </a>     
     </div>
   </nav>
@@ -188,13 +152,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">RNAseq</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link">
@@ -203,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/rnaseq/running-rnaseq/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../materials/rnaseq/running-rnaseq/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Running the pipeline</span></a>
   </div>
 </li>
@@ -219,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text"><em>3. Running DADA2 - Coming soon </em></span>
+ <span class="menu-text">Running dada2 *coming soon*</span>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -235,32 +199,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#prequisites" id="toc-prequisites" class="nav-link active" data-scroll-target="#prequisites">Prequisites</a>
-  <ul class="collapse">
-  <li><a href="#required-software" id="toc-required-software" class="nav-link" data-scroll-target="#required-software">Required software</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#downloading-the-pipeline-to-your-scratch-folder" id="toc-downloading-the-pipeline-to-your-scratch-folder" class="nav-link" data-scroll-target="#downloading-the-pipeline-to-your-scratch-folder">Downloading the pipeline to your scratch folder</a></li>
-  <li><a href="#adding-your-samples" id="toc-adding-your-samples" class="nav-link" data-scroll-target="#adding-your-samples">Adding your samples</a></li>
-  </ul></li>
-  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline">Running the pipeline</a>
-  <ul class="collapse">
-  <li><a href="#kraken2" id="toc-kraken2" class="nav-link" data-scroll-target="#kraken2">Kraken2</a></li>
-  <li><a href="#nf-core-pipeline" id="toc-nf-core-pipeline" class="nav-link" data-scroll-target="#nf-core-pipeline">nf-core pipeline</a></li>
-  <li><a href="#saving-the-outputs" id="toc-saving-the-outputs" class="nav-link" data-scroll-target="#saving-the-outputs">Saving the outputs</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Running the RNA-Seq pipeline</h1>
+<h1 class="title d-none d-lg-block">Prequisites for running the nf-core RNA-Seq pipeline</h1>
 </div>
 
 
@@ -277,113 +223,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p>Producing an gene expression matrix and an extensive QC report for downstream analysis<br>
-</p>
-</blockquote>
-<section id="prequisites" class="level1">
-<h1>Prequisites</h1>
-<section id="required-software" class="level3">
-<h3 class="anchored" data-anchor-id="required-software">Required software</h3>
-<p>Ensure you have <code>mamba</code>, <code>snakemake</code>, and <code>nf-core</code> installed on O2. For installation instructions, visit <a href="../../../materials/getting-started/installations/index.html">here</a>.</p>
+<!-- > Prequisites for running the nfcore RNA-Seq pipeline -->
+<p>Ensure you have <code>mamba</code>, <code>snakemake</code>, and <code>nf-core</code> installed on your platform.</p>
+<section id="download-the-repo-to-your-scratch-folder" class="level4">
+<h4 class="anchored" data-anchor-id="download-the-repo-to-your-scratch-folder">Download the repo to your scratch folder</h4>
+<p>Replace the filepath with your scratch folder</p>
+<pre><code>cd /n/scratch3/users/j/je112
+wget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip</code></pre>
 </section>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
-<p>Your sequencing data should be uploaded onto O2.</p>
+<section id="unzip-and-rename-the-folder" class="level4">
+<h4 class="anchored" data-anchor-id="unzip-and-rename-the-folder">Unzip and rename the folder</h4>
+<pre><code>unzip main.zip -d my_new_rnaseq_run</code></pre>
 </section>
-<section id="downloading-the-pipeline-to-your-scratch-folder" class="level3">
-<h3 class="anchored" data-anchor-id="downloading-the-pipeline-to-your-scratch-folder">Downloading the pipeline to your scratch folder</h3>
-<p>After logging onto O2 via a terminal, we can download the pipeline with the following commands.</p>
-<div id="64a84a7f" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing your scratch folder on O2</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/</span>{first_initial}<span class="op">/</span>{hms_username}</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading the pipeline</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>wget https:<span class="op">//</span>github.com<span class="op">/</span>kwondry<span class="op">/</span>smartseq_kraken<span class="op">/</span>archive<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main.<span class="bu">zip</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Unzip and rename the folder</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>unzip main.<span class="bu">zip</span> <span class="op">-</span>d my_new_rnaseq_run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You will now have a <code>my_new_rnaseq_run</code> folder that contains all the required scripts and files.<br>
-</p>
-</section>
-<section id="adding-your-samples" class="level3">
-<h3 class="anchored" data-anchor-id="adding-your-samples">Adding your samples</h3>
-<p>Download a sample sheet <a href="https://github.com/kwondry/smartseq_kraken/blob/main/input/sample_sheet.csv" target="_blank" title="download">here</a> and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you’d like and save as csv. Columns are named <strong>sample, fastq_1, fastq_2, strandedness</strong> with fastq_1 being the forward reads and fastq_2 for the reverse reads. If sequences are single-end, leave the fastq_2 column empty. The fastq files should be within <code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/{your sequencing run}</code>.<br>
-</p>
-<p>Next, upload your sample sheet onto O2. You can use <strong>rsync</strong> to upload your edited sample sheet onto O2 using your <strong>local</strong> terminal. Or, you can use the <a href="https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard" target="_blank">O2 Portal</a> to upload your sample_sheet.csv into the pipeline input folder in your scratch.</p>
-<div id="1b279a3e" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rsync <span class="op">-</span>avt path_to_downloaded_file hms_username<span class="op">@</span>transfer.rc.hms.harvard.edu:<span class="op">/</span>n<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/</span>{first_initial}<span class="op">/</span>{hms_username}<span class="op">/</span>my_new_rnaseq_run<span class="op">/</span>smartseq_kraken<span class="op">-</span>main<span class="op">/</span><span class="bu">input</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><img src="../../images/o2_portal_step1.png" class="img-fluid" style="width:49.0%"> <img src="../../images/o2_portal_step2.png" class="img-fluid" style="width:43.0%"></p>
-<p>Log into the O2 portal with your HMS credentials, click the Files &gt; Scratch, navigate to the input folder, and upload your sample_sheet.</p>
-<!-- ![Elephant](elephant.png){width=300} -->
-<!-- Open `my_new_rnaseq_run/input/sample_sheet.csv` with an editor and add your samples with the corresponding filepaths.
-
-Columns are named sample,fastq_1,fastq_2,strandedness
-You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.
-
-To get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)
-
-```
-rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username
-``` -->
-<p><br>
-<br>
-</p>
-</section>
-</section>
-<section id="running-the-pipeline" class="level1">
-<h1>Running the pipeline</h1>
-<section id="navigate-to-your-pipeline-folder" class="level4">
-<h4 class="anchored" data-anchor-id="navigate-to-your-pipeline-folder">Navigate to your pipeline folder</h4>
-<div id="d0b4d2e3" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/</span>{first_initial}<span class="op">/</span>{hms_username}<span class="op">/</span>my_new_rnaseq_run<span class="op">/</span>smartseq_kraken<span class="op">-</span>main<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="kraken2" class="level3">
-<h3 class="anchored" data-anchor-id="kraken2">Kraken2</h3>
-<p>The following run a Snakemake pipeline that runs Kraken2. Each sample can takes up to a couple hours, but each sample runs independently on the cluster.</p>
-<div id="f8bbc2a8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sbatch submit_kraken.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>After the pipeline completes, you should see a results/kraken folder which includes the Kraken2 classifications of the sequences for each sample.</p>
-</section>
-<section id="nf-core-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="nf-core-pipeline">nf-core pipeline</h3>
-<p>The following takes the Kraken2 filtered samples and runs the nfcore/rnaseq pipeline. The run time can range from a couple of hours to a few days. Additional information about the pipeline can be found <a href="https://nf-co.re/rnaseq/3.14.0/" target="_blank">here</a>.</p>
-<div id="5d1b5d4a" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mamba activate nfcore</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nf<span class="op">-</span>core download rnaseq</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sbatch submit_nfcore_rnaseq.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Following completion of the nfcore pipeline, you should see a results/nfcore folder that has QC, alignments, and gene counts for the samples. The main outputs of interest are in results/nfcore/star_salmon.</p>
-<div id="8955b388" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gene counts in each sample</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>salmon.merged.gene_counts.tsv</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#normalized gene counts</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>salmon.merged.gene_tpms.tsv</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#complete QC report of the samples</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Nfcore_rnaseq_multiqc_report.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="saving-the-outputs" class="level3">
-<h3 class="anchored" data-anchor-id="saving-the-outputs">Saving the outputs</h3>
-<p>Files in the scratch directory are automatically deleted <strong>45 days</strong> after the last modification date. To ensure your results are safe, copy them to /n/groups/.<br>
-</p>
-<p>If you are in your smartseq_kraken-main folder you can use the following:</p>
-<div id="cfc8f00a" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cp results<span class="op">/</span>nfcore<span class="op">/</span>star_salmon<span class="op">/</span>salmon.merged.gene_counts.tsv <span class="op">\</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> results<span class="op">/</span>nfcore<span class="op">/</span>star_salmon<span class="op">/</span>salmon.merged.gene_tpm.tsv <span class="op">\</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> results<span class="op">/</span>nfcore<span class="op">/</span>multiqc<span class="op">/</span>star_salmon<span class="op">/</span>nfcore_rnaseq_multiqc_report.html <span class="op">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>kwon<span class="op">/</span>(your_group_folder_name)<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="adding-your-samples" class="level4">
+<h4 class="anchored" data-anchor-id="adding-your-samples">Adding your samples</h4>
+<p>Open <code>my_new_rnaseq_run/input/sample_sheet.csv</code> with an editor and add your samples with the corresponding filepaths.</p>
+<p>Columns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.</p>
+<p>To get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)</p>
+<pre><code>rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -796,18 +655,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../materials/rnaseq/background/index.html" class="pagination-link" aria-label="Background">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Background</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../materials/16S/valencia/index.html" class="pagination-link" aria-label="Assigning CSTs with Valencia">
-        <span class="nav-page-text">Assigning CSTs with Valencia</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

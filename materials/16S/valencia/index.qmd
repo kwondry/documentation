@@ -12,14 +12,14 @@ The goal of this tutorial is to show the current best-practice way to assign CST
 
 Valencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.
 
-![centroids](centroids.png)
+![](centroids.png)
 
 
 ## Installation
 
 ### Install R, RStudio
 
-Follow the instructions on [the Durban workshop series website](https://elsherbini.github.io/durban-data-science-for-biology/installation-instructions.html).
+Follow the instructions on the [Durban workshop series website](https://elsherbini.github.io/durban-data-science-for-biology/installation-instructions.html){target="_blank"}.
 
 ### Install R dependencies
 
@@ -37,7 +37,6 @@ install.packages(c("tidyverse", "cowplot", "gtsummary", "ggdendro", "ggdist", "g
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install(c("phyloseq", "microbiome", "ComplexHeatmap"), update = FALSE)
 
-
 install.packages(
   "microViz",
   repos = c(davidbarnett = "https://david-barnett.r-universe.dev", getOption("repos"))
@@ -50,18 +49,21 @@ install.packages(
 Check if you have conda installed:
 
 1.  Open a terminal
-2.  type `which conda`
+2.  Type `which conda`
 
-If it says `conda not found`, run the following:
+    If it says `conda not found` or nothing shows up, run the following:
 
 ```{bash}
 #| eval: false
-curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"\nbash Miniforge3-$(uname)-$(uname -m).sh
+cd ~;
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh";
+bash Mambaforge-$(uname)-$(uname -m).sh;
 ```
 
-When prompted agree to the lisence with `yes` and ask it to add itself to your shell startup with `yes`. Then close and reopen your terminal.
+3. When prompted agree to the lisence with `yes` and ask it to add itself to your shell startup with `yes`. 
+4. Close and reopen your terminal.
 
-If you conda is already installed, run the following:
+If you conda is already installed, run the following to ensure you have the most recent version:
 
 ```{bash}
 #| eval: false
@@ -77,28 +79,29 @@ Make a new conda environment for these pieces of software:
 mamba create -n speciateit_valencia -c conda-forge python pandas
 ```
 
-Then, follow the instructions on [https://github.com/ravel-lab/speciateIT/](https://github.com/ravel-lab/speciateIT/) to install. **Make note of the location where you put the speciateIT folder.** 
+Then, follow the instructions on [https://github.com/ravel-lab/speciateIT/](https://github.com/ravel-lab/speciateIT/){target="_blank"} to install. **Make note of the location where you put the speciateIT folder.** 
 
-To install Valencia, [download the script by going here, then right click, Save As, and save where you want.](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py). This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia
+To install Valencia, [download the script by going here](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py){target="_blank"} , then right click, Save As, and save where you want.
+This version of the script is from Michael France as of **June 2024** and as of that time was the correct way to run Valencia.
 
 ## Running the steps
 
-Phew, we've installed everything. Now we can run the steps. Download the phyloseq object we'll use
+Phew, we've installed everything. Now we can run the next steps.
 
 ## Get your ASVs and count table from your phyloseq object
 
-First, make a new rstudio project in a new folder. ([instructions here if you need them](https://elsherbini.github.io/durban-data-science-for-biology/materials/2-workshop2/2-r-refresher/slides.html#/create-an-r-project))
+1. First, make a new RStudio project in a new folder. ([instructions here if you need them](https://elsherbini.github.io/durban-data-science-for-biology/materials/2-workshop2/2-r-refresher/slides.html#/create-an-r-project))
 
 
-Download the example phyloseq and put it in the new project folder you just created. [Download from here](https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS)
+2. Download the example phyloseq and put it in the new project folder you just created. [Download from here](https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS)
 
 
-Open up a new quarto document, and make a code chunk for the following code. 
+3. Open up a new quarto document, and make a code chunk for the following code. 
 
-The following code reads in your phyloseq object, and writes out two files:
+    The following code reads in your phyloseq object, and writes out two files:
 
-1. a fasta file containing your ASVs
-2. a count table with samples as rows and ASVs as columns.
+    - a fasta file containing your ASVs
+    - a count table with samples as rows and ASVs as columns.
 
 Both these files are required for CST assignment.
 
@@ -127,14 +130,16 @@ ps %>%
 
 ### Run SpeciateIT and Valencia
 
-First, run SpeciatIT's `classify` program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the "V4V4" databse, although newer data will start to be "V3V4")
+First, run SpeciateIT's `classify` program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the "V4V4" databse, although newer data will start to be "V3V4")
 
 ```{bash}
 #| eval: false
         
 conda activate speciateit_valencia
 
-classify -d ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 -i asvs.fa -o speciateit_output
+classify -d ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 \
+  -i asvs.fa \
+  -o speciateit_output
 ```
 
 Then, take the output from classify and your count table and use it to prepare the input for Valencia. Make sure to replace the path to `count_table.py` so it is correct for your system:
@@ -142,15 +147,20 @@ Then, take the output from classify and your count table and use it to prepare t
 ```{bash}
 #| eval: false
 
-python ~/dev/speciateIT-master/bin/count_table.py -c count_table.csv -s speciateit_output/MC_order7_results.txt
+python ~/dev/speciateIT-master/bin/count_table.py \
+  -c count_table.csv \
+  -s speciateit_output/MC_order7_results.txt
 ```
 
-Now run Valencia. The CST centroids file should be from the SpeciateIT github repository (download here for convenience)[https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/VALENCIA2_CST_centroids_20Mar2024.csv], and the Valencia python script should be downloaded from [here](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py) (which you may have already done in the installation section above).
+Now run Valencia. The CST centroids file should be from the SpeciateIT github repository [download here for convenience](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/VALENCIA2_CST_centroids_20Mar2024.csv), and the Valencia python script should be downloaded from [here](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py) (which you may have already done in the installation section above).
 
 ```{bash}
 #| eval: false
         
-python Valencia_v1.1.py -ref VALENCIA2_CST_centroids_20Mar2024.csv -i count_table_speciateIT.csv -o cst_assignments
+python Valencia_v1.1.py \
+  -ref VALENCIA2_CST_centroids_20Mar2024.csv \
+  -i count_table_speciateIT.csv \
+  -o cst_assignments
 ```
 
 ### Add CSTs back to phyloseq object

@@ -62,7 +62,7 @@ website:
 
           - section: "16S"
             contents:
-            - text: "Running dada2 *coming soon*"
+            - text: "<em>3. Running DADA2 - Coming soon </em>"
             - text: "Assigning CSTs with Valencia"
               contents:
               href: materials/16S/valencia/index.qmd
