@@ -271,12 +271,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Instructions for installing various package managers and pipelines</p>
 </blockquote>
 <p>If on the O2 cluster, please be sure to be on an interactive node.</p>
-<div id="7372d36d" class="cell" data-execution_count="1">
+<div id="139e66d6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>srun <span class="op">--</span>pty <span class="op">-</span>p priority <span class="op">-</span>t <span class="dv">12</span>:<span class="dv">0</span>:<span class="dv">0</span> <span class="op">--</span>mem<span class="op">=</span><span class="dv">8</span><span class="er">G</span> <span class="op">-</span>c <span class="dv">1</span> bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="mambaminimamba" class="level3">
 <h3 class="anchored" data-anchor-id="mambaminimamba">mamba/minimamba</h3>
-<div id="289af046" class="cell" data-execution_count="2">
+<div id="7bf5b1c7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">~;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>curl <span class="op">-</span>L <span class="op">-</span>O <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"</span><span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bash Mambaforge<span class="op">-</span>$(uname)<span class="op">-</span>$(uname <span class="op">-</span>m).sh<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -284,13 +284,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="snakemake" class="level3">
 <h3 class="anchored" data-anchor-id="snakemake">Snakemake</h3>
-<div id="9a0a9fb4" class="cell" data-execution_count="3">
+<div id="bd38557d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mamba create <span class="op">-</span>n snakemake <span class="op">-</span>c bioconda <span class="op">-</span>c conda<span class="op">-</span>forge <span class="st">"python&gt;=3.10"</span> <span class="st">"snakemake &gt;=7.32"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="nfcore" class="level3">
 <h3 class="anchored" data-anchor-id="nfcore">nfcore</h3>
-<div id="99de1301" class="cell" data-execution_count="4">
+<div id="359418f1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mamba create <span class="op">-</span>n nfcore <span class="op">-</span>c bioconda <span class="op">-</span>c conda<span class="op">-</span>forge <span class="st">"python&gt;=3.10"</span> nextflow nf<span class="op">-</span>core</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 

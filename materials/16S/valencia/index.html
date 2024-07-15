@@ -334,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> speciateit_valencia <span class="at">-c</span> conda-forge python pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. <em>Make note of the path you put the speciateIT folder.</em></p>
+<p>Then, follow the instructions on <a href="https://github.com/ravel-lab/speciateIT/">https://github.com/ravel-lab/speciateIT/</a> to install. <strong>Make note of the location where you put the speciateIT folder.</strong></p>
 <p>To install Valencia, <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py">download the script by going here, then right click, Save As, and save where you want.</a>. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia</p>
 </section>
 </section>
@@ -344,7 +344,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="get-your-asvs-and-count-table-from-your-phyloseq-object" class="level2">
 <h2 class="anchored" data-anchor-id="get-your-asvs-and-count-table-from-your-phyloseq-object">Get your ASVs and count table from your phyloseq object</h2>
-<p>For this tutorial, use an example phyloseq object. <a href="https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS">Download from here</a></p>
+<p>First, make a new rstudio project in a new folder. (<a href="https://elsherbini.github.io/durban-data-science-for-biology/materials/2-workshop2/2-r-refresher/slides.html#/create-an-r-project">instructions here if you need them</a>)</p>
+<p>Download the example phyloseq and put it in the new project folder you just created. <a href="https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS">Download from here</a></p>
+<p>Open up a new quarto document, and make a code chunk for the following code.</p>
 <p>The following code reads in your phyloseq object, and writes out two files:</p>
 <ol type="1">
 <li>a fasta file containing your ASVs</li>
