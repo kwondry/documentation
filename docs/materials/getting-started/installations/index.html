@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About the Kwon Lab</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/orgs/kwonlabpipelines/repositories"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/kwondry/documentation"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">1. Getting Started</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text"><em>3. Running DADA2 - Coming soon </em></span>
+ <span class="menu-text"><em>Running DADA2 - Coming soon </em></span>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -271,12 +271,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Instructions for installing various package managers and pipelines</p>
 </blockquote>
 <p>If on the O2 cluster, please be sure to be on an interactive node.</p>
-<div id="20d3fd7e" class="cell" data-execution_count="1">
+<div id="0b5cb2ca" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>srun <span class="op">--</span>pty <span class="op">-</span>p priority <span class="op">-</span>t <span class="dv">12</span>:<span class="dv">0</span>:<span class="dv">0</span> <span class="op">--</span>mem<span class="op">=</span><span class="dv">8</span><span class="er">G</span> <span class="op">-</span>c <span class="dv">1</span> bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="mambaminimamba" class="level3">
 <h3 class="anchored" data-anchor-id="mambaminimamba">mamba/minimamba</h3>
-<div id="fb84b046" class="cell" data-execution_count="2">
+<div id="8b329e43" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">~;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>curl <span class="op">-</span>L <span class="op">-</span>O <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"</span><span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bash Mambaforge<span class="op">-</span>$(uname)<span class="op">-</span>$(uname <span class="op">-</span>m).sh<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -284,13 +284,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="snakemake" class="level3">
 <h3 class="anchored" data-anchor-id="snakemake">Snakemake</h3>
-<div id="31bdd233" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mamba create <span class="op">-</span>n snakemake <span class="op">-</span>c bioconda <span class="op">-</span>c conda<span class="op">-</span>forge <span class="st">"python&gt;=3.10"</span> <span class="st">"snakemake &gt;=7.32"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1e58cbe3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mamba create <span class="op">-</span>n snakemake <span class="op">-</span>c bioconda <span class="op">-</span>c conda<span class="op">-</span>forge <span class="st">"bash&gt;=3.10"</span> <span class="st">"snakemake &gt;=7.32"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="nfcore" class="level3">
 <h3 class="anchored" data-anchor-id="nfcore">nfcore</h3>
-<div id="1ba12f49" class="cell" data-execution_count="4">
+<div id="84a58f5e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mamba create <span class="op">-</span>n nfcore <span class="op">-</span>c bioconda <span class="op">-</span>c conda<span class="op">-</span>forge <span class="st">"python&gt;=3.10"</span> nextflow nf<span class="op">-</span>core</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
@@ -379,7 +379,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/kwondry\.github\.io\/documentation\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

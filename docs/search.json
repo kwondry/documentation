@@ -40,10 +40,10 @@
     "href": "materials/getting-started/installations/index.html",
     "title": "Installation instructions",
     "section": "",
-    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please be sure to be on an interactive node.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash\n\n\nmamba/minimamba\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\n\nSnakemake\n\nmamba create -n snakemake -c bioconda -c conda-forge \"python&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\n\nnfcore\n\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
+    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please be sure to be on an interactive node.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash\n\n\nmamba/minimamba\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\n\nSnakemake\n\nmamba create -n snakemake -c bioconda -c conda-forge \"bash&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\n\nnfcore\n\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> Installations"
     ]
   },
@@ -136,7 +136,7 @@
     "text": "Instructions for basic linux commands\n\n\nBasic linux commands\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\n\n\nManaging environments\nmamba/conda functions\nAdditional Resources",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> Navigating the Command Line"
     ]
   },

@@ -31,7 +31,7 @@ website:
       - text: "About the Kwon Lab"
         href: "https://kwonlab.mgh.harvard.edu/"
       - icon: github
-        href: https://github.com/orgs/kwonlabpipelines/repositories
+        href: https://github.com/kwondry/documentation
         aria-label: GitHub
   sidebar:
       collapse-level: 1

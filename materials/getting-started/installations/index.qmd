@@ -11,12 +11,14 @@ format:
 If on the O2 cluster, please be sure to be on an interactive node.
 ```{python}
 #| eval: false
+#| echo: true
 srun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash
 ```
 
 ###  mamba/minimamba
 ```{python}
 #| eval: false
+#| echo: true
 cd ~;
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh";
 bash Mambaforge-$(uname)-$(uname -m).sh;
@@ -25,12 +27,14 @@ bash Mambaforge-$(uname)-$(uname -m).sh;
 ### Snakemake
 ```{python}
 #| eval: false
-mamba create -n snakemake -c bioconda -c conda-forge "python>=3.10" "snakemake >=7.32"
+#| echo: true
+mamba create -n snakemake -c bioconda -c conda-forge "bash>=3.10" "snakemake >=7.32"
 ```
 
 ### nfcore
 ```{python}
 #| eval: false
+#| echo: true
 mamba create -n nfcore -c bioconda -c conda-forge "python>=3.10" nextflow nf-core
 ```
 
