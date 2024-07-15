@@ -335,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-n</span> speciateit_valencia <span class="at">-c</span> conda-forge python pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. <em>Make note of the path you put the speciateIT folder.</em></p>
-<p>To install Valencia, download the script here. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia</p>
+<p>To install Valencia, <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py">download the script here</a>. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia</p>
 </section>
 </section>
 <section id="running-the-steps" class="level2">
@@ -344,7 +344,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="get-your-asvs-and-count-table-from-your-phyloseq-object" class="level2">
 <h2 class="anchored" data-anchor-id="get-your-asvs-and-count-table-from-your-phyloseq-object">Get your ASVs and count table from your phyloseq object</h2>
-<p>This code reads in your phyloseq object, and writes out two files:</p>
+<p>For this tutorial, use an example phyloseq object. <a href="https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS">Download from here</a></p>
+<p>The following code reads in your phyloseq object, and writes out two files:</p>
 <ol type="1">
 <li>a fasta file containing your ASVs</li>
 <li>a count table with samples as rows and ASVs as columns.</li>
@@ -382,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ~/dev/speciateIT-master/bin/count_table.py <span class="at">-c</span> count_table.csv <span class="at">-s</span> speciateit_output/MC_order7_results.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now run Valencia. The CST centroids file should be from the SpeciateIT github repository, and the Valencia python script should be downloaded from here.</p>
+<p>Now run Valencia. The CST centroids file should be from the SpeciateIT github repository (download here for convenience)[https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/VALENCIA2_CST_centroids_20Mar2024.csv], and the Valencia python script should be downloaded from <a href="https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py">here</a> (which you may have already done in the installation section above).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Valencia_v1.1.py <span class="at">-ref</span> VALENCIA2_CST_centroids_20Mar2024.csv <span class="at">-i</span> count_table_speciateIT.csv <span class="at">-o</span> cst_assignments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
