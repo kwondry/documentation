@@ -79,7 +79,7 @@ mamba create -n speciateit_valencia -c conda-forge python pandas
 
 Then, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. *Make note of the path you put the speciateIT folder.*
 
-To install Valencia, [download the script here](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py). This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia
+To install Valencia, [download the script by going here, then right click, Save As, and save where you want.](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py). This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia
 
 ## Running the steps
 
