@@ -77,7 +77,7 @@ Make a new conda environment for these pieces of software:
 mamba create -n speciateit_valencia -c conda-forge python pandas
 ```
 
-Then, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. *Make note of the path you put the speciateIT folder.* When you download the database, you can just download the "V4V4" database instead of all three provided files to save time.
+Then, follow the instructions on [https://github.com/ravel-lab/speciateIT/](https://github.com/ravel-lab/speciateIT/) to install. **Make note of the location where you put the speciateIT folder.** When you download the database, you can just download the "V4V4" database instead of all three provided files to save time.
 
 To install Valencia, [download the script by going here, then right click, Save As, and save where you want.](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py). This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia
 
