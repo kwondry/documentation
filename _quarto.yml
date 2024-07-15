@@ -39,7 +39,7 @@ website:
       style: docked
       align: left
       contents:
-          - section: "1. Getting Started"
+          - section: "Getting Started"
             contents:
             - text: "</b> O2"
               contents:
@@ -62,7 +62,7 @@ website:
 
           - section: "16S"
             contents:
-            - text: "<em>3. Running DADA2 - Coming soon </em>"
+            - text: "<em>Running DADA2 - Coming soon </em>"
             - text: "Assigning CSTs with Valencia"
               contents:
               href: materials/16S/valencia/index.qmd

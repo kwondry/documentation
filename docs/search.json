@@ -48,42 +48,18 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kwon Lab Pipelines",
-    "section": "",
-    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
-  },
-  {
-    "objectID": "materials/getting-started/intro_cli/index.html",
-    "href": "materials/getting-started/intro_cli/index.html",
-    "title": "Navigating the Command Line",
-    "section": "",
-    "text": "Instructions for basic linux commands\n\n\nBasic linux commands\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\n\n\nManaging environments\nmamba/conda functions\nAdditional Resources",
-    "crumbs": [
-      "About the Kwon Lab",
-      "1. Getting Started",
-      "</b> Navigating the Command Line"
-    ]
-  },
-  {
-    "objectID": "materials/rnaseq/background/index.html",
-    "href": "materials/rnaseq/background/index.html",
-    "title": "Background",
-    "section": "",
-    "text": "Work in progress\n\n\nIntroduction to the pipeline\nThis pipeline quantifies RNA-sequenced reads relative to genes/transcripts in the genome and normalizes the resulting data. It uses Kraken2 for filtering human reads and nf-core/rnaseq for the core trimming, alignments, and quantification. It does not compare the samples statistically, so for downstream analyses, the output files from this pipeline can be analysed directly in statistical environments like R.\n\n\nInputs\nThis pipeline takes a sample sheet and fastq files (ideally in /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/) as input and works for both single and paired-end reads.\n\n\nOutputs\nQC report, gene counts, normalized gene counts, QC reports, etc.\n\n\n\n\n\n\nCredits to Kraken2 and nf-core/rnaseq",
-    "crumbs": [
-      "About the Kwon Lab",
-      "RNAseq",
-      "Background"
-    ]
-  },
-  {
     "objectID": "materials/16S/prereqs/index.html",
     "href": "materials/16S/prereqs/index.html",
     "title": "Prequisites for running the nf-core RNA-Seq pipeline",
     "section": "",
     "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kwon Lab Pipelines",
+    "section": "",
+    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
   },
   {
     "objectID": "materials/16S/dada2/index.html",
@@ -153,27 +129,27 @@
     ]
   },
   {
-    "objectID": "materials/rnaseq/running-rnaseq/index.html#prequisites",
-    "href": "materials/rnaseq/running-rnaseq/index.html#prequisites",
-    "title": "Running the RNA-Seq pipeline",
-    "section": "Prequisites",
-    "text": "Prequisites\n\nRequired software\nEnsure you have mamba, snakemake, and nf-core installed on O2. For installation instructions, visit here.\n\n\nData\nYour sequencing data should be uploaded onto O2.\n\n\nDownloading the pipeline to your scratch folder\n#| eval: false\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\nAfter logging onto O2 via a terminal, we can download the pipeline with the following commands.\n#| eval: false\n\n# Accessing your scratch folder on O2 t\ncd /n/scratch/users/{first_initial}/{hms_username}\n\n# Downloading the pipeline\nwget https://github.com/kwondry/smartseq_kraken/archive/refs/heads/main.zip\n\n# Unzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\nYou will now have a my_new_rnaseq_run folder that contains all the required scripts and files.\n\n\n\nAdding your samples\nDownload a sample sheet here and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you’d like and save as csv. Columns are named sample, fastq_1, fastq_2, strandedness with fastq_1 being the forward reads and fastq_2 for the reverse reads. If sequences are single-end, leave the fastq_2 column empty. The fastq files should be within /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/{your sequencing run}.\n\nNext, upload your sample sheet onto O2. You can use rsync to upload your edited sample sheet onto O2 using your local terminal. Or, you can use the O2 Portal to upload your sample_sheet.csv into the pipeline input folder in your scratch.\n#| eval: false\nrsync -avt path_to_downloaded_file hms_username@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/input\n \nLog into the O2 portal with your HMS credentials, click the Files &gt; Scratch, navigate to the input folder, and upload your sample_sheet.",
+    "objectID": "materials/getting-started/intro_cli/index.html",
+    "href": "materials/getting-started/intro_cli/index.html",
+    "title": "Navigating the Command Line",
+    "section": "",
+    "text": "Instructions for basic linux commands\n\n\nBasic linux commands\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\n\n\nManaging environments\nmamba/conda functions\nAdditional Resources",
     "crumbs": [
       "About the Kwon Lab",
-      "RNAseq",
-      "Running the pipeline"
+      "1. Getting Started",
+      "</b> Navigating the Command Line"
     ]
   },
   {
-    "objectID": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
-    "href": "materials/rnaseq/running-rnaseq/index.html#running-the-pipeline",
-    "title": "Running the RNA-Seq pipeline",
-    "section": "Running the pipeline",
-    "text": "Running the pipeline\n\nNavigate to your pipeline folder\n#| eval: false\ncd /n/scratch/users/{first_initial}/{hms_username}/my_new_rnaseq_run/smartseq_kraken-main/\n\n\nKraken2\nThe following run a Snakemake pipeline that runs Kraken2. Each sample can takes up to a couple hours, but each sample runs independently on the cluster.\n#| eval: false\nmamba activate snakemake\nsbatch submit_kraken.sh\nAfter the pipeline completes, you should see a results/kraken folder which includes the Kraken2 classifications of the sequences for each sample.\n\n\nnf-core pipeline\nThe following takes the Kraken2 filtered samples and runs the nfcore/rnaseq pipeline. The run time can range from a couple of hours to a few days. Additional information about the pipeline can be found here.\n#| eval: false\nmamba activate nfcore\nnf-core download rnaseq\nsbatch submit_nfcore_rnaseq.sh\nFollowing completion of the nfcore pipeline, you should see a results/nfcore folder that has QC, alignments, and gene counts for the samples. The main outputs of interest are in results/nfcore/star_salmon.\n#| eval: false\n\n#gene counts in each sample\nsalmon.merged.gene_counts.tsv\n\n#normalized gene counts\nsalmon.merged.gene_tpms.tsv\n\n#complete QC report of the samples\nNfcore_rnaseq_multiqc_report.html\n\n\nSaving the outputs\nFiles in the scratch directory are automatically deleted 45 days after the last modification date. To ensure your results are safe, copy them to /n/groups/.\n\nIf you are in your smartseq_kraken-main folder you can use the following:\n#| eval: false\ncp results/nfcore/star_salmon/salmon.merged.gene_counts.tsv \\\n results/nfcore/star_salmon/salmon.merged.gene_tpm.tsv \\\n results/nfcore/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html \\\n /n/groups/kwon/(your_group_folder_name)/",
+    "objectID": "materials/rnaseq/background/index.html",
+    "href": "materials/rnaseq/background/index.html",
+    "title": "Background",
+    "section": "",
+    "text": "Work in progress\n\n\nIntroduction to the pipeline\nThis pipeline quantifies RNA-sequenced reads relative to genes/transcripts in the genome and normalizes the resulting data. It uses Kraken2 for filtering human reads and nf-core/rnaseq for the core trimming, alignments, and quantification. It does not compare the samples statistically, so for downstream analyses, the output files from this pipeline can be analysed directly in statistical environments like R.\n\n\nInputs\nThis pipeline takes a sample sheet and fastq files (ideally in /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/) as input and works for both single and paired-end reads.\n\n\nOutputs\nQC report, gene counts, normalized gene counts, QC reports, etc.\n\n\n\n\n\n\nCredits to Kraken2 and nf-core/rnaseq",
     "crumbs": [
       "About the Kwon Lab",
       "RNAseq",
-      "Running the pipeline"
+      "Background"
     ]
   }
 ]
