@@ -79,7 +79,7 @@ mamba create -n speciateit_valencia -c conda-forge python pandas
 
 Then, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. *Make note of the path you put the speciateIT folder.*
 
-To install Valencia, download the script here. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia
+To install Valencia, [download the script here](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py). This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia
 
 ## Running the steps
 
@@ -87,8 +87,10 @@ Phew, we've installed everything. Now we can run the steps. Download the phylose
 
 ## Get your ASVs and count table from your phyloseq object
 
+For this tutorial, use an example phyloseq object. [Download from here](https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS)
 
-This code reads in your phyloseq object, and writes out two files:
+
+The following code reads in your phyloseq object, and writes out two files:
 
 1. a fasta file containing your ASVs
 2. a count table with samples as rows and ASVs as columns.
@@ -138,7 +140,7 @@ Then, take the output from classify and your count table and use it to prepare t
 python ~/dev/speciateIT-master/bin/count_table.py -c count_table.csv -s speciateit_output/MC_order7_results.txt
 ```
 
-Now run Valencia. The CST centroids file should be from the SpeciateIT github repository, and the Valencia python script should be downloaded from here.
+Now run Valencia. The CST centroids file should be from the SpeciateIT github repository (download here for convenience)[https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/VALENCIA2_CST_centroids_20Mar2024.csv], and the Valencia python script should be downloaded from [here](https://raw.githubusercontent.com/kwondry/documentation/main/materials/16S/valencia/Valencia_v1.1.py) (which you may have already done in the installation section above).
 
 ```{bash}
 #| eval: false
