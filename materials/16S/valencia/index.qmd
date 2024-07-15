@@ -87,8 +87,13 @@ Phew, we've installed everything. Now we can run the steps. Download the phylose
 
 ## Get your ASVs and count table from your phyloseq object
 
-For this tutorial, use an example phyloseq object. [Download from here](https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS)
+First, make a new rstudio project in a new folder. ([instructions here if you need them](https://elsherbini.github.io/durban-data-science-for-biology/materials/2-workshop2/2-r-refresher/slides.html#/create-an-r-project))
 
+
+Download the example phyloseq and put it in the new project folder you just created. [Download from here](https://github.com/kwondry/documentation/raw/main/materials/16S/valencia/example_phyloseq.RDS)
+
+
+Open up a new quarto document, and make a code chunk for the following code. 
 
 The following code reads in your phyloseq object, and writes out two files:
 
