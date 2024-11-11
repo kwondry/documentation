@@ -47,7 +47,7 @@ website:
             - text: "</b> Navigating the Command Line"
               contents:
               href: materials/getting-started/intro_cli/index.qmd
-            - text: "</b> Installations"
+            - text: "</b> Installation"
               contents:
               href: materials/getting-started/installations/index.qmd
 

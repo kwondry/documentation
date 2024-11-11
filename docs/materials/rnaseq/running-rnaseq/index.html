@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About the Kwon Lab</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/orgs/kwonlabpipelines/repositories"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/kwondry/documentation"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="downloading-the-pipeline-to-your-scratch-folder" class="level3">
 <h3 class="anchored" data-anchor-id="downloading-the-pipeline-to-your-scratch-folder">Downloading the pipeline to your scratch folder</h3>
 <p>After logging onto O2 via a terminal, we can download the pipeline with the following commands.</p>
-<div id="62019534" class="cell" data-execution_count="1">
+<div id="8d272b87" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing your scratch folder on O2</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/</span>{first_initial}<span class="op">/</span>{hms_username}</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Download a sample sheet <a href="https://github.com/kwondry/smartseq_kraken/blob/main/input/sample_sheet.csv" target="_blank" title="download">here</a> and add your samples with the corresponding filepaths. You can edit the raw csv in any editor you’d like and save as csv. Columns are named <strong>sample, fastq_1, fastq_2, strandedness</strong> with fastq_1 being the forward reads and fastq_2 for the reverse reads. If sequences are single-end, leave the fastq_2 column empty. The fastq files should be within <code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/{your sequencing run}</code>.<br>
 </p>
 <p>Next, upload your sample sheet onto O2. You can use <strong>rsync</strong> to upload your edited sample sheet onto O2 using your <strong>local</strong> terminal. Or, you can use the <a href="https://o2portal.rc.hms.harvard.edu/pun/sys/dashboard" target="_blank">O2 Portal</a> to upload your sample_sheet.csv into the pipeline input folder in your scratch.</p>
-<div id="2216ef60" class="cell" data-execution_count="2">
+<div id="6f6e0332" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rsync <span class="op">-</span>avt path_to_downloaded_file hms_username<span class="op">@</span>transfer.rc.hms.harvard.edu:<span class="op">/</span>n<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/</span>{first_initial}<span class="op">/</span>{hms_username}<span class="op">/</span>my_new_rnaseq_run<span class="op">/</span>smartseq_kraken<span class="op">-</span>main<span class="op">/</span><span class="bu">input</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="../../images/o2_portal_step1.png" class="img-fluid" style="width:49.0%"> <img src="../../images/o2_portal_step2.png" class="img-fluid" style="width:43.0%"></p>
@@ -337,14 +337,14 @@ rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_usern
 <h1>Running the pipeline</h1>
 <section id="navigate-to-your-pipeline-folder" class="level4">
 <h4 class="anchored" data-anchor-id="navigate-to-your-pipeline-folder">Navigate to your pipeline folder</h4>
-<div id="5b6798c3" class="cell" data-execution_count="3">
+<div id="51480d3f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/</span>{first_initial}<span class="op">/</span>{hms_username}<span class="op">/</span>my_new_rnaseq_run<span class="op">/</span>smartseq_kraken<span class="op">-</span>main<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="kraken2" class="level3">
 <h3 class="anchored" data-anchor-id="kraken2">Kraken2</h3>
 <p>The following run a Snakemake pipeline that runs Kraken2. Each sample can takes up to a couple hours, but each sample runs independently on the cluster.</p>
-<div id="cb63a73d" class="cell" data-execution_count="4">
+<div id="506503b3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sbatch submit_kraken.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -353,13 +353,13 @@ rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_usern
 <section id="nf-core-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="nf-core-pipeline">nf-core pipeline</h3>
 <p>The following takes the Kraken2 filtered samples and runs the nfcore/rnaseq pipeline. The run time can range from a couple of hours to a few days. Additional information about the pipeline can be found <a href="https://nf-co.re/rnaseq/3.14.0/" target="_blank">here</a>.</p>
-<div id="1ae9284b" class="cell" data-execution_count="5">
+<div id="0f86c3a3" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mamba activate nfcore</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nf<span class="op">-</span>core download rnaseq</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sbatch submit_nfcore_rnaseq.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Following completion of the nfcore pipeline, you should see a results/nfcore folder that has QC, alignments, and gene counts for the samples. The main outputs of interest are in results/nfcore/star_salmon.</p>
-<div id="e9b62447" class="cell" data-execution_count="6">
+<div id="b3136fe7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gene counts in each sample</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>salmon.merged.gene_counts.tsv</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -375,7 +375,7 @@ rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_usern
 <p>Files in the scratch directory are automatically deleted <strong>45 days</strong> after the last modification date. To ensure your results are safe, copy them to /n/groups/.<br>
 </p>
 <p>If you are in your smartseq_kraken-main folder you can use the following:</p>
-<div id="dcfacd5b" class="cell" data-execution_count="7">
+<div id="caf49462" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cp results<span class="op">/</span>nfcore<span class="op">/</span>star_salmon<span class="op">/</span>salmon.merged.gene_counts.tsv <span class="op">\</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> results<span class="op">/</span>nfcore<span class="op">/</span>star_salmon<span class="op">/</span>salmon.merged.gene_tpm.tsv <span class="op">\</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> results<span class="op">/</span>nfcore<span class="op">/</span>multiqc<span class="op">/</span>star_salmon<span class="op">/</span>nfcore_rnaseq_multiqc_report.html <span class="op">\</span></span>
@@ -468,7 +468,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/kwondry\.github\.io\/documentation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

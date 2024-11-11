@@ -65,7 +65,6 @@ To get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces
 rsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username
 ``` -->
 
-
 \
 \
 

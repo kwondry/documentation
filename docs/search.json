@@ -19,7 +19,7 @@
     "text": "Working with the HMS O2 cluster\nO2 status: O2 Status\nMore Information on the O2 Cluster",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> O2"
     ]
   },
@@ -31,7 +31,7 @@
     "text": "Setting up your O2 account\n\nObtain your O2 account\nInfo\n\n\n\nGetting on O2\nUsing your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.\n\nssh (hms_username)@o2.hms.harvard.edu\n\n\n\nRequesting access to the /n/groups/kwon/ groups folder\nTo request access, email rchelp@hms.harvard.edu to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu.\n\n\nMaking a scratch directory.\nNote, files on the scratch directory are automatically deleted 45 days after their last modificaiton date. This is only for TEMPORARY STORAGE. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).\n(On the login node) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh\n\n\nGet Duo Push for Android / IOS and register with HMS\n\nDownload the app : https://it.hms.harvard.edu/duo-mobile-app\nEmail itservicedesk@hms.harvard.edu. or call 617-432-2000 to ask HMS IT to get registered with Duo\n\n\n\nSetting up 2-Factor Authentication\nTo set default 2-factor authentication option to call or push:\nFor push (recommended, but only if you already have Duo push!):\n\necho 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc\n\nFor phone\n\necho 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc\n\nDO NOT set text as your default\n\n\nSetup passwordless login (ssh keys):\nTo set passwordless login, follow the SSH keys tutorial here",
     "crumbs": [
       "About the Kwon Lab",
-      "1. Getting Started",
+      "Getting Started",
       "</b> O2"
     ]
   },
