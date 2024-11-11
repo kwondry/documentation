@@ -9,7 +9,7 @@ toc: false
 
 ::: {.g-col-12}
 
-# Kwon Lab Pipelines
+# Kwon Lab Pipelines Joseph Edit
 ###### by Kwondry
 :::
 
