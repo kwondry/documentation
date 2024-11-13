@@ -44,12 +44,9 @@ website:
             - text: "</b> O2"
               contents:
               href: materials/getting-started/o2/index.qmd
-            - text: "</b> Navigating the Command Line"
+            - text: "</b> Installation"
               contents:
-              href: materials/getting-started/intro_cli/index.qmd
-            - text: "</b> Installations"
-              contents:
-              href: materials/getting-started/installations/index.qmd
+              href: materials/getting-started/installation/index.qmd
 
           - section: "RNAseq"
             contents:
