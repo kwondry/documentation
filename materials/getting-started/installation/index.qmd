@@ -9,7 +9,9 @@ format:
 
 ## Compute node
 
-By default upon logging into O2, each user is placed on a login node. Login nodes are NOT suitable for supporting intensive computational processes. Intensive analyses on the login mode will be automatically terminated by O2 and users may be flagged by the admin if this occurs consistently. Please be sure to request a compute node to execute any tasks.
+By default upon logging into O2, each user is placed on a login node. Login nodes are NOT suitable for supporting intensive computational processes. Intensive analyses on the login mode will be automatically terminated by O2 and users may be flagged by the admin if this occurs consistently. Please be sure to request a compute node to execute any tasks. For additional details about compute nodes, please reference the [O2 documentation](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588665423/O2+HPC+Cluster+and+Computing+Nodes+Hardware).
+
+![](../../images/compute_login_node.png){width=50%}
 
 This command requests a compute node for 12 hours, with 8GB of memory and 1 core. Compute nodes automatically terminate when you disconnect from the O2 cluster or when the time limit is met, whichever occurs first.
 
