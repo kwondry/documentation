@@ -5,7 +5,7 @@ format:
     toc: true
 ---
 
-> Producing an gene expression matrix and an extensive QC report for downstream analysis
+> Brief instructions to run your RNA-Seq pipeline
 \
 
 # Prequisites

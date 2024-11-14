@@ -56,9 +56,12 @@ website:
             - text: "Background"
               contents:
               href: materials/rnaseq/background/index.qmd
-            - text: "Running the pipeline"
+            - text: "Walkthrough"
               contents:
-              href: materials/rnaseq/running-rnaseq/index.qmd
+              href: materials/rnaseq/walkthrough/index.qmd
+            - text: "Quick run"
+              contents:
+              href: materials/rnaseq/quick_run/index.qmd
 
           - section: "16S"
             contents:
