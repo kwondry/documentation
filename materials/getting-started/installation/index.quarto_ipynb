@@ -1,0 +1,355 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Installation instructions\"\n",
+        "format:\n",
+        "  html:\n",
+        "    toc: true\n",
+        "---\n",
+        "\n",
+        "\n",
+        "> Instructions for installing various package managers and pipelines\n",
+        "\n",
+        "## Compute node\n",
+        "\n",
+        "By default upon logging into O2, each user is placed on a login node. Login nodes are NOT suitable for supporting intensive computational processes. Intensive analyses on the login mode will be automatically terminated by O2 and users may be flagged by the admin if this occurs consistently. Please be sure to request a compute node to execute any tasks. For additional details about compute nodes, please reference the [O2 documentation](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588665423/O2+HPC+Cluster+and+Computing+Nodes+Hardware).\n",
+        "\n",
+        "![](../../images/compute_login_node.png){width=50%}\n",
+        "\n",
+        "This command requests a compute node for 12 hours, with 8GB of memory and 1 core. Compute nodes automatically terminate when you disconnect from the O2 cluster or when the time limit is met, whichever occurs first.\n"
+      ],
+      "id": "dbd12918"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "#| echo: true\n",
+        "srun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash"
+      ],
+      "id": "80a7025a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## mamba/minimamba\n",
+        "\n",
+        "Executing bioinformatics analyses often involve installing multiple packages/tools. Mamba is a package manager that allows users to create environments. Environments separate these package installations into individual \"partitions\", which helps 1) prevent users from disrupting their own base environment with the installations of these new packages, 2) facilitate easy access and removal of packages and 3) manage/create environments individually for each pipeline or type of analysis.\n",
+        "\n",
+        "Install mamba on O2 terminal:\n"
+      ],
+      "id": "0b1553e0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "#| echo: true\n",
+        "cd ~;\n",
+        "curl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\n",
+        "bash Mambaforge-$(uname)-$(uname -m).sh;"
+      ],
+      "id": "4f2c2152",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Initialize mamba on O2 terminal before usage (first time only):\n"
+      ],
+      "id": "a0e8f104"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "mamba init\n",
+        "# close terminal and reopen\n",
+        "source ~/.bashrc"
+      ],
+      "id": "2c3ffa8a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Snakemake\n",
+        "\n",
+        "Snakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Create your first conda environment named `snakemake_8_20_3` with the snakemake package installed with the following command.\n",
+        "\n",
+        "To read more about snakemake, please refer to the official [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/).\n",
+        "\n",
+        "Install snakemake on O2 terminal:\n"
+      ],
+      "id": "196dd591"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "mamba create -n snakemake_8_20_3 -c conda-forge -c bioconda snakemake=8.20.3  snakemake-executor-plugin-slurm  snakemake-executor-plugin-slurm-jobstep"
+      ],
+      "id": "f4e9ab77",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "To use snakemake, activate this environment maintained by mamba:\n"
+      ],
+      "id": "905ff9d5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "mamba activate snakemake_8_20_3"
+      ],
+      "id": "2d537aa4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## VSCode\n",
+        "\n",
+        "VSCode is a code text editor application that provides an easy-to-use interface for viewing and writing code/scripts. This section will detail how to 1) install VSCode as an application on your computer, 2) install VSCode extensions and 3) setup launching VSCode as an interface to view and edit your files on the O2 cluster.\n",
+        "\n",
+        "### Install VSCode application\n",
+        "To install VSCode on your computer, use [this link](https://code.visualstudio.com/download).\n",
+        "\n",
+        "\n",
+        "### Install VSCode extensions\n",
+        "VSCode has a number of extensions that allow each user to customize their own coding experience. We recommend the installation of three extensions:\n",
+        "\n",
+        "-   `Rainbow CSV` - identifies \",\" as the separator in CSV files, highlights each column with a different color\n",
+        "\n",
+        "-   `VSCode-pdf` - view PDF files directly within the VSCode interface\n",
+        "\n",
+        "-   `Remote-SSH` - allows users to login and access their own HPC cluster and view their files through the VSCode interface (see next section)\n",
+        "\n",
+        "\n",
+        "To install extensions:\n",
+        "\n",
+        "1. Navigate to the toolbar on the far left of the VSCode interface and click on the icon that resembles four squares. \n",
+        "2. Use the search bar that has the caption \"Search Extensions in Marketplace\" to find extensions that you like and install each of them individually.\n",
+        "3. An additional step for `Remote-SSH` installation involves changing the connect timeout setting. As O2 login requires Duo authentication, there is often a slight delay and more time is needed to complete the authentication and login properly. To adjust this, please follow steps 4-6. \n",
+        "\n",
+        "4. Navigate to the extension page for `Remote-SSH` (on the toolbar on the far left, select the icon with four squares, then input remote-ssh into the search bar) ![](../../images/remote_ssh_settings_step1.png){width=\"90%\"}\\\n",
+        "\n",
+        "5.  Select the gear button and press Settings ![](../../images/remote_ssh_settings_step2.png){width=\"90%\"}\\\n",
+        "\n",
+        "6.  Input 120 seconds for the `Remote.SSH: Connect Timeout` parameter ![](../../images/remote_ssh_settings_step3.png){width=\"90%\"}\\\n",
+        "\n",
+        "### Setup O2 access with VSCode: Launch VSCode on O2 login node\n",
+        "\n",
+        "While logging into O2 on the terminal only provides a command-line interface and linux commands are needed to modify files, the main advantage of accessing O2 through VSCode is it allows users to easily view and edit their files in an interactive manner within the VSCode application.\n",
+        "\n",
+        "After installation of VSCode and the Remote-SSH extension, establish a SSH connection to O2 through VSCode:\n",
+        "\n",
+        "1.  Press the bottom left purple icon to 'Open a Remote Window'. This will prompt a few options to be displayed at the top near the search bar ![](../../images/remote_ssh_launch_step1.png){width=\"90%\"}\n",
+        "\n",
+        "2.  Select 'Add New SSH Host' and then input the following and enter\n"
+      ],
+      "id": "52807f41"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "<hms_id>@o2.hms.harvard.edu"
+      ],
+      "id": "56187d10",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "3.  Select `<path to config>/.ssh/config` as the SSH configuration file to update\n",
+        "4.  Input password for O2 login\n",
+        "5.  Complete Duo authentication\n",
+        "6.  Login complete (Note: login may take longer at the first instance because VSCode will download its own server.)\n",
+        "\n",
+        "After setup, directly click the bottom left purple icon each time and input login credentials to launch O2 on VSCode each time. \n",
+        "\n",
+        "### Setup O2 access with VSCode: Launch VSCode on O2 compute node\n",
+        "\n",
+        "After setting up VSCode, Remote-SSH extension and establishing a connection to O2 login node through VSCode, follow these steps to launch VSCode on a compute node in O2. This is useful if you plan to use VSCode to open or edit larger files as this may be a process that is too computationally intensive for login nodes to handle, leading the O2 cluster to automatically terminate your connection to O2 through VSCode. For a more detailed description, please refer to the [official O2 documentation on VSCode](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/2051211265/VSCode+and+Code+Server+on+O2), which was used as a reference for this section.\n",
+        "\n",
+        "1.  Generate SSH key on your own computer's terminal with the following command. When prompted for file name, press enter to use the default file name. Enter a passphrase to protect your SSH keys.\n"
+      ],
+      "id": "1d5f9a8a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "# input this line into your computer's terminal\n",
+        "ssh-keygen -t rsa\n",
+        "\n",
+        "# sample output (See O2 documentation for reference)\n",
+        "Generating public/private rsa key pair.\n",
+        "Enter file in which to save the key (/USERHOME/.ssh/id_rsa):\n",
+        "Enter passphrase (empty for no passphrase):\n",
+        "Enter same passphrase again:\n",
+        "Your identification has been saved in /USERHOME/.ssh/id_rsa.\n",
+        "Your public key has been saved in /USERHOME/.ssh/id_rsa.pub.\n",
+        "The key fingerprint is:\n",
+        "a5:b5:38:73:b7:3c:a6:8a:1d:a8:bd:87:4e:be:33:21 "
+      ],
+      "id": "a41cc9b6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "2.  Copy your computer's SSH public key onto the O2 SSH authorized_keys file, which allows your computer and O2 to recognize each other\n"
+      ],
+      "id": "91ceecc6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "# input this line into your computer's terminal\n",
+        "ssh-copy-id -i $HOME/.ssh/id_rsa.pub <hms_id>@o2.hms.harvard.edu\n",
+        "# input O2 password and complete Duo authentication"
+      ],
+      "id": "fb59cca0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "3.  Add new lines in your computer's SSH config file. Replace HMS ID with your own ID. After modification, use `Ctrl + X` followed by enter to save the file.\n"
+      ],
+      "id": "00bfd420"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "# input this line into your computer's terminal\n",
+        "# open your computer's SSH config file\n",
+        "nano ~/.ssh/config\n",
+        "\n",
+        "# copy and paste the following lines into the config file\n",
+        "Host o2jump\n",
+        "  HostName o2.hms.harvard.edu\n",
+        "  User <hms_id>\n",
+        "  ForwardAgent yes\n",
+        "  ForwardX11 yes\n",
+        "  ForwardX11Trusted yes\n",
+        "\n",
+        "Host o2job\n",
+        "  HostName compute_node_of_job\n",
+        "  User <hms_id>\n",
+        "  ProxyJump o2jump\n",
+        "  ForwardAgent yes"
+      ],
+      "id": "95ba9e97",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "4. Request a compute node on O2, update your local config file with the node information for VSCode with the following command. Please use the command appropriate for your operating system, as the syntax varies slightly. Your requested compute node will be allocated with a 1 hour runtime, 4GB memory and 1 core. \n",
+        "\n",
+        "- Linux or Windows:"
+      ],
+      "id": "3b418b05"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "# input this line into your computer's terminal\n",
+        "ssh <hms_id>@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} sed -i \"/^Host o2job$/,/^\\s*Host /{s/^\\(\\s*HostName\\s*\\).*$/\\1{}/}\" ~/.ssh/config"
+      ],
+      "id": "dba95b41",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- Mac: "
+      ],
+      "id": "f3b44ce5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "# input this line into your computer's terminal\n",
+        "ssh <hms_id>@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} | xargs -I NODE_HOSTNAME sed -i '' \"/^Host o2job$/,/^[[:space:]]*Host / s/^\\([[:space:]]*HostName[[:space:]]*\\).*/\\1NODE_HOSTNAME/\" ~/.ssh/config"
+      ],
+      "id": "dcb14df9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "5. Open VSCode, select the bottom left purple icon to launch the remote connection. Select 'Connect to Host' and `o2job` as the server. Proceed by inputting O2 login password and completing Duo authentication. Select 'Continue' to proceed. \n",
+        "\n",
+        "Setup for launching VSCode on a O2 compute node is now complete. After setup, it is only necessary to execute Steps 4-5 each time to launch this.\n",
+        "\n",
+        "\n",
+        "### Navigate to your O2 directory in VSCode \n",
+        "Following launching VSCode on either an O2 login or a compute node, navigate to your own O2 directory:\n",
+        "\n",
+        "1. Navigate to the top bar in VSCode and press File > Open Folder\n",
+        "2. Type in path (e.g. `/n/groups/kwon/<your name>`)\n",
+        "3. Begin to edit and view files in directory"
+      ],
+      "id": "f6beace6"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/scarletau/Library/Python/3.9/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

@@ -1,0 +1,217 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"O2\"\n",
+        "format:\n",
+        "  html:\n",
+        "    toc: true\n",
+        "---\n",
+        "\n",
+        "\n",
+        "> Working with the HMS O2 cluster\n",
+        "\n",
+        "## Introduction to O2\n",
+        "\n",
+        "O2 is the high performance computing (HPC) cluster maintained by Harvard Medical School. O2 official documentation is located here: \n",
+        "\n",
+        "- [O2 Cluster Documentation](https://harvardmed.atlassian.net/wiki/spaces/O2/overview){target=\"_blank\"}\\\n",
+        "- [O2 Status (Maintenance Updates and Outages)](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status){target=\"_blank\"}\\\n",
+        "\n",
+        "## Setting up your O2 account\n",
+        "\n",
+        "### Obtain your O2 account\n",
+        "\n",
+        "Kwon Lab is an \"off-quad\" Harvard Medical School affiliated lab that uses O2 computing services. This section was created using the official [O2 documentation](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1918304257/How+to+request+or+retain+an+O2+account){target=\"_blank\"} as reference.\\\n",
+        "\n",
+        "1. Submit [PPMS form](https://ppms.us/harvard-hms/vdoc/?cont=on&pf=11&docid=30) and wait for RC Core admin ([rccore@hms.harvard.edu](mailto:rccore@hms.harvard.edu)) for approval. Approval notifications are sent to email submitted in PPMS form. \n",
+        "2. Sign the HMS RC Core user agreement that is sent via email (requires PI to co-sign)\n",
+        "\n",
+        "### Accessing O2\n",
+        "\n",
+        "Using your computer's terminal, use the following command to access O2 and enter your credentials accordingly.\n"
+      ],
+      "id": "458faf94"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "ssh <hms_id>@o2.hms.harvard.edu"
+      ],
+      "id": "f91d4120",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "![](../../images/o2_login.png){width=50%}\n",
+        "\n",
+        "### Setting up 2-Factor Authentication with Duo\n",
+        "\n",
+        "O2 login requires 2-Factor Authentication and it is recommended to execute this through the Duo app, which can be installed on your phone.\n",
+        "\n",
+        "1. [Download the app](https://it.hms.harvard.edu/duo-mobile-app) on phone\n",
+        "2. Email [itservicedesk\\@hms.harvard.edu](mailto:itservicedesk@hms.harvard.edu) or call 617-432-2000 to ask HMS IT to register and connect your HMS account with Duo. \n",
+        "3. Logging into O2 by default asks you to pick a Duo authentication method (push, call or text). Set your Duo app to either send a push or call your phone each time automatically. DO NOT set text as your default. \n",
+        "\n",
+        "(On the login node) Run the following on O2 terminal: \n",
+        "\n",
+        "For push: (recommended, but only if you already have Duo push!)\n"
+      ],
+      "id": "b3b91109"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "echo 'export DUO_PASSCODE=push' >> $HOME/.bashrc"
+      ],
+      "id": "c7813ab3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "For phone call:\n"
+      ],
+      "id": "bbb70d99"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "echo 'export DUO_PASSCODE=phone' >> $HOME/.bashrc"
+      ],
+      "id": "b3732e12",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Setup passwordless login (SSH keys)\n",
+        "\n",
+        "Please refer to SSH keys tutorial [here](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys){target=\"_blank\"}\\\n",
+        "\n",
+        "\n",
+        "## Getting oriented with O2\n",
+        "\n",
+        "Save all your files into one of the two locations: \n",
+        "\n",
+        "1. `/n/groups/kwon/<your_name>`    Your own folder within the Kwon Lab group folder and main storage location.  \n",
+        "2. `/n/groups/scratch/<first_letter_of_hms_id>/<hms_id>`    Scratch directory is for temporary storage and files are deleted in 45 days.    \n",
+        "\n",
+        "### Request access to the `/n/groups/kwon/` groups folder\n",
+        "\n",
+        "To request access, email [rchelp@hms.harvard.edu](mailto:rchelp@hms.harvard.edu) to ask for access to the group folder `/n/groups/kwon` on O2. Please copy [dkwon\\@mgh.harvard.edu](mailto:dkwon@mgh.harvard.edu) and [jelsherbini\\@mgh.harvard.edu](mailto:jelsherbini@mgh.harvard.edu).\n",
+        "\n",
+        "Use the following command in the O2 terminal to access the Kwon Lab folder and make a folder under your own name:"
+      ],
+      "id": "f9d1a96d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "cd /n/groups/kwon/\n",
+        "mkdir <your name>"
+      ],
+      "id": "fc4294bb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "To access your own folder within the Kwon Lab group folder on the O2 terminal:"
+      ],
+      "id": "85e1e8f6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "cd /n/groups/kwon/<your name>"
+      ],
+      "id": "2fb7751d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Making a scratch directory\n",
+        "\n",
+        "Note: the scratch directory is for **TEMPORARY STORAGE**. All files in scratch are automatically deleted **45 days** after their last modification date. Everything you want to keep needs to be moved to your folder in `/n/groups/kwon/<your name>`.\n",
+        "\n",
+        "**(On the login node)** Run the following on O2 terminal:"
+      ],
+      "id": "233ee0a6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "/n/cluster/bin/scratch_create_directory.sh"
+      ],
+      "id": "5eef4737",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "To access scratch directory:"
+      ],
+      "id": "cbb1bfa0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "cd /n/groups/scratch/users/<first_letter_of_hms_id>/<hms_id>"
+      ],
+      "id": "0bf52e59",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "\\\n",
+        "\\"
+      ],
+      "id": "b5df1a64"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/scarletau/Library/Python/3.9/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
