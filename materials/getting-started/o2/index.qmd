@@ -7,65 +7,104 @@ format:
 
 > Working with the HMS O2 cluster
 
+## Introduction to O2
 
-O2 status: [O2 Status](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status){target="_blank"} \
-[More Information on the O2 Cluster](https://harvardmed.atlassian.net/wiki/spaces/O2/overview){target="_blank"} \
+O2 is the high performance computing (HPC) cluster maintained by Harvard Medical School. O2 official documentation is located here: 
 
+- [O2 Cluster Documentation](https://harvardmed.atlassian.net/wiki/spaces/O2/overview){target="_blank"}\
+- [O2 Status (Maintenance Updates and Outages)](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status){target="_blank"}\
 
 ## Setting up your O2 account
 
 ### Obtain your O2 account
-[Info](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1918304257/How+to+request+or+retain+an+O2+account){target="_blank"} \
 
-### Getting on O2
+Kwon Lab is an "off-quad" Harvard Medical School affiliated lab that uses O2 computing services. This section was created using the official [O2 documentation](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1918304257/How+to+request+or+retain+an+O2+account){target="_blank"} as reference.\
+
+1. Submit [PPMS form](https://ppms.us/harvard-hms/vdoc/?cont=on&pf=11&docid=30) and wait for RC Core admin ([rccore@hms.harvard.edu](mailto:rccore@hms.harvard.edu)) for approval. Approval notifications are sent to email submitted in PPMS form. 
+2. Sign the HMS RC Core user agreement that is sent via email (requires PI to co-sign)
+
+### Accessing O2
+
 Using your computer's terminal, use the following command to access O2 and enter your credentials accordingly.
 
 ```{python}
 #| eval: false
-ssh (hms_username)@o2.hms.harvard.edu
+ssh <hms_id>@o2.hms.harvard.edu
 
 ```
 
+![](../../images/o2_login.png){width=50%}
 
-### Requesting access to the /n/groups/kwon/ groups folder
+### Setting up 2-Factor Authentication with Duo
 
-To request access, email `rchelp@hms.harvard.edu` to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu. 
+O2 login requires 2-Factor Authentication and it is recommended to execute this through the Duo app, which can be installed on your phone.
 
+1. [Download the app](https://it.hms.harvard.edu/duo-mobile-app) on phone
+2. Email [itservicedesk\@hms.harvard.edu](mailto:itservicedesk@hms.harvard.edu) or call 617-432-2000 to ask HMS IT to register and connect your HMS account with Duo. 
+3. Logging into O2 by default asks you to pick a Duo authentication method (push, call or text). Set your Duo app to either send a push or call your phone each time automatically. DO NOT set text as your default. 
 
-### Making a scratch directory.
+(On the login node) Run the following on O2 terminal: 
 
-Note, files on the scratch directory are automatically deleted **45 days** after their last modificaiton date. This is only for **TEMPORARY STORAGE**. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).
+For push: (recommended, but only if you already have Duo push!)
 
-**(On the login node)** Run the following on O2: /n/cluster/bin/scratch_create_directory.sh
-
-
-### Get Duo Push for Android / IOS  and register with HMS
-
-- Download the app : https://it.hms.harvard.edu/duo-mobile-app
-- Email [itservicedesk@hms.harvard.edu](mailto:itservicedesk@hms.harvard.edu). or call 617-432-2000 to ask HMS IT to get registered with Duo
-
-
-### Setting up 2-Factor Authentication
-
-To set default 2-factor authentication option to call or push: \
-For push (recommended, but only if you already have Duo push!):
 ```{python}
 #| eval: false
 echo 'export DUO_PASSCODE=push' >> $HOME/.bashrc
 ```
-For phone
+
+For phone call:
+
 ```{python}
 #| eval: false
 echo 'export DUO_PASSCODE=phone' >> $HOME/.bashrc
 ```
-DO NOT set text as your default
-
-### Setup passwordless login (ssh keys):
-To set passwordless login, follow the SSH keys tutorial [here](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys){target="_blank"} \
 
 
 
+### Setup passwordless login (SSH keys)
 
+Please refer to SSH keys tutorial [here](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys){target="_blank"}\
+
+
+## Getting oriented with O2
+
+Save all your files into one of the two locations: 
+
+1. `/n/groups/kwon/<your_name>`    Your own folder within the Kwon Lab group folder and main storage location.  
+2. `/n/groups/scratch/<first_letter_of_hms_id>/<hms_id>`    Scratch directory is for temporary storage and files are deleted in 45 days.    
+
+### Request access to the `/n/groups/kwon/` groups folder
+
+To request access, email [rchelp@hms.harvard.edu](mailto:rchelp@hms.harvard.edu) to ask for access to the group folder `/n/groups/kwon` on O2. Please copy [dkwon\@mgh.harvard.edu](mailto:dkwon@mgh.harvard.edu) and [jelsherbini\@mgh.harvard.edu](mailto:jelsherbini@mgh.harvard.edu).
+
+Use the following command in the O2 terminal to access the Kwon Lab folder and make a folder under your own name:
+```{python}
+#| eval: false
+cd /n/groups/kwon/
+mkdir <your name>
+```
+
+To access your own folder within the Kwon Lab group folder on the O2 terminal:
+```{python}
+#| eval: false
+cd /n/groups/kwon/<your name>
+```
+
+### Making a scratch directory
+
+Note: the scratch directory is for **TEMPORARY STORAGE**. All files in scratch are automatically deleted **45 days** after their last modification date. Everything you want to keep needs to be moved to your folder in `/n/groups/kwon/<your name>`.
+
+**(On the login node)** Run the following on O2 terminal:
+```{python}
+#| eval: false
+/n/cluster/bin/scratch_create_directory.sh
+```
+
+To access scratch directory:
+```{python}
+#| eval: false
+cd /n/groups/scratch/users/<first_letter_of_hms_id>/<hms_id>
+```
 
 \
 \
