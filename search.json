@@ -72,16 +72,85 @@
     ]
   },
   {
-    "objectID": "materials/getting-started/intro_cli/index.html",
-    "href": "materials/getting-started/intro_cli/index.html",
-    "title": "Navigating the Command Line",
+    "objectID": "materials/getting-started/installation/index.html",
+    "href": "materials/getting-started/installation/index.html",
+    "title": "Installation instructions",
     "section": "",
-    "text": "Instructions for basic linux commands\n\n\nBasic linux commands\nls: Lists all files and directories in the present working directory\nls -R: Lists all files in sub-directories too\nls -a: Lists all hidden files too\npwd: Displays current file path\ncd: Mavigates to a directory\ncd ~: HOME directory\ncd ..: Navigates one level up\ncat &gt; filename: Creates new\ncat filename: Displays file content\nmv file new_file: Moves file to new file location and changes name\nrm filename: Deletes a file, use -r to delete a folder\ncp filename new_file: Copies a file, use -r to copy a folder\nhistory: Gives a list of all past commands\nCtrl + l or clear: Clears the terminal\n\n\nManaging environments\nmamba/conda functions\nAdditional Resources",
+    "text": "Instructions for installing various package managers and pipelines",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> Navigating the Command Line"
+      "</b> Installation"
     ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#compute-node",
+    "href": "materials/getting-started/installation/index.html#compute-node",
+    "title": "Installation instructions",
+    "section": "Compute node",
+    "text": "Compute node\nBy default upon logging into O2, each user is placed on a login node. Login nodes are NOT suitable for supporting intensive computational processes. Intensive analyses on the login mode will be automatically terminated by O2 and users may be flagged by the admin if this occurs consistently. Please be sure to request a compute node to execute any tasks. For additional details about compute nodes, please reference the O2 documentation.\n\nThis command requests a compute node for 12 hours, with 8GB of memory and 1 core. Compute nodes automatically terminate when you disconnect from the O2 cluster or when the time limit is met, whichever occurs first.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installation"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#mambaminimamba",
+    "href": "materials/getting-started/installation/index.html#mambaminimamba",
+    "title": "Installation instructions",
+    "section": "mamba/minimamba",
+    "text": "mamba/minimamba\nExecuting bioinformatics analyses often involve installing multiple packages/tools. Mamba is a package manager that allows users to create environments. Environments separate these package installations into individual “partitions”, which helps 1) prevent users from disrupting their own base environment with the installations of these new packages, 2) facilitate easy access and removal of packages and 3) manage/create environments individually for each pipeline or type of analysis.\nInstall mamba on O2 terminal:\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\nInitialize mamba on O2 terminal before usage (first time only):\n\nmamba init\n# close terminal and reopen\nsource ~/.bashrc",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installation"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#snakemake",
+    "href": "materials/getting-started/installation/index.html#snakemake",
+    "title": "Installation instructions",
+    "section": "Snakemake",
+    "text": "Snakemake\nSnakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Create your first conda environment named snakemake_8_20_3 with the snakemake package installed with the following command.\nTo read more about snakemake, please refer to the official Snakemake documentation.\nInstall snakemake on O2 terminal:\n\nmamba create -n snakemake_8_20_3 -c conda-forge -c bioconda snakemake=8.20.3  snakemake-executor-plugin-slurm  snakemake-executor-plugin-slurm-jobstep\n\nTo use snakemake, activate this environment maintained by mamba:\n\nmamba activate snakemake_8_20_3",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installation"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#vscode",
+    "href": "materials/getting-started/installation/index.html#vscode",
+    "title": "Installation instructions",
+    "section": "VSCode",
+    "text": "VSCode\nVSCode is a code text editor application that provides an easy-to-use interface for viewing and writing code/scripts. This section will detail how to 1) install VSCode as an application on your computer, 2) install VSCode extensions and 3) setup launching VSCode as an interface to view and edit your files on the O2 cluster.\n\nInstall VSCode application\nTo install VSCode on your computer, use this link.\n\n\nInstall VSCode extensions\nVSCode has a number of extensions that allow each user to customize their own coding experience. We recommend the installation of three extensions:\n\nRainbow CSV - identifies “,” as the separator in CSV files, highlights each column with a different color\nVSCode-pdf - view PDF files directly within the VSCode interface\nRemote-SSH - allows users to login and access their own HPC cluster and view their files through the VSCode interface (see next section)\n\nTo install extensions:\n\nNavigate to the toolbar on the far left of the VSCode interface and click on the icon that resembles four squares.\nUse the search bar that has the caption “Search Extensions in Marketplace” to find extensions that you like and install each of them individually.\nAn additional step for Remote-SSH installation involves changing the connect timeout setting. As O2 login requires Duo authentication, there is often a slight delay and more time is needed to complete the authentication and login properly. To adjust this, please follow steps 4-6.\nNavigate to the extension page for Remote-SSH (on the toolbar on the far left, select the icon with four squares, then input remote-ssh into the search bar) \n\nSelect the gear button and press Settings \n\nInput 120 seconds for the Remote.SSH: Connect Timeout parameter \n\n\n\n\nSetup O2 access with VSCode: Launch VSCode on O2 login node\nWhile logging into O2 on the terminal only provides a command-line interface and linux commands are needed to modify files, the main advantage of accessing O2 through VSCode is it allows users to easily view and edit their files in an interactive manner within the VSCode application.\nAfter installation of VSCode and the Remote-SSH extension, establish a SSH connection to O2 through VSCode:\n\nPress the bottom left purple icon to ‘Open a Remote Window’. This will prompt a few options to be displayed at the top near the search bar \nSelect ‘Add New SSH Host’ and then input the following and enter\n\n\n&lt;hms_id&gt;@o2.hms.harvard.edu\n\n\nSelect &lt;path to config&gt;/.ssh/config as the SSH configuration file to update\nInput password for O2 login\nComplete Duo authentication\nLogin complete (Note: login may take longer at the first instance because VSCode will download its own server.)\n\nAfter setup, directly click the bottom left purple icon each time and input login credentials to launch O2 on VSCode each time.\n\n\nSetup O2 access with VSCode: Launch VSCode on O2 compute node\nAfter setting up VSCode, Remote-SSH extension and establishing a connection to O2 login node through VSCode, follow these steps to launch VSCode on a compute node in O2. This is useful if you plan to use VSCode to open or edit larger files as this may be a process that is too computationally intensive for login nodes to handle, leading the O2 cluster to automatically terminate your connection to O2 through VSCode. For a more detailed description, please refer to the official O2 documentation on VSCode, which was used as a reference for this section.\n\nGenerate SSH key on your own computer’s terminal with the following command. When prompted for file name, press enter to use the default file name. Enter a passphrase to protect your SSH keys.\n\n\n# input this line into your computer's terminal\nssh-keygen -t rsa\n\n# sample output (See O2 documentation for reference)\nGenerating public/private rsa key pair.\nEnter file in which to save the key (/USERHOME/.ssh/id_rsa):\nEnter passphrase (empty for no passphrase):\nEnter same passphrase again:\nYour identification has been saved in /USERHOME/.ssh/id_rsa.\nYour public key has been saved in /USERHOME/.ssh/id_rsa.pub.\nThe key fingerprint is:\na5:b5:38:73:b7:3c:a6:8a:1d:a8:bd:87:4e:be:33:21 \n\n\nCopy your computer’s SSH public key onto the O2 SSH authorized_keys file, which allows your computer and O2 to recognize each other\n\n\n# input this line into your computer's terminal\nssh-copy-id -i $HOME/.ssh/id_rsa.pub &lt;hms_id&gt;@o2.hms.harvard.edu\n# input O2 password and complete Duo authentication\n\n\nAdd new lines in your computer’s SSH config file. Replace HMS ID with your own ID. After modification, use Ctrl + X followed by enter to save the file.\n\n\n# input this line into your computer's terminal\n# open your computer's SSH config file\nnano ~/.ssh/config\n\n# copy and paste the following lines into the config file\nHost o2jump\n  HostName o2.hms.harvard.edu\n  User &lt;hms_id&gt;\n  ForwardAgent yes\n  ForwardX11 yes\n  ForwardX11Trusted yes\n\nHost o2job\n  HostName compute_node_of_job\n  User &lt;hms_id&gt;\n  ProxyJump o2jump\n  ForwardAgent yes\n\n\nRequest a compute node on O2, update your local config file with the node information for VSCode with the following command. Please use the command appropriate for your operating system, as the syntax varies slightly. Your requested compute node will be allocated with a 1 hour runtime, 4GB memory and 1 core.\n\n\nLinux or Windows:\n\n\n# input this line into your computer's terminal\nssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} sed -i \"/^Host o2job$/,/^\\s*Host /{s/^\\(\\s*HostName\\s*\\).*$/\\1{}/}\" ~/.ssh/config\n\n\nMac:\n\n\n# input this line into your computer's terminal\nssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} | xargs -I NODE_HOSTNAME sed -i '' \"/^Host o2job$/,/^[[:space:]]*Host / s/^\\([[:space:]]*HostName[[:space:]]*\\).*/\\1NODE_HOSTNAME/\" ~/.ssh/config\n\n\nOpen VSCode, select the bottom left purple icon to launch the remote connection. Select ‘Connect to Host’ and o2job as the server. Proceed by inputting O2 login password and completing Duo authentication. Select ‘Continue’ to proceed.\n\nSetup for launching VSCode on a O2 compute node is now complete. After setup, it is only necessary to execute Steps 4-5 each time to launch this.\n\n\nNavigate to your O2 directory in VSCode\nFollowing launching VSCode on either an O2 login or a compute node, navigate to your own O2 directory:\n\nNavigate to the top bar in VSCode and press File &gt; Open Folder\nType in path (e.g. /n/groups/kwon/&lt;your name&gt;)\nBegin to edit and view files in directory",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installation"
+    ]
+  },
+  {
+    "objectID": "materials/16S/prereqs/index.html",
+    "href": "materials/16S/prereqs/index.html",
+    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "section": "",
+    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kwon Lab Pipelines",
+    "section": "",
+    "text": "by Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
+  },
+  {
+    "objectID": "materials/16S/dada2/index.html",
+    "href": "materials/16S/dada2/index.html",
+    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "section": "",
+    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
   },
   {
     "objectID": "materials/16S/valencia/index.html",
@@ -144,44 +213,23 @@
     ]
   },
   {
-    "objectID": "materials/16S/dada2/index.html",
-    "href": "materials/16S/dada2/index.html",
-    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
-    "section": "",
-    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kwon Lab Pipelines",
-    "section": "",
-    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
-  },
-  {
-    "objectID": "materials/16S/prereqs/index.html",
-    "href": "materials/16S/prereqs/index.html",
-    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
-    "section": "",
-    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
-  },
-  {
-    "objectID": "materials/getting-started/installations/index.html",
-    "href": "materials/getting-started/installations/index.html",
-    "title": "Installation instructions",
-    "section": "",
-    "text": "Instructions for installing various package managers and pipelines\n\nIf on the O2 cluster, please be sure to be on an interactive node.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash\n\n\nmamba/minimamba\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\n\nSnakemake\n\nmamba create -n snakemake -c bioconda -c conda-forge \"bash&gt;=3.10\" \"snakemake &gt;=7.32\"\n\n\n\nnfcore\n\nmamba create -n nfcore -c bioconda -c conda-forge \"python&gt;=3.10\" nextflow nf-core",
-    "crumbs": [
-      "About the Kwon Lab",
-      "Getting Started",
-      "</b> Installation"
-    ]
-  },
-  {
     "objectID": "materials/getting-started/o2/index.html",
     "href": "materials/getting-started/o2/index.html",
     "title": "O2",
     "section": "",
-    "text": "Working with the HMS O2 cluster\nO2 status: O2 Status\nMore Information on the O2 Cluster",
+    "text": "Working with the HMS O2 cluster",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> O2"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/o2/index.html#introduction-to-o2",
+    "href": "materials/getting-started/o2/index.html#introduction-to-o2",
+    "title": "O2",
+    "section": "Introduction to O2",
+    "text": "Introduction to O2\nO2 is the high performance computing (HPC) cluster maintained by Harvard Medical School. O2 official documentation is located here:\n\nO2 Cluster Documentation\n\nO2 Status (Maintenance Updates and Outages)",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
@@ -193,7 +241,19 @@
     "href": "materials/getting-started/o2/index.html#setting-up-your-o2-account",
     "title": "O2",
     "section": "Setting up your O2 account",
-    "text": "Setting up your O2 account\n\nObtain your O2 account\nInfo\n\n\n\nGetting on O2\nUsing your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.\n\nssh (hms_username)@o2.hms.harvard.edu\n\n\n\nRequesting access to the /n/groups/kwon/ groups folder\nTo request access, email rchelp@hms.harvard.edu to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu.\n\n\nMaking a scratch directory.\nNote, files on the scratch directory are automatically deleted 45 days after their last modificaiton date. This is only for TEMPORARY STORAGE. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/(your name).\n(On the login node) Run the following on O2: /n/cluster/bin/scratch_create_directory.sh\n\n\nGet Duo Push for Android / IOS and register with HMS\n\nDownload the app : https://it.hms.harvard.edu/duo-mobile-app\nEmail itservicedesk@hms.harvard.edu. or call 617-432-2000 to ask HMS IT to get registered with Duo\n\n\n\nSetting up 2-Factor Authentication\nTo set default 2-factor authentication option to call or push:\nFor push (recommended, but only if you already have Duo push!):\n\necho 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc\n\nFor phone\n\necho 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc\n\nDO NOT set text as your default\n\n\nSetup passwordless login (ssh keys):\nTo set passwordless login, follow the SSH keys tutorial here",
+    "text": "Setting up your O2 account\n\nObtain your O2 account\nKwon Lab is an “off-quad” Harvard Medical School affiliated lab that uses O2 computing services. This section was created using the official O2 documentation as reference.\n\n\nSubmit PPMS form and wait for RC Core admin (rccore@hms.harvard.edu) for approval. Approval notifications are sent to email submitted in PPMS form.\nSign the HMS RC Core user agreement that is sent via email (requires PI to co-sign)\n\n\n\nAccessing O2\nUsing your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.\n\nssh &lt;hms_id&gt;@o2.hms.harvard.edu\n\n\n\n\nSetting up 2-Factor Authentication with Duo\nO2 login requires 2-Factor Authentication and it is recommended to execute this through the Duo app, which can be installed on your phone.\n\nDownload the app on phone\nEmail itservicedesk@hms.harvard.edu or call 617-432-2000 to ask HMS IT to register and connect your HMS account with Duo.\nLogging into O2 by default asks you to pick a Duo authentication method (push, call or text). Set your Duo app to either send a push or call your phone each time automatically. DO NOT set text as your default.\n\n(On the login node) Run the following on O2 terminal:\nFor push: (recommended, but only if you already have Duo push!)\n\necho 'export DUO_PASSCODE=push' &gt;&gt; $HOME/.bashrc\n\nFor phone call:\n\necho 'export DUO_PASSCODE=phone' &gt;&gt; $HOME/.bashrc\n\n\n\nSetup passwordless login (SSH keys)\nPlease refer to SSH keys tutorial here",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> O2"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/o2/index.html#getting-oriented-with-o2",
+    "href": "materials/getting-started/o2/index.html#getting-oriented-with-o2",
+    "title": "O2",
+    "section": "Getting oriented with O2",
+    "text": "Getting oriented with O2\nSave all your files into one of the two locations:\n\n/n/groups/kwon/&lt;your_name&gt; Your own folder within the Kwon Lab group folder and main storage location.\n\n/n/groups/scratch/&lt;first_letter_of_hms_id&gt;/&lt;hms_id&gt; Scratch directory is for temporary storage and files are deleted in 45 days.\n\n\nRequest access to the /n/groups/kwon/ groups folder\nTo request access, email rchelp@hms.harvard.edu to ask for access to the group folder /n/groups/kwon on O2. Please copy dkwon@mgh.harvard.edu and jelsherbini@mgh.harvard.edu.\nUse the following command in the O2 terminal to access the Kwon Lab folder and make a folder under your own name:\n\ncd /n/groups/kwon/\nmkdir &lt;your name&gt;\n\nTo access your own folder within the Kwon Lab group folder on the O2 terminal:\n\ncd /n/groups/kwon/&lt;your name&gt;\n\n\n\nMaking a scratch directory\nNote: the scratch directory is for TEMPORARY STORAGE. All files in scratch are automatically deleted 45 days after their last modification date. Everything you want to keep needs to be moved to your folder in /n/groups/kwon/&lt;your name&gt;.\n(On the login node) Run the following on O2 terminal:\n\n/n/cluster/bin/scratch_create_directory.sh\n\nTo access scratch directory:\n\ncd /n/groups/scratch/users/&lt;first_letter_of_hms_id&gt;/&lt;hms_id&gt;",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
