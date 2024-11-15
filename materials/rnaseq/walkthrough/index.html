@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - Navigating the Command Line</title>
+<title>Kwon Lab Pipelines - RNA-Seq Pipeline Tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/getting-started/installations/index.html" rel="next">
-<link href="../../../materials/getting-started/o2/index.html" rel="prev">
+<link href="../../../materials/rnaseq/quick_run/index.html" rel="next">
+<link href="../../../materials/rnaseq/background/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -96,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">About the Kwon Lab</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/orgs/kwonlabpipelines/repositories"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/kwondry/documentation"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -112,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Navigating the Command Line</h1>
+          <h1 class="quarto-secondary-nav-title">RNA-Seq Pipeline Tutorial</h1>
         </a>     
     </div>
   </nav>
@@ -125,13 +159,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">1. Getting Started</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link">
@@ -140,27 +174,27 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/getting-started/intro/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../materials/getting-started/intro_cli/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"> Navigating the Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/installations/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Installations</span></a>
+ <span class="menu-text"> Installation</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">2. RNA sequencing pipeline</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">RNAseq</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link">
@@ -169,15 +203,37 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/rnaseq/running-rnaseq/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Running the pipeline</span></a>
+  <a href="../../../materials/rnaseq/walkthrough/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Walkthrough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../materials/rnaseq/quick_run/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quick run</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text"><em>3. 16S  - Coming soon</em></span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">16S</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+ <span class="menu-text"><em>Running DADA2 - Coming soon </em></span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../materials/16S/valencia/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assigning CSTs with Valencia</span></a>
+  </div>
+</li>
+      </ul>
   </li>
     </ul>
     </div>
@@ -185,14 +241,31 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#prequisites" id="toc-prequisites" class="nav-link active" data-scroll-target="#prequisites">Prequisites</a></li>
+  <li><a href="#downloading-the-pipeline" id="toc-downloading-the-pipeline" class="nav-link" data-scroll-target="#downloading-the-pipeline">Downloading the pipeline</a></li>
+  <li><a href="#creating-a-sample-sheet" id="toc-creating-a-sample-sheet" class="nav-link" data-scroll-target="#creating-a-sample-sheet">Creating a sample sheet</a>
+  <ul class="collapse">
+  <li><a href="#uploading-your-samplesheet" id="toc-uploading-your-samplesheet" class="nav-link" data-scroll-target="#uploading-your-samplesheet">Uploading your samplesheet</a></li>
+  </ul></li>
+  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline">Running the pipeline</a>
+  <ul class="collapse">
+  <li><a href="#testing-the-pipeline" id="toc-testing-the-pipeline" class="nav-link" data-scroll-target="#testing-the-pipeline">Testing the pipeline</a></li>
+  <li><a href="#running-the-pipeline-1" id="toc-running-the-pipeline-1" class="nav-link" data-scroll-target="#running-the-pipeline-1">Running the pipeline</a></li>
+  </ul></li>
+  <li><a href="#saving-outputs" id="toc-saving-outputs" class="nav-link" data-scroll-target="#saving-outputs">Saving outputs</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Navigating the Command Line</h1>
+<h1 class="title d-none d-lg-block">RNA-Seq Pipeline Tutorial</h1>
 </div>
 
 
@@ -210,25 +283,131 @@ ul.task-list li input[type="checkbox"] {
 
 
 <blockquote class="blockquote">
-<p>Instructions for basic linux commands</p>
+<p>Detailed steps on processing RNA Sequencing data</p>
 </blockquote>
-<p><code>ls</code>: Lists all files and directories in the present working directory</p>
-<p><code>ls -R</code>: Lists all files in sub-directories too</p>
-<p><code>ls -a</code>: Lists all hidden files too</p>
-<p><code>pwd</code>: Displays current file path</p>
-<p><code>cd</code>: Mavigates to a directory</p>
-<p><code>cd ~</code>: HOME directory</p>
-<p><code>cd ..</code>: Navigates one level up</p>
-<p><code>cat &gt; filename</code>: Creates new</p>
-<p><code>cat filename</code>: Displays file content</p>
-<p><code>mv file new_file</code>: Moves file to new file location and changes name</p>
-<p><code>rm filename</code>: Deletes a file, use <code>-r</code> to delete a folder</p>
-<p><code>cp filename new_file</code>: Copies a file, use <code>-r</code> to copy a folder</p>
-<p><code>history</code>: Gives a list of all past commands</p>
-<p><code>Ctrl + l</code> or <code>clear</code>: Clears the terminal</p>
-<p><a href="https://missing.csail.mit.edu/2020/course-shell/" target="_blank">Additional Resources</a></p>
+<p>Here we walk through the Kwon Lab RNA-Seq pipeline. The pipeline integrates steps from an <a href="https://nf-co.re/rnaseq" target="_blank">nf-core rnaseq</a> pipeline into an executable <code>snakemake</code> pipeline. The end product is a gene expression matrix and a QC report for further downstream analysis.</p>
+<p><strong>Estimated time for completion ~1 hour</strong></p>
+<section id="prequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prequisites">Prequisites</h3>
+<ul>
+<li><p>Ensure you have O2 access with <code>mamba</code> and <code>snakemake</code> installed. For O2 setup instructions, visit <a href="../../../materials/getting-started/installations/index.html">here</a>.</p></li>
+<li><p>We begin with raw sequencing data ( must be .gz files) on O2 in <code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/&lt;your sequencing run&gt;</code>. Please note where the sequences for your samples are located.</p></li>
+</ul>
+<p><br>
+</p>
+</section>
+<section id="downloading-the-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="downloading-the-pipeline">Downloading the pipeline</h2>
+<p>Launch VSCode on an O2 compute node. More instructions can be found [here].</p>
+<p>Open a terminal within VSCode. Click terminal in the top bar and new terminal. You should be on a compute node and within your groups folder. You can check where you currently are in the file system with <code>pwd</code>.</p>
+<p><img src="../../images/rnaseq_step1.png" class="img-fluid"></p>
+<p>Download the pipeline by running the following commands. This is where your pipeline will be located and you can go into the folder with <code>cd</code>. Running <code>ls</code> will show all pipeline files.</p>
+<div id="e56401b1" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading the pipeline</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wget https:<span class="op">//</span>github.com<span class="op">/</span>kwondry<span class="op">/</span>rnaseq_gene_expression<span class="op">/</span>archive<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main.<span class="bu">zip</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Unzip and rename the folder</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>unzip main.<span class="bu">zip</span> <span class="op">-</span>d my_rnaseq_run <span class="op">&amp;&amp;</span> rm main.<span class="bu">zip</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate into your rnaseq pipeline folder</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cd my_rnaseq_run<span class="op">/</span>rnaseq_gene_expression<span class="op">-</span>main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="../../images/rnaseq_step2.png" class="img-fluid"></p>
+<p>You will now have a <code>rnaseq_gene_expression-main</code> folder that contains all the required files.</p>
+<p><br>
+</p>
+</section>
+<section id="creating-a-sample-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-sample-sheet">Creating a sample sheet</h2>
+<p><strong>A sample sheet will define which samples you want to include in the run and provide file paths for each sample.</strong></p>
+<p>Download an example sample sheet <a href="https://github.com/kwondry/rnaseq_gene_expression/blob/main/input/sample_sheet.csv" target="_blank" title="download">here</a>.</p>
+<p>Edit this sample sheet with explicit file paths for each sample that want included in the run. You can edit the raw csv in Excel or any editor you’d like and add your samples with explicit, absolute filepaths starting from <code>/n/</code>.</p>
+<p><img src="../../images/rnaseq_step3.png" class="img-fluid"></p>
+<section id="sample_sheet.csv-columns" class="level4">
+<h4 class="anchored" data-anchor-id="sample_sheet.csv-columns">sample_sheet.csv columns</h4>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>sample</strong></th>
+<th><strong>fastq_1</strong></th>
+<th><strong>fastq_2</strong></th>
+<th><strong>strandedness</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sample IDs</td>
+<td>File path for forward reads</td>
+<td>File path for reverse reads. If your sequences are single end, you can leave this column empty</td>
+<td>Set as <code>auto</code> for each sample. However, for samples with high contaminants, it should be set as <code>both</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+</p>
+<p>The filepaths should be similar in structure to:<br>
+<code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/&lt;your sequencing run&gt;/&lt;filename_for_sample&gt;</code>.<br>
+<strong>All files must be gzipped (have .gz extension.)</strong></p>
+<p>After updating the example sample sheet, save it as a comma-delimited file or <code>.csv</code>.</p>
+<p><br>
+</p>
+</section>
+<section id="uploading-your-samplesheet" class="level3">
+<h3 class="anchored" data-anchor-id="uploading-your-samplesheet">Uploading your samplesheet</h3>
+<p>Next, we need to upload the updated sample sheet into the pipeline folder. This can be done by dragging that the updated folder from its current location into the VSCode sidebar in the input folder. VSCode may prompt you asking to if you want to replace the current file and confirm.</p>
+<p><img src="../../images/rnaseq_step4.png" class="img-fluid"></p>
+<p>You can click the sample_sheet.csv to confirm it has your updated samples.</p>
+<p><img src="../../images/rnaseq_step5.png" class="img-fluid"></p>
+<p><br>
+</p>
+</section>
+</section>
+<section id="running-the-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-pipeline">Running the pipeline</h2>
+<section id="testing-the-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="testing-the-pipeline">Testing the pipeline</h3>
+<p>To ensure everything is set up properly, we can run the pipeline on a test dataset.</p>
+<p>Navigate back to the VSCode terminal and check that you are in your pipeline folder. To run the test data, activate the snakemake environment and run snakemake with the following.</p>
+<div id="2a3c4ea6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activates the mamba environment </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Runs the test data through the pipeline</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>snakemake <span class="op">--</span>use<span class="op">-</span>conda test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will run the test data interactivately and you will be able to watch the pipeline run each step. This may up to 40 minutes, so now is a good time for a tea break.</p>
+<p><img src="../../images/rnaseq_step6.png" class="img-fluid"></p>
+<p>After the pipeline finishes, you should see a folder generated in your pipeline folder called <code>test_results</code>. If you see a <code>multiqc/star_salmon/nfcore_rnaseq_test_multiqc_report.html</code> file inside the two sub folders, the pipeline has successfully finished.</p>
+<p><img src="../../images/rnaseq_step7.png" class="img-fluid"></p>
+<p><br>
+</p>
+</section>
+<section id="running-the-pipeline-1" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-pipeline-1">Running the pipeline</h3>
+<p>Almost there! All that’s left is running your samples through the pipeline.</p>
+<p>Once you have the updated sample sheet with your samples in the input folder inside the pipeline directory, navigate back again to the VSCode terminal. Submit the pipeline with the following.</p>
+<div id="cf1e06d9" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activates the mamba environment </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Submits a job with slurm</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sbatch submit_jobs.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="../../images/rnaseq_step8.png" class="img-fluid"></p>
+<p>This will submit the snakemake pipeline as a job, so you do not need to keep everything open. Depending on the number of samples and reads, the pipeline may take a few hours to days to finish.</p>
+</section>
+</section>
+<section id="saving-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="saving-outputs">Saving outputs</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -312,7 +491,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/kwondry\.github\.io\/documentation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -642,13 +821,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../materials/getting-started/o2/index.html" class="pagination-link" aria-label="</b> O2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"> O2</span>
+      <a href="../../../materials/rnaseq/background/index.html" class="pagination-link" aria-label="Background">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Background</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/getting-started/installations/index.html" class="pagination-link" aria-label="</b> Installations">
-        <span class="nav-page-text"> Installations</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../materials/rnaseq/quick_run/index.html" class="pagination-link" aria-label="Quick run">
+        <span class="nav-page-text">Quick run</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
