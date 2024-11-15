@@ -22,7 +22,7 @@ Here we walk through the Kwon Lab RNA-Seq pipeline. The pipeline integrates step
 
 ## Downloading the pipeline
 
-Launch VSCode on an O2 compute node. More instructions can be found [here].
+Launch VSCode on an O2 compute node. More instructions can be found [here](https://kwondry.github.io/documentation/materials/getting-started/installation/#setup-o2-access-with-vscode-launch-vscode-on-o2-compute-node).
 
 
 Open a terminal within VSCode. Click terminal in the top bar and new terminal. You should be on a compute node and within your groups folder. You can check where you currently are in the file system with `pwd`.

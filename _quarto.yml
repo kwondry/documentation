@@ -55,10 +55,6 @@ website:
             - text: "Walkthrough"
               contents:
               href: materials/rnaseq/walkthrough/index.qmd
-            - text: "Quick run"
-              contents:
-              href: materials/rnaseq/quick_run/index.qmd
-
           - section: "16S"
             contents:
             - text: "<em>Running DADA2 - Coming soon </em>"
