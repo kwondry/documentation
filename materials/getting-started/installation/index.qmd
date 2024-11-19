@@ -140,10 +140,19 @@ a5:b5:38:73:b7:3c:a6:8a:1d:a8:bd:87:4e:be:33:21
 
 2.  Copy your computer's SSH public key onto the O2 SSH authorized_keys file, which allows your computer and O2 to recognize each other
 
+- Linux or Mac:
 ```{python}
 #| eval: false
 # input this line into your computer's terminal
 ssh-copy-id -i $HOME/.ssh/id_rsa.pub <hms_id>@o2.hms.harvard.edu
+# input O2 password and complete Duo authentication
+```
+
+- Windows:
+```{python}
+#| eval: false
+# input this line into your computer's terminal
+Get-Content "$env:USERPROFILE\.ssh\id_rsa.pub" | ssh <hms_id>@o2.hms.harvard.edu "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 # input O2 password and complete Duo authentication
 ```
 
@@ -154,6 +163,9 @@ ssh-copy-id -i $HOME/.ssh/id_rsa.pub <hms_id>@o2.hms.harvard.edu
 # input this line into your computer's terminal
 # open your computer's SSH config file
 nano ~/.ssh/config
+
+#for Windows systems use
+notepad $env:USERPROFILE\.ssh\config
 
 # copy and paste the following lines into the config file
 Host o2jump
@@ -172,7 +184,7 @@ Host o2job
 
 4. Request a compute node on O2, update your local config file with the node information for VSCode with the following command. Please use the command appropriate for your operating system, as the syntax varies slightly. Your requested compute node will be allocated with a 1 hour runtime, 4GB memory and 1 core. 
 
-- Linux or Windows:
+- Linux:
 ```{python}
 #| eval: false
 # input this line into your computer's terminal
@@ -185,6 +197,14 @@ ssh <hms_id>@o2.hms.harvard.edu "/n/groups/kwon/joseph/submit_o2.sh" | tail -n 1
 # input this line into your computer's terminal
 ssh <hms_id>@o2.hms.harvard.edu "/n/groups/kwon/joseph/submit_o2.sh" | tail -n 1 | xargs -I {} | xargs -I NODE_HOSTNAME sed -i '' "/^Host o2job$/,/^[[:space:]]*Host / s/^\([[:space:]]*HostName[[:space:]]*\).*/\1NODE_HOSTNAME/" ~/.ssh/config
 ```
+
+- Windows:
+```{python}
+#| eval: false
+# input this line into your computer's terminal
+$nodeHostname = (ssh <hms_id>@o2.hms.harvard.edu "/n/groups/kwon/joseph/submit_o2.sh" | Select-Object -Last 1); (Get-Content "$env:USERPROFILE\.ssh\config") | ForEach-Object { if ($_ -match 'Host o2job') { $_; $foundJob = $true } elseif ($foundJob -and $_ -match '^\s*HostName\s+') { $foundJob = $false; $_ -replace '(?<=HostName\s*)\S+', $nodeHostname } else { $_ } } | Set-Content "$env:USERPROFILE\.ssh\config"
+```
+
 
 5. Open VSCode, select the bottom left purple icon to launch the remote connection. Select 'Connect to Host' and `o2job` as the server. Proceed by inputting O2 login password and completing Duo authentication. Select 'Continue' to proceed. 
 
