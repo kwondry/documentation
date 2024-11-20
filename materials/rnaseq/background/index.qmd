@@ -85,7 +85,7 @@ gene_names_for_deseq <- counts %>% select(gene_id, gene_name) %>%
   as.data.frame() %>%
   column_to_rownames("gene_id")
 
-sample_metadata_for_deseq <- read_csv("SKH_Expt_P10_metadata.csv") %>%
+sample_metadata_for_deseq <- tibble(sample_id =  counts %>% select(-gene_id, -gene_name) %>% colnames()) %>% left_join (read_csv("SKH_Expt_P10_metadata.csv")) %>%
   as.data.frame() %>%
   column_to_rownames("sample_id")
 
@@ -93,6 +93,27 @@ deseq_dataset <- DESeqDataSetFromMatrix(countData=round(counts_for_deseq), colDa
 ```
 
 Then, read through and follow along with the [DEseq2 vignette](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html), starting with the "Pre-filtering" section.
+
+
+As an example, here is a code chunk that combines the pre-filtering example and the PCA code from the vignette.
+
+```{r}
+#| eval: false
+
+smallestGroupSize <- 3
+keep <- rowSums(counts(deseq_dataset) >= 10) >= smallestGroupSize
+dds <- deseq_dataset[keep,]
+
+vsd <- vst(dds, blind=FALSE)
+pcaData <- plotPCA(vsd, intgroup=c("polyamine", "inhibitor"), returnData=TRUE)
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+ggplot(pcaData, aes(PC1, PC2, color=polyamine, shape=inhibitor)) +
+  geom_point(size=3) +
+  xlab(paste0("PC1: ",percentVar[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
+  coord_fixed()
+```
+
 
 ### `microViz` hack, largely untested.
 
@@ -118,8 +139,9 @@ gene_annotations <- gene_abundance %>% select(gene_id, gene_name) %>%
   as.matrix() %>%
   phyloseq::tax_table()
 
-sample_metadata <- read_csv("SKH_Expt_P10_metadata.csv") %>%
-  column_to_rownames("sample_id") %>%
+sample_metadata <- tibble(sample_id =  counts %>% select(-gene_id, -gene_name) %>% colnames()) %>% left_join (read_csv("SKH_Expt_P10_metadata.csv")) %>%
+  as.data.frame() %>%
+  column_to_rownames("sample_id")
   phyloseq::sam_data()
 
 rnaseq_dataset <- phyloseq::phyloseq(gene_count_table, gene_annotations, sample_metadata) %>% tax_fix()
