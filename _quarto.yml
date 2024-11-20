@@ -34,7 +34,7 @@ website:
         href: https://github.com/kwondry/documentation
         aria-label: GitHub
   sidebar:
-      collapse-level: 1
+      collapse-level: 2
     # - title: Materials
       style: docked
       align: left
