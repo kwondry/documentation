@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - RNA-Seq Pipeline Tutorial</title>
+<title>Kwon Lab Pipelines - Installing R and RStudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/16S/valencia/index.html" rel="next">
-<link href="../../../materials/rnaseq/background/index.html" rel="prev">
+<link href="../../../materials/rnaseq/background/index.html" rel="next">
+<link href="../../../materials/getting-started/installation/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">RNA-Seq Pipeline Tutorial</h1>
+          <h1 class="quarto-secondary-nav-title">Installing R and RStudio</h1>
         </a>     
     </div>
   </nav>
@@ -159,13 +159,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Getting Started</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link">
@@ -180,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/getting-started/local_R/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../materials/getting-started/local_R/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"> RStudio and recommended packages</span></a>
   </div>
 </li>
@@ -188,13 +188,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">RNAseq</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link">
@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/rnaseq/walkthrough/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../materials/rnaseq/walkthrough/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Walkthrough</span></a>
   </div>
 </li>
@@ -239,18 +239,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#prequisites" id="toc-prequisites" class="nav-link active" data-scroll-target="#prequisites">Prequisites</a></li>
-  <li><a href="#downloading-the-pipeline" id="toc-downloading-the-pipeline" class="nav-link" data-scroll-target="#downloading-the-pipeline">Downloading the pipeline</a></li>
-  <li><a href="#creating-a-sample-sheet" id="toc-creating-a-sample-sheet" class="nav-link" data-scroll-target="#creating-a-sample-sheet">Creating a sample sheet</a>
+  <li><a href="#step-1---follow-instructions-for-your-operating-system" id="toc-step-1---follow-instructions-for-your-operating-system" class="nav-link active" data-scroll-target="#step-1---follow-instructions-for-your-operating-system"><span class="header-section-number">1</span> Step 1 - follow instructions for your operating system</a></li>
+  <li><a href="#step-2---install-r-packages" id="toc-step-2---install-r-packages" class="nav-link" data-scroll-target="#step-2---install-r-packages"><span class="header-section-number">2</span> Step 2 - install R packages</a></li>
+  <li><a href="#sec-windows" id="toc-sec-windows" class="nav-link" data-scroll-target="#sec-windows"><span class="header-section-number">3</span> Windows</a>
   <ul class="collapse">
-  <li><a href="#uploading-your-samplesheet" id="toc-uploading-your-samplesheet" class="nav-link" data-scroll-target="#uploading-your-samplesheet">Uploading your samplesheet</a></li>
+  <li><a href="#if-you-dont-have-r-and-rstudio-installed" id="toc-if-you-dont-have-r-and-rstudio-installed" class="nav-link" data-scroll-target="#if-you-dont-have-r-and-rstudio-installed"><span class="header-section-number">3.1</span> If you don’t have R and RStudio installed:</a></li>
+  <li><a href="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available." id="toc-if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available." class="nav-link" data-scroll-target="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available."><span class="header-section-number">3.2</span> If you already have R and RStudio installed, check to see if updates are available.</a></li>
   </ul></li>
-  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline">Running the pipeline</a>
+  <li><a href="#sec-mac" id="toc-sec-mac" class="nav-link" data-scroll-target="#sec-mac"><span class="header-section-number">4</span> MacOs</a>
   <ul class="collapse">
-  <li><a href="#testing-the-pipeline" id="toc-testing-the-pipeline" class="nav-link" data-scroll-target="#testing-the-pipeline">Testing the pipeline</a></li>
-  <li><a href="#running-the-pipeline-1" id="toc-running-the-pipeline-1" class="nav-link" data-scroll-target="#running-the-pipeline-1">Running the pipeline</a></li>
+  <li><a href="#check-your-processor" id="toc-check-your-processor" class="nav-link" data-scroll-target="#check-your-processor"><span class="header-section-number">4.1</span> Check your processor</a></li>
+  <li><a href="#if-you-dont-have-r-and-rstudio-installed-1" id="toc-if-you-dont-have-r-and-rstudio-installed-1" class="nav-link" data-scroll-target="#if-you-dont-have-r-and-rstudio-installed-1"><span class="header-section-number">4.2</span> If you don’t have R and RStudio installed:</a></li>
+  <li><a href="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1" id="toc-if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1" class="nav-link" data-scroll-target="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1"><span class="header-section-number">4.3</span> If you already have R and RStudio installed, check to see if updates are available.</a></li>
   </ul></li>
-  <li><a href="#saving-outputs" id="toc-saving-outputs" class="nav-link" data-scroll-target="#saving-outputs">Saving outputs</a></li>
+  <li><a href="#sec-linux" id="toc-sec-linux" class="nav-link" data-scroll-target="#sec-linux"><span class="header-section-number">5</span> Linux</a>
+  <ul class="collapse">
+  <li><a href="#if-you-dont-have-r-and-rstudio-installed-2" id="toc-if-you-dont-have-r-and-rstudio-installed-2" class="nav-link" data-scroll-target="#if-you-dont-have-r-and-rstudio-installed-2"><span class="header-section-number">5.1</span> If you don’t have R and RStudio installed:</a></li>
+  <li><a href="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2" id="toc-if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2" class="nav-link" data-scroll-target="#if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2"><span class="header-section-number">5.2</span> If you already have R and RStudio installed, check to see if updates are available.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -259,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">RNA-Seq Pipeline Tutorial</h1>
+<h1 class="title d-none d-lg-block">Installing R and RStudio</h1>
 </div>
 
 
@@ -276,131 +282,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p>Detailed steps on processing RNA Sequencing data</p>
-</blockquote>
-<p>Here we walk through the Kwon Lab RNA-Seq pipeline. The pipeline integrates steps from an <a href="https://nf-co.re/rnaseq" target="_blank">nf-core rnaseq</a> pipeline into an executable <code>snakemake</code> pipeline. The end product is a gene expression matrix and a QC report for further downstream analysis.</p>
-<p><strong>Estimated time for completion ~1 hour</strong></p>
-<section id="prequisites" class="level3">
-<h3 class="anchored" data-anchor-id="prequisites">Prequisites</h3>
-<ul>
-<li><p>Ensure you have O2 access with <code>mamba</code> and <code>snakemake</code> installed. For O2 setup instructions, visit <a href="../../getting-started/installations/index.qmd">here</a>.</p></li>
-<li><p>We begin with raw sequencing data ( must be .gz files) on O2 in <code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/&lt;your sequencing run&gt;</code>. Please note where the sequences for your samples are located.</p></li>
-</ul>
-<p><br>
-</p>
+<p>adapted from <a href="datacarpentry.org">datacarpentry.org</a></p>
+<p>These instructions will help you install R and RStudio for your local computer, as well as several commonly used packages in the lab. You might have R installed already, but check the versions. Please make sure you have install <code>R version 4.3.2</code> or later and <code>RStudio version 2023.09.0</code> or later, but if you are installing for the first time just install the most recent versions available.</p>
+<section id="step-1---follow-instructions-for-your-operating-system" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="step-1---follow-instructions-for-your-operating-system"><span class="header-section-number">1</span> Step 1 - follow instructions for your operating system</h2>
+<section id="for-windows-see-sec-windows" class="level4" data-number="1.0.1">
+<h4 data-number="1.0.1" class="anchored" data-anchor-id="for-windows-see-sec-windows"><span class="header-section-number">1.0.1</span> For Windows see <strong><a href="#sec-windows" class="quarto-xref">Section&nbsp;3</a></strong></h4>
 </section>
-<section id="downloading-the-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="downloading-the-pipeline">Downloading the pipeline</h2>
-<p>Launch VSCode on an O2 compute node. More instructions can be found <a href="https://kwondry.github.io/documentation/materials/getting-started/installation/#setup-o2-access-with-vscode-launch-vscode-on-o2-compute-node">here</a>.</p>
-<p>Open a terminal within VSCode. Click terminal in the top bar and new terminal. You should be on a compute node and within your groups folder. You can check where you currently are in the file system with <code>pwd</code>.</p>
-<p><img src="../../images/rnaseq_step1.png" class="img-fluid"></p>
-<p>Download the pipeline by running the following commands. This is where your pipeline will be located and you can go into the folder with <code>cd</code>. Running <code>ls</code> will show all pipeline files.</p>
-<div id="b3fc01fc" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading the pipeline</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wget https:<span class="op">//</span>github.com<span class="op">/</span>kwondry<span class="op">/</span>rnaseq_gene_expression<span class="op">/</span>archive<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main.<span class="bu">zip</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Unzip and rename the folder</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>unzip main.<span class="bu">zip</span> <span class="op">-</span>d my_rnaseq_run <span class="op">&amp;&amp;</span> rm main.<span class="bu">zip</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate into your rnaseq pipeline folder</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cd my_rnaseq_run<span class="op">/</span>rnaseq_gene_expression<span class="op">-</span>main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><img src="../../images/rnaseq_step2.png" class="img-fluid"></p>
-<p>You will now have a <code>rnaseq_gene_expression-main</code> folder that contains all the required files.</p>
-<p><br>
-</p>
+<section id="for-macos-see-sec-mac" class="level4" data-number="1.0.2">
+<h4 data-number="1.0.2" class="anchored" data-anchor-id="for-macos-see-sec-mac"><span class="header-section-number">1.0.2</span> For MacOS see <strong><a href="#sec-mac" class="quarto-xref">Section&nbsp;4</a></strong></h4>
 </section>
-<section id="creating-a-sample-sheet" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-sample-sheet">Creating a sample sheet</h2>
-<p><strong>A sample sheet will define which samples you want to include in the run and provide file paths for each sample.</strong></p>
-<p>Download an example sample sheet <a href="https://github.com/kwondry/rnaseq_gene_expression/blob/main/input/sample_sheet.csv" target="_blank" title="download">here</a>.</p>
-<p>Edit this sample sheet with explicit file paths for each sample that want included in the run. You can edit the raw csv in Excel or any editor you’d like and add your samples with explicit, absolute filepaths starting from <code>/n/</code>.</p>
-<p><img src="../../images/rnaseq_step3.png" class="img-fluid"></p>
-<section id="input-sample_sheet.csv-columns" class="level4">
-<h4 class="anchored" data-anchor-id="input-sample_sheet.csv-columns">input <code>sample_sheet.csv</code> columns</h4>
-<table class="table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>sample</strong></th>
-<th><strong>fastq_1</strong></th>
-<th><strong>fastq_2</strong></th>
-<th><strong>strandedness</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sample IDs</td>
-<td>File path for forward reads</td>
-<td>File path for reverse reads. If your sequences are single end, leave this column empty</td>
-<td>Set as <code>auto</code> for each sample. However, for samples with high contaminants coming from smartseq2, it should be set as <code>both</code>.</td>
-</tr>
-</tbody>
-</table>
-<p><br>
-</p>
-<p>The filepaths should be similar in structure to:<br>
-<code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/&lt;your sequencing run&gt;/&lt;filename_for_sample&gt;</code>.<br>
-<strong>All files must be gzipped (have .gz extension.)</strong></p>
-<p>After updating the example sample sheet, save it as a comma-delimited file or <code>.csv</code>.</p>
-<p><br>
-</p>
-</section>
-<section id="uploading-your-samplesheet" class="level3">
-<h3 class="anchored" data-anchor-id="uploading-your-samplesheet">Uploading your samplesheet</h3>
-<p>Next, we need to upload the updated sample sheet into the pipeline folder. This can be done by dragging that the updated folder from its current location into the VSCode sidebar in the input folder. VSCode may prompt you asking to if you want to replace the current file and confirm.</p>
-<p><img src="../../images/rnaseq_step4.png" class="img-fluid"></p>
-<p>You can click the sample_sheet.csv to confirm it has your updated samples.</p>
-<p><img src="../../images/rnaseq_step5.png" class="img-fluid"></p>
-<p><br>
-</p>
+<section id="for-linux-see-sec-linux" class="level4" data-number="1.0.3">
+<h4 data-number="1.0.3" class="anchored" data-anchor-id="for-linux-see-sec-linux"><span class="header-section-number">1.0.3</span> For Linux see <strong><a href="#sec-linux" class="quarto-xref">Section&nbsp;5</a></strong></h4>
 </section>
 </section>
-<section id="running-the-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="running-the-pipeline">Running the pipeline</h2>
-<section id="testing-the-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="testing-the-pipeline">Testing the pipeline</h3>
-<p>To ensure everything is set up properly, we can run the pipeline on a test dataset.</p>
-<p>Navigate back to the VSCode terminal and check that you are in your pipeline folder. To run the test data, activate the snakemake environment and run snakemake with the following.</p>
-<div id="4fa0ebb7" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activates the mamba environment </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake </span>
+<section id="step-2---install-r-packages" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="step-2---install-r-packages"><span class="header-section-number">2</span> Step 2 - install R packages</h2>
+<p>Open RStudio and <i class="fa-solid fa-paste" aria-label="paste"></i>Paste the following into your console on the left/bottom-left.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>( <span class="st">"colorspace"</span>,<span class="st">"corncob"</span>, <span class="st">"cowplot"</span>, <span class="st">"DT"</span>,  <span class="st">"ggbeeswarm"</span>, <span class="st">"ggforce"</span>,<span class="st">"ggraph"</span>,<span class="st">"ggtext, "</span>gtsummary<span class="st">","</span>knitr<span class="st">", "</span>naniar<span class="st">", "</span>margins<span class="st">",  "</span>palmerpenguins<span class="st">", "</span>patchwork<span class="st">", "</span>quarto<span class="st">",  "</span>rmarkdown<span class="st">", "</span>tidyverse<span class="st">"))</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">if (!requireNamespace("</span>BiocManager<span class="st">", quietly = TRUE)) install.packages("</span>BiocManager<span class="st">")</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">BiocManager::install(c("</span>phyloseq<span class="st">", "</span>microbiome<span class="st">", "</span>ComplexHeatmap<span class="st">","</span>DESeq2<span class="st">"), update = FALSE)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">install.packages(</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "</span>microViz<span class="st">",</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">  repos = c(davidbarnett = "</span>https<span class="sc">:</span><span class="er">//</span>david<span class="sc">-</span>barnett.r<span class="sc">-</span>universe.dev<span class="st">", getOption("</span>repos<span class="st">"))</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sec-windows" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-windows"><span class="header-section-number">3</span> Windows</h2>
+<section id="if-you-dont-have-r-and-rstudio-installed" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="if-you-dont-have-r-and-rstudio-installed"><span class="header-section-number">3.1</span> If you don’t have R and RStudio installed:</h3>
+<p>Go to <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a> and follow this instruction for windows.</p>
+</section>
+<section id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available." class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available."><span class="header-section-number">3.2</span> If you already have R and RStudio installed, check to see if updates are available.</h3>
+<p>RStudio: Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.</p>
+<p>R: Upon starting RStudio, the version of R you are running will appear on the console. You can also type <code>sessionInfo()</code> in the console to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. You can update R using the <code>installr</code> package, by running:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># installr is for windows only!</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>( <span class="sc">!</span>(<span class="st">"installr"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()) ){<span class="fu">install.packages</span>(<span class="st">"installr"</span>)} </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Runs the test data through the pipeline</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>snakemake <span class="op">--</span>use<span class="op">-</span>conda test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>installr<span class="sc">::</span><span class="fu">updateR</span>(<span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sec-mac" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-mac"><span class="header-section-number">4</span> MacOs</h2>
+<section id="check-your-processor" class="level3 text-left" data-number="4.1">
+<h3 class="text-left anchored" data-number="4.1" data-anchor-id="check-your-processor"><span class="header-section-number">4.1</span> Check your processor</h3>
+<p><em>adapted from <a href="https://docs.cse.lehigh.edu/determine-mac-architecture/">https://docs.cse.lehigh.edu/determine-mac-architecture/</a></em></p>
+<p>Make sure you are downloading and installing the right version of R and R Studio for your laptop’s CPU. Some older Macs (pre-2018) have an intel chip (also known as x64 or x86_64 architecture), while recent macs have M1,M2,M3, or M4 chips (also known as ARM architecture).</p>
+<p>To determine whether a Mac is running an Intel Processor or Apple ARM M1 or M2, click on the <i class="fa-brands fa-apple" aria-label="apple"></i> Apple Menu and select ‘About this Mac’:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../assets/images/determine-mac-architecture01.png" class="img-fluid figure-img"></p>
+<figcaption>click about this mac</figcaption>
+</figure>
 </div>
-<p>This will run the test data interactivately and you will be able to watch the pipeline run each step. This may up to 40 minutes, so now is a good time for a tea break.</p>
-<p><img src="../../images/rnaseq_step6.png" class="img-fluid"></p>
-<p>After the pipeline finishes, you should see a folder generated in your pipeline folder called <code>test_results</code>. If you see a <code>multiqc/star_salmon/nfcore_rnaseq_test_multiqc_report.html</code> file inside the two sub folders, the pipeline has successfully finished.</p>
-<p><img src="../../images/rnaseq_step7.png" class="img-fluid"></p>
-<p><br>
-</p>
-</section>
-<section id="running-the-pipeline-1" class="level3">
-<h3 class="anchored" data-anchor-id="running-the-pipeline-1">Running the pipeline</h3>
-<p>Almost there! All that’s left is running your samples through the pipeline.</p>
-<p>Once you have the updated sample sheet with your samples in the input folder inside the pipeline directory, navigate back again to the VSCode terminal. Submit the pipeline with the following.</p>
-<div id="c59b1cc1" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activates the mamba environment </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Submits a job with slurm</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sbatch submit_jobs.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the ‘About this Mac’ screen, on the ‘Overview’ tab, look for a line that indicates either ‘Chip’ or ‘Processor’. If the line contains M1 or M2, the machine is running Apple Silicon. Alternatively, the word Intel indicates that the machine is running an Intel-based Core series processor.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../assets/images/determine-mac-architecture-m1.png" class="img-fluid figure-img"></p>
+<figcaption>M1 or M2</figcaption>
+</figure>
 </div>
-<p><img src="../../images/rnaseq_step8.png" class="img-fluid"></p>
-<p>This will submit the snakemake pipeline as a job, so you do not need to keep everything open. Depending on the number of samples and reads, the pipeline may take a few hours to days to finish.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../assets/images/determine-mac-architecture-intel.png" class="img-fluid figure-img"></p>
+<figcaption>intel</figcaption>
+</figure>
+</div>
+</section>
+<section id="if-you-dont-have-r-and-rstudio-installed-1" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="if-you-dont-have-r-and-rstudio-installed-1"><span class="header-section-number">4.2</span> If you don’t have R and RStudio installed:</h3>
+<p>Go to <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a> and follow this instruction for MacOS.</p>
+</section>
+<section id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-1"><span class="header-section-number">4.3</span> If you already have R and RStudio installed, check to see if updates are available.</h3>
+<p><strong>RStudio:</strong> Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.</p>
+<p><strong>R:</strong> Upon starting RStudio, the version of R you are running will appear on the console. You can also type sessionInfo() to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. For this workshop install version 4.3.1 of R</p>
 </section>
 </section>
-<section id="saving-outputs" class="level2">
-<h2 class="anchored" data-anchor-id="saving-outputs">Saving outputs</h2>
+<section id="sec-linux" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-linux"><span class="header-section-number">5</span> Linux</h2>
+<section id="if-you-dont-have-r-and-rstudio-installed-2" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="if-you-dont-have-r-and-rstudio-installed-2"><span class="header-section-number">5.1</span> If you don’t have R and RStudio installed:</h3>
+<p>Go to <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a> and follow this instruction for your Linux OS.</p>
+</section>
+<section id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="if-you-already-have-r-and-rstudio-installed-check-to-see-if-updates-are-available.-2"><span class="header-section-number">5.2</span> If you already have R and RStudio installed, check to see if updates are available.</h3>
+<p><strong>RStudio:</strong> Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.</p>
+<p><strong>R:</strong> Upon starting RStudio, the version of R you are running will appear on the console. You can also type sessionInfo() to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. For this workshop install version 4.3.1 of R</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -815,13 +789,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../materials/rnaseq/background/index.html" class="pagination-link" aria-label="Background">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Background</span>
+      <a href="../../../materials/getting-started/installation/index.html" class="pagination-link" aria-label="</b> Installing software for work on O2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"> Installing software for work on O2</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/16S/valencia/index.html" class="pagination-link" aria-label="Assigning CSTs with Valencia">
-        <span class="nav-page-text">Assigning CSTs with Valencia</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../materials/rnaseq/background/index.html" class="pagination-link" aria-label="Background">
+        <span class="nav-page-text">Background</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

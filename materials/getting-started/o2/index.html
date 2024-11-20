@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -168,13 +168,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"> O2</span></a>
+ <span class="menu-text"> Get your O2 account</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/getting-started/installation/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"> Installation</span></a>
+ <span class="menu-text"> Installing software for work on O2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../materials/getting-started/local_R/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> RStudio and recommended packages</span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="accessing-o2" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-o2">Accessing O2</h3>
 <p>Using your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.</p>
-<div id="0e6d82f9" class="cell" data-execution_count="1">
+<div id="6cd588e2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="../../images/o2_login.png" class="img-fluid" style="width:50.0%"></p>
@@ -312,11 +318,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>(On the login node) Run the following on O2 terminal:</p>
 <p>For push: (recommended, but only if you already have Duo push!)</p>
-<div id="c13e1fff" class="cell" data-execution_count="2">
+<div id="2c93fc43" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=push'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For phone call:</p>
-<div id="4204f173" class="cell" data-execution_count="3">
+<div id="02ea1652" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=phone'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -338,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="request-access-to-the-ngroupskwon-groups-folder">Request access to the <code>/n/groups/kwon/</code> groups folder</h3>
 <p>To request access, email <a href="mailto:rchelp@hms.harvard.edu">rchelp@hms.harvard.edu</a> to ask for access to the group folder <code>/n/groups/kwon</code> on O2. Please copy <a href="mailto:dkwon@mgh.harvard.edu">dkwon@mgh.harvard.edu</a> and <a href="mailto:jelsherbini@mgh.harvard.edu">jelsherbini@mgh.harvard.edu</a>.</p>
 <p>Use the following command in the O2 terminal to access the Kwon Lab folder and make a folder under your own name:</p>
-<div id="dd52f9d7" class="cell" data-execution_count="4">
+<div id="7bf0b42d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>kwon<span class="op">/</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">&lt;</span>your name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To access your own folder within the Kwon Lab group folder on the O2 terminal:</p>
-<div id="a1617c2f" class="cell" data-execution_count="5">
+<div id="09e94e33" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>kwon<span class="op">/&lt;</span>your name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -351,11 +357,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="making-a-scratch-directory">Making a scratch directory</h3>
 <p>Note: the scratch directory is for <strong>TEMPORARY STORAGE</strong>. All files in scratch are automatically deleted <strong>45 days</strong> after their last modification date. Everything you want to keep needs to be moved to your folder in <code>/n/groups/kwon/&lt;your name&gt;</code>.</p>
 <p><strong>(On the login node)</strong> Run the following on O2 terminal:</p>
-<div id="2003a2d3" class="cell" data-execution_count="6">
+<div id="9d4947a5" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>n<span class="op">/</span>cluster<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>scratch_create_directory.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To access scratch directory:</p>
-<div id="53ef52d5" class="cell" data-execution_count="7">
+<div id="5d46c9ae" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/&lt;</span>first_letter_of_hms_id<span class="op">&gt;/&lt;</span>hms_id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br>
@@ -780,8 +786,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/getting-started/installation/index.html" class="pagination-link" aria-label="</b> Installation">
-        <span class="nav-page-text"> Installation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../materials/getting-started/installation/index.html" class="pagination-link" aria-label="</b> Installing software for work on O2">
+        <span class="nav-page-text"> Installing software for work on O2</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

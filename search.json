@@ -28,7 +28,7 @@
     "href": "materials/rnaseq/walkthrough/index.html#creating-a-sample-sheet",
     "title": "RNA-Seq Pipeline Tutorial",
     "section": "Creating a sample sheet",
-    "text": "Creating a sample sheet\nA sample sheet will define which samples you want to include in the run and provide file paths for each sample.\nDownload an example sample sheet here.\nEdit this sample sheet with explicit file paths for each sample that want included in the run. You can edit the raw csv in Excel or any editor you’d like and add your samples with explicit, absolute filepaths starting from /n/.\n\n\nsample_sheet.csv columns\n\n\n\n\n\n\n\n\n\nsample\nfastq_1\nfastq_2\nstrandedness\n\n\n\n\nSample IDs\nFile path for forward reads\nFile path for reverse reads. If your sequences are single end, you can leave this column empty\nSet as auto for each sample. However, for samples with high contaminants, it should be set as both.\n\n\n\n\n\nThe filepaths should be similar in structure to:\n/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/&lt;your sequencing run&gt;/&lt;filename_for_sample&gt;.\nAll files must be gzipped (have .gz extension.)\nAfter updating the example sample sheet, save it as a comma-delimited file or .csv.\n\n\n\n\nUploading your samplesheet\nNext, we need to upload the updated sample sheet into the pipeline folder. This can be done by dragging that the updated folder from its current location into the VSCode sidebar in the input folder. VSCode may prompt you asking to if you want to replace the current file and confirm.\n\nYou can click the sample_sheet.csv to confirm it has your updated samples.",
+    "text": "Creating a sample sheet\nA sample sheet will define which samples you want to include in the run and provide file paths for each sample.\nDownload an example sample sheet here.\nEdit this sample sheet with explicit file paths for each sample that want included in the run. You can edit the raw csv in Excel or any editor you’d like and add your samples with explicit, absolute filepaths starting from /n/.\n\n\ninput sample_sheet.csv columns\n\n\n\n\n\n\n\n\n\nsample\nfastq_1\nfastq_2\nstrandedness\n\n\n\n\nSample IDs\nFile path for forward reads\nFile path for reverse reads. If your sequences are single end, leave this column empty\nSet as auto for each sample. However, for samples with high contaminants coming from smartseq2, it should be set as both.\n\n\n\n\n\nThe filepaths should be similar in structure to:\n/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/&lt;your sequencing run&gt;/&lt;filename_for_sample&gt;.\nAll files must be gzipped (have .gz extension.)\nAfter updating the example sample sheet, save it as a comma-delimited file or .csv.\n\n\n\n\nUploading your samplesheet\nNext, we need to upload the updated sample sheet into the pipeline folder. This can be done by dragging that the updated folder from its current location into the VSCode sidebar in the input folder. VSCode may prompt you asking to if you want to replace the current file and confirm.\n\nYou can click the sample_sheet.csv to confirm it has your updated samples.",
     "crumbs": [
       "About the Kwon Lab",
       "RNAseq",
@@ -68,7 +68,7 @@
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> O2"
+      "</b> Get your O2 account"
     ]
   },
   {
@@ -80,7 +80,7 @@
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> O2"
+      "</b> Get your O2 account"
     ]
   },
   {
@@ -92,7 +92,7 @@
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> O2"
+      "</b> Get your O2 account"
     ]
   },
   {
@@ -104,8 +104,89 @@
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> O2"
+      "</b> Get your O2 account"
     ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html",
+    "href": "materials/getting-started/installation/index.html",
+    "title": "Installation instructions",
+    "section": "",
+    "text": "Instructions for installing various package managers and pipelines",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installing software for work on O2"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#compute-node",
+    "href": "materials/getting-started/installation/index.html#compute-node",
+    "title": "Installation instructions",
+    "section": "Compute node",
+    "text": "Compute node\nBy default upon logging into O2, each user is placed on a login node. Login nodes are NOT suitable for supporting intensive computational processes. Intensive analyses on the login mode will be automatically terminated by O2 and users may be flagged by the admin if this occurs consistently. Please be sure to request a compute node to execute any tasks. For additional details about compute nodes, please reference the O2 documentation.\n\nThis command requests a compute node for 12 hours, with 8GB of memory and 1 core. Compute nodes automatically terminate when you disconnect from the O2 cluster or when the time limit is met, whichever occurs first.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installing software for work on O2"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#mambaminimamba",
+    "href": "materials/getting-started/installation/index.html#mambaminimamba",
+    "title": "Installation instructions",
+    "section": "mamba/minimamba",
+    "text": "mamba/minimamba\nExecuting bioinformatics analyses often involve installing multiple packages/tools. Mamba is a package manager that allows users to create environments. Environments separate these package installations into individual “partitions”, which helps 1) prevent users from disrupting their own base environment with the installations of these new packages, 2) facilitate easy access and removal of packages and 3) manage/create environments individually for each pipeline or type of analysis.\nInstall mamba on O2 terminal:\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\nInitialize mamba on O2 terminal before usage (first time only):\n\nmamba init\n# close terminal and reopen\nsource ~/.bashrc",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installing software for work on O2"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#snakemake",
+    "href": "materials/getting-started/installation/index.html#snakemake",
+    "title": "Installation instructions",
+    "section": "Snakemake",
+    "text": "Snakemake\nSnakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Create your first conda environment named snakemake_8_20_3 with the snakemake package installed with the following command.\nTo read more about snakemake, please refer to the official Snakemake documentation.\nInstall snakemake on O2 terminal:\n\nmamba create -n snakemake_8_20_3 -c conda-forge -c bioconda snakemake=8.20.3  snakemake-executor-plugin-slurm  snakemake-executor-plugin-slurm-jobstep\n\nTo use snakemake, activate this environment maintained by mamba:\n\nmamba activate snakemake_8_20_3",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installing software for work on O2"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/installation/index.html#vscode",
+    "href": "materials/getting-started/installation/index.html#vscode",
+    "title": "Installation instructions",
+    "section": "VSCode",
+    "text": "VSCode\nVSCode is a code text editor application that provides an easy-to-use interface for viewing and writing code/scripts. This section will detail how to 1) install VSCode as an application on your computer, 2) install VSCode extensions and 3) setup launching VSCode as an interface to view and edit your files on the O2 cluster.\n\nInstall VSCode application\nTo install VSCode on your computer, use this link.\n\n\nInstall VSCode extensions\nVSCode has a number of extensions that allow each user to customize their own coding experience. We recommend the installation of three extensions:\n\nRainbow CSV - identifies “,” as the separator in CSV files, highlights each column with a different color\nVSCode-pdf - view PDF files directly within the VSCode interface\nRemote-SSH - allows users to login and access their own HPC cluster and view their files through the VSCode interface (see next section)\n\nTo install extensions:\n\nNavigate to the toolbar on the far left of the VSCode interface and click on the icon that resembles four squares.\nUse the search bar that has the caption “Search Extensions in Marketplace” to find extensions that you like and install each of them individually.\nAn additional step for Remote-SSH installation involves changing the connect timeout setting. As O2 login requires Duo authentication, there is often a slight delay and more time is needed to complete the authentication and login properly. To adjust this, please follow steps 4-6.\nNavigate to the extension page for Remote-SSH (on the toolbar on the far left, select the icon with four squares, then input remote-ssh into the search bar) \n\nSelect the gear button and press Settings \n\nInput 120 seconds for the Remote.SSH: Connect Timeout parameter \n\n\n\n\nSetup O2 access with VSCode: Launch VSCode on O2 login node\nWhile logging into O2 on the terminal only provides a command-line interface and linux commands are needed to modify files, the main advantage of accessing O2 through VSCode is it allows users to easily view and edit their files in an interactive manner within the VSCode application.\nAfter installation of VSCode and the Remote-SSH extension, establish a SSH connection to O2 through VSCode:\n\nPress the bottom left purple icon to ‘Open a Remote Window’. This will prompt a few options to be displayed at the top near the search bar \nSelect ‘Add New SSH Host’ and then input the following and enter\n\n\n&lt;hms_id&gt;@o2.hms.harvard.edu\n\n\nSelect &lt;path to config&gt;/.ssh/config as the SSH configuration file to update\nInput password for O2 login\nComplete Duo authentication\nLogin complete (Note: login may take longer at the first instance because VSCode will download its own server.)\n\nAfter setup, directly click the bottom left purple icon each time and input login credentials to launch O2 on VSCode each time.\n\n\nSetup O2 access with VSCode: Launch VSCode on O2 compute node\nAfter setting up VSCode, Remote-SSH extension and establishing a connection to O2 login node through VSCode, follow these steps to launch VSCode on a compute node in O2. This is useful if you plan to use VSCode to open or edit larger files as this may be a process that is too computationally intensive for login nodes to handle, leading the O2 cluster to automatically terminate your connection to O2 through VSCode. For a more detailed description, please refer to the official O2 documentation on VSCode, which was used as a reference for this section.\n\nGenerate SSH key on your own computer’s terminal with the following command. When prompted for file name, press enter to use the default file name. Enter a passphrase to protect your SSH keys.\n\n\n# input this line into your computer's terminal\nssh-keygen -t rsa\n\n# sample output (See O2 documentation for reference)\nGenerating public/private rsa key pair.\nEnter file in which to save the key (/USERHOME/.ssh/id_rsa):\nEnter passphrase (empty for no passphrase):\nEnter same passphrase again:\nYour identification has been saved in /USERHOME/.ssh/id_rsa.\nYour public key has been saved in /USERHOME/.ssh/id_rsa.pub.\nThe key fingerprint is:\na5:b5:38:73:b7:3c:a6:8a:1d:a8:bd:87:4e:be:33:21 \n\n\nCopy your computer’s SSH public key onto the O2 SSH authorized_keys file, which allows your computer and O2 to recognize each other\n\n\nLinux or Mac:\n\n\n# input this line into your computer's terminal\nssh-copy-id -i $HOME/.ssh/id_rsa.pub &lt;hms_id&gt;@o2.hms.harvard.edu\n# input O2 password and complete Duo authentication\n\n\nWindows:\n\n\n# input this line into your computer's terminal\nGet-Content \"$env:USERPROFILE\\.ssh\\id_rsa.pub\" | ssh &lt;hms_id&gt;@o2.hms.harvard.edu \"mkdir -p ~/.ssh && cat &gt;&gt; ~/.ssh/authorized_keys\"\n# input O2 password and complete Duo authentication\n\n\nAdd new lines in your computer’s SSH config file. Replace HMS ID with your own ID. After modification, use Ctrl + X followed by enter to save the file.\n\n\n# input this line into your computer's terminal\n# open your computer's SSH config file\nnano ~/.ssh/config\n\n#for Windows systems use\nnotepad $env:USERPROFILE\\.ssh\\config\n\n# copy and paste the following lines into the config file\nHost o2jump\n  HostName o2.hms.harvard.edu\n  User &lt;hms_id&gt;\n  ForwardAgent yes\n  ForwardX11 yes\n  ForwardX11Trusted yes\n\nHost o2job\n  HostName compute_node_of_job\n  User &lt;hms_id&gt;\n  ProxyJump o2jump\n  ForwardAgent yes\n\n\nRequest a compute node on O2, update your local config file with the node information for VSCode with the following command. Please use the command appropriate for your operating system, as the syntax varies slightly. Your requested compute node will be allocated with a 1 hour runtime, 4GB memory and 1 core.\n\n\nLinux:\n\n\n# input this line into your computer's terminal\nssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} sed -i \"/^Host o2job$/,/^\\s*Host /{s/^\\(\\s*HostName\\s*\\).*$/\\1{}/}\" ~/.ssh/config\n\n\nMac:\n\n\n# input this line into your computer's terminal\nssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} | xargs -I NODE_HOSTNAME sed -i '' \"/^Host o2job$/,/^[[:space:]]*Host / s/^\\([[:space:]]*HostName[[:space:]]*\\).*/\\1NODE_HOSTNAME/\" ~/.ssh/config\n\n\nWindows:\n\n\n# input this line into your computer's terminal\n$nodeHostname = (ssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | Select-Object -Last 1); (Get-Content \"$env:USERPROFILE\\.ssh\\config\") | ForEach-Object { if ($_ -match 'Host o2job') { $_; $foundJob = $true } elseif ($foundJob -and $_ -match '^\\s*HostName\\s+') { $foundJob = $false; $_ -replace '(?&lt;=HostName\\s*)\\S+', $nodeHostname } else { $_ } } | Set-Content \"$env:USERPROFILE\\.ssh\\config\"\n\n\nOpen VSCode, select the bottom left purple icon to launch the remote connection. Select ‘Connect to Host’ and o2job as the server. Proceed by inputting O2 login password and completing Duo authentication. Select ‘Continue’ to proceed.\n\nSetup for launching VSCode on a O2 compute node is now complete. After setup, it is only necessary to execute Steps 4-5 each time to launch this.\n\n\nNavigate to your O2 directory in VSCode\nFollowing launching VSCode on either an O2 login or a compute node, navigate to your own O2 directory:\n\nNavigate to the top bar in VSCode and press File &gt; Open Folder\nType in path (e.g. /n/groups/kwon/&lt;your name&gt;)\nBegin to edit and view files in directory",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> Installing software for work on O2"
+    ]
+  },
+  {
+    "objectID": "materials/16S/prereqs/index.html",
+    "href": "materials/16S/prereqs/index.html",
+    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "section": "",
+    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kwon Lab Pipelines",
+    "section": "",
+    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
+  },
+  {
+    "objectID": "materials/16S/dada2/index.html",
+    "href": "materials/16S/dada2/index.html",
+    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "section": "",
+    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
   },
   {
     "objectID": "materials/16S/valencia/index.html",
@@ -168,84 +249,75 @@
     ]
   },
   {
-    "objectID": "materials/16S/dada2/index.html",
-    "href": "materials/16S/dada2/index.html",
-    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "objectID": "materials/getting-started/local_R/index.html",
+    "href": "materials/getting-started/local_R/index.html",
+    "title": "Installing R and RStudio",
     "section": "",
-    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kwon Lab Pipelines",
-    "section": "",
-    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
-  },
-  {
-    "objectID": "materials/16S/prereqs/index.html",
-    "href": "materials/16S/prereqs/index.html",
-    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
-    "section": "",
-    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
-  },
-  {
-    "objectID": "materials/getting-started/installation/index.html",
-    "href": "materials/getting-started/installation/index.html",
-    "title": "Installation instructions",
-    "section": "",
-    "text": "Instructions for installing various package managers and pipelines",
+    "text": "adapted from datacarpentry.org\nThese instructions will help you install R and RStudio for your local computer, as well as several commonly used packages in the lab. You might have R installed already, but check the versions. Please make sure you have install R version 4.3.2 or later and RStudio version 2023.09.0 or later, but if you are installing for the first time just install the most recent versions available.",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> Installation"
+      "</b> RStudio and recommended packages"
     ]
   },
   {
-    "objectID": "materials/getting-started/installation/index.html#compute-node",
-    "href": "materials/getting-started/installation/index.html#compute-node",
-    "title": "Installation instructions",
-    "section": "Compute node",
-    "text": "Compute node\nBy default upon logging into O2, each user is placed on a login node. Login nodes are NOT suitable for supporting intensive computational processes. Intensive analyses on the login mode will be automatically terminated by O2 and users may be flagged by the admin if this occurs consistently. Please be sure to request a compute node to execute any tasks. For additional details about compute nodes, please reference the O2 documentation.\n\nThis command requests a compute node for 12 hours, with 8GB of memory and 1 core. Compute nodes automatically terminate when you disconnect from the O2 cluster or when the time limit is met, whichever occurs first.\n\nsrun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash",
+    "objectID": "materials/getting-started/local_R/index.html#step-1---follow-instructions-for-your-operating-system",
+    "href": "materials/getting-started/local_R/index.html#step-1---follow-instructions-for-your-operating-system",
+    "title": "Installing R and RStudio",
+    "section": "1 Step 1 - follow instructions for your operating system",
+    "text": "1 Step 1 - follow instructions for your operating system\n\n1.0.1 For Windows see Section 3\n\n\n1.0.2 For MacOS see Section 4\n\n\n1.0.3 For Linux see Section 5",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> Installation"
+      "</b> RStudio and recommended packages"
     ]
   },
   {
-    "objectID": "materials/getting-started/installation/index.html#mambaminimamba",
-    "href": "materials/getting-started/installation/index.html#mambaminimamba",
-    "title": "Installation instructions",
-    "section": "mamba/minimamba",
-    "text": "mamba/minimamba\nExecuting bioinformatics analyses often involve installing multiple packages/tools. Mamba is a package manager that allows users to create environments. Environments separate these package installations into individual “partitions”, which helps 1) prevent users from disrupting their own base environment with the installations of these new packages, 2) facilitate easy access and removal of packages and 3) manage/create environments individually for each pipeline or type of analysis.\nInstall mamba on O2 terminal:\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\nInitialize mamba on O2 terminal before usage (first time only):\n\nmamba init\n# close terminal and reopen\nsource ~/.bashrc",
+    "objectID": "materials/getting-started/local_R/index.html#step-2---install-r-packages",
+    "href": "materials/getting-started/local_R/index.html#step-2---install-r-packages",
+    "title": "Installing R and RStudio",
+    "section": "2 Step 2 - install R packages",
+    "text": "2 Step 2 - install R packages\nOpen RStudio and Paste the following into your console on the left/bottom-left.\ninstall.packages(c( \"colorspace\",\"corncob\", \"cowplot\", \"DT\",  \"ggbeeswarm\", \"ggforce\",\"ggraph\",\"ggtext, \"gtsummary\",\"knitr\", \"naniar\", \"margins\",  \"palmerpenguins\", \"patchwork\", \"quarto\",  \"rmarkdown\", \"tidyverse\"))\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) install.packages(\"BiocManager\")\nBiocManager::install(c(\"phyloseq\", \"microbiome\", \"ComplexHeatmap\",\"DESeq2\"), update = FALSE)\n\ninstall.packages(\n  \"microViz\",\n  repos = c(davidbarnett = \"https://david-barnett.r-universe.dev\", getOption(\"repos\"))\n)",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> Installation"
+      "</b> RStudio and recommended packages"
     ]
   },
   {
-    "objectID": "materials/getting-started/installation/index.html#snakemake",
-    "href": "materials/getting-started/installation/index.html#snakemake",
-    "title": "Installation instructions",
-    "section": "Snakemake",
-    "text": "Snakemake\nSnakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Create your first conda environment named snakemake_8_20_3 with the snakemake package installed with the following command.\nTo read more about snakemake, please refer to the official Snakemake documentation.\nInstall snakemake on O2 terminal:\n\nmamba create -n snakemake_8_20_3 -c conda-forge -c bioconda snakemake=8.20.3  snakemake-executor-plugin-slurm  snakemake-executor-plugin-slurm-jobstep\n\nTo use snakemake, activate this environment maintained by mamba:\n\nmamba activate snakemake_8_20_3",
+    "objectID": "materials/getting-started/local_R/index.html#sec-windows",
+    "href": "materials/getting-started/local_R/index.html#sec-windows",
+    "title": "Installing R and RStudio",
+    "section": "3 Windows",
+    "text": "3 Windows\n\n3.1 If you don’t have R and RStudio installed:\nGo to https://posit.co/download/rstudio-desktop/ and follow this instruction for windows.\n\n\n3.2 If you already have R and RStudio installed, check to see if updates are available.\nRStudio: Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.\nR: Upon starting RStudio, the version of R you are running will appear on the console. You can also type sessionInfo() in the console to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. You can update R using the installr package, by running:\n# installr is for windows only!\nif( !(\"installr\" %in% installed.packages()) ){install.packages(\"installr\")} \n\ninstallr::updateR(TRUE)",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> Installation"
+      "</b> RStudio and recommended packages"
     ]
   },
   {
-    "objectID": "materials/getting-started/installation/index.html#vscode",
-    "href": "materials/getting-started/installation/index.html#vscode",
-    "title": "Installation instructions",
-    "section": "VSCode",
-    "text": "VSCode\nVSCode is a code text editor application that provides an easy-to-use interface for viewing and writing code/scripts. This section will detail how to 1) install VSCode as an application on your computer, 2) install VSCode extensions and 3) setup launching VSCode as an interface to view and edit your files on the O2 cluster.\n\nInstall VSCode application\nTo install VSCode on your computer, use this link.\n\n\nInstall VSCode extensions\nVSCode has a number of extensions that allow each user to customize their own coding experience. We recommend the installation of three extensions:\n\nRainbow CSV - identifies “,” as the separator in CSV files, highlights each column with a different color\nVSCode-pdf - view PDF files directly within the VSCode interface\nRemote-SSH - allows users to login and access their own HPC cluster and view their files through the VSCode interface (see next section)\n\nTo install extensions:\n\nNavigate to the toolbar on the far left of the VSCode interface and click on the icon that resembles four squares.\nUse the search bar that has the caption “Search Extensions in Marketplace” to find extensions that you like and install each of them individually.\nAn additional step for Remote-SSH installation involves changing the connect timeout setting. As O2 login requires Duo authentication, there is often a slight delay and more time is needed to complete the authentication and login properly. To adjust this, please follow steps 4-6.\nNavigate to the extension page for Remote-SSH (on the toolbar on the far left, select the icon with four squares, then input remote-ssh into the search bar) \n\nSelect the gear button and press Settings \n\nInput 120 seconds for the Remote.SSH: Connect Timeout parameter \n\n\n\n\nSetup O2 access with VSCode: Launch VSCode on O2 login node\nWhile logging into O2 on the terminal only provides a command-line interface and linux commands are needed to modify files, the main advantage of accessing O2 through VSCode is it allows users to easily view and edit their files in an interactive manner within the VSCode application.\nAfter installation of VSCode and the Remote-SSH extension, establish a SSH connection to O2 through VSCode:\n\nPress the bottom left purple icon to ‘Open a Remote Window’. This will prompt a few options to be displayed at the top near the search bar \nSelect ‘Add New SSH Host’ and then input the following and enter\n\n\n&lt;hms_id&gt;@o2.hms.harvard.edu\n\n\nSelect &lt;path to config&gt;/.ssh/config as the SSH configuration file to update\nInput password for O2 login\nComplete Duo authentication\nLogin complete (Note: login may take longer at the first instance because VSCode will download its own server.)\n\nAfter setup, directly click the bottom left purple icon each time and input login credentials to launch O2 on VSCode each time.\n\n\nSetup O2 access with VSCode: Launch VSCode on O2 compute node\nAfter setting up VSCode, Remote-SSH extension and establishing a connection to O2 login node through VSCode, follow these steps to launch VSCode on a compute node in O2. This is useful if you plan to use VSCode to open or edit larger files as this may be a process that is too computationally intensive for login nodes to handle, leading the O2 cluster to automatically terminate your connection to O2 through VSCode. For a more detailed description, please refer to the official O2 documentation on VSCode, which was used as a reference for this section.\n\nGenerate SSH key on your own computer’s terminal with the following command. When prompted for file name, press enter to use the default file name. Enter a passphrase to protect your SSH keys.\n\n\n# input this line into your computer's terminal\nssh-keygen -t rsa\n\n# sample output (See O2 documentation for reference)\nGenerating public/private rsa key pair.\nEnter file in which to save the key (/USERHOME/.ssh/id_rsa):\nEnter passphrase (empty for no passphrase):\nEnter same passphrase again:\nYour identification has been saved in /USERHOME/.ssh/id_rsa.\nYour public key has been saved in /USERHOME/.ssh/id_rsa.pub.\nThe key fingerprint is:\na5:b5:38:73:b7:3c:a6:8a:1d:a8:bd:87:4e:be:33:21 \n\n\nCopy your computer’s SSH public key onto the O2 SSH authorized_keys file, which allows your computer and O2 to recognize each other\n\n\nLinux or Mac:\n\n\n# input this line into your computer's terminal\nssh-copy-id -i $HOME/.ssh/id_rsa.pub &lt;hms_id&gt;@o2.hms.harvard.edu\n# input O2 password and complete Duo authentication\n\n\nWindows:\n\n\n# input this line into your computer's terminal\nGet-Content \"$env:USERPROFILE\\.ssh\\id_rsa.pub\" | ssh &lt;hms_id&gt;@o2.hms.harvard.edu \"mkdir -p ~/.ssh && cat &gt;&gt; ~/.ssh/authorized_keys\"\n# input O2 password and complete Duo authentication\n\n\nAdd new lines in your computer’s SSH config file. Replace HMS ID with your own ID. After modification, use Ctrl + X followed by enter to save the file.\n\n\n# input this line into your computer's terminal\n# open your computer's SSH config file\nnano ~/.ssh/config\n\n#for Windows systems use\nnotepad $env:USERPROFILE\\.ssh\\config\n\n# copy and paste the following lines into the config file\nHost o2jump\n  HostName o2.hms.harvard.edu\n  User &lt;hms_id&gt;\n  ForwardAgent yes\n  ForwardX11 yes\n  ForwardX11Trusted yes\n\nHost o2job\n  HostName compute_node_of_job\n  User &lt;hms_id&gt;\n  ProxyJump o2jump\n  ForwardAgent yes\n\n\nRequest a compute node on O2, update your local config file with the node information for VSCode with the following command. Please use the command appropriate for your operating system, as the syntax varies slightly. Your requested compute node will be allocated with a 1 hour runtime, 4GB memory and 1 core.\n\n\nLinux:\n\n\n# input this line into your computer's terminal\nssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} sed -i \"/^Host o2job$/,/^\\s*Host /{s/^\\(\\s*HostName\\s*\\).*$/\\1{}/}\" ~/.ssh/config\n\n\nMac:\n\n\n# input this line into your computer's terminal\nssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | tail -n 1 | xargs -I {} | xargs -I NODE_HOSTNAME sed -i '' \"/^Host o2job$/,/^[[:space:]]*Host / s/^\\([[:space:]]*HostName[[:space:]]*\\).*/\\1NODE_HOSTNAME/\" ~/.ssh/config\n\n\nWindows:\n\n\n# input this line into your computer's terminal\n$nodeHostname = (ssh &lt;hms_id&gt;@o2.hms.harvard.edu \"/n/groups/kwon/joseph/submit_o2.sh\" | Select-Object -Last 1); (Get-Content \"$env:USERPROFILE\\.ssh\\config\") | ForEach-Object { if ($_ -match 'Host o2job') { $_; $foundJob = $true } elseif ($foundJob -and $_ -match '^\\s*HostName\\s+') { $foundJob = $false; $_ -replace '(?&lt;=HostName\\s*)\\S+', $nodeHostname } else { $_ } } | Set-Content \"$env:USERPROFILE\\.ssh\\config\"\n\n\nOpen VSCode, select the bottom left purple icon to launch the remote connection. Select ‘Connect to Host’ and o2job as the server. Proceed by inputting O2 login password and completing Duo authentication. Select ‘Continue’ to proceed.\n\nSetup for launching VSCode on a O2 compute node is now complete. After setup, it is only necessary to execute Steps 4-5 each time to launch this.\n\n\nNavigate to your O2 directory in VSCode\nFollowing launching VSCode on either an O2 login or a compute node, navigate to your own O2 directory:\n\nNavigate to the top bar in VSCode and press File &gt; Open Folder\nType in path (e.g. /n/groups/kwon/&lt;your name&gt;)\nBegin to edit and view files in directory",
+    "objectID": "materials/getting-started/local_R/index.html#sec-mac",
+    "href": "materials/getting-started/local_R/index.html#sec-mac",
+    "title": "Installing R and RStudio",
+    "section": "4 MacOs",
+    "text": "4 MacOs\n\n4.1 Check your processor\nadapted from https://docs.cse.lehigh.edu/determine-mac-architecture/\nMake sure you are downloading and installing the right version of R and R Studio for your laptop’s CPU. Some older Macs (pre-2018) have an intel chip (also known as x64 or x86_64 architecture), while recent macs have M1,M2,M3, or M4 chips (also known as ARM architecture).\nTo determine whether a Mac is running an Intel Processor or Apple ARM M1 or M2, click on the  Apple Menu and select ‘About this Mac’:\n\n\n\nclick about this mac\n\n\nFrom the ‘About this Mac’ screen, on the ‘Overview’ tab, look for a line that indicates either ‘Chip’ or ‘Processor’. If the line contains M1 or M2, the machine is running Apple Silicon. Alternatively, the word Intel indicates that the machine is running an Intel-based Core series processor.\n\n\n\nM1 or M2\n\n\n\n\n\nintel\n\n\n\n\n4.2 If you don’t have R and RStudio installed:\nGo to https://posit.co/download/rstudio-desktop/ and follow this instruction for MacOS.\n\n\n4.3 If you already have R and RStudio installed, check to see if updates are available.\nRStudio: Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.\nR: Upon starting RStudio, the version of R you are running will appear on the console. You can also type sessionInfo() to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. For this workshop install version 4.3.1 of R",
     "crumbs": [
       "About the Kwon Lab",
       "Getting Started",
-      "</b> Installation"
+      "</b> RStudio and recommended packages"
+    ]
+  },
+  {
+    "objectID": "materials/getting-started/local_R/index.html#sec-linux",
+    "href": "materials/getting-started/local_R/index.html#sec-linux",
+    "title": "Installing R and RStudio",
+    "section": "5 Linux",
+    "text": "5 Linux\n\n5.1 If you don’t have R and RStudio installed:\nGo to https://posit.co/download/rstudio-desktop/ and follow this instruction for your Linux OS.\n\n\n5.2 If you already have R and RStudio installed, check to see if updates are available.\nRStudio: Open RStudio and click on Help &gt; Check for updates. If a new version is available, quit RStudio, and download the latest version.\nR: Upon starting RStudio, the version of R you are running will appear on the console. You can also type sessionInfo() to display the version of R you are running. The CRAN website will tell you if there is a more recent version available. For this workshop install version 4.3.1 of R",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Getting Started",
+      "</b> RStudio and recommended packages"
     ]
   },
   {
@@ -253,7 +325,19 @@
     "href": "materials/rnaseq/background/index.html",
     "title": "Background",
     "section": "",
-    "text": "Work in progress\n\n\nIntroduction to the pipeline\nThis pipeline quantifies RNA-sequenced reads relative to genes/transcripts in the genome and normalizes the resulting data. It uses Kraken2 for filtering human reads and nf-core/rnaseq for the core trimming, alignments, and quantification. It does not compare the samples statistically, so for downstream analyses, the output files from this pipeline can be analysed directly in statistical environments like R.\n\n\nInputs\nThis pipeline takes a sample sheet and fastq files (ideally in /n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/) as input and works for both single and paired-end reads.\n\n\nOutputs\nQC report, gene counts, normalized gene counts, QC reports, etc.\n\n\n\n\n\n\nCredits to Kraken2 and nf-core/rnaseq",
+    "text": "Work in progress",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RNAseq",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "materials/rnaseq/background/index.html#beyond-the-pipeline",
+    "href": "materials/rnaseq/background/index.html#beyond-the-pipeline",
+    "title": "Background",
+    "section": "Beyond the pipeline",
+    "text": "Beyond the pipeline\nTypically you’ll want to explore your RNAseq dataset for more quality checks and sanity checks, and look for differences in gene expression with different treatments.\nThe following code is an example of how to get your data into deseq2. (Make sure you have the recommended packages installed by following the R installation instructions).\n\nlibrary(DESeq2)\nlibrary(tidyverse)\nlibrary(microViz)\n\ncounts &lt;- read_tsv(\"salmon.merged.gene_counts_length_scaled.tsv\")\n\ncounts_for_deseq &lt;- counts %&gt;% select(-gene_name) %&gt;%\n  as.data.frame() %&gt;%\n  column_to_rownames(\"gene_id\") %&gt;%\n  as.matrix()\n\ngene_names_for_deseq &lt;- counts %&gt;% select(gene_id, gene_name) %&gt;%\n  as.data.frame() %&gt;%\n  column_to_rownames(\"gene_id\")\n\nsample_metadata_for_deseq &lt;- read_csv(\"SKH_Expt_P10_metadata.csv\") %&gt;%\n  as.data.frame() %&gt;%\n  column_to_rownames(\"sample_id\")\n\ndeseq_dataset &lt;- DESeqDataSetFromMatrix(countData=round(counts_for_deseq), colData=sample_metadata_for_deseq, rowData=gene_names_for_deseq, design=~treatment_code)\n\nThen, read through and follow along with the DEseq2 vignette, starting with the “Pre-filtering” section.\n\nmicroViz hack, largely untested.\nThis following code is a hack to get your already normalized data into a phyloseq object, which is typically only used for 16S analysis. However, there are very nice ordination functions and heatmap functions available for phyloseq objects in the microViz package, so it might be worth the hackiness.\n\nlibrary(microViz)\ngene_abundance &lt;- read_tsv(\"salmon.merged.gene_tpm.tsv\")\n\ngene_count_table &lt;- gene_abundance %&gt;%\n  select(-gene_name) %&gt;%\n  as.data.frame() %&gt;%\n  column_to_rownames(\"gene_id\") %&gt;%\n  as.matrix() %&gt;%\n  phyloseq::otu_table(taxa_are_rows = TRUE)\n\ngene_annotations &lt;- gene_abundance %&gt;% select(gene_id, gene_name) %&gt;%\n  as.data.frame() %&gt;%\n  column_to_rownames(\"gene_id\") %&gt;%\n  as.matrix() %&gt;%\n  phyloseq::tax_table()\n\nsample_metadata &lt;- read_csv(\"SKH_Expt_P10_metadata.csv\") %&gt;%\n  column_to_rownames(\"sample_id\") %&gt;%\n  phyloseq::sam_data()\n\nrnaseq_dataset &lt;- phyloseq::phyloseq(gene_count_table, gene_annotations, sample_metadata) %&gt;% tax_fix()",
     "crumbs": [
       "About the Kwon Lab",
       "RNAseq",

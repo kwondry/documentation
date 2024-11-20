@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kwondry.github.io/documentation/materials/rnaseq/walkthrough/index.html</loc>
-    <lastmod>2024-11-19T15:51:54.533Z</lastmod>
+    <lastmod>2024-11-20T17:54:44.802Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/getting-started/o2/index.html</loc>
-    <lastmod>2024-11-19T15:51:54.520Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/valencia/index.html</loc>
-    <lastmod>2024-11-19T15:51:54.520Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/dada2/index.html</loc>
-    <lastmod>2024-11-19T15:51:54.519Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/index.html</loc>
-    <lastmod>2024-11-19T15:51:54.519Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/prereqs/index.html</loc>
-    <lastmod>2024-11-19T15:51:54.519Z</lastmod>
+    <lastmod>2024-11-20T16:17:50.942Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/getting-started/installation/index.html</loc>
-    <lastmod>2024-11-19T16:05:08.570Z</lastmod>
+    <lastmod>2024-11-20T16:17:50.941Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/prereqs/index.html</loc>
+    <lastmod>2024-11-20T16:13:18.191Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/index.html</loc>
+    <lastmod>2024-11-20T16:17:50.941Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/dada2/index.html</loc>
+    <lastmod>2024-11-20T16:13:18.191Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/valencia/index.html</loc>
+    <lastmod>2024-11-20T16:13:18.193Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/getting-started/local_R/index.html</loc>
+    <lastmod>2024-11-20T17:54:44.800Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/rnaseq/background/index.html</loc>
-    <lastmod>2024-11-19T15:51:54.533Z</lastmod>
+    <lastmod>2024-11-20T17:55:33.300Z</lastmod>
   </url>
 </urlset>
