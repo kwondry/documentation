@@ -62,12 +62,11 @@ Edit this sample sheet with explicit file paths for each sample that want includ
 
 ![](../../images/rnaseq_step3.png)
 
-#### sample_sheet.csv columns
+#### input `sample_sheet.csv` columns
 
 | **sample**  | **fastq_1**  | **fastq_2** | **strandedness** |
 |--------|--------|--------|--------|
-| Sample IDs  | File path for forward reads   |  File path for reverse reads. If your sequences are single end, you can leave this column empty | Set as `auto` for each sample. However, for samples with high contaminants, it should be set as `both`. |
-
+| Sample IDs  | File path for forward reads   |  File path for reverse reads. If your sequences are single end, leave this column empty | Set as `auto` for each sample. However, for samples with high contaminants coming from smartseq2, it should be set as `both`. |
 \
 
 The filepaths should be similar in structure to: \
