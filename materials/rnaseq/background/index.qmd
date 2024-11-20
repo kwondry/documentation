@@ -99,6 +99,9 @@ Then, read through and follow along with the [DEseq2 vignette](https://bioconduc
 This following code is a hack to get your already normalized data into a `phyloseq` object, which is typically only used for 16S analysis. However, there are very nice ordination functions and heatmap functions available for phyloseq objects in the `microViz` package, so it might be worth the hackiness.
 
 ```{r}
+#| eval: false
+#| echo: true
+#| code-overflow: wrap
 library(microViz)
 gene_abundance <- read_tsv("salmon.merged.gene_tpm.tsv")
 
