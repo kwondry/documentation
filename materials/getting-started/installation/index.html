@@ -188,13 +188,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">RNAseq</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link">
@@ -211,13 +211,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">16S</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text"><em>Running DADA2 - Coming soon </em></span>
   </li>
@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>By default upon logging into O2, each user is placed on a login node. Login nodes are NOT suitable for supporting intensive computational processes. Intensive analyses on the login mode will be automatically terminated by O2 and users may be flagged by the admin if this occurs consistently. Please be sure to request a compute node to execute any tasks. For additional details about compute nodes, please reference the <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588665423/O2+HPC+Cluster+and+Computing+Nodes+Hardware">O2 documentation</a>.</p>
 <p><img src="../../images/compute_login_node.png" class="img-fluid" style="width:50.0%"></p>
 <p>This command requests a compute node for 12 hours, with 8GB of memory and 1 core. Compute nodes automatically terminate when you disconnect from the O2 cluster or when the time limit is met, whichever occurs first.</p>
-<div id="6e6b8746" class="cell" data-execution_count="1">
+<div id="ff6f5a29" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>srun <span class="op">--</span>pty <span class="op">-</span>p priority <span class="op">-</span>t <span class="dv">12</span>:<span class="dv">0</span>:<span class="dv">0</span> <span class="op">--</span>mem<span class="op">=</span><span class="dv">8</span><span class="er">G</span> <span class="op">-</span>c <span class="dv">1</span> bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -291,13 +291,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="mambaminimamba">mamba/minimamba</h2>
 <p>Executing bioinformatics analyses often involve installing multiple packages/tools. Mamba is a package manager that allows users to create environments. Environments separate these package installations into individual “partitions”, which helps 1) prevent users from disrupting their own base environment with the installations of these new packages, 2) facilitate easy access and removal of packages and 3) manage/create environments individually for each pipeline or type of analysis.</p>
 <p>Install mamba on O2 terminal:</p>
-<div id="c0ed4859" class="cell" data-execution_count="2">
+<div id="1555501a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">~;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>curl <span class="op">-</span>L <span class="op">-</span>O <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"</span><span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bash Mambaforge<span class="op">-</span>$(uname)<span class="op">-</span>$(uname <span class="op">-</span>m).sh<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Initialize mamba on O2 terminal before usage (first time only):</p>
-<div id="e312158d" class="cell" data-execution_count="3">
+<div id="a77c567b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mamba init</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># close terminal and reopen</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">~/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -308,11 +308,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Snakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Create your first conda environment named <code>snakemake_8_20_3</code> with the snakemake package installed with the following command.</p>
 <p>To read more about snakemake, please refer to the official <a href="https://snakemake.readthedocs.io/en/stable/">Snakemake documentation</a>.</p>
 <p>Install snakemake on O2 terminal:</p>
-<div id="b3f176ae" class="cell" data-execution_count="4">
+<div id="00bd2cae" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mamba create <span class="op">-</span>n snakemake_8_20_3 <span class="op">-</span>c conda<span class="op">-</span>forge <span class="op">-</span>c bioconda snakemake<span class="op">=</span><span class="fl">8.20.3</span>  snakemake<span class="op">-</span>executor<span class="op">-</span>plugin<span class="op">-</span>slurm  snakemake<span class="op">-</span>executor<span class="op">-</span>plugin<span class="op">-</span>slurm<span class="op">-</span>jobstep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To use snakemake, activate this environment maintained by mamba:</p>
-<div id="05eb7a65" class="cell" data-execution_count="5">
+<div id="b1b42a6a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake_8_20_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -352,7 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Press the bottom left purple icon to ‘Open a Remote Window’. This will prompt a few options to be displayed at the top near the search bar <img src="../../images/remote_ssh_launch_step1.png" class="img-fluid" style="width:90.0%"></p></li>
 <li><p>Select ‘Add New SSH Host’ and then input the following and enter</p></li>
 </ol>
-<div id="5377ae96" class="cell" data-execution_count="6">
+<div id="a0cac37a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Generate SSH key on your own computer’s terminal with the following command. When prompted for file name, press enter to use the default file name. Enter a passphrase to protect your SSH keys.</li>
 </ol>
-<div id="e3c03620" class="cell" data-execution_count="7">
+<div id="a9329246" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># input this line into your computer's terminal</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ssh<span class="op">-</span>keygen <span class="op">-</span>t rsa</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Linux or Mac:</li>
 </ul>
-<div id="a7bb8072" class="cell" data-execution_count="8">
+<div id="7ddea563" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># input this line into your computer's terminal</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ssh<span class="op">-</span>copy<span class="op">-</span><span class="bu">id</span> <span class="op">-</span>i $HOME<span class="op">/</span>.ssh<span class="op">/</span>id_rsa.pub <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># input O2 password and complete Duo authentication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Windows:</li>
 </ul>
-<div id="52effb43" class="cell" data-execution_count="9">
+<div id="24d596d9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># input this line into your computer's terminal</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Get<span class="op">-</span>Content <span class="st">"$env:USERPROFILE\.ssh\id_rsa.pub"</span> <span class="op">|</span> ssh <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu <span class="st">"mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># input O2 password and complete Duo authentication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Add new lines in your computer’s SSH config file. Replace HMS ID with your own ID. After modification, use <code>Ctrl + X</code> followed by enter to save the file.</li>
 </ol>
-<div id="a615303b" class="cell" data-execution_count="10">
+<div id="fb45a1c9" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># input this line into your computer's terminal</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># open your computer's SSH config file</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>nano <span class="op">~/</span>.ssh<span class="op">/</span>config</span>
@@ -433,21 +433,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Linux:</li>
 </ul>
-<div id="9a98bb99" class="cell" data-execution_count="11">
+<div id="b83555c3" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># input this line into your computer's terminal</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ssh <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu <span class="st">"/n/groups/kwon/joseph/submit_o2.sh"</span> <span class="op">|</span> tail <span class="op">-</span>n <span class="dv">1</span> <span class="op">|</span> xargs <span class="op">-</span>I {} sed <span class="op">-</span>i <span class="st">"/^Host o2job$/,/^\s*Host /{s/^\(\s*HostName\s*\).*$/</span><span class="ch">\1</span><span class="sc">{}</span><span class="st">/}"</span> <span class="op">~/</span>.ssh<span class="op">/</span>config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Mac:</li>
 </ul>
-<div id="ca9849df" class="cell" data-execution_count="12">
+<div id="f4435426" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># input this line into your computer's terminal</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ssh <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu <span class="st">"/n/groups/kwon/joseph/submit_o2.sh"</span> <span class="op">|</span> tail <span class="op">-</span>n <span class="dv">1</span> <span class="op">|</span> xargs <span class="op">-</span>I {} <span class="op">|</span> xargs <span class="op">-</span>I NODE_HOSTNAME sed <span class="op">-</span>i <span class="st">''</span> <span class="st">"/^Host o2job$/,/^[[:space:]]*Host / s/^\([[:space:]]*HostName[[:space:]]*\).*/</span><span class="ch">\1</span><span class="st">NODE_HOSTNAME/"</span> <span class="op">~/</span>.ssh<span class="op">/</span>config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Windows:</li>
 </ul>
-<div id="f3f8fa01" class="cell" data-execution_count="13">
+<div id="9f524f09" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># input this line into your computer's terminal</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>$nodeHostname <span class="op">=</span> (ssh <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu <span class="st">"/n/groups/kwon/joseph/submit_o2.sh"</span> <span class="op">|</span> Select<span class="op">-</span>Object <span class="op">-</span>Last <span class="dv">1</span>)<span class="op">;</span> (Get<span class="op">-</span>Content <span class="st">"$env:USERPROFILE\.ssh\config"</span>) <span class="op">|</span> ForEach<span class="op">-</span>Object { <span class="cf">if</span> ($_ <span class="op">-</span>match <span class="st">'Host o2job'</span>) { $_<span class="op">;</span> $foundJob <span class="op">=</span> $true } elseif ($foundJob <span class="op">-</span><span class="kw">and</span> $_ <span class="op">-</span>match <span class="st">'^\s*HostName\s+'</span>) { $foundJob <span class="op">=</span> $false<span class="op">;</span> $_ <span class="op">-</span>replace <span class="st">'(?&lt;=HostName\s*)\S+'</span>, $nodeHostname } <span class="cf">else</span> { $_ } } <span class="op">|</span> Set<span class="op">-</span>Content <span class="st">"$env:USERPROFILE\.ssh\config"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
