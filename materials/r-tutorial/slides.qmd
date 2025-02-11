@@ -716,6 +716,32 @@ sample_n(metadata,5) %>%
   mutate(conc_mM = conc/1000, conc_nM = conc*1000)
 ```
 
+
+## Your turn to do some data wrangling {.your-turn}
+
+```{r}
+#| echo: false
+countdown::countdown(15, left=0, right=NULL)
+```
+
+Write code to answer the following questions?
+
+1. How many different concentrations of LCFA are tested?
+
+2. How many different LCFAs are tested on each plate?
+
+3. What bug has the highest OD seen in all the plates?
+
+4. What bug has the highest OD when no LCFA is added?
+
+5. What control well with no bug and no LCFA has the highest OD?
+
+## Break {.our-turn}
+
+```{r}
+#| echo: false
+countdown::countdown(15, left=0, right=NULL, font_size = "12rem")
+```
 # Aesthetics - the elements of data visualization
 
 ## Plots map data onto graphical elements.
@@ -723,9 +749,9 @@ sample_n(metadata,5) %>%
 
 ```{r}
 #| echo: false
-#| label: metadata
-#| tbl-cap: "metadata.csv`"
-knitr::kable(head(metadata))
+#| label: joined_data
+#| tbl-cap: "joined_data`"
+knitr::kable(head(joined_data))
 
 ```
 
@@ -742,10 +768,13 @@ joined_data %>%
 
 ```{r}
 joined_data %>%
-  ggplot(aes(x = row, y=column, color=conc)) +
-  geom_point(size=7) +
+  mutate(row = factor(row) %>% fct_rev()) %>%
+  mutate(column = factor(str_pad(column, width=2, pad="0"))) %>%
+  ggplot(aes(x = column, y=row, color=conc)) +
+  geom_point(size=5) +
   scale_color_continuous_sequential() +
-  theme(axis.text.y = element_blank())
+  facet_wrap(~plate_id) +
+  theme_cowplot(10)
 
 ```
 
@@ -861,6 +890,26 @@ ggplot(joined_data, mapping = aes(x = as.factor(conc), y = od, color = bug)) +
   geom_boxplot(fill="orange")
 ```
 
+
+## Faceting makes subplots for comparisons. {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter(size=3, width=10) +
+  facet_wrap(~condition)
+```
+
+## Faceting makes subplots for comparisons. {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter(size=3, width=10) +
+  facet_wrap(~condition+bug, ncol=6)
+```
 
 # Visualizing distributions
 
@@ -1259,12 +1308,10 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
 ```{r}
 #| echo: false
 countdown::countdown(10, left=0, right=NULL)
-countdown::countdown(30)
 ```
 
-Get with your group.
-Go to [the activity](index.html#data-visualization-activity)
-
+Get with a group of 2-3 people.
+Go to [the activity](index.html#data-visualization-activity) and pick an option to do together.
 
 ## Analyze subsets: `group_by()` and `summarize()`
 
@@ -1320,6 +1367,24 @@ joined_data %>%
     )
 ```
 
+
+## Get background OD for each media on each plate {.your-turn}
+
+Make a code block and make a variable called `media_background_medians` that has one row for every combination of plate, lcfa, and conc that gives the median OD measured for those conditions.
+
+Bonus: make a histogram of the media backgrounds (before summarising) for each condition and concentration. Try with a facet by plate and without.
+
+## Get no-LCFA OD for each bug on each plate {.your-turn}
+
+Now make a variable called `bug_no_lcfa_control`. Join the `media_background_medians` to the `joined_data`, and `mutate` a column that caluclate the `od` - `media_background`. Filter this table so it only has the no LCFA control conditions for each bug on each plate. Then `group_by` `bug` and `plate_id` and get the median of each background subtracted `od`.
+
+Bonus: make a histogram before summarising of the ods with background subtracted for each bug on each plate.
+
+## Challenge: calculate relative growths {.your-turn}
+
+Make a table that has the relative growth compared to no LCFA of each bug for each concentration. (Hint: There should be three rows per condition+bug+concentration.) Make a plot showing the relative growths. (e.g. x axis is concentration, y axis relative growth, facet by bug+concentration, and pick a geom to use to show the data.)
+
+Investigate why some relative growths are so high. Think about how you might tweak the analysis to handle that issue.
 
 ## Reshape: `pivot_wider()` and `pivot_longer()`
 

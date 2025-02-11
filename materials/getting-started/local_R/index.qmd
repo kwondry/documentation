@@ -28,7 +28,7 @@ These instructions will help you install R and RStudio for your local computer, 
 Open RStudio and {{< fa solid paste >}}Paste the following into your console on the left/bottom-left.
 
 ```{.r .code-overflow-wrap}
-install.packages(c( "colorspace","corncob", "cowplot", "DT",  "ggbeeswarm", "ggforce","ggraph","ggtext, "gtsummary","knitr", "naniar", "margins",  "palmerpenguins", "patchwork", "quarto",  "rmarkdown", "tidyverse"))
+install.packages(c( "colorspace","corncob", "cowplot", "DT",  "ggbeeswarm", "ggforce","ggraph","ggtext", "gtsummary","knitr", "naniar", "margins",  "palmerpenguins", "patchwork", "quarto",  "rmarkdown", "tidyverse"))
 
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install(c("phyloseq", "microbiome", "ComplexHeatmap","DESeq2"), update = FALSE)
