@@ -47,9 +47,14 @@ website:
             - text: "</b> Installing software for work on O2"
               contents:
               href: materials/getting-started/installation/index.qmd
+          - section: "R and R Studio"
+            contents:
             - text: "</b> RStudio and recommended packages"
               contents:
               href: materials/getting-started/local_R/index.qmd
+            - text: "</b> R workshop"
+              contents:
+              href: materials/r-tutorial/index.qmd
           - section: "RNAseq"
             contents:
             - text: "Background"

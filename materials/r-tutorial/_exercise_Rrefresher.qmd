@@ -1,0 +1,33 @@
+---
+editor: visual
+format:
+  html:
+    code-link: true
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(countdown)
+library(tidyverse)
+library(cowplot)
+library(colorspace)
+library(here)
+
+```
+
+## Exercise 2.1 : Data wrangling and simple manipulations
+
+In this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.
+
+We will be using the R package, **tidyverse** for the data manipulation functions `%>%`, `filter()`, `select()`, `arrange()`, `count()`, and `mutate()`.
+
+### The pipe (`%>%`, read: "and then")
+
+When writing complex data analysis pipelines, we frequently use the pipe operator `%>%` to move data from one analysis step to the next. The pipe is pronounced "and then", and it takes the data on its left and uses it as the first argument for the function on its right.
+
+For example, to see the first few lines of a dataset, we often write `head(data)`. Instead, we can write `data %>% head()`.
+
+Try this yourself. Write code that displays the first few lines of `metadata`, using `%>%` and `head()`:

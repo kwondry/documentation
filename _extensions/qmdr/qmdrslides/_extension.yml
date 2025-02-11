@@ -21,7 +21,7 @@ contributes:
       progress: false
       code-overflow: wrap
       title-slide-attributes:
-        data-background-image: durban-watercolor-gradient.png
+        data-background-image: ragon_watercolor_map.png
         data-background-size: contain
         data-background-color: "#f8f5f0"
       include-before-body:

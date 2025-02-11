@@ -1,0 +1,1400 @@
+---
+title: "`tidyverse` for data analysis"
+subtitle: "<em>remixed from <a href='https://github.com/wilkelab/SDS375'>Claus O. Wilke's SDS375 course</a> and <a href='https://github.com/posit-conf-2023/quarto-r'> Andrew P. Bray's quarto workshop</a></em>"
+format: qmdrslides-revealjs
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(countdown)
+library(tidyverse)
+library(cowplot)
+library(colorspace)
+library(here)
+
+align_legend <- function(p, hjust = 0.5)
+{
+  # extract legend
+  g <- cowplot::plot_to_gtable(p)
+  grobs <- g$grobs
+  legend_index <- which(sapply(grobs, function(x) x$name) == "guide-box")
+  legend <- grobs[[legend_index]]
+
+  # extract guides table
+  guides_index <- which(sapply(legend$grobs, function(x) x$name) == "layout")
+
+  # there can be multiple guides within one legend box  
+  for (gi in guides_index) {
+    guides <- legend$grobs[[gi]]
+    
+    # add extra column for spacing
+    # guides$width[5] is the extra spacing from the end of the legend text
+    # to the end of the legend title. If we instead distribute it by `hjust:(1-hjust)` on
+    # both sides, we get an aligned legend
+    spacing <- guides$width[5]
+    guides <- gtable::gtable_add_cols(guides, hjust*spacing, 1)
+    guides$widths[6] <- (1-hjust)*spacing
+    title_index <- guides$layout$name == "title"
+    guides$layout$l[title_index] <- 2
+
+    # reconstruct guides and write back
+    legend$grobs[[gi]] <- guides
+  }
+  
+  # reconstruct legend and write back
+  g$grobs[[legend_index]] <- legend
+  g
+}
+
+
+theme_set(theme_cowplot(24) + background_grid())
+
+table_01 <- read_csv(here("datasets/instructional_dataset/01_participant_metadata_UKZN_workshop_2023.csv"))
+
+table_02 <- read_csv(here("datasets/instructional_dataset/02_visit_clinical_measurements_UKZN_workshop_2023.csv"))
+
+
+metadata <- read_csv(here("datasets/metadata.csv"))
+plate_1 <- read_csv(here("datasets/plate_1_data.csv"))
+plate_2 <- read_csv(here("datasets/plate_2_data.csv"))
+plate_3 <- read_csv(here("datasets/plate_3_data.csv"))
+plate_4 <- read_csv(here("datasets/plate_4_data.csv"))
+
+
+all_plate_data <- bind_rows(plate_1, plate_2, plate_3, plate_4)
+
+joined_data <- all_plate_data %>%
+  left_join(metadata)
+```
+
+## {data-menu-title="Website Link" style="text-align: center"}
+
+\
+\
+\
+
+:::{.r-fit-text}
+Workshop materials are here:
+
+[https://kwondry.github.io/documentation/](https://kwondry.github.io/documentation/)
+:::
+
+## {data-menu-item="Workshop Goals"}
+
+\
+\
+
+### Goals for this session {style="font-size: 2.5em; text-align: center"}
+
+:::{.incremental style="font-size: 1em"}
+1. RStudio and the Quarto notebook
+
+2. Loading and writing tabular data
+
+3. Data wrangling and make plots with the `tidyverse`
+
+4. Tables and statistics
+:::
+
+---
+
+## Create an R Project {.your-turn}
+::::: {columns}
+
+::: {.column width=20%}
+Create a project for today's workshop and download the data.
+:::
+
+::: {.column width=75%}
+![](images/01-new-project.png) 
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+::::: {columns}
+
+::: {.column width=20%}
+1. File -> New Project...
+:::
+
+::: {.column width=75%}
+![](images/01-new-project.png) 
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+::::: {columns}
+
+::: {.column width=20%}
+2. Click on New Directory
+:::
+
+::: {.column width=75%}
+![](images/02-new-directory.png)
+:::
+
+:::::
+
+
+## Create an R Project {.your-turn}
+::::: {columns}
+
+::: {.column width=30%}
+3. Navigate to the `workshop_2` folder name your directory and click "Create Project"
+:::
+
+::: {.column width=60%}
+![](images/03-create-project.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+4. You made a project! This creates a file for you with the `.qmd` extension
+:::
+
+::: {.column width=75%}
+![](images/04-you-made-a-project.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+5. Switch from "visual" to "source" to see the plain-text version of this document.
+:::
+
+::: {.column width=75%}
+![](images/05-switch-to-source.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+6. Click on "Render" to ask Quarto to turn this plain-text document into an HTML page
+:::
+
+::: {.column width=75%}
+![](images/06-render.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+7. Your default web-browser will open and show you the rendered document!
+:::
+
+::: {.column width=75%}
+![](images/07-rendered.png)
+:::
+
+:::::
+
+# RStudio
+
+## What are the parts of RStudio?
+
+## The text editor
+
+![](images/rstudio-text-editor.png)
+
+## The console
+
+
+![](images/rstudio-text-console-image.png)
+
+## The right panes
+
+
+![](images/rstudio-text-right_panes.png)
+
+
+---
+
+## Installing and loading  packages
+
+:::{.incremental style="font-size: 1em"}
+Packages are a collection of functions and objects that are shared for free to use.
+
+
+In the console, you can type e.g. `install.packages("tidyverse")` to install most R packages.
+
+
+Sometimes R packages need to be installed a different way, and the documentation of the package will tell you how.
+
+
+Then, to load a package, add `library("tidyverse")` in a code chunk (usually in the first code cell of your document)
+:::
+
+
+## Quarto's Code Chunk
+
+You can quickly insert chunks like these into your file with  
+
+- the keyboard shortcut Ctrl + Alt + I (OS X: Cmd + Option + I) 
+- the Add Chunk ![](images/notebook-insert-chunk.png){width=33px} command in the editor toolbar  
+- or by typing the chunk delimiters <pre>```{r}</pre> <pre>```</pre>
+
+Example chunk:
+
+
+::: columns
+
+::: {.column width=40%}
+    ```{{r}}
+    10 + 5
+    ```
+:::
+
+::: {.column style="font-size: 0.7em; width: 55%"}
+
+Try writing a math expression in a code chunk, and hitting the ![](images/run-current-chunk.png){width=33px} button or Ctrl + Alt + Enter (OS X: Cmd + Option + Enter) to run the chunk.
+:::
+:::
+
+---
+
+##  Writing code: assigning variables
+
+You can use `<-` or `=` to assign values to variables
+
+```r
+a <- 6
+b = 8
+c <- 5.44
+d = TRUE
+e = "hello world" 
+e <- 'hello world' # same as double quote
+```
+
+We will use `<-` for all examples going forward.
+
+## Naming variables
+
+A lot of R people use `.` inside variable names, but in most languages besides R this would be an error. It's good practice these days to use the `_` underscore if you want separation in your variable names. 
+
+```r
+r.people.sometimes.put.dots <- TRUE
+dots.are.confusing <- "maybe"
+just_use_underscores <- "please"
+```
+
+## Functions {auto-animate="true"}
+
+Functions are named bits of code that take parameters as input and return some output
+
+```{r}
+#| echo: true
+library(tidyverse)
+word_1 <- "hello"
+word_2 <- "world"
+str_c(word_1, word_2, sep = " ")
+```
+
+`str_c` is a function that puts **c**oncatenates **str**ings. 
+
+functions can have *named parameters* as well as *positional parameters.*  
+*named parameters* always take an `=` sign for assignment.
+
+## Getting help with functions {auto-animate="true"}
+
+::::: columns
+
+::: {.column width=40%}
+
+- Type ?str_c in the console to get a help page. check out [this guide](https://socviz.co/appendix.html?s=09#a-little-more-about-r) on how to read the R help pages.  
+
+- Google! Add "tidyverse" to search queries to get more relevant results.  
+
+- [phind.com](phind.com) and [chat.deepseek.com](chat.deepseek.com) are good free AI services for getting help with code.  
+
+:::
+
+:::{.column width=55%}
+![](images/documentation_image.png)
+:::
+
+
+:::::
+
+---
+
+## Value types in R
+
+The type of the value can be 
+
+```r
+# numeric
+c(1,2,3,4) 
+
+# character
+c("a","b","c","d")
+
+# boolean
+c(TRUE, FALSE)
+
+# factor
+c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun") %>% as_factor()
+```
+
+## Examples of coding {.our-turn}
+
+Quick live demo of doing some work in R
+
+- Assigning variables
+- Vectors are magic
+- Functions and getting help
+
+```{r}
+#| echo: false
+countdown::countdown(5, left=0, right=NULL, play_sound = TRUE)
+```
+
+## Test data for today
+::::: {columns}
+
+::: {.column width=40%}
+
+![](images/96well_pleate.jpg)
+![](images/Microplate_reader.jpg)
+
+:::
+
+:::{.column width=50%}
+
+- Bacterial growth measurements with different species
+
+- Measured as an optical density (OD) of the culture at the end of the experiment
+
+- Growth measured with different concentrations of different long-chain fatty acids added to the media
+
+:::
+
+:::::
+
+## Get the data {.your-turn}
+
+Download the data from [kwondry.github.io/documentation/r-tutorial](../r-tutorial). Put it in a folder called `data` inside your R project folder.
+
+::::: {columns}
+
+::: {.column style="font-size: 0.7em; width: 30%"} 
+- [⤓`metadata.csv`](../../datasets/metadata.csv)  
+- [⤓`plate_1_data.csv`](../../datasets/plate_1_data.csv)  
+- [⤓`plate_2_data.csv`](../../datasets/plate_2_data.csv)  
+- [⤓`plate_3_data.csv`](../../datasets/plate_3_data.csv)  
+- [⤓`plate_4_data.csv`](../../datasets/plate_4_data.csv)  
+:::
+
+::: {.column style="font-size: 0.7em; width: 60%"}
+codebook:  
+
+`plate_id` – an identifier of which plate was measured. 
+`row` – row of the plate1    
+`column` – column of the plate    
+`bug` – the isolate/species that was tested in this well   
+`condition` - which long chain fatty acid (LCFA) was added   
+`conc` - what was the concentration of the LCFA in this well?  
+`row` – row of the plate     
+`column` – column of the plate    
+`od` - the optical density (OD600) that was measured in this well. This is a measure of bacterial growth.  
+
+:::
+
+:::::
+
+
+## Read in data
+
+Data is often in tables, and the easiest way to store tabular data is in `csv` or `tsv` format.
+
+`csv` - comma separated values    
+`tsv` - tab separated values  
+
+to read in data stored this way use `read_csv(filename)` or `read_tsv(filename)`
+
+```r
+metadata <- read_csv("data/metadata.csv")
+```
+
+## `bind`ing tables together
+
+We have data from 4 different plates in separate `csv` files. Use `bind_rows` to make a single table with all the data.
+
+```r
+plate_1 <- read_csv("data/plate_1_data.csv")
+plate_2 <- read_csv("data/plate_2_data.csv")
+plate_3 <- read_csv("data/plate_3_data.csv")
+plate_4 <- read_csv("data/plate_4_data.csv")
+
+all_plate_data <- bind_rows(plate_1, plate_2, plate_3, plate_4)
+```
+
+## `join`ing metadata to the data
+
+Connect the metadata to the plate reader data using `left_join`
+
+![](images/join.svg){width=30%}
+```r
+joined_data <- all_plate_data %>%
+  left_join(metadata)
+```
+
+## `tibble`s (aka data frames)
+
+`tibble`s are the big reason R is great for working with tabular data.
+
+A data frame is a rectangular collection of variables (in the columns) and observations (in the rows). 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(here)
+metadata <- read_csv(here("datasets/metadata.csv"))
+```
+
+```{r}
+#| echo: true 
+joined_data
+```
+
+# Elementary data manipulations
+
+:::{style="font-size: 1.5em"}
+
+- Pick rows: `filter()`
+
+- Pick columns: `select()`
+
+- Sort rows: `arrange()`
+
+- Count things: `count()`
+
+- Make new columns: `mutate()`
+
+:::
+
+## The pipe `%>%` or `|>` feeds data into functions {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+head(joined_data) # show the first few rows
+```
+
+## The pipe `%>%` or `|>` feeds data into functions {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  head()
+```
+
+## The pipe `%>%` or `|>` feeds data into functions {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  head() %>%
+  tail(1)
+```
+
+# Picking rows or columns, and sorting
+
+## Pick rows from a table: `filter()`
+
+
+![](images/filter.svg)
+
+
+## Filter only the first row of plates {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  filter(row == "a")
+```
+
+
+## Filter out samples with OD > 0.5 {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  filter(od > 0.5)
+```
+
+
+## Pick columns from a table: `select()`
+
+
+![](images/select.svg)
+
+
+## Pick columns `plate_id`, and `od` {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  select(plate_id, od)
+```
+
+
+## Rename columns and subset with select {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  select(plate_id, optical_density=od)
+```
+
+
+
+---
+
+## Sort the rows in a table: `arrange()`
+
+![](images/arrange.svg)
+
+---
+
+## Sort samples by OD ascending {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  arrange(od)
+```
+
+
+---
+
+## Sort samples by OD, descending {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  arrange(desc(od))
+```
+
+
+## Counting things
+
+To demonstrate counting, let's switch to `metadata`
+
+```{r}
+#| echo: fenced
+joined_data
+```
+
+---
+
+## Counting things  {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  count(bug)
+```
+
+
+## Counting things {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  count(condition, conc, bug)
+```
+
+## Use the pipe to build analysis pipelines {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  filter(bug == "crispatus")
+```
+
+
+## Use the pipe to build analysis pipelines {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  filter(bug == "crispatus") %>%
+  filter(conc > 50) %>%
+  select(plate_id, bug, condition)
+```
+
+## Use the pipe to build analysis pipelines {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  filter(bug == "crispatus") %>%
+  filter(conc > 50) %>%
+  select(plate_id, bug, condition) %>%
+  count(condition)
+```
+
+
+## Adding new columns to a table
+
+## Make a new table column: `mutate()`
+
+![](images/mutate.svg)
+
+
+## Example: concentration {auto-animate=TRUE}
+
+The `conc` column is in units of uM. What if you needed it in mM? What's the calculation?
+
+
+```{r}
+#| echo: fenced
+sample_n(metadata,5)
+```
+
+## Example: concentration {auto-animate=TRUE}
+
+The `conc` column is in units of uM. What if you needed it in mM? What's the calculation?
+
+To get mM you would divide by 1000.
+
+```{r}
+#| echo: fenced
+sample_n(metadata,5)
+```
+
+
+
+## Example: concentration {auto-animate=TRUE}
+
+The `conc` column is in units of uM. What if you needed it in mM? What's the calculation?
+
+To get mM you would divide by 1000.
+
+```{r}
+#| echo: fenced
+sample_n(metadata,5) %>%
+  mutate(conc_mM = conc/1000)
+```
+
+
+
+## Make multiple columns at once
+
+```{r}
+#| echo: fenced
+sample_n(metadata,5) %>%
+  mutate(conc_mM = conc/1000, conc_nM = conc*1000)
+```
+
+# Aesthetics - the elements of data visualization
+
+## Plots map data onto graphical elements.
+
+
+```{r}
+#| echo: false
+#| label: metadata
+#| tbl-cap: "metadata.csv`"
+knitr::kable(head(metadata))
+
+```
+
+## od mapped to y position
+
+```{r}
+joined_data %>%
+  ggplot(aes(x = bug, y=od)) +
+  geom_jitter()
+
+```
+
+## conc mapped to color
+
+```{r}
+joined_data %>%
+  ggplot(aes(x = row, y=column, color=conc)) +
+  geom_point(size=7) +
+  scale_color_continuous_sequential() +
+  theme(axis.text.y = element_blank())
+
+```
+
+
+## Commonly used aesthetics
+
+![Figure from <a href = 'https://clauswilke.com/dataviz'> Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019 </a>](images/common-aesthetics-1.png)
+
+## The same data values can be mapped to different aesthetics
+
+![Figure from <a href = 'https://clauswilke.com/dataviz'> Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019 </a>](images/basic-scales-example-1.png)
+
+## We can use many different aesthetics at once
+
+```{r mtcars-five-scale, echo = FALSE, message = FALSE, fig.width = 5.5, fig.asp = .8, dev = "svg"}
+p_mtcars <- ggplot(mtcars, aes(disp, mpg, fill = hp, shape = factor(cyl), size = wt)) + 
+  geom_point(color = "white") +
+  scale_shape_manual(values = c(23, 24, 21), name = "cylinders") +
+  scale_fill_continuous_sequential(
+    palette = "Emrld", name = "power (hp)",
+    breaks = c(100, 200, 300),
+    rev = FALSE
+  ) +
+  xlab("displacement (cu. in.)") +
+  ylab("fuel efficiency (mpg)") +
+  guides(
+    shape = guide_legend(override.aes = list(size = 4, fill = "#329D84")),
+    size = guide_legend(override.aes = list(shape = 21, fill = "#329D84"),
+    title = "weight (1000 lbs)")
+  ) +
+  theme_half_open(14) + background_grid() +
+  theme(
+    legend.box.background = element_rect(fill = "white", color = "white"),
+    legend.position = "top",
+    legend.direction = "vertical",
+    legend.justification = "center",
+    legend.box.margin = margin(7, 7, 7, 7)
+  )
+legend <- get_legend(align_legend(p_mtcars))
+ggdraw() + 
+  draw_plot(p_mtcars + theme(legend.position = "none")) + 
+  draw_grob(
+    legend,
+    vjust = 1, hjust = 1, valign = 1, halign = 1,
+    x = 1, y = 1, width = .65, height = .3
+  )
+```
+
+
+# Creating aesthetic mappings in `ggplot`
+
+## We define the mapping with `aes()`
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter()
+```
+
+## The geom determines how the data is shown  {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+ggplot(joined_data, mapping = aes(x = conc, y = od, color = bug)) +
+  geom_point()
+```
+
+## The geom determines how the data is shown  {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+ggplot(joined_data, mapping = aes(x = as.factor(conc), y = od, color = bug)) +
+  geom_boxplot()
+```
+
+
+## The geom determines how the data is shown  {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter()
+```
+
+## Different geoms have parameters for control  {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter(size=3)
+```
+
+
+## Different geoms have parameters for control  {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter(size=3, width=10)
+```
+
+
+## Aesthetics can also be used as parameters in geoms {auto-animate="true"}
+
+```{r}
+#| echo: fenced
+#| output-location: column
+ggplot(joined_data, mapping = aes(x = as.factor(conc), y = od, color = bug)) +
+  geom_boxplot(fill="orange")
+```
+
+
+# Visualizing distributions
+
+```{r setup, include=FALSE, echo=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(comment = "")
+
+library(tidyverse)
+library(lubridate)
+library(cowplot)
+library(colorspace)
+library(here)
+library(ggridges)
+library(ggforce)
+library(ggbeeswarm)
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(16)) # 16 for full width, 18 for half width 
+update_geom_defaults("point", list(size = 2)) # 2 for full width, 2.5 for half width
+
+# this function should be added to cowplot
+align_legend <- function(p, hjust = 0.5)
+{
+  # extract legend
+  g <- cowplot::plot_to_gtable(p)
+  grobs <- g$grobs
+  legend_index <- which(sapply(grobs, function(x) x$name) == "guide-box")
+  legend <- grobs[[legend_index]]
+
+  # extract guides table
+  guides_index <- which(sapply(legend$grobs, function(x) x$name) == "layout")
+
+  # there can be multiple guides within one legend box  
+  for (gi in guides_index) {
+    guides <- legend$grobs[[gi]]
+    
+    # add extra column for spacing
+    # guides$width[5] is the extra spacing from the end of the legend text
+    # to the end of the legend title. If we instead distribute it by `hjust:(1-hjust)` on
+    # both sides, we get an aligned legend
+    spacing <- guides$width[5]
+    guides <- gtable::gtable_add_cols(guides, hjust*spacing, 1)
+    guides$widths[6] <- (1-hjust)*spacing
+    title_index <- guides$layout$name == "title"
+    guides$layout$l[title_index] <- 2
+
+    # reconstruct guides and write back
+    legend$grobs[[gi]] <- guides
+  }
+  
+  # reconstruct legend and write back
+  g$grobs[[legend_index]] <- legend
+  g
+}
+
+income_by_age <- readRDS(here("datasets", "income_by_age.rds"))
+
+titanic <- read_csv(here("datasets", "titanic.csv")) %>%
+  select(age, sex, class, survived) %>%
+  arrange(age, sex, class)
+
+lincoln_temps <- readRDS(here("datasets", "lincoln_temps.rds")) %>% mutate(mean_temp = ((mean_temp - 32)*5/9) %>% round())
+```
+
+## Histograms and density plots
+
+::: {.columns}
+
+:::{.column width=33%}
+
+```{r}
+#| echo: false
+titanic %>% slice(1:12) %>% knitr::kable()
+
+```
+
+:::
+
+:::{.column width=33%}
+
+```{r}
+#| echo: false
+titanic %>% slice(13:24) %>% knitr::kable()
+
+```
+
+:::
+
+:::{.column width=33%}
+
+```{r}
+#| echo: false
+titanic  %>% slice(25:36) %>% knitr::kable()
+
+```
+
+:::
+
+:::
+
+## Histograms depend on the chosen bin width
+
+
+
+```{r titanic-age-hist-binwidth, echo = FALSE, fig.width = 8, fig.asp = 0.618, dev = "svg"}
+
+age_counts <- hist(titanic$age, breaks = (0:15) * 5 + .01, plot = FALSE)$counts
+age_hist <- tibble(
+  `age range` = c("0–5", "6–10", "11–15", "16–20", "21–25", "26–30", "31–35", "36–40", "41–45", "46–50", "51–55", "56–60", "61–65", "66–70", "71–75", "76–80"),
+  count = c(age_counts, 0)
+)
+
+age_hist_1 <- tibble(
+  age = (1:75) - 0.5, 
+  count = hist(titanic$age, breaks = (0:75) + .01, plot = FALSE)$counts
+)
+age_hist_3 <- tibble(
+  age = (1:25) * 3 - 1.5, 
+  count = hist(titanic$age, breaks = (0:25) * 3 + .01, plot = FALSE)$counts
+)
+age_hist_15 <- tibble(
+  age = (1:5) * 15 - 7.5, 
+  count = hist(titanic$age, breaks = (0:5) * 15 + .01, plot = FALSE)$counts
+)
+
+age_hist5 <- age_hist %>%
+  mutate(age = (1:16) * 5 - 2.5) %>%
+  filter(count > 0)
+
+h1 <- ggplot(age_hist5, aes(x = age, y = count)) + 
+  geom_col(width = 4.7, fill = "#56B4E9", na.rm = TRUE)  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 25 * (0:5)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(18) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h2 <- ggplot(age_hist_1, aes(x = age, y = count)) + 
+  geom_col(width = .85, fill = "#56B4E9")  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 10 * (0:5)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h3 <- ggplot(age_hist_3, aes(x = age, y = count)) + 
+  geom_col(width = 2.75, fill = "#56B4E9")  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 25 * (0:5)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h4 <- ggplot(age_hist_15, aes(x = age, y = count)) + 
+  geom_col(width = 14.5, fill = "#56B4E9")  + 
+  scale_y_continuous(expand = c(0, 0), breaks = 100 * (0:4)) +
+  scale_x_continuous(name = "age (years)", limits = c(0, 75), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_minimal_hgrid(14) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+h1 <- h1 + theme_minimal_hgrid(16) +
+  theme(
+    axis.line.x = element_blank()
+  )
+
+plot_grid(
+  h2, NULL, h3,
+  NULL, NULL, NULL,
+  h1, NULL, h4,
+  align = 'hv',
+  rel_widths = c(1, .04, 1),
+  rel_heights = c(1, .04, 1)
+)
+```
+
+# Histograms and density plots in **ggplot2**
+
+## Making histograms with ggplot: `geom_histogram()`
+
+```{r}
+#| echo: fenced
+ggplot(titanic, aes(age)) +
+  geom_histogram()
+```
+
+## Setting the bin width {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(titanic, aes(age)) +
+  geom_histogram(binwidth = 5)
+```
+
+. . .
+
+Do you like where there bins are? What does the first bin say?
+
+## Always set the `center` as well, to half the `bin_width` {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(titanic, aes(age)) +
+  geom_histogram(binwidth = 5, center=2.5)
+```
+
+. . .
+
+
+Setting center 2.5 makes the bars start 0-5, 5-10, etc. instead of 2.5-7.5, etc. You could instead use the argument  `boundary=5` to accomplish the same behavior.
+
+## Making density plots with ggplot: `geom_density()` {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(titanic, aes(age)) +
+  geom_density(fill = "skyblue")
+```
+
+
+## Making density plots with ggplot: `geom_density()` {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(titanic, aes(age)) +
+  geom_density()
+```
+
+without `fill`
+
+## Boxplots: Showing values along y, conditions along x
+
+```{r}
+#| echo: false
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_boxplot(fill = "gray90") + 
+  xlab("month") + 
+  ylab("mean temperature (°C)") +
+  theme_half_open()
+```
+
+A boxplot is a crude way of visualizing a distribution.
+
+
+## How to read a boxplot
+
+
+```{r boxplot-schematic, echo = FALSE, fig.width = 8, fig.asp = 0.618, dev = "svg"}
+set.seed(3423)
+
+y <- c(rnorm(100), 3.4)
+s <- boxplot.stats(y)
+df <- tibble(
+  y = c(s$stats, max(y)),
+  x = c(1.03, 1.405, 1.405, 1.405, 1.03, 1.04),
+  label = c("minimum", "first quartile", "median", "third quartile", "maximum within upper fence", "outlier")
+)
+
+p_points <- ggplot(tibble(y), aes(x = 0, y = y)) + 
+  geom_point(position = position_jitter(width = .4, height = 0, seed = 320)) +
+  annotate("text", label = "data", x = 0, y = 4, hjust = 0.5, vjust = 1, size = 20/.pt) +
+  scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-2.55, 4), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_nothing()
+
+p_boxplot <- ggplot(tibble(y), aes(x = 1, y = y)) + 
+  geom_boxplot(fill = "gray90", outlier.size = 2) +
+  annotate("text", label = "boxplot", x = 1, y = 4, hjust = 0.5, vjust = 1, size = 20/.pt) +
+  geom_text(
+    data = df, aes(x, y, label = label), hjust = 0,
+    size = 16/.pt
+  ) +
+  scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-2.55, 4), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_nothing()
+
+plot_grid(p_points, p_boxplot, rel_widths = c(.65, 1), nrow = 1)
+```
+
+## If you like density plots, consider violins
+   
+```{r}
+#| echo: false
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_violin(fill = "gray90") + 
+  xlab("month") + 
+  ylab("mean temperature (°C)") +
+  theme_half_open()
+
+```
+
+. . .
+
+A violin plot is a density plot rotated 90 degrees and then mirrored.
+
+## How to read a violin plot
+
+```{r}
+#| echo: false
+set.seed(3423)
+
+y <- c(rnorm(100), 3.4)
+d <- density(y)
+df <- tibble(
+  y = c(min(y), d$x[which(d$y == max(d$y))], max(y)),
+  x = c(1.1, 1.5, 1.08),
+  label = c("minimum data value", "maximum point density", "maximum data value")
+)
+
+p_points <- ggplot(tibble(y), aes(x = 0, y = y)) + 
+  geom_point(position = position_jitter(width = .4, height = 0, seed = 320)) +
+  annotate("text", label = "data", x = 0, y = 4, hjust = 0.5, vjust = 1, size = 20/.pt) +
+  scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-2.55, 4), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_nothing()
+
+p_violin <- ggplot(tibble(y), aes(x = 1, y = y)) + 
+  geom_violin(fill = "gray90") +
+  annotate("text", label = "violin plot", x = 1, y = 4, hjust = 0.5, vjust = 1, size = 20/.pt) +
+  geom_text(
+    data = df, aes(x, y, label = label), hjust = 0,
+    size = 16/.pt
+  ) +
+  scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-2.55, 4), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_nothing()
+
+plot_grid(p_points, p_violin, rel_widths = c(.65, 1), nrow = 1)
+```
+
+# Making boxplots, violins, etc. in `ggplot2`
+
+## Making boxplots, violins, etc. in **ggplot2**
+
+Plot type    | Geom                    | Notes
+:----------- | :-----------------      | :-------------------------
+boxplot      | `geom_boxplot()`        |
+violin plot  | `geom_violin()`         |
+strip chart  | `geom_point()`          | Jittering requires `position_jitter()`
+sina plot    | `geom_sina()`           | From package **ggforce**
+scatter-density plot    | `geom_quasirandom()`           | From package **ggbeeswarm**
+ridgeline    | `geom_density_ridges()` | From package **ggridges**
+
+## Examples: Boxplot {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_boxplot(fill = "skyblue") 
+
+```
+
+## Examples: Violins {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_violin(fill = "skyblue") 
+
+```
+
+
+## Examples: Strip chart (no jitter) {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  geom_point(color = "skyblue") 
+
+```
+
+
+## Examples:  ggbeeswarm's `geom_quasirandom`   {auto-animate=true}
+
+```{r}
+#| echo: fenced
+ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
+  ggbeeswarm::geom_quasirandom(color = "skyblue") 
+```
+
+---
+
+## Group Pen and Paper exercise {.your-turn}
+
+```{r}
+#| echo: false
+countdown::countdown(10, left=0, right=NULL)
+countdown::countdown(30)
+```
+
+Get with your group.
+Go to [the activity](index.html#data-visualization-activity)
+
+
+## Analyze subsets: `group_by()` and `summarize()`
+
+![](images/summarize.svg)
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Previously we used `count`, now we `group` the data
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  group_by(bug, conc, condition)
+```
+
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Previously we used `count`, now we `group` the data, and then summarise
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  group_by(bug, conc, condition) %>%
+  summarise(
+    n = n() # n() returns the number of observations per group
+    )
+```
+
+
+## Example application of grouping: Medians {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  group_by(bug, conc, condition) %>%
+  summarise(
+    median_od = median(od) 
+    )
+```
+
+## You can make multiple summaries at once
+
+```{r}
+#| echo: fenced
+
+joined_data %>%
+  group_by(bug, conc, condition) %>%
+  summarise(
+    n = n(), 
+    median_od = median(od) 
+    )
+```
+
+
+## Reshape: `pivot_wider()` and `pivot_longer()`
+
+![](images/pivot.svg)
+
+## Reshaping example: Making a wide summary table {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  count(plate_id, bug, conc, condition) %>%
+  pivot_wider(names_from = plate_id, values_from = n)
+```
+
+## Reshaping example: Making a wide summary table {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  count(plate_id, bug, conc, condition) %>%
+  pivot_wider(names_from = bug, values_from = n)
+```
+
+# combining datasets: joins
+
+
+## We use joins to add columns from one table into another
+
+![](images/join.svg)
+
+## There are different types of joins
+
+The differences are all about how to handle when the two tables have different **key values** 
+
+![](images/joins-venn2.svg)
+
+. . .
+
+::: {.incremental style="font-size: 0.7em"}
+`left_join()` - the resulting table always has the same **key_values** as the "left" table
+
+`right_join()` - the resulting table always has the same **key_values** as the "right" table
+
+`inner_join()` - the resulting table always only keeps the  **key_values** that are in both tables
+
+`full_join()` - the resulting table always has all **key_values** found in both tables
+:::
+
+## Left Join
+
+`left_join()` - the resulting table always has the same **key_values** as the "left" table
+
+![](images/left_join.png)
+
+## inner_join
+
+`inner_join()` - the resulting table always only keeps the  **key_values** that are in both tables
+
+![](images/inner_join.png)
+
+```{r}
+#| eval: false
+#| echo: true
+table_a %>% inner_join(table_b)
+```
+
+## Note, merging tables vertically is bind_rows(), not a join
+
+![](images/vertical_join.png)
+
+
+```{r}
+#| eval: false
+#| echo: true
+table_a %>% bind_rows(table_b)
+```
+
+
