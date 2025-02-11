@@ -400,35 +400,49 @@
     "href": "materials/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 a          9 iners     CTRL          0\n2        4 b          7 vaginalis VCA         100\n3        4 f          4 gasseri   LNA         100\n4        1 f          3 crispatus VCA         400\n5        2 a          7 jensenii  CTRL          0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug    condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n1        4 c         11 CTRL   VCA          50\n2        4 b          1 CTRL   VCA         100\n3        3 g          9 piotii VCA         200\n4        3 e         11 CTRL   OA           50\n5        3 b          1 CTRL   OA          400"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        4 a          2 gasseri   CTRL          0\n2        2 g         10 iners     LNA          50\n3        2 d          3 crispatus LNA         400\n4        1 b         10 iners     OA          400\n5        3 g          7 vaginalis VCA         200"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        1 h          9 iners     CTRL          0\n2        4 d         12 CTRL      LNA         400\n3        1 d          2 crispatus OA          100\n4        2 e          5 jensenii  LNA         200\n5        2 c          5 jensenii  VCA          50"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug      condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 g          6 jensenii LNA          50    0.05\n2        2 f          8 iners    LNA         100    0.1 \n3        3 f         10 piotii   VCA         400    0.4 \n4        2 d          8 iners    LNA         400    0.4 \n5        2 e         11 CTRL     LNA         200    0.2"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug      condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 c          6 jensenii VCA          50    0.05\n2        1 g          8 iners    VCA         200    0.2 \n3        1 b          9 iners    OA          400    0.4 \n4        4 f          3 gasseri  LNA         100    0.1 \n5        4 h          3 gasseri  CTRL          0    0"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        2 h          5 jensenii CTRL          0     0         0\n2        1 f          5 jensenii VCA         400     0.4  400000\n3        2 h         11 CTRL     CTRL          0     0         0\n4        4 a          4 gasseri  CTRL          0     0         0\n5        4 f          4 gasseri  LNA         100     0.1  100000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        2 d         10 iners     LNA         400     0.4  400000\n2        4 b          8 piotii    VCA         100     0.1  100000\n3        2 a         12 CTRL      CTRL          0     0         0\n4        3 h          6 vaginalis CTRL          0     0         0\n5        2 f          4 crispatus LNA         100     0.1  100000"
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
+    "href": "materials/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
+    "title": "tidyverse for data analysis",
+    "section": "Your turn to do some data wrangling",
+    "text": "Your turn to do some data wrangling\n\n\n\n−+\n15:00\n\n\n\nWrite code to answer the following questions?\n\nHow many different concentrations of LCFA are tested?\nHow many different LCFAs are tested on each plate?\nWhat bug has the highest OD seen in all the plates?\nWhat bug has the highest OD when no LCFA is added?\nWhat control well with no bug and no LCFA has the highest OD?"
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#break",
+    "href": "materials/r-tutorial/slides.html#break",
+    "title": "tidyverse for data analysis",
+    "section": "Break",
+    "text": "Break\n\n\n\n−+\n15:00"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#plots-map-data-onto-graphical-elements.",
     "href": "materials/r-tutorial/slides.html#plots-map-data-onto-graphical-elements.",
     "title": "tidyverse for data analysis",
     "section": "Plots map data onto graphical elements.",
-    "text": "Plots map data onto graphical elements.\n\n\n\nmetadata.csv`\n\n\nplate_id\nrow\ncolumn\nbug\ncondition\nconc\n\n\n\n\n1\na\n1\nCTRL\nCTRL\n0\n\n\n1\na\n2\ncrispatus\nCTRL\n0\n\n\n1\na\n3\ncrispatus\nCTRL\n0\n\n\n1\na\n4\ncrispatus\nCTRL\n0\n\n\n1\na\n5\njensenii\nCTRL\n0\n\n\n1\na\n6\njensenii\nCTRL\n0"
+    "text": "Plots map data onto graphical elements.\n\n\n\njoined_data`\n\n\nod\nplate_id\nrow\ncolumn\nbug\ncondition\nconc\n\n\n\n\n0.206\n1\na\n1\nCTRL\nCTRL\n0\n\n\n0.171\n1\na\n2\ncrispatus\nCTRL\n0\n\n\n0.136\n1\na\n3\ncrispatus\nCTRL\n0\n\n\n0.131\n1\na\n4\ncrispatus\nCTRL\n0\n\n\n0.137\n1\na\n5\njensenii\nCTRL\n0\n\n\n0.140\n1\na\n6\njensenii\nCTRL\n0"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#od-mapped-to-y-position",
@@ -513,6 +527,20 @@
     "title": "tidyverse for data analysis",
     "section": "Aesthetics can also be used as parameters in geoms",
     "text": "Aesthetics can also be used as parameters in geoms\n\n\n```{r}\n#| output-location: column\nggplot(joined_data, mapping = aes(x = as.factor(conc), y = od, color = bug)) +\n  geom_boxplot(fill=\"orange\")\n```"
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#faceting-makes-subplots-for-comparisons.",
+    "href": "materials/r-tutorial/slides.html#faceting-makes-subplots-for-comparisons.",
+    "title": "tidyverse for data analysis",
+    "section": "Faceting makes subplots for comparisons.",
+    "text": "Faceting makes subplots for comparisons.\n\n```{r}\njoined_data %&gt;%\n  ggplot(mapping = aes(x = conc, y = od, color = bug)) +\n  geom_jitter(size=3, width=10) +\n  facet_wrap(~condition)\n```"
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#faceting-makes-subplots-for-comparisons.-1",
+    "href": "materials/r-tutorial/slides.html#faceting-makes-subplots-for-comparisons.-1",
+    "title": "tidyverse for data analysis",
+    "section": "Faceting makes subplots for comparisons.",
+    "text": "Faceting makes subplots for comparisons.\n\n```{r}\njoined_data %&gt;%\n  ggplot(mapping = aes(x = conc, y = od, color = bug)) +\n  geom_jitter(size=3, width=10) +\n  facet_wrap(~condition+bug, ncol=6)\n```"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#histograms-and-density-plots",
@@ -631,7 +659,7 @@
     "href": "materials/r-tutorial/slides.html#group-pen-and-paper-exercise",
     "title": "tidyverse for data analysis",
     "section": "Group Pen and Paper exercise",
-    "text": "Group Pen and Paper exercise\n\n\n\n−+\n10:00\n\n\n\n\n−+\n30:00\n\n\n\nGet with your group. Go to the activity"
+    "text": "Group Pen and Paper exercise\n\n\n\n−+\n10:00\n\n\n\nGet with a group of 2-3 people. Go to the activity and pick an option to do together."
   },
   {
     "objectID": "materials/r-tutorial/slides.html#analyze-subsets-group_by-and-summarize",
@@ -667,6 +695,27 @@
     "title": "tidyverse for data analysis",
     "section": "You can make multiple summaries at once",
     "text": "You can make multiple summaries at once\n\n```{r}\njoined_data %&gt;%\n  group_by(bug, conc, condition) %&gt;%\n  summarise(\n    n = n(), \n    median_od = median(od) \n    )\n```\n\n# A tibble: 91 × 5\n# Groups:   bug, conc [35]\n   bug    conc condition     n median_od\n   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;     &lt;dbl&gt;\n 1 CTRL      0 CTRL         24     0.117\n 2 CTRL     50 LNA           6     0.118\n 3 CTRL     50 OA            6     0.118\n 4 CTRL     50 VCA           6     0.119\n 5 CTRL    100 LNA           6     0.120\n 6 CTRL    100 OA            6     0.118\n 7 CTRL    100 VCA           6     0.119\n 8 CTRL    200 LNA           6     0.122\n 9 CTRL    200 OA            6     0.122\n10 CTRL    200 VCA           6     0.122\n# ℹ 81 more rows"
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#get-background-od-for-each-media-on-each-plate",
+    "href": "materials/r-tutorial/slides.html#get-background-od-for-each-media-on-each-plate",
+    "title": "tidyverse for data analysis",
+    "section": "Get background OD for each media on each plate",
+    "text": "Get background OD for each media on each plate\nMake a code block and make a variable called media_background_medians that has one row for every combination of plate, lcfa, and conc that gives the median OD measured for those conditions.\nBonus: make a histogram of the media backgrounds (before summarising) for each condition and concentration. Try with a facet by plate and without."
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#get-no-lcfa-od-for-each-bug-on-each-plate",
+    "href": "materials/r-tutorial/slides.html#get-no-lcfa-od-for-each-bug-on-each-plate",
+    "title": "tidyverse for data analysis",
+    "section": "Get no-LCFA OD for each bug on each plate",
+    "text": "Get no-LCFA OD for each bug on each plate\nNow make a variable called bug_no_lcfa_control. Join the media_background_medians to the joined_data, and mutate a column that caluclate the od - media_background. Filter this table so it only has the no LCFA control conditions for each bug on each plate. Then group_by bug and plate_id and get the median of each background subtracted od.\nBonus: make a histogram before summarising of the ods with background subtracted for each bug on each plate."
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#challenge-calculate-relative-growths",
+    "href": "materials/r-tutorial/slides.html#challenge-calculate-relative-growths",
+    "title": "tidyverse for data analysis",
+    "section": "Challenge: calculate relative growths",
+    "text": "Challenge: calculate relative growths\nMake a table that has the relative growth compared to no LCFA of each bug for each concentration. (Hint: There should be three rows per condition+bug+concentration.) Make a plot showing the relative growths. (e.g. x axis is concentration, y axis relative growth, facet by bug+concentration, and pick a geom to use to show the data.)\nInvestigate why some relative growths are so high. Think about how you might tweak the analysis to handle that issue."
   },
   {
     "objectID": "materials/r-tutorial/slides.html#reshape-pivot_wider-and-pivot_longer",
@@ -1021,7 +1070,31 @@
     "href": "materials/r-tutorial/index.html#download-the-data-for-the-workshop",
     "title": "R workshop",
     "section": "Download the data for the workshop",
-    "text": "Download the data for the workshop\nThere are five files to download and place in your R project folder.\n\nmetadata.csv\n\nEach row of this table is a well on a plate that was measured. This has the bacterial isolate that was tested, the growth condition (long chain fatty acid) and the concentration of the long chain fatty acid.\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nbug – the isolate/species that was tested in this well condition - which long chain fatty acid (LCFA) was added conc - what was the concentration of the LCFA in this well?\n\nplate_1_data.csv\nplate_2_data.csv\nplate_3_data.csv\nplate_4_data.csv\n\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nod - the optical density that was measured in this well. This is a measure of bacterial growth.\n\nRead in data\nData is often in tables, and the easiest way to store tabular data is in csv or tsv format.\ncsv - comma separated values\ntsv - tab separated values\nto read in data stored this way use read_csv(filename) or read_tsv(filename)\nmetadata &lt;- read_csv(\"data/metadata.csv\")\n\n\nbinding tables together\nWe have data from 4 different plates in separate csv files. Use bind_rows to make a single table with all the data.\nplate_1 &lt;- read_csv(\"data/plate_1_data.csv\")\nplate_2 &lt;- read_csv(\"data/plate_2_data.csv\")\nplate_3 &lt;- read_csv(\"data/plate_3_data.csv\")\nplate_4 &lt;- read_csv(\"data/plate_4_data.csv\")\n\nall_plate_data &lt;- bind_rows(plate_1, plate_2, plate_3, plate_4)\n\n\njoining metadata to the data\nConnect the metadata to the plate reader data using left_join\n\njoined_data &lt;- all_plate_data %&gt;%\n  left_join(metadata)\n\n\nData visualization activity\nOn excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table.\nOption 1: What is the spread of values you typically see in the no media controls for different concentrations of LCFA? Bonus: are there any effects of where the well is on the plate with the values measured?\nOption 2: What is the typical growth in the media of the different bugs without any LCFA?\nOption 3: How do the different LCFAs tested impact the growth of L. crispatus?\nOption 4: Are there any batch effects between plates? (What conditions are measured on multiple plates, and what conditions are only on one plate?)",
+    "text": "Download the data for the workshop\nThere are five files to download and place in your R project folder.\n\nmetadata.csv\n\nEach row of this table is a well on a plate that was measured. This has the bacterial isolate that was tested, the growth condition (long chain fatty acid) and the concentration of the long chain fatty acid.\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nbug – the isolate/species that was tested in this well condition - which long chain fatty acid (LCFA) was added conc - what was the concentration of the LCFA in this well?\n\nplate_1_data.csv\nplate_2_data.csv\nplate_3_data.csv\nplate_4_data.csv\n\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nod - the optical density that was measured in this well. This is a measure of bacterial growth.\n\nRead in data\nData is often in tables, and the easiest way to store tabular data is in csv or tsv format.\ncsv - comma separated values\ntsv - tab separated values\nto read in data stored this way use read_csv(filename) or read_tsv(filename)\nmetadata &lt;- read_csv(\"data/metadata.csv\")\n\n\nbinding tables together\nWe have data from 4 different plates in separate csv files. Use bind_rows to make a single table with all the data.\nplate_1 &lt;- read_csv(\"data/plate_1_data.csv\")\nplate_2 &lt;- read_csv(\"data/plate_2_data.csv\")\nplate_3 &lt;- read_csv(\"data/plate_3_data.csv\")\nplate_4 &lt;- read_csv(\"data/plate_4_data.csv\")\n\nall_plate_data &lt;- bind_rows(plate_1, plate_2, plate_3, plate_4)\n\n\njoining metadata to the data\nConnect the metadata to the plate reader data using left_join\n\njoined_data &lt;- all_plate_data %&gt;%\n  left_join(metadata)",
+    "crumbs": [
+      "About the Kwon Lab",
+      "R and R Studio",
+      "</b> R workshop"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial/index.html#data-visualization-activity",
+    "href": "materials/r-tutorial/index.html#data-visualization-activity",
+    "title": "R workshop",
+    "section": "Data visualization activity",
+    "text": "Data visualization activity\nOn excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table.\n\nOption 1: What is the spread of values you typically see in the no media controls for different concentrations of LCFA? Bonus: are there any effects of where the well is on the plate with the values measured?\nOption 2: What is the typical growth in the media of the different bugs without any LCFA?\nOption 3: How do the different LCFAs tested impact the growth of L. crispatus?\nOption 4: Are there any batch effects between plates? (What conditions are measured on multiple plates, and what conditions are only on one plate?)",
+    "crumbs": [
+      "About the Kwon Lab",
+      "R and R Studio",
+      "</b> R workshop"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial/index.html#example-answers-for-data-analysis-questions",
+    "href": "materials/r-tutorial/index.html#example-answers-for-data-analysis-questions",
+    "title": "R workshop",
+    "section": "Example answers for data analysis questions:",
+    "text": "Example answers for data analysis questions:\n\n\n\n\n\n\nCalculate media backgrounds and bacterial growth with no LCFA\n\n\n\n\n\nmedia_background &lt;- joined_data %&gt;%\n  filter(bug == \"CTRL\") \n\nmedia_background_medians &lt;- media_background %&gt;%\n  group_by(plate_id, condition, conc) %&gt;%\n  summarise(no_bacteria_control = median(od))\n\nbug_no_lcfa_control &lt;- joined_data %&gt;%\n  filter(condition == \"CTRL\") %&gt;%\n  filter(bug != \"CTRL\") %&gt;%\n  left_join(media_background_averages) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control)\n  \nbug_no_lcfa_control_medians &lt;- bug_no_lcfa_control %&gt;%\n  group_by(plate_id, bug) %&gt;%\n  summarise(no_lcfa_control = median(background_subtracted_od)) %&gt;%\n  ungroup()\n\n\n\n\n\n\n\n\n\nCalculate relative growths for each bug in each concentration of LCFA\n\n\n\n\n\nrelative_growths &lt;- joined_data %&gt;%\n  filter(condition != \"CTRL\", bug !=\"CTRL\") %&gt;%\n  left_join(media_background_medians) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control) %&gt;%\n  left_join(bug_no_lcfa_control_medians) %&gt;%\n  mutate(relative_growth = background_subtracted_od/ no_lcfa_control) \n\n\n\n\n\n\n\n\n\nExample plots\n\n\n\n\n\n\nmedia_background %&gt;% \n  ggplot(aes(x=od)) +\n  geom_histogram(binwidth = 0.01) +\n  facet_wrap(~condition+conc)\n\n\n\n\n\n\n\n\n\nbug_no_lcfa_control %&gt;%\n  ggplot(aes(x=background_subtracted_od)) +\n  geom_histogram(binwidth = 0.05) +\n  facet_wrap(~bug)\n\n\n\n\n\n\n\n\n\nrelative_growths %&gt;%\n  mutate(conc = as.factor(conc)) %&gt;%\n  ggplot(aes(x=conc, y=relative_growth)) +\n  geom_boxplot(outlier.shape = NA) +\n  ggbeeswarm::geom_quasirandom() +\n  scale_y_continuous(trans=scales::log2_trans()) +\n  facet_wrap(~condition+bug, ncol=6)",
     "crumbs": [
       "About the Kwon Lab",
       "R and R Studio",
