@@ -1,0 +1,121 @@
+---
+title: "16S Pipeline Tutorial"
+format:
+  html:
+    toc: true
+---
+
+
+A Snakemake workflow for processing 16S rRNA sequencing data using [DADA2](https://benjjneb.github.io/dada2/){target="_blank"}, [VALENCIA](https://github.com/ravel-lab/VALENCIA){target="_blank"} for community state type (CST) classification, and custom scripts for spike-in adjustments.
+
+This workflow assumes your reads are demultiplexed.
+
+
+## Prerequisites
+
+1. **Required Software**:
+   - Snakemake (v8.20 or higher)
+   - Conda or Mamba
+   - Python 3.10 or higher
+   - R 4.3 or higher
+
+2. **Required Databases**:
+   - HISAT2 human reference database
+   - GTDB reference databases
+   - SpeciateIT VALENCIA database
+
+## Installation
+
+To install the workflow, run:
+
+```bash
+# Clone the repository without history and enter the project directory
+git clone --depth=1 https://github.com/kwondry/16s_dada2_valencia.git
+
+cd 16s_dada2_valencia
+```
+
+This will create a fresh copy of the workflow without any git history.
+
+## Configuration and set up
+
+1. **Database Paths**:
+   Edit `config/config.yaml` to set the paths to your reference databases:
+   ```yaml
+   hisat_db: "/path/to/hisat2/human/reference"  # Path to HISAT2 index of T2T human genome
+   gtdb_tax_db: "/path/to/GTDB/taxonomy/database"  # DADA2 GTDB taxonomy database
+   gtdb_species_db: "/path/to/GTDB/species/database"  # DADA2 GTDB species database 
+   speciateit_db: "/path/to/speciateit_valencia"  # SpeciateIT VALENCIA database
+   ```
+
+   To obtain these databases:
+   - **HISAT2 human reference**: Download the T2T human genome from [NCBI](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_009914755.1/){target="_blank"} and index it using HISAT2's `hisat2-build` command
+   - **GTDB databases**: Download the DADA2-formatted GTDB reference files from [Zenodo](https://zenodo.org/record/4587955){target="_blank"}
+   - **SpeciateIT database**: Clone the speciateIT databases and VALENCIA scripts from the Ravel Lab [GitHub](https://github.com/ravel-lab/speciateIT){target="_blank"}
+
+2. **DADA2 Parameters**:
+   The workflow includes default parameters for DADA2 processing. You can modify these in `config/config.yaml`:
+   ```yaml
+   dada2:
+     pe:
+       maxEE: 3
+       truncLen: [286, 260]
+       trimLeft: [10, 10]
+       merge:
+         minOverlap: 8
+         maxMismatch: 1
+     se:
+       maxEE: 1
+       truncLen: 230
+       trimLeft: 10
+   ```
+
+3. **Primer Sequences**:
+   Update the primer sequences in `config/config.yaml` if using different primers:
+   ```yaml
+   primers:
+     v3v4:
+       forward: "ACTCCTRCGGGAGGCAGCAG"
+       reverse: "GGACTACHVGGGTWTCTAAT"
+   ```
+
+## Input Data
+
+This workflow can run process multiple sequencing runs in parralel.
+
+1. Note the folder path of demultiplexed `.fastq` files and mapping file for each run.
+
+2. Create/edit a sequencing runsheet CSV file with the following columns:
+   - `run_id`: Run identifier
+   - `mapping_file`: Path to mapping file containing sample IDs
+   - `fastq_dir`: Path to directory containing FASTQ files
+   - `region`: Sequencing region used (V4 or V3V4)
+
+3. The mapping file should contain unique sample identifiers in a column `#SampleID` that match the FASTQ filenames in the fastq_dir.
+
+4. The workflow will automatically process both single-end and paired-end data based on the FASTQ files present.
+
+## Running the Workflow
+
+1. **Test Run**:
+   ```bash
+   snakemake -n
+   ```
+
+2. **Local Execution**:
+   ```bash
+   snakemake --use-conda --cores all
+   ```
+
+3. **SLURM Execution**:
+   ```bash
+    sbatch submit_jobs.sh
+   ```
+
+## Output
+
+The workflow generates two main outputs in the `outputs/results` directory:
+
+- Two versions of a phyloseq object containing ASV counts, taxonomy assignments, CST assignment, and sample metadata with either a vaginal-specific taxonomy db, `speciateIT` or `GTDB`.
+- A MultiQC report summarizing read quality metrics and taxonomic composition
+

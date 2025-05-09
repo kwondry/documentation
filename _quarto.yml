@@ -65,7 +65,12 @@ website:
               href: materials/rnaseq/walkthrough/index.qmd
           - section: "16S"
             contents:
-            - text: "<em>Running DADA2 - Coming soon </em>"
+            - text: "Background"
+              contents:
+              href: materials/16S/background/index.qmd
+            - text: "16S Pipeline"
+              contents:
+              href: materials/16S/16s_pipeline/index.qmd
             - text: "Assigning CSTs with Valencia"
               contents:
               href: materials/16S/valencia/index.qmd
