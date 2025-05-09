@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - O2</title>
+<title>Kwon Lab Pipelines - 16S Background</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/getting-started/installation/index.html" rel="next">
+<link href="../../../materials/16S/16s_pipeline/index.html" rel="next">
+<link href="../../../materials/rnaseq/walkthrough/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">O2</h1>
+          <h1 class="quarto-secondary-nav-title">16S Background</h1>
         </a>     
     </div>
   </nav>
@@ -167,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../materials/getting-started/o2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"> Get your O2 account</span></a>
   </div>
 </li>
@@ -236,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/16S/background/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../materials/16S/background/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Background</span></a>
   </div>
 </li>
@@ -283,32 +250,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction-to-o2" id="toc-introduction-to-o2" class="nav-link active" data-scroll-target="#introduction-to-o2">Introduction to O2</a></li>
-  <li><a href="#setting-up-your-o2-account" id="toc-setting-up-your-o2-account" class="nav-link" data-scroll-target="#setting-up-your-o2-account">Setting up your O2 account</a>
-  <ul class="collapse">
-  <li><a href="#obtain-your-o2-account" id="toc-obtain-your-o2-account" class="nav-link" data-scroll-target="#obtain-your-o2-account">Obtain your O2 account</a></li>
-  <li><a href="#accessing-o2" id="toc-accessing-o2" class="nav-link" data-scroll-target="#accessing-o2">Accessing O2</a></li>
-  <li><a href="#setting-up-2-factor-authentication-with-duo" id="toc-setting-up-2-factor-authentication-with-duo" class="nav-link" data-scroll-target="#setting-up-2-factor-authentication-with-duo">Setting up 2-Factor Authentication with Duo</a></li>
-  <li><a href="#setup-passwordless-login-ssh-keys" id="toc-setup-passwordless-login-ssh-keys" class="nav-link" data-scroll-target="#setup-passwordless-login-ssh-keys">Setup passwordless login (SSH keys)</a></li>
-  </ul></li>
-  <li><a href="#getting-oriented-with-o2" id="toc-getting-oriented-with-o2" class="nav-link" data-scroll-target="#getting-oriented-with-o2">Getting oriented with O2</a>
-  <ul class="collapse">
-  <li><a href="#request-access-to-the-ngroupskwon-groups-folder" id="toc-request-access-to-the-ngroupskwon-groups-folder" class="nav-link" data-scroll-target="#request-access-to-the-ngroupskwon-groups-folder">Request access to the <code>/n/groups/kwon/</code> groups folder</a></li>
-  <li><a href="#making-a-scratch-directory" id="toc-making-a-scratch-directory" class="nav-link" data-scroll-target="#making-a-scratch-directory">Making a scratch directory</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">O2</h1>
+<h1 class="title d-none d-lg-block">16S Background</h1>
 </div>
 
 
@@ -325,101 +274,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p>Working with the HMS O2 cluster</p>
-</blockquote>
-<section id="introduction-to-o2" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-o2">Introduction to O2</h2>
-<p>O2 is the high performance computing (HPC) cluster maintained by Harvard Medical School. O2 official documentation is located here:</p>
-<ul>
-<li><a href="https://harvardmed.atlassian.net/wiki/spaces/O2/overview" target="_blank">O2 Cluster Documentation</a><br>
-</li>
-<li><a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651306/O2+Cluster+Status" target="_blank">O2 Status (Maintenance Updates and Outages)</a><br>
-</li>
-</ul>
-</section>
-<section id="setting-up-your-o2-account" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-your-o2-account">Setting up your O2 account</h2>
-<section id="obtain-your-o2-account" class="level3">
-<h3 class="anchored" data-anchor-id="obtain-your-o2-account">Obtain your O2 account</h3>
-<p>Kwon Lab is an “off-quad” Harvard Medical School affiliated lab that uses O2 computing services. This section was created using the official <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1918304257/How+to+request+or+retain+an+O2+account" target="_blank">O2 documentation</a> as reference.<br>
-</p>
-<ol type="1">
-<li>Submit <a href="https://ppms.us/harvard-hms/vdoc/?cont=on&amp;pf=11&amp;docid=30">PPMS form</a> and wait for RC Core admin (<a href="mailto:rccore@hms.harvard.edu">rccore@hms.harvard.edu</a>) for approval. Approval notifications are sent to email submitted in PPMS form.</li>
-<li>Sign the HMS RC Core user agreement that is sent via email (requires PI to co-sign)</li>
-</ol>
-</section>
-<section id="accessing-o2" class="level3">
-<h3 class="anchored" data-anchor-id="accessing-o2">Accessing O2</h3>
-<p>Using your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.</p>
-<div id="c3d5bf03" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><img src="../../images/o2_login.png" class="img-fluid" style="width:50.0%"></p>
-</section>
-<section id="setting-up-2-factor-authentication-with-duo" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-2-factor-authentication-with-duo">Setting up 2-Factor Authentication with Duo</h3>
-<p>O2 login requires 2-Factor Authentication and it is recommended to execute this through the Duo app, which can be installed on your phone.</p>
-<ol type="1">
-<li><a href="https://it.hms.harvard.edu/duo-mobile-app">Download the app</a> on phone</li>
-<li>Email <a href="mailto:itservicedesk@hms.harvard.edu">itservicedesk@hms.harvard.edu</a> or call 617-432-2000 to ask HMS IT to register and connect your HMS account with Duo.</li>
-<li>Logging into O2 by default asks you to pick a Duo authentication method (push, call or text). Set your Duo app to either send a push or call your phone each time automatically. DO NOT set text as your default.</li>
-</ol>
-<p>(On the login node) Run the following on O2 terminal:</p>
-<p>For push: (recommended, but only if you already have Duo push!)</p>
-<div id="83ed57dc" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=push'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>For phone call:</p>
-<div id="2757bccb" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=phone'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="setup-passwordless-login-ssh-keys" class="level3">
-<h3 class="anchored" data-anchor-id="setup-passwordless-login-ssh-keys">Setup passwordless login (SSH keys)</h3>
-<p>Please refer to SSH keys tutorial <a href="https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1600651365/How+to+Generate+SSH+Keys" target="_blank">here</a><br>
-</p>
-</section>
-</section>
-<section id="getting-oriented-with-o2" class="level2">
-<h2 class="anchored" data-anchor-id="getting-oriented-with-o2">Getting oriented with O2</h2>
-<p>Save all your files into one of the two locations:</p>
-<ol type="1">
-<li><code>/n/groups/kwon/&lt;your_name&gt;</code> Your own folder within the Kwon Lab group folder and main storage location.<br>
-</li>
-<li><code>/n/groups/scratch/&lt;first_letter_of_hms_id&gt;/&lt;hms_id&gt;</code> Scratch directory is for temporary storage and files are deleted in 45 days.</li>
-</ol>
-<section id="request-access-to-the-ngroupskwon-groups-folder" class="level3">
-<h3 class="anchored" data-anchor-id="request-access-to-the-ngroupskwon-groups-folder">Request access to the <code>/n/groups/kwon/</code> groups folder</h3>
-<p>To request access, email <a href="mailto:rchelp@hms.harvard.edu">rchelp@hms.harvard.edu</a> to ask for access to the group folder <code>/n/groups/kwon</code> on O2. Please copy <a href="mailto:dkwon@mgh.harvard.edu">dkwon@mgh.harvard.edu</a> and <a href="mailto:jelsherbini@mgh.harvard.edu">jelsherbini@mgh.harvard.edu</a>.</p>
-<p>Use the following command in the O2 terminal to access the Kwon Lab folder and make a folder under your own name:</p>
-<div id="5fa887b5" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>kwon<span class="op">/</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">&lt;</span>your name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To access your own folder within the Kwon Lab group folder on the O2 terminal:</p>
-<div id="24fc3907" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>kwon<span class="op">/&lt;</span>your name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="making-a-scratch-directory" class="level3">
-<h3 class="anchored" data-anchor-id="making-a-scratch-directory">Making a scratch directory</h3>
-<p>Note: the scratch directory is for <strong>TEMPORARY STORAGE</strong>. All files in scratch are automatically deleted <strong>45 days</strong> after their last modification date. Everything you want to keep needs to be moved to your folder in <code>/n/groups/kwon/&lt;your name&gt;</code>.</p>
-<p><strong>(On the login node)</strong> Run the following on O2 terminal:</p>
-<div id="ada537c5" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>n<span class="op">/</span>cluster<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>scratch_create_directory.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To access scratch directory:</p>
-<div id="3513df3d" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/&lt;</span>first_letter_of_hms_id<span class="op">&gt;/&lt;</span>hms_id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br>
-<br>
-</p>
+<p><em>Coming soon</em></p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -833,10 +690,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../../materials/rnaseq/walkthrough/index.html" class="pagination-link" aria-label="Walkthrough">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Walkthrough</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/getting-started/installation/index.html" class="pagination-link" aria-label="</b> Installing software for work on O2">
-        <span class="nav-page-text"> Installing software for work on O2</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../materials/16S/16s_pipeline/index.html" class="pagination-link" aria-label="16S Pipeline">
+        <span class="nav-page-text">16S Pipeline</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

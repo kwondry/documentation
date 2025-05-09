@@ -400,28 +400,28 @@
     "href": "materials/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug      condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;\n1        4 e          4 gasseri  LNA         200\n2        1 a          5 jensenii CTRL          0\n3        4 c          4 gasseri  VCA          50\n4        2 g         11 CTRL     LNA          50\n5        1 c          1 CTRL     OA          200"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        3 a          3 gasseri   CTRL          0\n2        4 a          8 piotii    CTRL          0\n3        4 g          8 piotii    LNA          50\n4        1 f          2 crispatus VCA         400\n5        2 c         12 CTRL      VCA          50"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug     condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;\n1        4 h          8 piotii  CTRL          0\n2        2 h          8 iners   CTRL          0\n3        2 f         12 CTRL    LNA         100\n4        4 d          3 gasseri LNA         400\n5        1 c         12 CTRL    OA          200"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        1 e          2 crispatus OA           50\n2        3 c          7 vaginalis OA          200\n3        1 g          1 CTRL      VCA         200\n4        1 c         10 iners     OA          200\n5        2 h          6 jensenii  CTRL          0"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 h          4 gasseri   CTRL          0     0  \n2        4 a          8 piotii    CTRL          0     0  \n3        4 h          5 vaginalis CTRL          0     0  \n4        3 h          5 vaginalis CTRL          0     0  \n5        2 b          1 CTRL      VCA         100     0.1"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        3 b          7 vaginalis OA          400     0.4\n2        1 h         12 CTRL      CTRL          0     0  \n3        2 e          7 jensenii  LNA         200     0.2\n4        2 a          1 CTRL      CTRL          0     0  \n5        4 a          5 vaginalis CTRL          0     0"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        3 a          8 piotii    CTRL          0    0          0\n2        2 h          8 iners     CTRL          0    0          0\n3        3 e          7 vaginalis OA           50    0.05   50000\n4        1 e          4 crispatus OA           50    0.05   50000\n5        4 e         11 CTRL      LNA         200    0.2   200000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 g         12 CTRL     LNA          50    0.05   50000\n2        1 f          1 CTRL     VCA         400    0.4   400000\n3        2 e          1 CTRL     LNA         200    0.2   200000\n4        1 f          6 jensenii VCA         400    0.4   400000\n5        2 c          6 jensenii VCA          50    0.05   50000"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
@@ -973,11 +973,88 @@
     ]
   },
   {
-    "objectID": "materials/16S/dada2/index.html",
-    "href": "materials/16S/dada2/index.html",
-    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "objectID": "materials/16S/16s_pipeline/index.html",
+    "href": "materials/16S/16s_pipeline/index.html",
+    "title": "16S Pipeline Tutorial",
     "section": "",
-    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
+    "text": "A Snakemake workflow for processing 16S rRNA sequencing data using DADA2, VALENCIA for community state type (CST) classification, and custom scripts for spike-in adjustments.\nThis workflow assumes your reads are demultiplexed.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#prerequisites",
+    "href": "materials/16S/16s_pipeline/index.html#prerequisites",
+    "title": "16S Pipeline Tutorial",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nRequired Software:\n\nSnakemake (v8.20 or higher)\nConda or Mamba\nPython 3.10 or higher\nR 4.3 or higher\n\nRequired Databases:\n\nHISAT2 human reference database\nGTDB reference databases\nSpeciateIT VALENCIA database",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#installation",
+    "href": "materials/16S/16s_pipeline/index.html#installation",
+    "title": "16S Pipeline Tutorial",
+    "section": "Installation",
+    "text": "Installation\nTo install the workflow, run:\n# Clone the repository without history and enter the project directory\ngit clone --depth=1 https://github.com/kwondry/16s_dada2_valencia.git\n\ncd 16s_dada2_valencia\nThis will create a fresh copy of the workflow without any git history.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#configuration-and-set-up",
+    "href": "materials/16S/16s_pipeline/index.html#configuration-and-set-up",
+    "title": "16S Pipeline Tutorial",
+    "section": "Configuration and set up",
+    "text": "Configuration and set up\n\nDatabase Paths: Edit config/config.yaml to set the paths to your reference databases:\nhisat_db: \"/path/to/hisat2/human/reference\"  # Path to HISAT2 index of T2T human genome\ngtdb_tax_db: \"/path/to/GTDB/taxonomy/database\"  # DADA2 GTDB taxonomy database\ngtdb_species_db: \"/path/to/GTDB/species/database\"  # DADA2 GTDB species database \nspeciateit_db: \"/path/to/speciateit_valencia\"  # SpeciateIT VALENCIA database\nTo obtain these databases:\n\nHISAT2 human reference: Download the T2T human genome from NCBI and index it using HISAT2’s hisat2-build command\nGTDB databases: Download the DADA2-formatted GTDB reference files from Zenodo\nSpeciateIT database: Clone the speciateIT databases and VALENCIA scripts from the Ravel Lab GitHub\n\nDADA2 Parameters: The workflow includes default parameters for DADA2 processing. You can modify these in config/config.yaml:\ndada2:\n  pe:\n    maxEE: 3\n    truncLen: [286, 260]\n    trimLeft: [10, 10]\n    merge:\n      minOverlap: 8\n      maxMismatch: 1\n  se:\n    maxEE: 1\n    truncLen: 230\n    trimLeft: 10\nPrimer Sequences: Update the primer sequences in config/config.yaml if using different primers:\nprimers:\n  v3v4:\n    forward: \"ACTCCTRCGGGAGGCAGCAG\"\n    reverse: \"GGACTACHVGGGTWTCTAAT\"",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#input-data",
+    "href": "materials/16S/16s_pipeline/index.html#input-data",
+    "title": "16S Pipeline Tutorial",
+    "section": "Input Data",
+    "text": "Input Data\nThis workflow can run process multiple sequencing runs in parralel.\n\nNote the folder path of demultiplexed .fastq files and mapping file for each run.\nCreate/edit a sequencing runsheet CSV file with the following columns:\n\nrun_id: Run identifier\nmapping_file: Path to mapping file containing sample IDs\nfastq_dir: Path to directory containing FASTQ files\nregion: Sequencing region used (V4 or V3V4)\n\nThe mapping file should contain unique sample identifiers in a column #SampleID that match the FASTQ filenames in the fastq_dir.\nThe workflow will automatically process both single-end and paired-end data based on the FASTQ files present.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#running-the-workflow",
+    "href": "materials/16S/16s_pipeline/index.html#running-the-workflow",
+    "title": "16S Pipeline Tutorial",
+    "section": "Running the Workflow",
+    "text": "Running the Workflow\n\nTest Run:\nsnakemake -n\nLocal Execution:\nsnakemake --use-conda --cores all\nSLURM Execution:\n sbatch submit_jobs.sh",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#output",
+    "href": "materials/16S/16s_pipeline/index.html#output",
+    "title": "16S Pipeline Tutorial",
+    "section": "Output",
+    "text": "Output\nThe workflow generates two main outputs in the outputs/results directory:\n\nTwo versions of a phyloseq object containing ASV counts, taxonomy assignments, CST assignment, and sample metadata with either a vaginal-specific taxonomy db, speciateIT or GTDB.\nA MultiQC report summarizing read quality metrics and taxonomic composition",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
   },
   {
     "objectID": "index.html",
@@ -987,11 +1064,16 @@
     "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
   },
   {
-    "objectID": "materials/16S/prereqs/index.html",
-    "href": "materials/16S/prereqs/index.html",
-    "title": "Prequisites for running the nf-core RNA-Seq pipeline",
+    "objectID": "materials/16S/background/index.html",
+    "href": "materials/16S/background/index.html",
+    "title": "16S Background",
     "section": "",
-    "text": "Ensure you have mamba, snakemake, and nf-core installed on your platform.\n\nDownload the repo to your scratch folder\nReplace the filepath with your scratch folder\ncd /n/scratch3/users/j/je112\nwget https://github.com/kwonlabpipelines/smartseq_kraken/archive/refs/heads/main.zip\n\n\nUnzip and rename the folder\nunzip main.zip -d my_new_rnaseq_run\n\n\nAdding your samples\nOpen my_new_rnaseq_run/input/sample_sheet.csv with an editor and add your samples with the corresponding filepaths.\nColumns are named sample,fastq_1,fastq_2,strandedness You can download the raw csv file from the github repo, edit in excel or google drive, then save as csv.\nTo get it on o2, you can use rsync (https://harvardmed.atlassian.net/wiki/spaces/O2/pages/1588662157/File+Transfer)\nrsync -avt path_to_file hms_username@transfer.rc.hms.harvard.edu:/home/hms_username"
+    "text": "Coming soon",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Background"
+    ]
   },
   {
     "objectID": "materials/getting-started/installation/index.html",
