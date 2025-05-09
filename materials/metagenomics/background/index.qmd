@@ -1,0 +1,64 @@
+---
+title: "Shotgun Metagenomics Background"
+format:
+  html:
+    toc: true
+---
+
+## Overview
+
+Shotgun metagenomics allows us to examine both the taxonomic composition and functional potential of microbial communities. Unlike 16S rRNA sequencing which only captures bacterial diversity at the species or genus level, shotgun metagenomics can detect bacteria, viruses, fungi, and other microorganisms (assuming your extraction is optimized for these different taxa), while also allowing analysis of the gene content of the different taxa for studying functional potential or strain-level diversity.
+
+## Sample Collection and Processing
+
+### Biological Sampling
+
+Samples are typically collected as vaginal or cervical swabs. For downstream flexibility with timing and types of sequencing, you should use a product like RNAlater at the time of sampling.
+
+### DNA Extraction and Sequencing
+After collection, samples undergo:
+1. Nucleic acid extraction
+2. Library preparation
+3. Illumina sequencing
+   - Target: 50+ million paired-end reads per sample
+   - Read length: 2x150 base pairs
+   
+::: {.callout-note}
+Deep sequencing (50+ million reads) is necessary (especially for aasembly and strain-level analysis) because a significant portion of reads will be human in origin and will be filtered out during analysis.
+:::
+
+
+## Initial Processing
+All analysis pipelines begin with these essential steps:
+1. Human read removal
+2. Adapter trimming
+3. Quality filtering
+
+## Downstream Analysis
+
+After initial processing, there are several approaches you can take depending on your research questions:
+
+### 1. Gene-centric Analysis (VIRGO2)
+- [VIRGO2 Pipeline](../virgo2/index.qmd) for gene-centric analysis
+- Maps reads to a curated vaginal gene catalog
+- Useful for:
+  - Gene-level abundance
+  - Taxonomic composition
+  - Functional annotations
+
+### 2. Genome Assembly (MAGs)
+- *MAG Assembly Pipeline (Coming Soon)*
+- Assembles reads into contigs
+- Bins contigs into Metagenome-Assembled Genomes (MAGs)
+- Useful for:
+  - Understanding genome structure
+  - Identifying new strains
+  - Discovering novel organisms
+
+### 3. Strain-level Analysis
+- **inStrain**:
+  - Examines within-species genetic diversity
+  - Tracks strain populations
+- **StrainFacts**:
+  - Resolves strain-level variation
+  - Identifies distinct strains within species

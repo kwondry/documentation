@@ -69,6 +69,14 @@ website:
             - text: "Assigning CSTs with Valencia"
               contents:
               href: materials/16S/valencia/index.qmd
+          - section: "Metagenomics"
+            contents:
+            - text: "Background"
+              contents:
+              href: materials/metagenomics/background/index.qmd
+            - text: "VIRGO2 Pipeline"
+              contents:
+              href: materials/metagenomics/virgo2/index.qmd
 
   page-footer:
     right: "This page is built with {{< fa heart >}} and [Quarto](https://quarto.org/)."
