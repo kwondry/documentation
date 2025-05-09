@@ -400,28 +400,28 @@
     "href": "materials/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug    condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n1        4 c         11 CTRL   VCA          50\n2        4 b          1 CTRL   VCA         100\n3        3 g          9 piotii VCA         200\n4        3 e         11 CTRL   OA           50\n5        3 b          1 CTRL   OA          400"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug      condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;\n1        4 e          4 gasseri  LNA         200\n2        1 a          5 jensenii CTRL          0\n3        4 c          4 gasseri  VCA          50\n4        2 g         11 CTRL     LNA          50\n5        1 c          1 CTRL     OA          200"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        1 h          9 iners     CTRL          0\n2        4 d         12 CTRL      LNA         400\n3        1 d          2 crispatus OA          100\n4        2 e          5 jensenii  LNA         200\n5        2 c          5 jensenii  VCA          50"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug     condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;\n1        4 h          8 piotii  CTRL          0\n2        2 h          8 iners   CTRL          0\n3        2 f         12 CTRL    LNA         100\n4        4 d          3 gasseri LNA         400\n5        1 c         12 CTRL    OA          200"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug      condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 c          6 jensenii VCA          50    0.05\n2        1 g          8 iners    VCA         200    0.2 \n3        1 b          9 iners    OA          400    0.4 \n4        4 f          3 gasseri  LNA         100    0.1 \n5        4 h          3 gasseri  CTRL          0    0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 h          4 gasseri   CTRL          0     0  \n2        4 a          8 piotii    CTRL          0     0  \n3        4 h          5 vaginalis CTRL          0     0  \n4        3 h          5 vaginalis CTRL          0     0  \n5        2 b          1 CTRL      VCA         100     0.1"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        2 d         10 iners     LNA         400     0.4  400000\n2        4 b          8 piotii    VCA         100     0.1  100000\n3        2 a         12 CTRL      CTRL          0     0         0\n4        3 h          6 vaginalis CTRL          0     0         0\n5        2 f          4 crispatus LNA         100     0.1  100000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        3 a          8 piotii    CTRL          0    0          0\n2        2 h          8 iners     CTRL          0    0          0\n3        3 e          7 vaginalis OA           50    0.05   50000\n4        1 e          4 crispatus OA           50    0.05   50000\n5        4 e         11 CTRL      LNA         200    0.2   200000"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
@@ -781,6 +781,66 @@
     "text": "Spatial Logical Toy Inventor: Erno Rubik Assignee: Politoys Ipari Szovetkezet, Budapest, Hungary The first patent by the inventor is registered in Hungary. Appl. No.: 289,192 Filed: Aug. 3, 1981 Background of the Invention The invention relates to a spatial logical toy having a total of eighteen toy elements which form a regular or an irregular spatial body, preferably an oblong body, in the assembled state. Spatial logical toys are well known, such as that described in the HU-PS No. 170 062 of the same applicant, which relates to a spatial logical toy consisting of twenty-seven solids which form a cube in the assembled state. The toy elements, in the shape of small cubes, may be turned along the spatial axes of the cube by means of connecting elements arranged in the geometric center of the large cube. The surfaces of the small cubes forming each surface of the large cube are colored or carry numbers, figures or any other symbols which can be assembled into the predetermined logical order of sequence by simultaneously rotating the nine toy elements forming the surfaces of the large cube. Summary of the Invention The logical toy according to the present invention represents an improved form of the previously described spatial logical toy. The construction is based on the same principles, however, the internal connection is performed by means of absolutely new and particular solids. The key feature according to the invention, i.e. shape, name, sounds, mode of interconnection and central fixture will be described in detail by means of two preferred embodiments, by the aid of the accompanying drawings, wherein. Component blocks of the spatial logial toy. ex-2-figs.png What is claimed is: 1. In a spatial logical toy assembled from a plurality of toy elements, of which a predetermined number may be rotated in the direction of the spatial axes starting from the geometrical center of the logical toy, the improvement wherein the spatial logical toy is formed by a total of eighteen toy elements. Two sets of eight toy elements each comprise substantially cubiforms with integally formed cam elements and each of the sets comprise eight identical toy elements, and two connecting toy elements, and means for joining the connecting toy elements to coact with the cam elements to form an integrated toy body, the joining means comprising a single screw enclosed by a spring. The spatial logical toy as claimed in claim 1, wherein the toy has the shape of a regular geometrical body in the assembled state. The toy elements thereof belonging to one set comprise eight cubiform homologous elements each having a first cam element connected to one corner thereof. Two confining surfaces of which lie at a unit distance from two surfaces of the cube and are parallel therewith and are cut-off in the form of an ellipsis-quarter, and a third confining surface thereof is coplanar with another surface of the cube and between the two confining faces of the first cam element running parallel with the cube and the cube there is a hollow with a convex spherical surface."
   },
   {
+    "objectID": "materials/metagenomics/background/index.html",
+    "href": "materials/metagenomics/background/index.html",
+    "title": "Shotgun Metagenomics Background",
+    "section": "",
+    "text": "Shotgun metagenomics allows us to examine both the taxonomic composition and functional potential of microbial communities. Unlike 16S rRNA sequencing which only captures bacterial diversity at the species or genus level, shotgun metagenomics can detect bacteria, viruses, fungi, and other microorganisms (assuming your extraction is optimized for these different taxa), while also allowing analysis of the gene content of the different taxa for studying functional potential or strain-level diversity.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/background/index.html#overview",
+    "href": "materials/metagenomics/background/index.html#overview",
+    "title": "Shotgun Metagenomics Background",
+    "section": "",
+    "text": "Shotgun metagenomics allows us to examine both the taxonomic composition and functional potential of microbial communities. Unlike 16S rRNA sequencing which only captures bacterial diversity at the species or genus level, shotgun metagenomics can detect bacteria, viruses, fungi, and other microorganisms (assuming your extraction is optimized for these different taxa), while also allowing analysis of the gene content of the different taxa for studying functional potential or strain-level diversity.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/background/index.html#sample-collection-and-processing",
+    "href": "materials/metagenomics/background/index.html#sample-collection-and-processing",
+    "title": "Shotgun Metagenomics Background",
+    "section": "Sample Collection and Processing",
+    "text": "Sample Collection and Processing\n\nBiological Sampling\nSamples are typically collected as vaginal or cervical swabs. For downstream flexibility with timing and types of sequencing, you should use a product like RNAlater at the time of sampling.\n\n\nDNA Extraction and Sequencing\nAfter collection, samples undergo: 1. Nucleic acid extraction 2. Library preparation 3. Illumina sequencing - Target: 50+ million paired-end reads per sample - Read length: 2x150 base pairs\n\n\n\n\n\n\nNote\n\n\n\nDeep sequencing (50+ million reads) is necessary (especially for aasembly and strain-level analysis) because a significant portion of reads will be human in origin and will be filtered out during analysis.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/background/index.html#initial-processing",
+    "href": "materials/metagenomics/background/index.html#initial-processing",
+    "title": "Shotgun Metagenomics Background",
+    "section": "Initial Processing",
+    "text": "Initial Processing\nAll analysis pipelines begin with these essential steps: 1. Human read removal 2. Adapter trimming 3. Quality filtering",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/background/index.html#downstream-analysis",
+    "href": "materials/metagenomics/background/index.html#downstream-analysis",
+    "title": "Shotgun Metagenomics Background",
+    "section": "Downstream Analysis",
+    "text": "Downstream Analysis\nAfter initial processing, there are several approaches you can take depending on your research questions:\n\n1. Gene-centric Analysis (VIRGO2)\n\nVIRGO2 Pipeline for gene-centric analysis\nMaps reads to a curated vaginal gene catalog\nUseful for:\n\nGene-level abundance\nTaxonomic composition\nFunctional annotations\n\n\n\n\n2. Genome Assembly (MAGs)\n\nMAG Assembly Pipeline (Coming Soon)\nAssembles reads into contigs\nBins contigs into Metagenome-Assembled Genomes (MAGs)\nUseful for:\n\nUnderstanding genome structure\nIdentifying new strains\nDiscovering novel organisms\n\n\n\n\n3. Strain-level Analysis\n\ninStrain:\n\nExamines within-species genetic diversity\nTracks strain populations\n\nStrainFacts:\n\nResolves strain-level variation\nIdentifies distinct strains within species",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "Background"
+    ]
+  },
+  {
     "objectID": "materials/getting-started/local_R/index.html",
     "href": "materials/getting-started/local_R/index.html",
     "title": "Installing R and RStudio",
@@ -1039,6 +1099,102 @@
       "About the Kwon Lab",
       "Getting Started",
       "</b> Get your O2 account"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html",
+    "href": "materials/metagenomics/virgo2/index.html",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "",
+    "text": "The VIRGO2 pipeline is used to map reads to VIRGO2 and annotate the reads with taxonomic and functional information. It processes paired-end sequencing data and generates comprehensive taxonomic and functional annotations using the VIRGO2 database.\n\n\n\n\n\n\nNote\n\n\n\nVIRGO2 is a resource developed by the Ravel lab at University of Maryland School of Medicine. The manuscript is available here: doi: 10.1101/2025.03.04.641479\n\n\nThis workflow assumes you have already quality filtered, adapter trimmed, and host filtered your reads.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html#overview",
+    "href": "materials/metagenomics/virgo2/index.html#overview",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "",
+    "text": "The VIRGO2 pipeline is used to map reads to VIRGO2 and annotate the reads with taxonomic and functional information. It processes paired-end sequencing data and generates comprehensive taxonomic and functional annotations using the VIRGO2 database.\n\n\n\n\n\n\nNote\n\n\n\nVIRGO2 is a resource developed by the Ravel lab at University of Maryland School of Medicine. The manuscript is available here: doi: 10.1101/2025.03.04.641479\n\n\nThis workflow assumes you have already quality filtered, adapter trimmed, and host filtered your reads.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html#pipeline-steps",
+    "href": "materials/metagenomics/virgo2/index.html#pipeline-steps",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "Pipeline Steps",
+    "text": "Pipeline Steps\nThe workflow performs the following steps:\n\nMaps sequencing reads to the VIRGO2 database\nGenerates taxonomic annotations\nCalculates relative abundances\nProduces summary reports and annotated output files",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html#prerequisites",
+    "href": "materials/metagenomics/virgo2/index.html#prerequisites",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nconda\nSnakemake (version 8.20.0 or later)\n\nFor O2 setup instructions, visit here.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html#installation",
+    "href": "materials/metagenomics/virgo2/index.html#installation",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "Installation",
+    "text": "Installation\nTo install the workflow, run:\ncurl -L https://github.com/kwondry/virgo2_mapping_and_taxonomy/archive/refs/heads/main.zip -o main.zip\nunzip main.zip && rm main.zip",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html#database-setup",
+    "href": "materials/metagenomics/virgo2/index.html#database-setup",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "Database Setup",
+    "text": "Database Setup\n\n\n\n\n\n\nImportant\n\n\n\nThe VIRGO2 database is currently available via Dropbox. After publication, the files will be available from the Ravel lab on Zenodo.\n\n\nTo set up the database:\n\nGet the Dropbox link from Michael France\nDownload and extract the database files to your preferred location\nUpdate the virgo2 section in config/config.yaml with the absolute path to your database location\n\nNote: The database location can be anywhere on your system - it does not need to be within this workflow directory.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html#running-the-pipeline",
+    "href": "materials/metagenomics/virgo2/index.html#running-the-pipeline",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "Running the Pipeline",
+    "text": "Running the Pipeline\n\nTest Data\nA test dataset is provided in resources/test_data/ containing three sample pairs. To run the workflow with test data:\n\nEnsure you’re in the workflow directory:\ncd virgo2_mapping_and_taxonomy\nRun the workflow with test data:\nsnakemake --use-conda --configfile config/config.yaml\n\n\n\nRunning with Your Own Data\nTo run the workflow with your own data:\n\nPrepare a samplesheet in CSV format with the following columns:\n\nsample: Sample identifier\nfastq_1: Path to first read file\nfastq_2: Path to second read file\n\nUpdate the configuration in config/config.yaml:\n\nSet the path to your samplesheet\nAdjust resource requirements as needed\n\nRun the workflow:\nsnakemake --use-conda --configfile config/config.yaml\n\n\n\nRunning on O2 Cluster\nTo submit the workflow to the O2 cluster, use the provided submission script:\nsbatch ./submit_jobs.sh\nThis is currently configured for the Kwon lab on the O2 cluster.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/metagenomics/virgo2/index.html#output-files",
+    "href": "materials/metagenomics/virgo2/index.html#output-files",
+    "title": "VIRGO2 Mapping and Taxonomy Pipeline",
+    "section": "Output Files",
+    "text": "Output Files\nThe workflow generates several output files:\n\n*.summary.NR.txt: Summary of mapping results at the gene level\n*_virgo2_NR_anno.csv: Results with the gene lengths and annotations added\n*_virgo2_metagenomic_taxa.csv: Taxonomic relative abundances calculated from the gene counts corrected for gene length",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Metagenomics",
+      "VIRGO2 Pipeline"
     ]
   },
   {

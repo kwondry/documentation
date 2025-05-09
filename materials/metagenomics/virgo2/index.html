@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - Background</title>
+<title>Kwon Lab Pipelines - VIRGO2 Mapping and Taxonomy Pipeline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../materials/rnaseq/walkthrough/index.html" rel="next">
-<link href="../../../materials/r-tutorial/index.html" rel="prev">
+<link href="../../../materials/metagenomics/background/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -146,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Background</h1>
+          <h1 class="quarto-secondary-nav-title">VIRGO2 Mapping and Taxonomy Pipeline</h1>
         </a>     
     </div>
   </nav>
@@ -214,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../materials/rnaseq/background/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Background</span></a>
   </div>
 </li>
@@ -263,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../materials/metagenomics/virgo2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../materials/metagenomics/virgo2/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">VIRGO2 Pipeline</span></a>
   </div>
 </li>
@@ -279,14 +278,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-the-pipeline" id="toc-introduction-to-the-pipeline" class="nav-link active" data-scroll-target="#introduction-to-the-pipeline">Introduction to the pipeline</a></li>
-  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#outputs-qc" id="toc-outputs-qc" class="nav-link" data-scroll-target="#outputs-qc">outputs: QC</a></li>
-  <li><a href="#outputs-gene-expression." id="toc-outputs-gene-expression." class="nav-link" data-scroll-target="#outputs-gene-expression.">outputs: gene expression.</a></li>
-  <li><a href="#beyond-the-pipeline" id="toc-beyond-the-pipeline" class="nav-link" data-scroll-target="#beyond-the-pipeline">Beyond the pipeline</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#pipeline-steps" id="toc-pipeline-steps" class="nav-link" data-scroll-target="#pipeline-steps">Pipeline Steps</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#database-setup" id="toc-database-setup" class="nav-link" data-scroll-target="#database-setup">Database Setup</a></li>
+  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline">Running the Pipeline</a>
   <ul class="collapse">
-  <li><a href="#microviz-hack-largely-untested." id="toc-microviz-hack-largely-untested." class="nav-link" data-scroll-target="#microviz-hack-largely-untested."><code>microViz</code> hack, largely untested.</a></li>
+  <li><a href="#test-data" id="toc-test-data" class="nav-link" data-scroll-target="#test-data">Test Data</a></li>
+  <li><a href="#running-with-your-own-data" id="toc-running-with-your-own-data" class="nav-link" data-scroll-target="#running-with-your-own-data">Running with Your Own Data</a></li>
+  <li><a href="#running-on-o2-cluster" id="toc-running-on-o2-cluster" class="nav-link" data-scroll-target="#running-on-o2-cluster">Running on O2 Cluster</a></li>
   </ul></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files">Output Files</a></li>
   </ul>
 </nav>
     </div>
@@ -295,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Background</h1>
+<h1 class="title d-none d-lg-block">VIRGO2 Mapping and Taxonomy Pipeline</h1>
 </div>
 
 
@@ -312,153 +315,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p><em>Work in progress</em></p>
-</blockquote>
-<section id="introduction-to-the-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-to-the-pipeline">Introduction to the pipeline</h3>
-<p>The goal of this pipeline is to take raw short-reads generated from an RNASeq library generation and sequencing protocol and do all the basic QC steps as well as quantify gene expression. Currently it only works for human RNAseq data - the reference data base is hard coded.</p>
-</section>
-<section id="inputs" class="level3">
-<h3 class="anchored" data-anchor-id="inputs">Inputs</h3>
-<p>This pipeline takes a sample sheet and fastq files (ideally in <code>/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/</code>) as input and works for both single and paired-end reads.</p>
-<section id="input-sample_sheet.csv-columns" class="level4">
-<h4 class="anchored" data-anchor-id="input-sample_sheet.csv-columns">input <code>sample_sheet.csv</code> columns</h4>
-<table class="table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>sample</strong></th>
-<th><strong>fastq_1</strong></th>
-<th><strong>fastq_2</strong></th>
-<th><strong>strandedness</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sample IDs</td>
-<td>File path for forward reads</td>
-<td>File path for reverse reads. If your sequences are single end, leave this column empty</td>
-<td>Set as <code>auto</code> for each sample. However, for samples with high contaminants coming from smartseq2, it should be set as <code>both</code>.</td>
-</tr>
-</tbody>
-</table>
-<p>See the <a href="../../../materials/rnaseq/walkthrough/index.html">walkthrough</a> for information on how to make your samplesheet.</p>
-</section>
-</section>
-<section id="outputs-qc" class="level3">
-<h3 class="anchored" data-anchor-id="outputs-qc">outputs: QC</h3>
-<p>After successfully running the pipeline, you will have a <code>results</code> folder in your project directory with the output from the pipeline.</p>
-<p>First, take a look at the MultiQC report in <code>/n/groups/kwon/johnathan/projects/simran_rnaseq/my_rnaseq_run/rnaseq_gene_expression-main/results/multiqc/star_salmon/nfcore_rnaseq_multiqc_report.html</code></p>
-<p>You’ll see a summary table at the beginning:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/rnaseqqc_summary.png" class="img-fluid figure-img"></p>
-<figcaption>RNAseq QC Summary</figcaption>
-</figure>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The VIRGO2 pipeline is used to map reads to VIRGO2 and annotate the reads with taxonomic and functional information. It processes paired-end sequencing data and generates comprehensive taxonomic and functional annotations using the VIRGO2 database.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Here you want to check how many aligned sequences you had for each sample. You want 20-30 million reads per sample.</p>
-<p>Also take a look at the breakdown of the types of sequences you got:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/rnaseqqc_qualimap.png" class="img-fluid figure-img"></p>
-<figcaption>RNAseq QC Qualimap</figcaption>
-</figure>
+<div class="callout-title-container flex-fill">
+Note
 </div>
-<p>Depending on the type of library prep you did the might be different expectations here. But most library preps for gene expression analysis enrich for mature mRNA, so you should see mostly exonic reads.</p>
-<p>For a comprehensive breakdown of the different QC plots you expect, check <a href="https://nf-co.re/rnaseq/dev/docs/output">https://nf-co.re/rnaseq/dev/docs/output</a>.</p>
+</div>
+<div class="callout-body-container callout-body">
+<p>VIRGO2 is a resource developed by the Ravel lab at University of Maryland School of Medicine. The manuscript is available here: <a href="https://doi.org/10.1101/2025.03.04.641479">doi: 10.1101/2025.03.04.641479</a></p>
+</div>
+</div>
+<p>This workflow assumes you have already quality filtered, adapter trimmed, and host filtered your reads.</p>
 </section>
-<section id="outputs-gene-expression." class="level3">
-<h3 class="anchored" data-anchor-id="outputs-gene-expression.">outputs: gene expression.</h3>
-<p>In the results/star_salmon folder, you’ll see a ton of folders and files. The main ones to focus on are:</p>
+<section id="pipeline-steps" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-steps">Pipeline Steps</h2>
+<p>The workflow performs the following steps:</p>
+<ol type="1">
+<li>Maps sequencing reads to the VIRGO2 database</li>
+<li>Generates taxonomic annotations</li>
+<li>Calculates relative abundances</li>
+<li>Produces summary reports and annotated output files</li>
+</ol>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <ul>
-<li><code>star_salmon.merged.gene_counts.tsv</code>: Matrix of gene-level raw counts across all samples.<br>
-</li>
-<li><code>star_salmon.gene_tpm.tsv</code>: Matrix of gene-level TPM values across all samples.<br>
-</li>
-<li><code>star_salmon.merged.gene_lengths.tsv</code>: Matrix of average within-sample transcript lengths for each gene across all samples.<br>
-</li>
-<li><code>star_salmon.merged.gene_counts_scaled.tsv</code>: Matrix of gene-level library size-scaled estimated counts across all samples.</li>
+<li>conda</li>
+<li>Snakemake (version 8.20.0 or later)</li>
 </ul>
-<p>For import into DESeq2 we’ll use <code>star_salmon.merged.gene_lengths.tsv</code> . If you want to plot heatmaps and nromalized gene expression boxplots, use <code>star_salmon.gene_tpm.tsv</code>.</p>
+<p>For O2 setup instructions, visit <a href="../../getting-started/installations/index.qmd">here</a>.</p>
 </section>
-<section id="beyond-the-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-the-pipeline">Beyond the pipeline</h2>
-<p>Typically you’ll want to explore your RNAseq dataset for more quality checks and sanity checks, and look for differences in gene expression with different treatments.</p>
-<p>The following code is an example of how to get your data into deseq2. (Make sure you have the recommended packages installed by following the <a href="../../../materials/getting-started/local_R/index.html">R installation instructions</a>).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microViz)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"salmon.merged.gene_counts_length_scaled.tsv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>counts_for_deseq <span class="ot">&lt;-</span> counts <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>gene_name) <span class="sc">%&gt;%</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"gene_id"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>gene_names_for_deseq <span class="ot">&lt;-</span> counts <span class="sc">%&gt;%</span> <span class="fu">select</span>(gene_id, gene_name) <span class="sc">%&gt;%</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"gene_id"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>sample_metadata_for_deseq <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sample_id =</span>  counts <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>gene_id, <span class="sc">-</span>gene_name) <span class="sc">%&gt;%</span> <span class="fu">colnames</span>()) <span class="sc">%&gt;%</span> <span class="fu">left_join</span> (<span class="fu">read_csv</span>(<span class="st">"SKH_Expt_P10_metadata.csv"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"sample_id"</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>deseq_dataset <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData=</span><span class="fu">round</span>(counts_for_deseq), <span class="at">colData=</span>sample_metadata_for_deseq, <span class="at">rowData=</span>gene_names_for_deseq, <span class="at">design=</span><span class="sc">~</span>treatment_code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>To install the workflow, run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> https://github.com/kwondry/virgo2_mapping_and_taxonomy/archive/refs/heads/main.zip <span class="at">-o</span> main.zip</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> main.zip <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> main.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="database-setup" class="level2">
+<h2 class="anchored" data-anchor-id="database-setup">Database Setup</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Then, read through and follow along with the <a href="https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">DEseq2 vignette</a>, starting with the “Pre-filtering” section.</p>
-<p>As an example, here is a code chunk that combines the pre-filtering example and the PCA code from the vignette.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>smallestGroupSize <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(<span class="fu">counts</span>(deseq_dataset) <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">&gt;=</span> smallestGroupSize</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> deseq_dataset[keep,]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>vsd <span class="ot">&lt;-</span> <span class="fu">vst</span>(dds, <span class="at">blind=</span><span class="cn">FALSE</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>pcaData <span class="ot">&lt;-</span> <span class="fu">plotPCA</span>(vsd, <span class="at">intgroup=</span><span class="fu">c</span>(<span class="st">"polyamine"</span>, <span class="st">"inhibitor"</span>), <span class="at">returnData=</span><span class="cn">TRUE</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>percentVar <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">attr</span>(pcaData, <span class="st">"percentVar"</span>))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pcaData, <span class="fu">aes</span>(PC1, PC2, <span class="at">color=</span>polyamine, <span class="at">shape=</span>inhibitor)) <span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">paste0</span>(<span class="st">"PC1: "</span>,percentVar[<span class="dv">1</span>],<span class="st">"% variance"</span>)) <span class="sc">+</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">paste0</span>(<span class="st">"PC2: "</span>,percentVar[<span class="dv">2</span>],<span class="st">"% variance"</span>)) <span class="sc">+</span> </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Important
 </div>
-<section id="microviz-hack-largely-untested." class="level3">
-<h3 class="anchored" data-anchor-id="microviz-hack-largely-untested."><code>microViz</code> hack, largely untested.</h3>
-<p>This following code is a hack to get your already normalized data into a <code>phyloseq</code> object, which is typically only used for 16S analysis. However, there are very nice ordination functions and heatmap functions available for phyloseq objects in the <code>microViz</code> package, so it might be worth the hackiness.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microViz)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gene_abundance <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"salmon.merged.gene_tpm.tsv"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>gene_count_table <span class="ot">&lt;-</span> gene_abundance <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>gene_name) <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"gene_id"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(<span class="at">taxa_are_rows =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>gene_annotations <span class="ot">&lt;-</span> gene_abundance <span class="sc">%&gt;%</span> <span class="fu">select</span>(gene_id, gene_name) <span class="sc">%&gt;%</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"gene_id"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  phyloseq<span class="sc">::</span><span class="fu">tax_table</span>()</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>sample_metadata <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sample_id =</span>  counts <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>gene_id, <span class="sc">-</span>gene_name) <span class="sc">%&gt;%</span> <span class="fu">colnames</span>()) <span class="sc">%&gt;%</span> <span class="fu">left_join</span> (<span class="fu">read_csv</span>(<span class="st">"SKH_Expt_P10_metadata.csv"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">"sample_id"</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  phyloseq<span class="sc">::</span><span class="fu">sam_data</span>()</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>rnaseq_dataset <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">phyloseq</span>(gene_count_table, gene_annotations, sample_metadata) <span class="sc">%&gt;%</span> <span class="fu">tax_fix</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout-body-container callout-body">
+<p>The VIRGO2 database is currently available via Dropbox. After publication, the files will be available from the Ravel lab on Zenodo.</p>
+</div>
+</div>
+<p>To set up the database:</p>
+<ol type="1">
+<li>Get the Dropbox link from Michael France</li>
+<li>Download and extract the database files to your preferred location</li>
+<li>Update the <code>virgo2</code> section in <code>config/config.yaml</code> with the <strong>absolute</strong> path to your database location</li>
+</ol>
+<p>Note: The database location can be anywhere on your system - it does not need to be within this workflow directory.</p>
+</section>
+<section id="running-the-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-pipeline">Running the Pipeline</h2>
+<section id="test-data" class="level3">
+<h3 class="anchored" data-anchor-id="test-data">Test Data</h3>
+<p>A test dataset is provided in <code>resources/test_data/</code> containing three sample pairs. To run the workflow with test data:</p>
+<ol type="1">
+<li><p>Ensure you’re in the workflow directory:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> virgo2_mapping_and_taxonomy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Run the workflow with test data:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--use-conda</span> <span class="at">--configfile</span> config/config.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="running-with-your-own-data" class="level3">
+<h3 class="anchored" data-anchor-id="running-with-your-own-data">Running with Your Own Data</h3>
+<p>To run the workflow with your own data:</p>
+<ol type="1">
+<li><p>Prepare a samplesheet in CSV format with the following columns:</p>
+<ul>
+<li>sample: Sample identifier</li>
+<li>fastq_1: Path to first read file</li>
+<li>fastq_2: Path to second read file</li>
+</ul></li>
+<li><p>Update the configuration in <code>config/config.yaml</code>:</p>
+<ul>
+<li>Set the path to your samplesheet</li>
+<li>Adjust resource requirements as needed</li>
+</ul></li>
+<li><p>Run the workflow:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--use-conda</span> <span class="at">--configfile</span> config/config.yaml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="running-on-o2-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="running-on-o2-cluster">Running on O2 Cluster</h3>
+<p>To submit the workflow to the O2 cluster, use the provided submission script:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> ./submit_jobs.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is currently configured for the Kwon lab on the O2 cluster.</p>
+</section>
+</section>
+<section id="output-files" class="level2">
+<h2 class="anchored" data-anchor-id="output-files">Output Files</h2>
+<p>The workflow generates several output files:</p>
+<ul>
+<li><code>*.summary.NR.txt</code>: Summary of mapping results at the gene level</li>
+<li><code>*_virgo2_NR_anno.csv</code>: Results with the gene lengths and annotations added</li>
+<li><code>*_virgo2_metagenomic_taxa.csv</code>: Taxonomic relative abundances calculated from the gene counts corrected for gene length</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -873,14 +842,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../materials/r-tutorial/index.html" class="pagination-link" aria-label="</b> R workshop">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"> R workshop</span>
+      <a href="../../../materials/metagenomics/background/index.html" class="pagination-link" aria-label="Background">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Background</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../materials/rnaseq/walkthrough/index.html" class="pagination-link" aria-label="Walkthrough">
-        <span class="nav-page-text">Walkthrough</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
