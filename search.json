@@ -400,28 +400,28 @@
     "href": "materials/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        3 a          3 gasseri   CTRL          0\n2        4 a          8 piotii    CTRL          0\n3        4 g          8 piotii    LNA          50\n4        1 f          2 crispatus VCA         400\n5        2 c         12 CTRL      VCA          50"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug      condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;\n1        3 f          4 gasseri  VCA         400\n2        3 c          9 piotii   OA          200\n3        4 f          3 gasseri  LNA         100\n4        4 e          4 gasseri  LNA         200\n5        2 b          5 jensenii VCA         100"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        1 e          2 crispatus OA           50\n2        3 c          7 vaginalis OA          200\n3        1 g          1 CTRL      VCA         200\n4        1 c         10 iners     OA          200\n5        2 h          6 jensenii  CTRL          0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug      condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;\n1        3 f          3 gasseri  VCA         400\n2        4 g          8 piotii   LNA          50\n3        2 g          7 jensenii LNA          50\n4        2 f         10 iners    LNA         100\n5        3 a          3 gasseri  CTRL          0"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        3 b          7 vaginalis OA          400     0.4\n2        1 h         12 CTRL      CTRL          0     0  \n3        2 e          7 jensenii  LNA         200     0.2\n4        2 a          1 CTRL      CTRL          0     0  \n5        4 a          5 vaginalis CTRL          0     0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 h          3 gasseri   CTRL          0     0  \n2        1 h          1 CTRL      CTRL          0     0  \n3        3 h          5 vaginalis CTRL          0     0  \n4        1 g          4 crispatus VCA         200     0.2\n5        1 d          1 CTRL      OA          100     0.1"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 g         12 CTRL     LNA          50    0.05   50000\n2        1 f          1 CTRL     VCA         400    0.4   400000\n3        2 e          1 CTRL     LNA         200    0.2   200000\n4        1 f          6 jensenii VCA         400    0.4   400000\n5        2 c          6 jensenii VCA          50    0.05   50000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        2 h         12 CTRL      CTRL          0    0          0\n2        2 h          1 CTRL      CTRL          0    0          0\n3        2 b          9 iners     VCA         100    0.1   100000\n4        3 e          6 vaginalis OA           50    0.05   50000\n5        4 e          5 vaginalis LNA         200    0.2   200000"
   },
   {
     "objectID": "materials/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
@@ -973,6 +973,25 @@
     ]
   },
   {
+    "objectID": "materials/16S/background/index.html",
+    "href": "materials/16S/background/index.html",
+    "title": "16S Background",
+    "section": "",
+    "text": "Coming soon",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kwon Lab Pipelines",
+    "section": "",
+    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
+  },
+  {
     "objectID": "materials/16S/16s_pipeline/index.html",
     "href": "materials/16S/16s_pipeline/index.html",
     "title": "16S Pipeline Tutorial",
@@ -1057,22 +1076,15 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kwon Lab Pipelines",
+    "objectID": "materials/16S/kwon_sequencing_data_transfer/index.html",
+    "href": "materials/16S/kwon_sequencing_data_transfer/index.html",
+    "title": "NextSeq2000 / NovaSeq Demultiplexing and Data Transfer",
     "section": "",
-    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
-  },
-  {
-    "objectID": "materials/16S/background/index.html",
-    "href": "materials/16S/background/index.html",
-    "title": "16S Background",
-    "section": "",
-    "text": "Coming soon",
+    "text": "Mount the remote SMB server. You must be on a secure network (MGBWifi or set up a partners vpn)\n\nsudo mount -t cifs //10.212.9.248/KwonLabSequenceData ~/remoteDir -o \"username=Sequser-read,password=1234R@g0n\"\n\nMake sure you are able to access the SMB via your file explorer.\n\n\nTransfer from SMB onto O2 scratch with RSync\n\nrsync -avt ./{sequencing_folder} {hms_id}@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_letter_hms_id}/{hms_id}\n\nMake demultiplexing samplesheet\n\nbclConvert header\nSample_ID as the unique identifier\nindex2 as the\nindex1 as the\n\n\n\n\nUpload demultiplexing samplesheet to o2 via o2 portal\nValidate and upload mapping file with sequencing metadata for dada2 to data1 folder\n\nMake sure format is consistent with old miseq runs\n#SampleID as the unique identifier\nEnsure no special characters in the unique identifier and only (alphanumeric and underscores)\n\n\n\n\nRun bclConvert\n\nEnsure you are on an interactive node with at least 96GB of memory\n\n\nmodule load bclConvert\nbcl-convert --bcl-input-directory . --output-directory fastqs --sample-sheet vibrant_sample_sheet_pool11.csv\n\nMove fastqs to data1 folder\n\n\nn/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/2025_05_07_NextSeq_V3V4/\n├── Demultiplexed\n├── Reports\n└── vibrant_pool10.csv\nThe sequencing run is now demultiplexed, in the proper directory on O2, and ready for further processing.",
     "crumbs": [
       "About the Kwon Lab",
       "16S",
-      "Background"
+      "SMB Data Transfer and Demultiplexing"
     ]
   },
   {
