@@ -8,7 +8,7 @@ format:
 
 A Snakemake workflow for processing 16S rRNA sequencing data using [DADA2](https://benjjneb.github.io/dada2/){target="_blank"}, [VALENCIA](https://github.com/ravel-lab/VALENCIA){target="_blank"} for community state type (CST) classification, and custom scripts for spike-in adjustments.
 
-This workflow assumes your reads are demultiplexed.
+**This workflow assumes your reads are demultiplexed.**
 
 
 ## Prerequisites

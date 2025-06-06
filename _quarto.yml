@@ -68,6 +68,9 @@ website:
             - text: "Background"
               contents:
               href: materials/16S/background/index.qmd
+            - text: "SMB Data Transfer and Demultiplexing"
+              contents:
+              href: materials/16S/kwon_sequencing_data_transfer/index.qmd
             - text: "16S Pipeline"
               contents:
               href: materials/16S/16s_pipeline/index.qmd
