@@ -2,62 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kwondry.github.io/documentation/materials/rnaseq/walkthrough/index.html</loc>
-    <lastmod>2025-06-05T21:16:36.125Z</lastmod>
+    <lastmod>2025-05-05T17:35:04.562Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/r-tutorial/slides.html</loc>
-    <lastmod>2025-06-05T21:16:36.124Z</lastmod>
+    <lastmod>2025-07-14T15:22:53.044Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/r-tutorial/images/ex-2.html</loc>
-    <lastmod>2025-06-05T21:16:36.054Z</lastmod>
+    <lastmod>2025-05-05T17:35:04.504Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/metagenomics/background/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.993Z</lastmod>
+    <lastmod>2025-05-09T12:54:48.166Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/getting-started/local_R/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.980Z</lastmod>
+    <lastmod>2025-05-05T17:35:04.410Z</lastmod>
   </url>
   <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/valencia/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.980Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/slides.html</loc>
+    <lastmod>2025-07-14T13:50:39.611Z</lastmod>
   </url>
   <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/background/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.979Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.978Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/16s_pipeline/index.html</loc>
-    <lastmod>2025-06-05T21:32:30.619Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/images/ex-2.html</loc>
+    <lastmod>2025-05-05T17:35:04.504Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/16S/kwon_sequencing_data_transfer/index.html</loc>
-    <lastmod>2025-06-06T15:03:09.042Z</lastmod>
+    <lastmod>2025-07-14T13:27:31.169Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/16s_pipeline/index.html</loc>
+    <lastmod>2025-07-14T13:27:31.169Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/index.html</loc>
+    <lastmod>2025-05-05T17:35:04.408Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/background/index.html</loc>
+    <lastmod>2025-07-14T13:27:31.169Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/valencia/index.html</loc>
+    <lastmod>2025-05-05T17:35:04.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/index.html</loc>
+    <lastmod>2025-05-05T17:35:04.562Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/getting-started/installation/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.980Z</lastmod>
+    <lastmod>2025-05-05T17:35:04.410Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/getting-started/o2/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.980Z</lastmod>
+    <lastmod>2025-05-05T17:35:04.410Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/metagenomics/virgo2/index.html</loc>
-    <lastmod>2025-06-05T21:16:35.993Z</lastmod>
+    <lastmod>2025-05-09T12:34:25.035Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/r-tutorial/index.html</loc>
-    <lastmod>2025-06-05T21:16:36.124Z</lastmod>
+    <lastmod>2025-07-14T15:09:37.702Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/rnaseq/background/index.html</loc>
-    <lastmod>2025-06-05T21:16:36.125Z</lastmod>
+    <lastmod>2025-05-05T17:35:04.562Z</lastmod>
   </url>
 </urlset>
