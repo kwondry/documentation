@@ -261,14 +261,6 @@ c(TRUE, FALSE)
 c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun") %>% as_factor()
 ```
 
-## Examples of coding {.our-turn}
-
-Quick live demo of doing some work in R
-
-- Assigning variables
-- Vectors are magic
-- Functions and getting help
-
 ```{r}
 #| echo: false
 countdown::countdown(5, left=0, right=NULL, play_sound = TRUE)
@@ -285,14 +277,14 @@ A data frame is a rectangular collection of variables (in the columns) and obser
 table_02
 ```
 
-## Exercise {.your-turn}
 
-That's enough slides for now time to try for yourself! Go to [the module](index.html) and go to the first exercise.
+## Examples of coding {.our-turn}
 
-```{r}
-countdown::countdown(30)
-```
+Quick live demo of doing some work in R
 
+- Assigning variables
+- Vectors are magic
+- Functions and getting help
 
 
 # Elementary data manipulations
@@ -1228,3 +1220,163 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   geom_jitter(color = "skyblue") 
 ```
 
+
+
+
+## Analyze subsets: `group_by()` and `summarize()`
+
+![](images/summarize.svg)
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Previously we used `count`, now we `group` the data
+
+```{r}
+#| echo: fenced
+table_01 %>%
+  group_by(smoker)
+```
+
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Previously we used `count`, now we `group` the data, and then summarise
+
+```{r}
+#| echo: fenced
+table_01 %>%
+  group_by(smoker) %>%
+  summarise(
+    n = n() # n() returns the number of observations per group
+    )
+```
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Now let's group by multiple variables
+
+```{r}
+#| echo: fenced
+table_01 %>%
+  group_by(smoker, arm)
+```
+
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Now let's group by multiple variables, and summarise
+
+```{r}
+#| echo: fenced
+table_01 %>%
+  group_by(smoker, arm) %>%
+    summarise(
+    n = n() # n() returns the number of observations per group
+    )
+```
+
+## Example application of grouping: Counting {auto-animate=true}
+
+`count(...)` is a short-cut for `group_by(...) %>% summarize(n = n())`
+`group_by()` and `summarise()`is the general method
+
+
+```{r}
+#| echo: fenced
+table_01 %>%
+  count(smoker, arm)
+
+table_01 %>%
+  group_by(smoker, arm) %>%
+  summarise(median_age = median(age))
+```
+
+## You can make multiple summarise at once
+
+```{r}
+#| echo: fenced
+
+table_01 %>%
+  group_by(smoker, arm) %>%
+  summarise(
+    n = n(),
+    median_age = median(age)
+    )
+```
+
+
+## Reshape: `pivot_wider()` and `pivot_longer()`
+
+![](images/pivot.svg)
+
+## Reshaping example: Making a wide summary table {auto-animate=true}
+
+```{r}
+#| echo: fenced
+table_01 %>%
+  count(education, arm) %>%
+  pivot_wider(names_from = arm, values_from = n)
+```
+
+## Reshaping example: Making a wide summary table {auto-animate=true}
+
+```{r}
+#| echo: fenced
+education_wide <- table_01 %>%
+  count(education, arm) %>%
+  pivot_wider(names_from = arm, values_from = n)
+
+education_wide %>%
+  pivot_longer(-education, names_to = "arm", values_to = "n")
+```
+
+# combining datasets: joins
+
+
+## We use joins to add columns from one table into another
+
+![](images/join.svg)
+
+## There are different types of joins
+
+The differences are all about how to handle when the two tables have different **key values** 
+
+![](images/joins-venn.svg)
+
+. . .
+
+::: {.incremental style="font-size: 0.7em"}
+`left_join()` - the resulting table always has the same **key_values** as the "left" table
+
+`right_join()` - the resulting table always has the same **key_values** as the "right" table
+
+`inner_join()` - the resulting table always only keeps the  **key_values** that are in both tables
+
+`full_join()` - the resulting table always has all **key_values** found in both tables
+:::
+
+## Left Join
+
+`left_join()` - the resulting table always has the same **key_values** as the "left" table
+
+![](images/left_join.png)
+
+## inner_join
+
+`inner_join()` - the resulting table always only keeps the  **key_values** that are in both tables
+
+![](images/inner_join.png)
+
+```{r}
+#| eval: false
+#| echo: true
+table_a %>% inner_join(table_b)
+```
+
+## Note, merging tables vertically is bind_rows(), not a join
+
+![](images/vertical_join.png)
+
+## Exercise {.your-turn}
+
+That's enough slides for now time to try for yourself! Go to [the module](index.html) and go to the second exercise.

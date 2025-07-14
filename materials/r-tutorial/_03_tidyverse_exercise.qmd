@@ -11,7 +11,7 @@ table_02 <- read_csv(here("datasets/instructional_dataset/02_visit_clinical_meas
 
 
 
-## Exercise Data wrangling and simple manipulations
+## Exercise 2: Data wrangling and simple manipulations
 
 In this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.
 

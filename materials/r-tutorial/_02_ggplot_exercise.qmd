@@ -20,7 +20,7 @@ library(here)
 
 ```
 
-## ggplot exercise
+## Exercise 3: ggplot exercise
 
 For this exercise we'll be using the instructional dataset. [Download the dataset here](../../../datasets.html).
 

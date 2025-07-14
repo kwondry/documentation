@@ -63,11 +63,6 @@ relative_growths <- joined_data %>%
 <iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
 ```
 
-
-{{< include _01_pen_and_paper.qmd >}}
-
-## Download the data for the workshop
-
 ## Download the instructional dataset:
 
 The main data set for use in lectures is split into 5 tables. The idea of this dataset is that there is a randomized controlled trial of a drug aimed at reducing HIV risk by reducing inflammation. There were 23 participants in the placebo arm and 21 in the treatment arm. There were 3 visits for the trial – baseline (before any treatment occurred), week_1 (1 week after treatment) and week_7 (7 weeks after treatment). At each time point inflammation was measured using luminex (elisa_cytokines table) and immune cells counts were measured from a pap-smear (flow_cytometry table).  
@@ -122,4 +117,19 @@ to read in data stored this way use `read_csv(filename)` or `read_tsv(filename)`
 
 {{< include _03_tidyverse_exercise.qmd >}}
 
+
+{{< include _01_pen_and_paper.qmd >}}
+
+
 {{< include _02_ggplot_exercise.qmd >}}
+
+{{< include _04_data_wrangling_2.qmd >}}
+
+
+## Advanced next steps
+
+Join together the cytokine data and the metadata and explore the relationships between timepoint, arm, and the different cytokines.
+
+Note, to do this you will need to use [`00_sample_ids.csv`](datasets/instructional_dataset/00_sample_ids.csv), [`01_participant_metadata.csv`](datasets/instructional_dataset/01_participant_metadata.csv), and [`03_elisa_cytokines.csv`](datasets/instructional_dataset/03_elisa_cytokines.csv) . 
+
+Also look at the relationship of vaginal pH to the different cytokines. Now you'll need to join the [`02_visit_clinical_measurements.csv`](datasets/instructional_dataset/02_visit_clinical_measurements.csv) table as well.
