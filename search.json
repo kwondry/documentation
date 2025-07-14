@@ -379,7 +379,14 @@
     "href": "materials/r-tutorial/slides.html#exercise",
     "title": "tidyverse for data analysis",
     "section": "Exercise",
-    "text": "Exercise\nThat’s enough slides for now time to try for yourself! Go to the module and go to the second exercise.\n\n\n\n−+\n30:00"
+    "text": "Exercise\nThat’s enough slides for now time to try for yourself! Go to the module and go to Exercise 1.\n\n\n\n−+\n20:00"
+  },
+  {
+    "objectID": "materials/r-tutorial/slides.html#exercise-2",
+    "href": "materials/r-tutorial/slides.html#exercise-2",
+    "title": "tidyverse for data analysis",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\n\n\n−+\n30:00\n\n\n\nGet in groups of three. On excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table."
   },
   {
     "objectID": "materials/r-tutorial/slides.html#plots-map-data-onto-graphical-elements.",
@@ -526,7 +533,7 @@
     "href": "materials/r-tutorial/slides.html#exercise-1",
     "title": "tidyverse for data analysis",
     "section": "Exercise",
-    "text": "Exercise\n\n\n\n−+\n30:00\n\n\n\nTime to try it yourself. Go to the first coding exercise.\n\nDuring an activity, place a blue sticky on your laptop if you’re good to go and a pink sticky if you want help."
+    "text": "Exercise\n\n\n\n−+\n30:00\n\n\n\nTime to try it yourself. Go to Exercise 3.\n\nDuring an activity, place a yellow sticky on your laptop if you’re good to go and a pink sticky if you want help."
   },
   {
     "objectID": "materials/r-tutorial/slides.html#histograms-and-density-plots",
@@ -753,8 +760,8 @@
     "text": "Note, merging tables vertically is bind_rows(), not a join"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#exercise-2",
-    "href": "materials/r-tutorial/slides.html#exercise-2",
+    "objectID": "materials/r-tutorial/slides.html#exercise-3",
+    "href": "materials/r-tutorial/slides.html#exercise-3",
     "title": "tidyverse for data analysis",
     "section": "Exercise",
     "text": "Exercise\nThat’s enough slides for now time to try for yourself! Go to the module and go to the second exercise.\n\n\n\nback to module"
@@ -1239,28 +1246,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 d          3 crispatus LNA         400\n2        3 a          2 gasseri   CTRL          0\n3        3 h          4 gasseri   CTRL          0\n4        1 c          1 CTRL      OA          200\n5        3 a          5 vaginalis CTRL          0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        4 c          4 gasseri   VCA          50\n2        1 d          7 jensenii  OA          100\n3        1 h         11 CTRL      CTRL          0\n4        4 d         11 CTRL      LNA         400\n5        1 h          3 crispatus CTRL          0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        4 b          6 vaginalis VCA         100\n2        2 e         11 CTRL      LNA         200\n3        2 h          1 CTRL      CTRL          0\n4        1 a         10 iners     CTRL          0\n5        4 h          2 gasseri   CTRL          0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        3 g          2 gasseri   VCA         200\n2        4 e         10 piotii    LNA         200\n3        4 c          6 vaginalis VCA          50\n4        1 e          3 crispatus OA           50\n5        3 c          5 vaginalis OA          200"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug      condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 g          1 CTRL     LNA          50    0.05\n2        4 a          1 CTRL     CTRL          0    0   \n3        3 e          1 CTRL     OA           50    0.05\n4        2 d          5 jensenii LNA         400    0.4 \n5        2 f          7 jensenii LNA         100    0.1"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        1 d          8 iners     OA          100     0.1\n2        4 b          6 vaginalis VCA         100     0.1\n3        3 h          7 vaginalis CTRL          0     0  \n4        4 e          9 piotii    LNA         200     0.2\n5        3 g          9 piotii    VCA         200     0.2"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 f          6 vaginalis LNA         100    0.1   100000\n2        1 b          2 crispatus OA          400    0.4   400000\n3        3 e          6 vaginalis OA           50    0.05   50000\n4        2 c          9 iners     VCA          50    0.05   50000\n5        4 h         12 CTRL      CTRL          0    0          0"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        1 h          5 jensenii  CTRL          0    0          0\n2        3 g          6 vaginalis VCA         200    0.2   200000\n3        1 a          5 jensenii  CTRL          0    0          0\n4        2 g          5 jensenii  LNA          50    0.05   50000\n5        4 g         10 piotii    LNA          50    0.05   50000"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
