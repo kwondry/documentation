@@ -1,0 +1,191 @@
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+table_01 <- read_csv(here("datasets/instructional_dataset/01_participant_metadata.csv"))
+
+table_02 <- read_csv(here("datasets/instructional_dataset/02_visit_clinical_measurements.csv"))
+```
+
+
+
+## Exercise Data wrangling and simple manipulations
+
+In this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.
+
+We will be using the R package, **tidyverse** for the data manipulation functions `%>%`, `filter()`, `select()`, `arrange()`, `count()`, and `mutate()`.
+
+
+```{r}
+#| echo: fenced
+#| eval: false
+#| warning: false
+
+library(tidyverse)
+
+table_01 <- read_csv("data/01_participant_metadata.csv")
+
+table_02 <- read_csv("data/02_visit_clinical_measurements.csv")
+```
+
+
+### The pipe (`%>%`, read: "and then")
+
+When writing complex data analysis pipelines, we frequently use the pipe operator `%>%` to move data from one analysis step to the next. The pipe is pronounced "and then", and it takes the data on its left and uses it as the first argument for the function on its right.
+
+For example, to see the first few lines of a dataset, we often write `head(data)`. Instead, we can write `data %>% head()`.
+
+Try this yourself. Write code that displays the first few lines of `table_01`, using `%>%` and `head()`:
+
+```{r pipe-hint}
+#| echo: true
+#| eval: false
+table_01 ___ head()
+
+```
+
+### Choosing data rows
+
+The function `filter()` allows you to find rows in a dataset that meet one or more specific conditions. The syntax is `data %>% filter(condition)`, where condition is a logical condition. For example, `filter(x > 5)` would pick all rows for which the value in column `x` is greater than 5.
+
+Below, write code to pick all measurements from the `placebo` arm in `table_02` :
+
+```{r filter-arm, exercise=TRUE}
+#| echo: true
+#| eval: false
+
+table_02 %>%
+  filter(___)
+```
+
+### Filtering for multiple conditions
+
+You can also state multiple conditions, separated by a comma. For example, `filter(x > 5, y < 2)` would pick all rows for which the value in the column `x` is greater than 5 and the value in the column `y` is less than 2. Note that the conditions are combined via logical and, both need to be satisfied for the row to be picked.
+
+To try this out, pick all measurements at `baseline` for the `placebo` arm in `table_02` :
+
+```{r filter-timepoint-arm-hint}
+#| echo: true
+#| eval: false
+
+table_02 %>%
+  filter(time_point == ___, arm == ___)
+```
+
+### Choosing data columns
+
+The function `select()` allows you to pick specific data columns by name. This is frequently useful when a dataset has many more columns than we are interested in at the time. For example, if we are only interested in the participants' education, and sex, we could select these three columns:
+
+```{r select-example, echo = TRUE}
+
+table_01 %>%
+  select(education, sex)
+```
+
+Try this yourself, picking the columns representing the participant age (`age`), and then study arm (`arm`).
+
+```{r select-exercise-hint}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  select(___)
+```
+
+### Choosing columns for removal
+
+Another situation that arises frequently is one where we want to remove specific columns. We can also do this with `select()`, but now write `select(-column)` to remove one or more columns.
+
+Try this. Remove the column `smoker`.
+
+```{r select-remove-hint}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  select(___)
+```
+
+And now remove both `smoker` and `education`.
+
+```{r select-remove2-hint}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  select(-___, -___)
+```
+
+### Sorting data
+
+The function `arrange()` allows you to sort data by one or more columns. For example, `data %>% arrange(x)` would sort the data by increasing values of `x`, and `data %>% arrange(x, y)` would sort the data first by `x` and then, for ties in `x`, by `y`.
+
+Sort the participants by age:
+
+```{r arrange-participants-age-hint}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  arrange(___)
+```
+
+To arrange data in descending order, enclose the data column in `desc()`. For example, `data %>% arrange(desc(x))` would sort the data by decreasing values of `x`. (`desc` stands for "descending".)
+
+### Counting
+
+We frequently want to count how many times a particular value or combination of values occurs in a dataset. We do this using the `count()` function. For example, the following code counts how many participants there are in each study arm in table_01.
+
+```{r count-demo}
+#| echo: true
+#| eval: true
+table_01 %>%
+  count(arm)
+```
+
+Now try this yourself. Count how many smokers and non smokers there are.
+
+```{r count-simple-hint}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  count(___)
+```
+
+We can also perform more fine-grained counts, by providing the `count()` function with more than one column name. See if you can count how many smokers and non smokers the dataset contains for each treatment arm
+
+```{r count-complex-hint}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  count(___, smoker)
+```
+
+Now count how many participants are in each study arm for each education level in the dataset
+
+```{r count-complex2-hint}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  count(___, arm)
+```
+
+### Chaining analysis steps into pipelines
+
+We can chain multiple analysis steps into a pipeline by continuing to add "and then" statements. For example, `data %>% count(...) %>% arrange(...)` would first count and then sort the data.
+
+Try this out by counting the number of participants in each study arm and then sorting by the number of participants
+
+```{r analysis-chain-hint-1}
+#| echo: true
+#| eval: false
+
+table_01 %>%
+  count(___) %>%
+  arrange(___)
+```

@@ -1,5 +1,5 @@
 ---
-editor: source
+editor: visual
 format:
   html:
     code-link: true

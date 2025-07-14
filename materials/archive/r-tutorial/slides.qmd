@@ -69,14 +69,6 @@ all_plate_data <- bind_rows(plate_1, plate_2, plate_3, plate_4)
 
 joined_data <- all_plate_data %>%
   left_join(metadata)
-
-income_by_age <- readRDS(here("datasets", "income_by_age.rds"))
-
-titanic <- read_csv(here("datasets", "titanic.csv")) %>%
-  select(age, sex, class, survived) %>%
-  arrange(age, sex, class)
-
-lincoln_temps <- readRDS(here("datasets", "lincoln_temps.rds")) %>% mutate(mean_temp = ((mean_temp - 32)*5/9) %>% round())
 ```
 
 ## {data-menu-title="Website Link" style="text-align: center"}
@@ -108,29 +100,134 @@ Workshop materials are here:
 4. Tables and statistics
 :::
 
-
-## Let's take a poll {.your-turn}
-
-Go to [the event on wooclap](https://app.wooclap.com/DURBAN?from=event-page)  
-
-![](images/ragon_wooclap.png)
-
 ---
 
-## Create a project {.our-turn}
+## Create an R Project {.your-turn}
+::::: {columns}
+
+::: {.column width=20%}
+Create a project for today's workshop and download the data.
+:::
+
+::: {.column width=75%}
+![](images/01-new-project.png) 
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+::::: {columns}
+
+::: {.column width=20%}
+1. File -> New Project...
+:::
+
+::: {.column width=75%}
+![](images/01-new-project.png) 
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+::::: {columns}
+
+::: {.column width=20%}
+2. Click on New Directory
+:::
+
+::: {.column width=75%}
+![](images/02-new-directory.png)
+:::
+
+:::::
 
 
-# Positron
+## Create an R Project {.your-turn}
+::::: {columns}
 
-![](images/positron.png)
+::: {.column width=30%}
+3. Navigate to the `workshop_2` folder name your directory and click "Create Project"
+:::
+
+::: {.column width=60%}
+![](images/03-create-project.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+4. You made a project! This creates a file for you with the `.qmd` extension
+:::
+
+::: {.column width=75%}
+![](images/04-you-made-a-project.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+5. Switch from "visual" to "source" to see the plain-text version of this document.
+:::
+
+::: {.column width=75%}
+![](images/05-switch-to-source.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+6. Click on "Render" to ask Quarto to turn this plain-text document into an HTML page
+:::
+
+::: {.column width=75%}
+![](images/06-render.png)
+:::
+
+:::::
+
+## Create an R Project {.your-turn}
+
+::::: {columns}
+
+::: {.column width=20%}
+7. Your default web-browser will open and show you the rendered document!
+:::
+
+::: {.column width=75%}
+![](images/07-rendered.png)
+:::
+
+:::::
+
+# RStudio
+
+## What are the parts of RStudio?
+
+## The text editor
+
+![](images/rstudio-text-editor.png)
+
+## The console
 
 
+![](images/rstudio-text-console-image.png)
 
-## Let's take a poll {.your-turn}
+## The right panes
 
-Go to [the event on wooclap](https://app.wooclap.com/DURBAN?from=event-page)  
 
-![](images/ragon_wooclap.png)
+![](images/rstudio-text-right_panes.png)
 
 
 ---
@@ -155,7 +252,7 @@ Then, to load a package, add `library("tidyverse")` in a code chunk (usually in 
 
 You can quickly insert chunks like these into your file with  
 
-- the keyboard shortcut Ctrl + Alt + I (OS X: Shift + Command + I) 
+- the keyboard shortcut Ctrl + Alt + I (OS X: Cmd + Option + I) 
 - the Add Chunk ![](images/notebook-insert-chunk.png){width=33px} command in the editor toolbar  
 - or by typing the chunk delimiters <pre>```{r}</pre> <pre>```</pre>
 
@@ -274,30 +371,117 @@ Quick live demo of doing some work in R
 countdown::countdown(5, left=0, right=NULL, play_sound = TRUE)
 ```
 
+## Test data for today
+::::: {columns}
+
+::: {.column width=40%}
+
+![](images/96well_pleate.jpg)
+![](images/Microplate_reader.jpg)
+
+:::
+
+:::{.column width=50%}
+
+- Bacterial growth measurements with different species
+
+- Measured as an optical density (OD) of the culture at the end of the experiment
+
+- Growth measured with different concentrations of different long-chain fatty acids added to the media
+
+:::
+
+:::::
+
+## Get the data {.your-turn}
+
+Download the data from [kwondry.github.io/documentation/r-tutorial](../r-tutorial). Put it in a folder called `data` inside your R project folder.
+
+::::: {columns}
+
+::: {.column style="font-size: 0.7em; width: 30%"} 
+- [⤓`metadata.csv`](../../datasets/metadata.csv)  
+- [⤓`plate_1_data.csv`](../../datasets/plate_1_data.csv)  
+- [⤓`plate_2_data.csv`](../../datasets/plate_2_data.csv)  
+- [⤓`plate_3_data.csv`](../../datasets/plate_3_data.csv)  
+- [⤓`plate_4_data.csv`](../../datasets/plate_4_data.csv)  
+:::
+
+::: {.column style="font-size: 0.7em; width: 60%"}
+codebook:  
+
+`plate_id` – an identifier of which plate was measured. 
+`row` – row of the plate1    
+`column` – column of the plate    
+`bug` – the isolate/species that was tested in this well   
+`condition` - which long chain fatty acid (LCFA) was added   
+`conc` - what was the concentration of the LCFA in this well?  
+`row` – row of the plate     
+`column` – column of the plate    
+`od` - the optical density (OD600) that was measured in this well. This is a measure of bacterial growth.  
+
+:::
+
+:::::
+
+
+## Read in data
+
+Data is often in tables, and the easiest way to store tabular data is in `csv` or `tsv` format.
+
+`csv` - comma separated values    
+`tsv` - tab separated values  
+
+to read in data stored this way use `read_csv(filename)` or `read_tsv(filename)`
+
+```r
+metadata <- read_csv("data/metadata.csv")
+```
+
+## `bind`ing tables together
+
+We have data from 4 different plates in separate `csv` files. Use `bind_rows` to make a single table with all the data.
+
+```r
+plate_1 <- read_csv("data/plate_1_data.csv")
+plate_2 <- read_csv("data/plate_2_data.csv")
+plate_3 <- read_csv("data/plate_3_data.csv")
+plate_4 <- read_csv("data/plate_4_data.csv")
+
+all_plate_data <- bind_rows(plate_1, plate_2, plate_3, plate_4)
+```
+
+## `join`ing metadata to the data
+
+Connect the metadata to the plate reader data using `left_join`
+
+![](images/join.svg){width=30%}
+```r
+joined_data <- all_plate_data %>%
+  left_join(metadata)
+```
+
 ## `tibble`s (aka data frames)
 
 `tibble`s are the big reason R is great for working with tabular data.
 
 A data frame is a rectangular collection of variables (in the columns) and observations (in the rows). 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(here)
+metadata <- read_csv(here("datasets/metadata.csv"))
+```
 
 ```{r}
 #| echo: true 
-table_02
+joined_data
 ```
-
-## Exercise {.your-turn}
-
-That's enough slides for now time to try for yourself! Go to [the module](index.html) and go to the first exercise.
-
-```{r}
-countdown::countdown(30)
-```
-
-
 
 # Elementary data manipulations
 
-:::{.incremental style="font-size: 1.5em"}
+:::{style="font-size: 1.5em"}
 
 - Pick rows: `filter()`
 
@@ -311,92 +495,30 @@ countdown::countdown(30)
 
 :::
 
-## How to read in data?
-
-Data is often in tables, and the easiest way to store tabular data is in `csv` or `tsv` format. 
-
-`csv` - comma separated values    
-`tsv` - tab separated values  
-
-to read in data stored this way use `read_csv(filename)` or `read_tsv(filename)`
-
-```r
-table_02 <- read_csv("data/02_visit_clinical_measurements.csv")
-```
-
-## But first: the pipe operator `%>%`
-
-## But first: the pipe operator `%>%`
-
-:::{.r-fit-text}
-
-`%>%` is pronounced "and then"
-
-:::
-
-## The pipe `%>%` feeds data into functions {auto-animate=true}
+## The pipe `%>%` or `|>` feeds data into functions {auto-animate=true}
 
 
 ```{r}
 #| echo: fenced
-head(table_02)
+head(joined_data) # show the first few rows
 ```
 
-## The pipe `%>%` feeds data into functions {auto-animate=true}
-
+## The pipe `%>%` or `|>` feeds data into functions {auto-animate=true}
 
 ```{r}
 #| echo: fenced
-# head(table_02)
-table_02 %>%
+joined_data %>%
   head()
 ```
 
-
-## The pipe `%>%` feeds data into functions {auto-animate=true}
-
+## The pipe `%>%` or `|>` feeds data into functions {auto-animate=true}
 
 ```{r}
 #| echo: fenced
-ggplot(table_02, aes(crp_blood, ph, color = arm)) + geom_point()
+joined_data %>%
+  head() %>%
+  tail(1)
 ```
-
----
-
-## The pipe `%>%` feeds data into functions {auto-animate=true}
-
-
-```{r}
-#| echo: fenced
-table_02 %>%
-  ggplot(aes(crp_blood, ph, color = arm)) + geom_point()
-```
-
-
-## Since R 4.1: Native pipe `|>`  {auto-animate=true}
-
-```{r}
-#| echo: fenced
-table_02 |>
-  ggplot(aes(crp_blood, ph, color = arm)) + geom_point()
-```
-
----
-
-## Which to use? Native pipe or old-school pipe?
-
-
-:::{.incremental style="font-size: 1.5em"}
-
-- `|>` is the future. If you can, use it.
-
-- `%>%` works on older installations. It's the safe choice for now.
-
-We use `%>%` here because many people still run older R versions. Also, we're old school.
-
-:::
-
-
 
 # Picking rows or columns, and sorting
 
@@ -406,23 +528,23 @@ We use `%>%` here because many people still run older R versions. Also, we're ol
 ![](images/filter.svg)
 
 
-## Filter only placebo {auto-animate=true}
+## Filter only the first row of plates {auto-animate=true}
 
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  filter(arm == "placebo")
+joined_data %>%
+  filter(row == "a")
 ```
 
 
-## Filter out samples with ph < 4 {auto-animate=true}
+## Filter out samples with OD > 0.5 {auto-animate=true}
 
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  filter(ph < 4)
+joined_data %>%
+  filter(od > 0.5)
 ```
 
 
@@ -432,13 +554,13 @@ table_02 %>%
 ![](images/select.svg)
 
 
-## Pick columns `pid`, `ph`, and `nugent` {auto-animate=true}
+## Pick columns `plate_id`, and `od` {auto-animate=true}
 
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  select(pid, ph, nugent_score)
+joined_data %>%
+  select(plate_id, od)
 ```
 
 
@@ -447,8 +569,8 @@ table_02 %>%
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  select(participant_id = pid, ph, nugent_score)
+joined_data %>%
+  select(plate_id, optical_density=od)
 ```
 
 
@@ -461,33 +583,33 @@ table_02 %>%
 
 ---
 
-## Sort samples by ph ascending {auto-animate=true}
+## Sort samples by OD ascending {auto-animate=true}
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  arrange(ph)
+joined_data %>%
+  arrange(od)
 ```
 
 
 ---
 
-## Sort samples by ph, descending {auto-animate=true}
+## Sort samples by OD, descending {auto-animate=true}
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  arrange(desc(ph))
+joined_data %>%
+  arrange(desc(od))
 ```
 
 
 ## Counting things
 
-To demonstrate counting, let's switch to `table_01`
+To demonstrate counting, let's switch to `metadata`
 
 ```{r}
 #| echo: fenced
-table_01
+joined_data
 ```
 
 ---
@@ -497,8 +619,8 @@ table_01
 
 ```{r}
 #| echo: fenced
-table_01 %>%
-  count(smoker)
+joined_data %>%
+  count(bug)
 ```
 
 
@@ -506,27 +628,16 @@ table_01 %>%
 
 ```{r}
 #| echo: fenced
-table_01 %>%
-  count(arm, smoker)
+joined_data %>%
+  count(condition, conc, bug)
 ```
-
-
-## Let's take a poll {.your-turn}
-
-Go to [the event on wooclap](https://app.wooclap.com/RAGON?from=event-page)  
-
-![](images/ragon_wooclap.png)
-
-[M2. Does filter get rid of rows that match TRUE, or keep rows that match TRUE? ]{style="font-size: 0.9em"}
-
-
 
 ## Use the pipe to build analysis pipelines {auto-animate=true}
 
 ```{r}
 #| echo: fenced
-table_01 %>%
-  filter(arm == "placebo")
+joined_data %>%
+  filter(bug == "crispatus")
 ```
 
 
@@ -535,19 +646,21 @@ table_01 %>%
 
 ```{r}
 #| echo: fenced
-table_01 %>%
-  filter(age < 30) %>%
-  select(pid, arm, smoker)
+joined_data %>%
+  filter(bug == "crispatus") %>%
+  filter(conc > 50) %>%
+  select(plate_id, bug, condition)
 ```
 
 ## Use the pipe to build analysis pipelines {auto-animate=true}
 
 ```{r}
 #| echo: fenced
-table_01 %>%
-  filter(age < 30) %>%
-  select(pid, arm, smoker) %>%
-  count(arm, smoker)
+joined_data %>%
+  filter(bug == "crispatus") %>%
+  filter(conc > 50) %>%
+  select(plate_id, bug, condition) %>%
+  count(condition)
 ```
 
 
@@ -558,43 +671,39 @@ table_01 %>%
 ![](images/mutate.svg)
 
 
-## Example: C-reactive protein {auto-animate=TRUE}
+## Example: concentration {auto-animate=TRUE}
 
-The `crp_blood` column is in units of mg/L. What if you needed it in ug/ul? What's the calculation?
+The `conc` column is in units of uM. What if you needed it in mM? What's the calculation?
 
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  select(pid, time_point, crp_blood)
+sample_n(metadata,5)
+```
+
+## Example: concentration {auto-animate=TRUE}
+
+The `conc` column is in units of uM. What if you needed it in mM? What's the calculation?
+
+To get mM you would divide by 1000.
+
+```{r}
+#| echo: fenced
+sample_n(metadata,5)
 ```
 
 
-## Example: C-reactive protein {auto-animate=TRUE}
 
-The `crp_blood` column is in units of mg/L. What if you needed it in ug/ul? What's the calculation?
+## Example: concentration {auto-animate=TRUE}
 
-To get ug/L you would multiply by 1000. To get ug/ul you need to then divide by 1000000
+The `conc` column is in units of uM. What if you needed it in mM? What's the calculation?
 
-```{r}
-#| echo: fenced
-table_02 %>%
-  select(pid, time_point, crp_blood)
-```
-
-
-
-## Example: C-reactive protein {auto-animate=TRUE}
-
-The `crp_blood` column is in units of mg/L. What if you needed it in ug/ul? What's the calculation?
-
-To get ug/L you would multiply by 1000. To get ug/ul you need to then divide by 1000000
+To get mM you would divide by 1000.
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  select(pid, time_point, crp_blood) %>%
-  mutate(crp_blood_ugul = crp_blood / 1000)
+sample_n(metadata,5) %>%
+  mutate(conc_mM = conc/1000)
 ```
 
 
@@ -603,25 +712,36 @@ table_02 %>%
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  select(pid, time_point, crp_blood) %>%
-  mutate(crp_blood_ugul = crp_blood / 1000,
-         crp_blood_ugl = crp_blood * 1000)
+sample_n(metadata,5) %>%
+  mutate(conc_mM = conc/1000, conc_nM = conc*1000)
 ```
 
 
-
-## Exercise {.your-turn}
-
-That's enough slides for now time to try for yourself! Go to [the module](index.html) and go to the second exercise.
+## Your turn to do some data wrangling {.your-turn}
 
 ```{r}
-countdown::countdown(30)
+#| echo: false
+countdown::countdown(15, left=0, right=NULL)
 ```
 
+Write code to answer the following questions?
 
+1. How many different concentrations of LCFA are tested?
 
+2. How many different LCFAs are tested on each plate?
 
+3. What bug has the highest OD seen in all the plates?
+
+4. What bug has the highest OD when no LCFA is added?
+
+5. What control well with no bug and no LCFA has the highest OD?
+
+## Break {.our-turn}
+
+```{r}
+#| echo: false
+countdown::countdown(15, left=0, right=NULL, font_size = "12rem")
+```
 # Aesthetics - the elements of data visualization
 
 ## Plots map data onto graphical elements.
@@ -629,28 +749,32 @@ countdown::countdown(30)
 
 ```{r}
 #| echo: false
-#| label: tbl-02
-#| tbl-cap: "`02_visit_clinical_measurements_UKZN_workshop_2023.csv`"
-knitr::kable(head(table_02))
+#| label: joined_data
+#| tbl-cap: "joined_data`"
+knitr::kable(head(joined_data))
 
 ```
 
-## pH mapped to y position
+## od mapped to y position
 
 ```{r}
-table_02 %>%
-  ggplot(aes(x = time_point, y=ph)) +
+joined_data %>%
+  ggplot(aes(x = bug, y=od)) +
   geom_jitter()
 
 ```
 
-## pH mapped to color
+## conc mapped to color
 
 ```{r}
-table_02 %>%
-  ggplot(aes(x = time_point, y=pid, color=ph)) +
-  geom_point(size=2) +
-  theme(axis.text.y = element_blank())
+joined_data %>%
+  mutate(row = factor(row) %>% fct_rev()) %>%
+  mutate(column = factor(str_pad(column, width=2, pad="0"))) %>%
+  ggplot(aes(x = column, y=row, color=conc)) +
+  geom_point(size=5) +
+  scale_color_continuous_sequential() +
+  facet_wrap(~plate_id) +
+  theme_cowplot(10)
 
 ```
 
@@ -658,7 +782,6 @@ table_02 %>%
 ## Commonly used aesthetics
 
 ![Figure from <a href = 'https://clauswilke.com/dataviz'> Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019 </a>](images/common-aesthetics-1.png)
-
 
 ## The same data values can be mapped to different aesthetics
 
@@ -707,48 +830,16 @@ ggdraw() +
 
 ```{r}
 #| echo: fenced
-table_02 %>%
-  ggplot(mapping = aes(x = time_point, y = ph, color = ph)) +
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
   geom_jitter()
 ```
-
-
-## We frequently omit argument names {auto-animate="true"}
-
-Long form, all arguments are named:
-
-```{r}
-#| echo: fenced
-#| eval: false
-
-ggplot(
-  data= table_02,
-  mapping = aes(x = time_point, y = ph, color = ph)
-) +
-  geom_jitter()
-
-```
-
-
-## We frequently omit argument names {auto-animate="true"}
-
-Abbreviated form, common arguments remain unnamed:
-
-```{r}
-#| echo: fenced
-#| eval: false
-
-ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
-  geom_jitter()
-
-```
-
 
 ## The geom determines how the data is shown  {auto-animate="true"}
 
 ```{r}
 #| echo: fenced
-ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
+ggplot(joined_data, mapping = aes(x = conc, y = od, color = bug)) +
   geom_point()
 ```
 
@@ -756,7 +847,7 @@ ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
 
 ```{r}
 #| echo: fenced
-ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
+ggplot(joined_data, mapping = aes(x = as.factor(conc), y = od, color = bug)) +
   geom_boxplot()
 ```
 
@@ -765,7 +856,8 @@ ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
 
 ```{r}
 #| echo: fenced
-ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
   geom_jitter()
 ```
 
@@ -773,7 +865,8 @@ ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
 
 ```{r}
 #| echo: fenced
-ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
   geom_jitter(size=3)
 ```
 
@@ -782,114 +875,103 @@ ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
 
 ```{r}
 #| echo: fenced
-ggplot(table_02, aes(x = time_point, y = ph, color = ph)) +
-  geom_jitter(size=3, width = 0.2)
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter(size=3, width=10)
 ```
 
-
-## Important: `color` and `fill` apply to different elements
-
-
-`color`<br>
-Applies color to points, lines, text, borders
-
-
-`fill`<br>
-Applies color to any filled areas 
-
-
-
-## Many geoms have both `color` and `fill` aesthetics {auto-animate="true"}
-
-```{r}
-#| echo: fenced
-#| output-location: column
-ggplot(
-  data = table_02,
-  mapping = aes(
-    x = time_point,
-    y = ph,
-    color = time_point
-  )
-) + geom_boxplot()
-```
-
-## Many geoms have both `color` and `fill` aesthetics {auto-animate="true"}
-
-```{r}
-#| echo: fenced
-#| output-location: column
-ggplot(
-  data = table_02,
-  mapping = aes(
-    x = time_point,
-    y = ph,
-    fill = time_point
-  )
-) + geom_boxplot()
-```
-
-## Many geoms have both `color` and `fill` aesthetics {auto-animate="true"}
-
-```{r}
-#| echo: fenced
-#| output-location: column
-ggplot(
-  data = table_02,
-  mapping = aes(
-    x = time_point,
-    y = ph,
-    fill = time_point,
-    color = time_point
-  )
-) + geom_boxplot()
-```
 
 ## Aesthetics can also be used as parameters in geoms {auto-animate="true"}
 
 ```{r}
 #| echo: fenced
 #| output-location: column
-ggplot(
-  data = table_02,
-  mapping = aes(
-    x = time_point,
-    y = ph
-  )
-) + geom_boxplot()
+ggplot(joined_data, mapping = aes(x = as.factor(conc), y = od, color = bug)) +
+  geom_boxplot(fill="orange")
 ```
 
-## Aesthetics can also be used as parameters in geoms {auto-animate="true"}
+
+## Faceting makes subplots for comparisons. {auto-animate="true"}
 
 ```{r}
 #| echo: fenced
-#| output-location: column
-ggplot(
-  data = table_02,
-  mapping = aes(
-    x = time_point,
-    y = ph
-  )
-) + geom_boxplot(fill="orange")
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter(size=3, width=10) +
+  facet_wrap(~condition)
 ```
 
-## Exercise {.your-turn}
+## Faceting makes subplots for comparisons. {auto-animate="true"}
 
 ```{r}
-#| echo: false
-
-countdown(30)
-
+#| echo: fenced
+joined_data %>%
+  ggplot(mapping = aes(x = conc, y = od, color = bug)) +
+  geom_jitter(size=3, width=10) +
+  facet_wrap(~condition+bug, ncol=6)
 ```
-
-Time to try it yourself. Go to [the first coding exercise](index.html#coding-exercise-3.1).
-
-![](images/sticky.jpeg){fig-alt="Picture of a laptop with a red sticky note stuck to the top." width=540}
-
-During an activity, place a [**blue**]{style="color: DarkTurquoise"}  sticky on your laptop if you're good to go and a [**pink**]{style="color: hotpink"} sticky if you want help.
-
 
 # Visualizing distributions
+
+```{r setup, include=FALSE, echo=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(comment = "")
+
+library(tidyverse)
+library(lubridate)
+library(cowplot)
+library(colorspace)
+library(here)
+library(ggridges)
+library(ggforce)
+library(ggbeeswarm)
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(16)) # 16 for full width, 18 for half width 
+update_geom_defaults("point", list(size = 2)) # 2 for full width, 2.5 for half width
+
+# this function should be added to cowplot
+align_legend <- function(p, hjust = 0.5)
+{
+  # extract legend
+  g <- cowplot::plot_to_gtable(p)
+  grobs <- g$grobs
+  legend_index <- which(sapply(grobs, function(x) x$name) == "guide-box")
+  legend <- grobs[[legend_index]]
+
+  # extract guides table
+  guides_index <- which(sapply(legend$grobs, function(x) x$name) == "layout")
+
+  # there can be multiple guides within one legend box  
+  for (gi in guides_index) {
+    guides <- legend$grobs[[gi]]
+    
+    # add extra column for spacing
+    # guides$width[5] is the extra spacing from the end of the legend text
+    # to the end of the legend title. If we instead distribute it by `hjust:(1-hjust)` on
+    # both sides, we get an aligned legend
+    spacing <- guides$width[5]
+    guides <- gtable::gtable_add_cols(guides, hjust*spacing, 1)
+    guides$widths[6] <- (1-hjust)*spacing
+    title_index <- guides$layout$name == "title"
+    guides$layout$l[title_index] <- 2
+
+    # reconstruct guides and write back
+    legend$grobs[[gi]] <- guides
+  }
+  
+  # reconstruct legend and write back
+  g$grobs[[legend_index]] <- legend
+  g
+}
+
+income_by_age <- readRDS(here("datasets", "income_by_age.rds"))
+
+titanic <- read_csv(here("datasets", "titanic.csv")) %>%
+  select(age, sex, class, survived) %>%
+  arrange(age, sex, class)
+
+lincoln_temps <- readRDS(here("datasets", "lincoln_temps.rds")) %>% mutate(mean_temp = ((mean_temp - 32)*5/9) %>% round())
+```
 
 ## Histograms and density plots
 
@@ -928,6 +1010,8 @@ titanic  %>% slice(25:36) %>% knitr::kable()
 :::
 
 ## Histograms depend on the chosen bin width
+
+
 
 ```{r titanic-age-hist-binwidth, echo = FALSE, fig.width = 8, fig.asp = 0.618, dev = "svg"}
 
@@ -1008,17 +1092,6 @@ plot_grid(
   rel_heights = c(1, .04, 1)
 )
 ```
-
-
-## Let's take a poll {.your-turn}
-
-Go to [the event on wooclap](https://app.wooclap.com/DURBAN?from=event-page)  
-
-![](images/ragon_wooclap.png)
-
----
-
-
 
 # Histograms and density plots in **ggplot2**
 
@@ -1220,11 +1293,173 @@ ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
 ```
 
 
-## Examples: Strip chart (w/ jitter) {auto-animate=true}
+## Examples:  ggbeeswarm's `geom_quasirandom`   {auto-animate=true}
 
 ```{r}
 #| echo: fenced
 ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
-  geom_jitter(color = "skyblue") 
+  ggbeeswarm::geom_quasirandom(color = "skyblue") 
 ```
+
+---
+
+## Group Pen and Paper exercise {.your-turn}
+
+```{r}
+#| echo: false
+countdown::countdown(10, left=0, right=NULL)
+```
+
+Get with a group of 2-3 people.
+Go to [the activity](index.html#data-visualization-activity) and pick an option to do together.
+
+## Analyze subsets: `group_by()` and `summarize()`
+
+![](images/summarize.svg)
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Previously we used `count`, now we `group` the data
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  group_by(bug, conc, condition)
+```
+
+
+## Example application of grouping: Counting {auto-animate=true}
+
+Previously we used `count`, now we `group` the data, and then summarise
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  group_by(bug, conc, condition) %>%
+  summarise(
+    n = n() # n() returns the number of observations per group
+    )
+```
+
+
+## Example application of grouping: Medians {auto-animate=true}
+
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  group_by(bug, conc, condition) %>%
+  summarise(
+    median_od = median(od) 
+    )
+```
+
+## You can make multiple summaries at once
+
+```{r}
+#| echo: fenced
+
+joined_data %>%
+  group_by(bug, conc, condition) %>%
+  summarise(
+    n = n(), 
+    median_od = median(od) 
+    )
+```
+
+
+## Get background OD for each media on each plate {.your-turn}
+
+Make a code block and make a variable called `media_background_medians` that has one row for every combination of plate, lcfa, and conc that gives the median OD measured for those conditions.
+
+Bonus: make a histogram of the media backgrounds (before summarising) for each condition and concentration. Try with a facet by plate and without.
+
+## Get no-LCFA OD for each bug on each plate {.your-turn}
+
+Now make a variable called `bug_no_lcfa_control`. Join the `media_background_medians` to the `joined_data`, and `mutate` a column that caluclate the `od` - `media_background`. Filter this table so it only has the no LCFA control conditions for each bug on each plate. Then `group_by` `bug` and `plate_id` and get the median of each background subtracted `od`.
+
+Bonus: make a histogram before summarising of the ods with background subtracted for each bug on each plate.
+
+## Challenge: calculate relative growths {.your-turn}
+
+Make a table that has the relative growth compared to no LCFA of each bug for each concentration. (Hint: There should be three rows per condition+bug+concentration.) Make a plot showing the relative growths. (e.g. x axis is concentration, y axis relative growth, facet by bug+concentration, and pick a geom to use to show the data.)
+
+Investigate why some relative growths are so high. Think about how you might tweak the analysis to handle that issue.
+
+## Reshape: `pivot_wider()` and `pivot_longer()`
+
+![](images/pivot.svg)
+
+## Reshaping example: Making a wide summary table {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  count(plate_id, bug, conc, condition) %>%
+  pivot_wider(names_from = plate_id, values_from = n)
+```
+
+## Reshaping example: Making a wide summary table {auto-animate=true}
+
+```{r}
+#| echo: fenced
+joined_data %>%
+  count(plate_id, bug, conc, condition) %>%
+  pivot_wider(names_from = bug, values_from = n)
+```
+
+# combining datasets: joins
+
+
+## We use joins to add columns from one table into another
+
+![](images/join.svg)
+
+## There are different types of joins
+
+The differences are all about how to handle when the two tables have different **key values** 
+
+![](images/joins-venn2.svg)
+
+. . .
+
+::: {.incremental style="font-size: 0.7em"}
+`left_join()` - the resulting table always has the same **key_values** as the "left" table
+
+`right_join()` - the resulting table always has the same **key_values** as the "right" table
+
+`inner_join()` - the resulting table always only keeps the  **key_values** that are in both tables
+
+`full_join()` - the resulting table always has all **key_values** found in both tables
+:::
+
+## Left Join
+
+`left_join()` - the resulting table always has the same **key_values** as the "left" table
+
+![](images/left_join.png)
+
+## inner_join
+
+`inner_join()` - the resulting table always only keeps the  **key_values** that are in both tables
+
+![](images/inner_join.png)
+
+```{r}
+#| eval: false
+#| echo: true
+table_a %>% inner_join(table_b)
+```
+
+## Note, merging tables vertically is bind_rows(), not a join
+
+![](images/vertical_join.png)
+
+
+```{r}
+#| eval: false
+#| echo: true
+table_a %>% bind_rows(table_b)
+```
+
 
