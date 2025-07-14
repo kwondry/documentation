@@ -295,13 +295,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#slides-intro-to-rstudio-quarto-and-r" id="toc-slides-intro-to-rstudio-quarto-and-r" class="nav-link active" data-scroll-target="#slides-intro-to-rstudio-quarto-and-r">Slides: Intro to RStudio, Quarto, and R</a></li>
-  <li><a href="#data-visualization-activity" id="toc-data-visualization-activity" class="nav-link" data-scroll-target="#data-visualization-activity">Data Visualization Activity</a>
-  <ul class="collapse">
-  <li><a href="#genetic-profiles-of-cancer" id="toc-genetic-profiles-of-cancer" class="nav-link" data-scroll-target="#genetic-profiles-of-cancer">Genetic profiles of cancer</a></li>
-  </ul></li>
-  <li><a href="#download-the-data-for-the-workshop" id="toc-download-the-data-for-the-workshop" class="nav-link" data-scroll-target="#download-the-data-for-the-workshop">Download the data for the workshop</a></li>
   <li><a href="#download-the-instructional-dataset" id="toc-download-the-instructional-dataset" class="nav-link" data-scroll-target="#download-the-instructional-dataset">Download the instructional dataset:</a></li>
-  <li><a href="#exercise-data-wrangling-and-simple-manipulations" id="toc-exercise-data-wrangling-and-simple-manipulations" class="nav-link" data-scroll-target="#exercise-data-wrangling-and-simple-manipulations">Exercise Data wrangling and simple manipulations</a>
+  <li><a href="#exercise-2-data-wrangling-and-simple-manipulations" id="toc-exercise-2-data-wrangling-and-simple-manipulations" class="nav-link" data-scroll-target="#exercise-2-data-wrangling-and-simple-manipulations">Exercise 2: Data wrangling and simple manipulations</a>
   <ul class="collapse">
   <li><a href="#the-pipe-read-and-then" id="toc-the-pipe-read-and-then" class="nav-link" data-scroll-target="#the-pipe-read-and-then">The pipe (<code>%&gt;%</code>, read: “and then”)</a></li>
   <li><a href="#choosing-data-rows" id="toc-choosing-data-rows" class="nav-link" data-scroll-target="#choosing-data-rows">Choosing data rows</a></li>
@@ -312,13 +307,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#counting" id="toc-counting" class="nav-link" data-scroll-target="#counting">Counting</a></li>
   <li><a href="#chaining-analysis-steps-into-pipelines" id="toc-chaining-analysis-steps-into-pipelines" class="nav-link" data-scroll-target="#chaining-analysis-steps-into-pipelines">Chaining analysis steps into pipelines</a></li>
   </ul></li>
-  <li><a href="#ggplot-exercise" id="toc-ggplot-exercise" class="nav-link" data-scroll-target="#ggplot-exercise">ggplot exercise</a>
+  <li><a href="#exercise-1-data-visualization-activity" id="toc-exercise-1-data-visualization-activity" class="nav-link" data-scroll-target="#exercise-1-data-visualization-activity">Exercise 1: Data Visualization Activity</a>
+  <ul class="collapse">
+  <li><a href="#genetic-profiles-of-cancer" id="toc-genetic-profiles-of-cancer" class="nav-link" data-scroll-target="#genetic-profiles-of-cancer">Genetic profiles of cancer</a></li>
+  </ul></li>
+  <li><a href="#exercise-3-ggplot-exercise" id="toc-exercise-3-ggplot-exercise" class="nav-link" data-scroll-target="#exercise-3-ggplot-exercise">Exercise 3: ggplot exercise</a>
   <ul class="collapse">
   <li><a href="#basic-use-of-ggplot" id="toc-basic-use-of-ggplot" class="nav-link" data-scroll-target="#basic-use-of-ggplot">Basic use of ggplot</a></li>
   <li><a href="#more-complex-geoms" id="toc-more-complex-geoms" class="nav-link" data-scroll-target="#more-complex-geoms">More complex geoms</a></li>
   <li><a href="#adding-color" id="toc-adding-color" class="nav-link" data-scroll-target="#adding-color">Adding color</a></li>
   <li><a href="#using-aesthetics-as-parameters" id="toc-using-aesthetics-as-parameters" class="nav-link" data-scroll-target="#using-aesthetics-as-parameters">Using aesthetics as parameters</a></li>
   </ul></li>
+  <li><a href="#exercise-4-data-wrangling-2" id="toc-exercise-4-data-wrangling-2" class="nav-link" data-scroll-target="#exercise-4-data-wrangling-2">Exercise 4: Data wrangling 2</a>
+  <ul class="collapse">
+  <li><a href="#analyzing-subsets" id="toc-analyzing-subsets" class="nav-link" data-scroll-target="#analyzing-subsets">Analyzing subsets</a></li>
+  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping">Grouping</a></li>
+  <li><a href="#performing-summaries" id="toc-performing-summaries" class="nav-link" data-scroll-target="#performing-summaries">Performing summaries</a></li>
+  <li><a href="#making-tables-wider-or-longer" id="toc-making-tables-wider-or-longer" class="nav-link" data-scroll-target="#making-tables-wider-or-longer">Making tables wider or longer</a></li>
+  <li><a href="#combining-datasets-with-joins" id="toc-combining-datasets-with-joins" class="nav-link" data-scroll-target="#combining-datasets-with-joins">Combining datasets with joins</a></li>
+  </ul></li>
+  <li><a href="#advanced-next-steps" id="toc-advanced-next-steps" class="nav-link" data-scroll-target="#advanced-next-steps">Advanced next steps</a></li>
   </ul>
 </nav>
     </div>
@@ -351,11 +359,191 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="slides-intro-to-rstudio-quarto-and-r">Slides: Intro to RStudio, Quarto, and R</h2>
 <p><a href="../../materials/r-tutorial/slides.html">Make slides full screen</a></p>
 <iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+</section>
+<section id="download-the-instructional-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="download-the-instructional-dataset">Download the instructional dataset:</h2>
+<p>The main data set for use in lectures is split into 5 tables. The idea of this dataset is that there is a randomized controlled trial of a drug aimed at reducing HIV risk by reducing inflammation. There were 23 participants in the placebo arm and 21 in the treatment arm. There were 3 visits for the trial – baseline (before any treatment occurred), week_1 (1 week after treatment) and week_7 (7 weeks after treatment). At each time point inflammation was measured using luminex (elisa_cytokines table) and immune cells counts were measured from a pap-smear (flow_cytometry table).</p>
+<ul>
+<li><a href="datasets/instructional_dataset/00_sample_ids.csv"><code>00_sample_ids.csv</code></a></li>
+</ul>
+<p><code>pid</code> – participant id<br>
+<code>time_point</code> – “baseline”, “week_1”, or “week_7” <code>arm</code> – “treatment” or “placebo”<br>
+<code>sample_id</code> – the “wet-lab” sample id associated with this timepoint</p>
+<ul>
+<li><a href="datasets/instructional_dataset/01_participant_metadata.csv"><code>01_participant_metadata.csv</code></a></li>
+</ul>
+<p><code>pid</code> - participant id<br>
+<code>arm</code> - “treatment” or “placebo”<br>
+<code>smoker</code> - “yes” or “no”<br>
+<code>age</code> – age in years<br>
+<code>education</code> – 4 options (“less than grade 9”, “grade 10-12, not matriculated”, “grade 10-12, matriculated”, “post-secondary”)<br>
+<code>sex</code> – all participants are “Female”</p>
+<ul>
+<li><a href="datasets/instructional_dataset/02_visit_clinical_measurements.csv"><code>02_visit_clinical_measurements.csv</code></a></li>
+</ul>
+<p><code>pid</code> – particpant id<br>
+<code>time_point</code> – “baseline”, “week_1”, or “week_7”<br>
+<code>arm</code> – “treatment” or “placebo”<br>
+<code>nugent_score</code> – <a href="https://en.wikipedia.org/wiki/Nugent_score">Nugent Score</a>, a number from 0-10. 0-3 is no BV, 4-6 is intermediate BV, and 7-10 is BV . <code>crp_blood</code> – decimal number representing C-reactive protein blood test (CRP) <code>ph</code> – vaginal pH</p>
+<ul>
+<li><a href="datasets/instructional_dataset/03_elisa_cytokines.csv"><code>03_elisa_cytokines.csv</code></a></li>
+</ul>
+<p><code>sample_id</code> - the “wet-lab” sample id associated with this timepoint<br>
+<code>cytokine</code> - “IL-1a”, “IL-10”, “IL-1b”, “IL-8”, “IL-6”, “TNFa”, “IP-10”, “MIG”, “IFN-Y”, “MIP-3a”<br>
+<code>conc</code> – decimal number representing concentration<br>
+<code>limits</code> – either “within limits” or “out of range”</p>
+<ul>
+<li><a href="datasets/instructional_dataset/04_flow_cytometry.csv"><code>04_flow_cytometry.csv</code></a></li>
+</ul>
+<p><code>sample_id</code> - the “wet-lab” sample id associated with this timepoint<br>
+All other columns – the integer count of this type of cell in this sample</p>
+<p><code>cd4_t_cells</code> might best be analyzed as a proportion of <code>cd3_t_cells</code>… ### Read in data</p>
+<p>Data is often in tables, and the easiest way to store tabular data is in <code>csv</code> or <code>tsv</code> format.</p>
+<p><code>csv</code> - comma separated values<br>
+<code>tsv</code> - tab separated values</p>
+<p>to read in data stored this way use <code>read_csv(filename)</code> or <code>read_tsv(filename)</code></p>
+</section>
+<section id="exercise-2-data-wrangling-and-simple-manipulations" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-data-wrangling-and-simple-manipulations">Exercise 2: Data wrangling and simple manipulations</h2>
+<p>In this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.</p>
+<p>We will be using the R package, <strong>tidyverse</strong> for the data manipulation functions <code>%&gt;%</code>, <code>filter()</code>, <code>select()</code>, <code>arrange()</code>, <code>count()</code>, and <code>mutate()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">table_01 &lt;- read_csv("data/01_participant_metadata.csv")</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">table_02 &lt;- read_csv("data/02_visit_clinical_measurements.csv")</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="the-pipe-read-and-then" class="level3">
+<h3 class="anchored" data-anchor-id="the-pipe-read-and-then">The pipe (<code>%&gt;%</code>, read: “and then”)</h3>
+<p>When writing complex data analysis pipelines, we frequently use the pipe operator <code>%&gt;%</code> to move data from one analysis step to the next. The pipe is pronounced “and then”, and it takes the data on its left and uses it as the first argument for the function on its right.</p>
+<p>For example, to see the first few lines of a dataset, we often write <code>head(data)</code>. Instead, we can write <code>data %&gt;% head()</code>.</p>
+<p>Try this yourself. Write code that displays the first few lines of <code>table_01</code>, using <code>%&gt;%</code> and <code>head()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>table_01 ___ <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="choosing-data-rows" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-data-rows">Choosing data rows</h3>
+<p>The function <code>filter()</code> allows you to find rows in a dataset that meet one or more specific conditions. The syntax is <code>data %&gt;% filter(condition)</code>, where condition is a logical condition. For example, <code>filter(x &gt; 5)</code> would pick all rows for which the value in column <code>x</code> is greater than 5.</p>
+<p>Below, write code to pick all measurements from the <code>placebo</code> arm in <code>table_02</code> :</p>
+<div class="cell" data-exercise="true">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="filtering-for-multiple-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-for-multiple-conditions">Filtering for multiple conditions</h3>
+<p>You can also state multiple conditions, separated by a comma. For example, <code>filter(x &gt; 5, y &lt; 2)</code> would pick all rows for which the value in the column <code>x</code> is greater than 5 and the value in the column <code>y</code> is less than 2. Note that the conditions are combined via logical and, both need to be satisfied for the row to be picked.</p>
+<p>To try this out, pick all measurements at <code>baseline</code> for the <code>placebo</code> arm in <code>table_02</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_point <span class="sc">==</span> ___, arm <span class="sc">==</span> ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="choosing-data-columns" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-data-columns">Choosing data columns</h3>
+<p>The function <code>select()</code> allows you to pick specific data columns by name. This is frequently useful when a dataset has many more columns than we are interested in at the time. For example, if we are only interested in the participants’ education, and sex, we could select these three columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(education, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 2
+   education                     sex   
+   &lt;chr&gt;                         &lt;chr&gt; 
+ 1 grade 10-12, matriculated     Female
+ 2 grade 10-12, matriculated     Female
+ 3 post-secondary                Female
+ 4 grade 10-12, not matriculated Female
+ 5 grade 10-12, matriculated     Female
+ 6 post-secondary                Female
+ 7 grade 10-12, not matriculated Female
+ 8 grade 10-12, not matriculated Female
+ 9 grade 10-12, not matriculated Female
+10 less than grade 9             Female
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<p>Try this yourself, picking the columns representing the participant age (<code>age</code>), and then study arm (<code>arm</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="choosing-columns-for-removal" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-columns-for-removal">Choosing columns for removal</h3>
+<p>Another situation that arises frequently is one where we want to remove specific columns. We can also do this with <code>select()</code>, but now write <code>select(-column)</code> to remove one or more columns.</p>
+<p>Try this. Remove the column <code>smoker</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And now remove both <code>smoker</code> and <code>education</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>___, <span class="sc">-</span>___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sorting-data" class="level3">
+<h3 class="anchored" data-anchor-id="sorting-data">Sorting data</h3>
+<p>The function <code>arrange()</code> allows you to sort data by one or more columns. For example, <code>data %&gt;% arrange(x)</code> would sort the data by increasing values of <code>x</code>, and <code>data %&gt;% arrange(x, y)</code> would sort the data first by <code>x</code> and then, for ties in <code>x</code>, by <code>y</code>.</p>
+<p>Sort the participants by age:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To arrange data in descending order, enclose the data column in <code>desc()</code>. For example, <code>data %&gt;% arrange(desc(x))</code> would sort the data by decreasing values of <code>x</code>. (<code>desc</code> stands for “descending”.)</p>
+</section>
+<section id="counting" class="level3">
+<h3 class="anchored" data-anchor-id="counting">Counting</h3>
+<p>We frequently want to count how many times a particular value or combination of values occurs in a dataset. We do this using the <code>count()</code> function. For example, the following code counts how many participants there are in each study arm in table_01.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(arm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  arm           n
+  &lt;chr&gt;     &lt;int&gt;
+1 placebo      23
+2 treatment    21</code></pre>
+</div>
+</div>
+<p>Now try this yourself. Count how many smokers and non smokers there are.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also perform more fine-grained counts, by providing the <code>count()</code> function with more than one column name. See if you can count how many smokers and non smokers the dataset contains for each treatment arm</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___, smoker)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now count how many participants are in each study arm for each education level in the dataset</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___, arm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="chaining-analysis-steps-into-pipelines" class="level3">
+<h3 class="anchored" data-anchor-id="chaining-analysis-steps-into-pipelines">Chaining analysis steps into pipelines</h3>
+<p>We can chain multiple analysis steps into a pipeline by continuing to add “and then” statements. For example, <code>data %&gt;% count(...) %&gt;% arrange(...)</code> would first count and then sort the data.</p>
+<p>Try this out by counting the number of participants in each study arm and then sorting by the number of participants</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><br>
 </p>
 </section>
-<section id="data-visualization-activity" class="level2">
-<h2 class="anchored" data-anchor-id="data-visualization-activity">Data Visualization Activity</h2>
+</section>
+<section id="exercise-1-data-visualization-activity" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-data-visualization-activity">Exercise 1: Data Visualization Activity</h2>
 <p><em>reproduced from a Schmidt Science Fellowship activity, thanks to Fatima Hussain</em></p>
 <blockquote class="blockquote">
 <p>Patterns are the essence of data exploration and our eyes’ ability to pick them out is integral to data understanding. Much of the data we work with, however, do not have a natural form and we need to make decisions about how they are to be represented. Try different ways to visualize the datasets so meaningful patterns may be found.</p>
@@ -613,191 +801,8 @@ Table&nbsp;2: Expression levels for a set of genes
 </div>
 </div>
 </section>
-<section id="download-the-data-for-the-workshop" class="level2">
-<h2 class="anchored" data-anchor-id="download-the-data-for-the-workshop">Download the data for the workshop</h2>
-</section>
-<section id="download-the-instructional-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="download-the-instructional-dataset">Download the instructional dataset:</h2>
-<p>The main data set for use in lectures is split into 5 tables. The idea of this dataset is that there is a randomized controlled trial of a drug aimed at reducing HIV risk by reducing inflammation. There were 23 participants in the placebo arm and 21 in the treatment arm. There were 3 visits for the trial – baseline (before any treatment occurred), week_1 (1 week after treatment) and week_7 (7 weeks after treatment). At each time point inflammation was measured using luminex (elisa_cytokines table) and immune cells counts were measured from a pap-smear (flow_cytometry table).</p>
-<ul>
-<li><a href="datasets/instructional_dataset/00_sample_ids.csv"><code>00_sample_ids.csv</code></a></li>
-</ul>
-<p><code>pid</code> – participant id<br>
-<code>time_point</code> – “baseline”, “week_1”, or “week_7” <code>arm</code> – “treatment” or “placebo”<br>
-<code>sample_id</code> – the “wet-lab” sample id associated with this timepoint</p>
-<ul>
-<li><a href="datasets/instructional_dataset/01_participant_metadata.csv"><code>01_participant_metadata.csv</code></a></li>
-</ul>
-<p><code>pid</code> - participant id<br>
-<code>arm</code> - “treatment” or “placebo”<br>
-<code>smoker</code> - “yes” or “no”<br>
-<code>age</code> – age in years<br>
-<code>education</code> – 4 options (“less than grade 9”, “grade 10-12, not matriculated”, “grade 10-12, matriculated”, “post-secondary”)<br>
-<code>sex</code> – all participants are “Female”</p>
-<ul>
-<li><a href="datasets/instructional_dataset/02_visit_clinical_measurements.csv"><code>02_visit_clinical_measurements.csv</code></a></li>
-</ul>
-<p><code>pid</code> – particpant id<br>
-<code>time_point</code> – “baseline”, “week_1”, or “week_7”<br>
-<code>arm</code> – “treatment” or “placebo”<br>
-<code>nugent_score</code> – <a href="https://en.wikipedia.org/wiki/Nugent_score">Nugent Score</a>, a number from 0-10. 0-3 is no BV, 4-6 is intermediate BV, and 7-10 is BV . <code>crp_blood</code> – decimal number representing C-reactive protein blood test (CRP) <code>ph</code> – vaginal pH</p>
-<ul>
-<li><a href="datasets/instructional_dataset/03_elisa_cytokines.csv"><code>03_elisa_cytokines.csv</code></a></li>
-</ul>
-<p><code>sample_id</code> - the “wet-lab” sample id associated with this timepoint<br>
-<code>cytokine</code> - “IL-1a”, “IL-10”, “IL-1b”, “IL-8”, “IL-6”, “TNFa”, “IP-10”, “MIG”, “IFN-Y”, “MIP-3a”<br>
-<code>conc</code> – decimal number representing concentration<br>
-<code>limits</code> – either “within limits” or “out of range”</p>
-<ul>
-<li><a href="datasets/instructional_dataset/04_flow_cytometry.csv"><code>04_flow_cytometry.csv</code></a></li>
-</ul>
-<p><code>sample_id</code> - the “wet-lab” sample id associated with this timepoint<br>
-All other columns – the integer count of this type of cell in this sample</p>
-<p><code>cd4_t_cells</code> might best be analyzed as a proportion of <code>cd3_t_cells</code>… ### Read in data</p>
-<p>Data is often in tables, and the easiest way to store tabular data is in <code>csv</code> or <code>tsv</code> format.</p>
-<p><code>csv</code> - comma separated values<br>
-<code>tsv</code> - tab separated values</p>
-<p>to read in data stored this way use <code>read_csv(filename)</code> or <code>read_tsv(filename)</code></p>
-</section>
-<section id="exercise-data-wrangling-and-simple-manipulations" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-data-wrangling-and-simple-manipulations">Exercise Data wrangling and simple manipulations</h2>
-<p>In this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.</p>
-<p>We will be using the R package, <strong>tidyverse</strong> for the data manipulation functions <code>%&gt;%</code>, <code>filter()</code>, <code>select()</code>, <code>arrange()</code>, <code>count()</code>, and <code>mutate()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: false</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">table_01 &lt;- read_csv("data/01_participant_metadata.csv")</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">table_02 &lt;- read_csv("data/02_visit_clinical_measurements.csv")</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="the-pipe-read-and-then" class="level3">
-<h3 class="anchored" data-anchor-id="the-pipe-read-and-then">The pipe (<code>%&gt;%</code>, read: “and then”)</h3>
-<p>When writing complex data analysis pipelines, we frequently use the pipe operator <code>%&gt;%</code> to move data from one analysis step to the next. The pipe is pronounced “and then”, and it takes the data on its left and uses it as the first argument for the function on its right.</p>
-<p>For example, to see the first few lines of a dataset, we often write <code>head(data)</code>. Instead, we can write <code>data %&gt;% head()</code>.</p>
-<p>Try this yourself. Write code that displays the first few lines of <code>table_01</code>, using <code>%&gt;%</code> and <code>head()</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>table_01 ___ <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="choosing-data-rows" class="level3">
-<h3 class="anchored" data-anchor-id="choosing-data-rows">Choosing data rows</h3>
-<p>The function <code>filter()</code> allows you to find rows in a dataset that meet one or more specific conditions. The syntax is <code>data %&gt;% filter(condition)</code>, where condition is a logical condition. For example, <code>filter(x &gt; 5)</code> would pick all rows for which the value in column <code>x</code> is greater than 5.</p>
-<p>Below, write code to pick all measurements from the <code>placebo</code> arm in <code>table_02</code> :</p>
-<div class="cell" data-exercise="true">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="filtering-for-multiple-conditions" class="level3">
-<h3 class="anchored" data-anchor-id="filtering-for-multiple-conditions">Filtering for multiple conditions</h3>
-<p>You can also state multiple conditions, separated by a comma. For example, <code>filter(x &gt; 5, y &lt; 2)</code> would pick all rows for which the value in the column <code>x</code> is greater than 5 and the value in the column <code>y</code> is less than 2. Note that the conditions are combined via logical and, both need to be satisfied for the row to be picked.</p>
-<p>To try this out, pick all measurements at <code>baseline</code> for the <code>placebo</code> arm in <code>table_02</code> :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_point <span class="sc">==</span> ___, arm <span class="sc">==</span> ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="choosing-data-columns" class="level3">
-<h3 class="anchored" data-anchor-id="choosing-data-columns">Choosing data columns</h3>
-<p>The function <code>select()</code> allows you to pick specific data columns by name. This is frequently useful when a dataset has many more columns than we are interested in at the time. For example, if we are only interested in the participants’ education, and sex, we could select these three columns:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(education, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 44 × 2
-   education                     sex   
-   &lt;chr&gt;                         &lt;chr&gt; 
- 1 grade 10-12, matriculated     Female
- 2 grade 10-12, matriculated     Female
- 3 post-secondary                Female
- 4 grade 10-12, not matriculated Female
- 5 grade 10-12, matriculated     Female
- 6 post-secondary                Female
- 7 grade 10-12, not matriculated Female
- 8 grade 10-12, not matriculated Female
- 9 grade 10-12, not matriculated Female
-10 less than grade 9             Female
-# ℹ 34 more rows</code></pre>
-</div>
-</div>
-<p>Try this yourself, picking the columns representing the participant age (<code>age</code>), and then study arm (<code>arm</code>).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="choosing-columns-for-removal" class="level3">
-<h3 class="anchored" data-anchor-id="choosing-columns-for-removal">Choosing columns for removal</h3>
-<p>Another situation that arises frequently is one where we want to remove specific columns. We can also do this with <code>select()</code>, but now write <code>select(-column)</code> to remove one or more columns.</p>
-<p>Try this. Remove the column <code>smoker</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And now remove both <code>smoker</code> and <code>education</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>___, <span class="sc">-</span>___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="sorting-data" class="level3">
-<h3 class="anchored" data-anchor-id="sorting-data">Sorting data</h3>
-<p>The function <code>arrange()</code> allows you to sort data by one or more columns. For example, <code>data %&gt;% arrange(x)</code> would sort the data by increasing values of <code>x</code>, and <code>data %&gt;% arrange(x, y)</code> would sort the data first by <code>x</code> and then, for ties in <code>x</code>, by <code>y</code>.</p>
-<p>Sort the participants by age:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>To arrange data in descending order, enclose the data column in <code>desc()</code>. For example, <code>data %&gt;% arrange(desc(x))</code> would sort the data by decreasing values of <code>x</code>. (<code>desc</code> stands for “descending”.)</p>
-</section>
-<section id="counting" class="level3">
-<h3 class="anchored" data-anchor-id="counting">Counting</h3>
-<p>We frequently want to count how many times a particular value or combination of values occurs in a dataset. We do this using the <code>count()</code> function. For example, the following code counts how many participants there are in each study arm in table_01.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(arm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  arm           n
-  &lt;chr&gt;     &lt;int&gt;
-1 placebo      23
-2 treatment    21</code></pre>
-</div>
-</div>
-<p>Now try this yourself. Count how many smokers and non smokers there are.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can also perform more fine-grained counts, by providing the <code>count()</code> function with more than one column name. See if you can count how many smokers and non smokers the dataset contains for each treatment arm</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___, smoker)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now count how many participants are in each study arm for each education level in the dataset</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___, arm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="chaining-analysis-steps-into-pipelines" class="level3">
-<h3 class="anchored" data-anchor-id="chaining-analysis-steps-into-pipelines">Chaining analysis steps into pipelines</h3>
-<p>We can chain multiple analysis steps into a pipeline by continuing to add “and then” statements. For example, <code>data %&gt;% count(...) %&gt;% arrange(...)</code> would first count and then sort the data.</p>
-<p>Try this out by counting the number of participants in each study arm and then sorting by the number of participants</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(___) <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="ggplot-exercise" class="level2">
-<h2 class="anchored" data-anchor-id="ggplot-exercise">ggplot exercise</h2>
+<section id="exercise-3-ggplot-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-ggplot-exercise">Exercise 3: ggplot exercise</h2>
 <p>For this exercise we’ll be using the instructional dataset. <a href="../../../datasets.html">Download the dataset here</a>.</p>
 <p>In this worksheet, we will discuss a core concept of ggplot, the mapping of data values onto aesthetics.</p>
 <p>We will be using the R package <code>tidyverse</code>, which includes <code>ggplot()</code> and related functions.</p>
@@ -877,9 +882,218 @@ All other columns – the integer count of this type of cell in this sample</p>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Great, that’s all for now! If you are done, put a yellow sticky note on your laptop!</p>
-
-
 </section>
+</section>
+<section id="exercise-4-data-wrangling-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-data-wrangling-2">Exercise 4: Data wrangling 2</h2>
+<p>In this exercise, we will continue with basic data manipulations, now moving on to grouping and summarizing, making data tables wider or longer, and joining data tables.</p>
+<p>We will be using the R package, <strong>tidyverse</strong> for the data manipulation functions <code>%&gt;%</code>, <code>group_by()</code>, <code>summarize()</code>, <code>pivot_wider()</code>, <code>pivot_longer()</code>, and join functions such as <code>left_join()</code></p>
+<p>Paste the following into the top code chunk of your <code>qmd</code> file.</p>
+<p>Download the data files from the <a href="../../../datasets.qmd">dataset page</a> and place all 5 files into this directory.</p>
+<p>Paste the following code chunk into a new qmd file in this project:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>table_01 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"01_participant_metadata.csv"</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>table_02 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"02_visit_clinical_measurements.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="analyzing-subsets" class="level3">
+<h3 class="anchored" data-anchor-id="analyzing-subsets">Analyzing subsets</h3>
+<p>In many data analysis settings, we want to break a dataset into subsets and then perform some summary calculation on each subset. The simplest example is counting, which we have done previously with the count() function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="in">table_01 %&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="in">  count(arm)</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  arm           n
+  &lt;chr&gt;     &lt;int&gt;
+1 placebo      23
+2 treatment    21</code></pre>
+</div>
+</div>
+<p>This function subdivides the penguins dataset into subsets for each species and then calculates the number n for each subset, which is the number of observations in each subset.</p>
+<p>The function <code>count()</code> here does all the work for us, but what if instead of counting we wanted to calculate the mean weight of the penguins for each species, or calculate the mean weight and count at the same time? We need a general framework that allows us to do these kinds of calculations with maximum flexibility.</p>
+<p>The tidyverse approach is to first group a dataset with <code>group_by()</code> and then to calculate grouped summaries with <code>summarize()</code>.</p>
+</section>
+<section id="grouping" class="level3">
+<h3 class="anchored" data-anchor-id="grouping">Grouping</h3>
+<p>Let’s first consider just grouping. If we look at the raw R output of just the penguins table or the penguins table after running it through <code>group_by(arm)</code>, we see that the table is the same, except in the second case there is a line <code># Groups: arm [2]</code> which indicates that the table is grouped by arm and there are two groups. (Here, we need to pipe the tables into the print() function to see the raw R output instead of a formatted table that would hide the grouping information.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 6
+   pid    arm       smoker       age education                     sex   
+   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; 
+ 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female
+ 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female
+ 3 pid_03 placebo   smoker        30 post-secondary                Female
+ 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female
+ 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female
+ 6 pid_06 placebo   smoker        34 post-secondary                Female
+ 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female
+ 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female
+ 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female
+10 pid_10 treatment non-smoker    32 less than grade 9             Female
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(arm) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 6
+# Groups:   arm [2]
+   pid    arm       smoker       age education                     sex   
+   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; 
+ 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female
+ 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female
+ 3 pid_03 placebo   smoker        30 post-secondary                Female
+ 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female
+ 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female
+ 6 pid_06 placebo   smoker        34 post-secondary                Female
+ 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female
+ 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female
+ 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female
+10 pid_10 treatment non-smoker    32 less than grade 9             Female
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<p>We can also group by multiple data columns at once, and we can undo any grouping with <code>ungroup()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(arm, education) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 6
+# Groups:   arm, education [8]
+   pid    arm       smoker       age education                     sex   
+   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; 
+ 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female
+ 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female
+ 3 pid_03 placebo   smoker        30 post-secondary                Female
+ 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female
+ 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female
+ 6 pid_06 placebo   smoker        34 post-secondary                Female
+ 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female
+ 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female
+ 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female
+10 pid_10 treatment non-smoker    32 less than grade 9             Female
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(arm, education) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 6
+   pid    arm       smoker       age education                     sex   
+   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; 
+ 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female
+ 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female
+ 3 pid_03 placebo   smoker        30 post-secondary                Female
+ 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female
+ 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female
+ 6 pid_06 placebo   smoker        34 post-secondary                Female
+ 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female
+ 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female
+ 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female
+10 pid_10 treatment non-smoker    32 less than grade 9             Female
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<p>Now try this yourself. Group the table_01 dataset by education_level and smoker.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>table_01 <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  ___ <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Answer for yourself</em> How many distinct groups did this produce?</p>
+<p>Now undo the previous grouping.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="in"># build all the code for this exercise</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Also verify what the output looks like when you omit the <code>print()</code> function at the end.</p>
+</section>
+<section id="performing-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="performing-summaries">Performing summaries</h3>
+<p>Once we have set up a grouping for a data table, we can then calculate summary data with the <code>summarize()</code> function. This function works similarly to <code>mutate()</code>, in that we provide it with statements of the form <code>&lt;new column name&gt; = &lt;computation&gt;</code>, where <code>&lt;new column name&gt;</code> stands for the name of the new column that is being created and <code>&lt;computation&gt;</code> stands for the computation that is used to generate the values in the new column.</p>
+<p>As an example, using <code>table_02</code> we want to calculate the median ph of participants, by <code>arm</code>, we could write <code>summarise(median_ph = median(ph))</code>, and this would create a new column called <code>median_ph</code></p>
+<p>Try this out. First group by <code>arm</code> and then make the new column:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(____) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now see what it looks like if you instead group by <code>timepoint</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(____) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now try grouping by both <code>timepoint</code> and <code>arm</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(__, __) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can perform multiple summaries at once by adding more statements inside the summarise() function, separated by a <code>,</code>. To try this out, calculate the median <code>nugent</code> in addition to the median ph</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(____) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(___, ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When performing summaries, we often want to know how many observations there are in each group (i.e., we want to count). We can do this with the function <code>n()</code>, which inside summarise() gives us the group size. So, we can count by adding a statement such as <code>count = n()</code> inside `summarise(). Try this out.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(____) <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(___, ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="making-tables-wider-or-longer" class="level3">
+<h3 class="anchored" data-anchor-id="making-tables-wider-or-longer">Making tables wider or longer</h3>
+<p>For efficient data processing, we usually want tables in long form, where each columns is one variable and each row is one observation. However, in some applications, for example when making a table easier to read for humans, a wide format can be preferred. In a wide format, some variables are displayed as column names, and other variables are distributed over multiple columns.</p>
+<p>First, make a summary table that shows median <code>ph</code> by <code>arm</code> and <code>time_point</code>, just like you did above, and save it to a variable <code>ph_summary_long</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ph_summary_long <span class="ot">&lt;-</span> table_02 <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(___) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, try using <code>pivot_wider()</code> to make a column for each arm. Remember, use <code>?pivot_wider</code> if you want help, and try asking google or chatGPT if you get stuck.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ph_summary_long <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(____)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What if you wanted to instead make a column for each time point, and have the arms be different rows?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ph_summary_long <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(____)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="combining-datasets-with-joins" class="level3">
+<h3 class="anchored" data-anchor-id="combining-datasets-with-joins">Combining datasets with joins</h3>
+<p>Finally, we sometimes encounter the situation where we have two data sets that contain different pieces of information about the same subjects or objects, and we need to merge these tables for further analysis. In this situation, we need to perform a join, and there are multiple different types of joins available: left_join(), right_join(), inner_join(), full_join(). These joins all differ in how they handle cases where an observation is present in only one of the two tables but missing in the other.</p>
+<p>Our instructional dataset has no missing values, so all types of joins are actually equivalent. Try to join <code>table_01</code> and <code>table_02</code> using <code>left_join()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="in"># join table_01 and table_02</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-next-steps">Advanced next steps</h2>
+<p>Join together the cytokine data and the metadata and explore the relationships between timepoint, arm, and the different cytokines.</p>
+<p>Note, to do this you will need to use <a href="datasets/instructional_dataset/00_sample_ids.csv"><code>00_sample_ids.csv</code></a>, <a href="datasets/instructional_dataset/01_participant_metadata.csv"><code>01_participant_metadata.csv</code></a>, and <a href="datasets/instructional_dataset/03_elisa_cytokines.csv"><code>03_elisa_cytokines.csv</code></a> .</p>
+<p>Also look at the relationship of vaginal pH to the different cytokines. Now you’ll need to join the <a href="datasets/instructional_dataset/02_visit_clinical_measurements.csv"><code>02_visit_clinical_measurements.csv</code></a> table as well.</p>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Open a terminal within VSCode. Click terminal in the top bar and new terminal. You should be on a compute node and within your groups folder. You can check where you currently are in the file system with <code>pwd</code>.</p>
 <p><img src="../../images/rnaseq_step1.png" class="img-fluid"></p>
 <p>Download the pipeline by running the following commands. This is where your pipeline will be located and you can go into the folder with <code>cd</code>. Running <code>ls</code> will show all pipeline files.</p>
-<div id="2a24f084" class="cell" data-execution_count="1">
+<div id="4c5c8273" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading the pipeline</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wget https:<span class="op">//</span>github.com<span class="op">/</span>kwondry<span class="op">/</span>rnaseq_gene_expression<span class="op">/</span>archive<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main.<span class="bu">zip</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -423,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="testing-the-pipeline">Testing the pipeline</h3>
 <p>To ensure everything is set up properly, we can run the pipeline on a test dataset.</p>
 <p>Navigate back to the VSCode terminal and check that you are in your pipeline folder. To run the test data, activate the snakemake environment and run snakemake with the following.</p>
-<div id="9629a0f0" class="cell" data-execution_count="2">
+<div id="8ae8f522" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activates the mamba environment </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -441,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="running-the-pipeline-1">Running the pipeline</h3>
 <p>Almost there! All that’s left is running your samples through the pipeline.</p>
 <p>Once you have the updated sample sheet with your samples in the input folder inside the pipeline directory, navigate back again to the VSCode terminal. Submit the pipeline with the following.</p>
-<div id="2770552a" class="cell" data-execution_count="3">
+<div id="b408ac22" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activates the mamba environment </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mamba activate snakemake </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
