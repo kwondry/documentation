@@ -85,6 +85,11 @@ website:
             - text: "VIRGO2 Pipeline"
               contents:
               href: materials/metagenomics/virgo2/index.qmd
+          - section: "Comparative Genomics"
+            contents:
+            - text: "Gene Search"
+              contents:
+              href: materials/comparative-genomics/gene-search/index.qmd
 
   page-footer:
     right: "This page is built with {{< fa heart >}} and [Quarto](https://quarto.org/)."

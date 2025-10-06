@@ -1,0 +1,274 @@
+---
+title: "Gene Search Pipeline"
+format:
+  html:
+    toc: true
+---
+
+## Installation
+
+### Installing Mamba
+
+Mamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.
+
+Mamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.
+
+Type `which mamba` to check if you have mamba installed. If not, check if you have conda with `which conda`
+
+#### Install Mamba into existing conda
+If you already have conda installed:
+
+```bash
+conda install -n base -c conda-forge mamba
+```
+
+
+
+#### If no conda - Install Miniforge for scratch
+Miniforge comes with mamba pre-installed:
+
+```bash
+# Download and install Miniforge
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh
+```
+
+After installing Miniforge, you should type `conda init` and then log out and back into the shell.
+
+### Installing Required Bioinformatics Tools
+
+Once you are sure you have mamba installed (`which mamba`), install the necessary tools for this searching.
+
+```bash
+# Install all tools in one command
+mamba create --name=gene_search -c conda-forge -c bioconda mmseqs2 hmmer seqkit mafft fasttree blast
+```
+
+#### Verify Installation
+
+```bash
+conda activate gene_search
+mmseqs version
+hmmbuild -h
+seqkit version
+mafft --version
+fasttree -help
+rpsblast -version
+```
+
+## Preparing Your Reference Database
+
+Before searching for genes, you need to prepare a combined reference database from your genome files.
+
+### Combine Genome Protein Files
+
+```bash
+# Combine all .faa files from your genome database into a single file
+cat input/genome_database/*/*.faa > genome_database/concatenated_orfs.faa
+
+# Verify the combined file
+grep -c "^>" genome_database/concatenated_orfs.faa  # Count number of sequences
+```
+
+### Alternative: Combine with Custom Glob Pattern
+
+```bash
+# If your files are in a different location or pattern
+cat path/to/genomes/**/*.faa > concatenated_orfs.faa
+
+# Or combine specific genome files
+cat genome1.faa genome2.faa genome3.faa > concatenated_orfs.faa
+```
+
+**Note**: Ensure sequence headers are unique across all input files to avoid ambiguity in search results.
+
+## Getting Your Query Gene
+
+### Step 1: Find Your Taxon and Annotation
+
+Go to one of these resources to find your taxon of interest:
+- https://www.ebi.ac.uk/interpro/taxonomy/uniprot/
+- https://www.kegg.jp/kegg/tables/br08606.html
+
+Then search within that taxon for your annotation of interest.
+
+### Step 2: Decide on Search Strategy
+
+**Question:** Am I searching broadly for this protein coding gene or specifically?
+
+- **Specifically**: Search the exact sequence - best for closely related genomes with high sequence similarity
+- **By orthologous group**: Use pre-built PSSM profiles from NCBI's COG database - best when searching for functional orthologs across different species
+- **Broadly**: Get the UniRef50 cluster for that gene and generate an alignment and HMM of all sequences in the cluster - best for capturing diverse homologs while maintaining some specificity
+
+
+## Specific Search Approach (Sequence-based)
+
+### 1. Get the UniRef90 Representative Sequence
+
+You can search for the exact sequence you are interested in. Or, it could be more reproducible to search the UniRef90 representative sequence of your gene of interest:
+
+If going the Uniref90 route, you can search for your sequence at https://www.uniprot.org/blast and get the uniref90 cluster for that sequence.
+
+Or if you got your sequence from kegg.jp, you can click on the uniprot cross reference, then on "similar proteins" then on the Uniref_90 cluster.
+
+Then, download the uniref_90 representative sequence.
+
+```bash
+# Replace UniRef90_D5H0P4 with your cluster ID from Uniprot
+curl "https://rest.uniprot.org/uniref/UniRef90_D5H0P4.fasta" -o UniRef90_D5H0P4.fasta
+```
+
+### 2. Search Against Genome Database Using MMseqs2
+
+```bash
+mmseqs easy-search \
+  input/UniRef90_D5H0P4.faa \
+  input/genome_database/concatenated_orfs.faa \
+  UniRef90_D5H0P4_hits.tsv \
+  -e 1e-20 \
+  tmp \
+  --format-output "query,target,pident,alnlen,evalue" \
+  --format-mode 4
+```
+
+## Domain-based Search Approach (Using NCBI COG PSSMs)
+
+This approach uses pre-built Position-Specific Scoring Matrices (PSSMs) from NCBI's COG (Clusters of Orthologous Genes) database.
+
+### 1. Download the COG Database
+
+```bash
+# Download the COG database
+update_blastdb.pl --decompress Cog
+```
+
+### 2. Identify Your COG of Interest
+
+Find the Uniprot protein ID and search for it on http://eggnog5.embl.de
+
+Note the COG ID (e.g., COG0001, COG0002) for reference.
+
+### 3. Search Against Genome Database Using RPS-BLAST
+
+```bash
+# Search proteins against the COG database
+rpsblast \
+  -query genome_database/concatenated_orfs.faa \
+  -db Cog \
+  -out COG_hits.txt \
+  -evalue 1e-5 \
+  -outfmt "6 qseqid sseqid pident length evalue bitscore stitle"
+```
+
+### 4. Filter for Your Specific COG
+
+```bash
+# Extract hits for a specific COG (e.g., COG0001)
+grep "COG0001" COG_hits.txt > COG0001_hits.txt
+
+# Extract sequence IDs
+cut -f1 COG0001_hits.txt | sort -u > cog_hit_ids.txt
+```
+
+## Broad Search Approach (HMM-based)
+
+### 1. Get Query Sequences from UniRef50 Cluster
+
+```bash
+# Replace UniRef50_C2EQ21 with your cluster ID
+curl "https://rest.uniprot.org/uniprotkb/stream?format=fasta&query=uniref_cluster_50:UniRef50_C2EQ21" \
+  > UniRef50_C2EQ21_all_members.fasta
+```
+
+### 2. Align the Sequences
+
+```bash
+mafft UniRef50_C2EQ21_all_members.fasta > UniRef50_C2EQ21_aligned.fasta
+```
+
+### 3. Build the HMM Profile
+
+```bash
+hmmbuild UniRef50_C2EQ21.hmm UniRef50_C2EQ21_aligned.fasta
+```
+
+### 4. Search Against Genome Database Using hmmsearch
+
+```bash
+hmmsearch \
+  --tblout UniRef50_C2EQ21_hits.tbl \
+  -E 1e-10 \
+  UniRef50_C2EQ21.hmm \
+  genome_database/concatenated_orfs.faa
+```
+
+
+## Example Downstream Analysis
+
+Once you have your table of gene hits, you might do a lot of different things with them.
+
+One example would be to align the gene hits together and make a tree.
+
+To do this we'll parse the gene hit table to get the hit ids, then use seqkit to get the sequences from the reference database we searched. After we have the sequences we'll align with mafft, and then make a tree with fasttree which can be viewed on ITOL.
+
+
+### 1. Extract Hit IDs
+
+For HMM search results:
+```bash
+# Skip header lines and extract target names
+grep -v '^#' UniRef50_C2EQ21_hits.tbl | awk '{print $1}' | sort -u > hit_ids.txt
+```
+
+For MMseqs2 results:
+```bash
+cut -f2 UniRef90_D5H0P4_hits.tsv | sort -u > hit_ids.txt
+```
+
+For RPS-BLAST results:
+```bash
+# Already extracted above as cog_hit_ids.txt
+# Or extract from the full results:
+cut -f1 COG_hits.txt | sort -u > hit_ids.txt
+```
+
+### 2. Retrieve Hit Sequences
+
+```bash
+seqkit grep -f hit_ids.txt genome_database/*/*.faa > hit_sequences.faa
+```
+
+### 3. Align Hit Sequences
+
+Optional: Consider adding reference sequences from UniRef90 before alignment
+
+```bash
+mafft hit_sequences.faa > aligned_hit_sequences.faa
+```
+
+### 4. Build Phylogenetic Tree
+
+```bash
+fasttree aligned_hit_sequences.faa > hit_sequences.tree
+```
+
+## Notes
+
+### E-value Thresholds
+- **MMseqs2**: `-e 1e-20` is stringent for specific searches
+- **hmmsearch**: `-E 1e-10` is appropriate for HMM profiles
+- **RPS-BLAST**: `-evalue 1e-5` is standard for domain searches
+- Adjust thresholds based on your specific use case and desired sensitivity/specificity
+
+### Performance Tips
+- The `tmp` directory in MMseqs2 commands is used for temporary files and will be created automatically
+- For large datasets, use MAFFT's `--thread` option to specify multiple CPU cores
+- The COG database requires ~500MB of disk space
+
+### COG Database Updates
+- The COG database was updated in 2024, increasing coverage from 1,309 to 2,296 species
+- Use `update_blastdb.pl --showall` to see all available databases
+
+### Phylogenetic Analysis
+- FastTree produces an approximately-maximum-likelihood tree quickly
+- For more accurate phylogenies, consider using RAxML or IQ-TREE (slower but more rigorous)
