@@ -906,6 +906,331 @@
     ]
   },
   {
+    "objectID": "materials/comparative-genomics/gene-search/index.html",
+    "href": "materials/comparative-genomics/gene-search/index.html",
+    "title": "Gene Search Pipeline",
+    "section": "",
+    "text": "Mamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nMamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nType which mamba to check if you have mamba installed. If not, check if you have conda with which conda\n\n\nIf you already have conda installed:\nconda install -n base -c conda-forge mamba\n\n\n\nMiniforge comes with mamba pre-installed:\n# Download and install Miniforge\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\nbash Miniforge3-$(uname)-$(uname -m).sh\nAfter installing Miniforge, you should type conda init and then log out and back into the shell.\n\n\n\n\nOnce you are sure you have mamba installed (which mamba), install the necessary tools for this searching.\n# Install all tools in one command\nmamba create --name=gene_search -c conda-forge -c bioconda mmseqs2 hmmer seqkit mafft fasttree blast\n\n\nconda activate gene_search\nmmseqs version\nhmmbuild -h\nseqkit version\nmafft --version\nfasttree -help\nrpsblast -version",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#installation",
+    "href": "materials/comparative-genomics/gene-search/index.html#installation",
+    "title": "Gene Search Pipeline",
+    "section": "",
+    "text": "Mamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nMamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nType which mamba to check if you have mamba installed. If not, check if you have conda with which conda\n\n\nIf you already have conda installed:\nconda install -n base -c conda-forge mamba\n\n\n\nMiniforge comes with mamba pre-installed:\n# Download and install Miniforge\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\nbash Miniforge3-$(uname)-$(uname -m).sh\nAfter installing Miniforge, you should type conda init and then log out and back into the shell.\n\n\n\n\nOnce you are sure you have mamba installed (which mamba), install the necessary tools for this searching.\n# Install all tools in one command\nmamba create --name=gene_search -c conda-forge -c bioconda mmseqs2 hmmer seqkit mafft fasttree blast\n\n\nconda activate gene_search\nmmseqs version\nhmmbuild -h\nseqkit version\nmafft --version\nfasttree -help\nrpsblast -version",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#preparing-your-reference-database",
+    "href": "materials/comparative-genomics/gene-search/index.html#preparing-your-reference-database",
+    "title": "Gene Search Pipeline",
+    "section": "Preparing Your Reference Database",
+    "text": "Preparing Your Reference Database\nBefore searching for genes, you need to prepare a combined reference database from your genome files.\n\nCombine Genome Protein Files\n# Combine all .faa files from your genome database into a single file\ncat input/genome_database/*/*.faa &gt; genome_database/concatenated_orfs.faa\n\n# Verify the combined file\ngrep -c \"^&gt;\" genome_database/concatenated_orfs.faa  # Count number of sequences\n\n\nAlternative: Combine with Custom Glob Pattern\n# If your files are in a different location or pattern\ncat path/to/genomes/**/*.faa &gt; concatenated_orfs.faa\n\n# Or combine specific genome files\ncat genome1.faa genome2.faa genome3.faa &gt; concatenated_orfs.faa\nNote: Ensure sequence headers are unique across all input files to avoid ambiguity in search results.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#getting-your-query-gene",
+    "href": "materials/comparative-genomics/gene-search/index.html#getting-your-query-gene",
+    "title": "Gene Search Pipeline",
+    "section": "Getting Your Query Gene",
+    "text": "Getting Your Query Gene\n\nStep 1: Find Your Taxon and Annotation\nGo to one of these resources to find your taxon of interest: - https://www.ebi.ac.uk/interpro/taxonomy/uniprot/ - https://www.kegg.jp/kegg/tables/br08606.html\nThen search within that taxon for your annotation of interest.\n\n\nStep 2: Decide on Search Strategy\nQuestion: Am I searching broadly for this protein coding gene or specifically?\n\nSpecifically: Search the exact sequence - best for closely related genomes with high sequence similarity\nBy orthologous group: Use pre-built PSSM profiles from NCBI’s COG database - best when searching for functional orthologs across different species\nBroadly: Get the UniRef50 cluster for that gene and generate an alignment and HMM of all sequences in the cluster - best for capturing diverse homologs while maintaining some specificity",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#specific-search-approach-sequence-based",
+    "href": "materials/comparative-genomics/gene-search/index.html#specific-search-approach-sequence-based",
+    "title": "Gene Search Pipeline",
+    "section": "Specific Search Approach (Sequence-based)",
+    "text": "Specific Search Approach (Sequence-based)\n\n1. Get the UniRef90 Representative Sequence\nYou can search for the exact sequence you are interested in. Or, it could be more reproducible to search the UniRef90 representative sequence of your gene of interest:\nIf going the Uniref90 route, you can search for your sequence at https://www.uniprot.org/blast and get the uniref90 cluster for that sequence.\nOr if you got your sequence from kegg.jp, you can click on the uniprot cross reference, then on “similar proteins” then on the Uniref_90 cluster.\nThen, download the uniref_90 representative sequence.\n# Replace UniRef90_D5H0P4 with your cluster ID from Uniprot\ncurl \"https://rest.uniprot.org/uniref/UniRef90_D5H0P4.fasta\" -o UniRef90_D5H0P4.fasta\n\n\n2. Search Against Genome Database Using MMseqs2\nmmseqs easy-search \\\n  input/UniRef90_D5H0P4.faa \\\n  input/genome_database/concatenated_orfs.faa \\\n  UniRef90_D5H0P4_hits.tsv \\\n  -e 1e-20 \\\n  tmp \\\n  --format-output \"query,target,pident,alnlen,evalue\" \\\n  --format-mode 4",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#domain-based-search-approach-using-ncbi-cog-pssms",
+    "href": "materials/comparative-genomics/gene-search/index.html#domain-based-search-approach-using-ncbi-cog-pssms",
+    "title": "Gene Search Pipeline",
+    "section": "Domain-based Search Approach (Using NCBI COG PSSMs)",
+    "text": "Domain-based Search Approach (Using NCBI COG PSSMs)\nThis approach uses pre-built Position-Specific Scoring Matrices (PSSMs) from NCBI’s COG (Clusters of Orthologous Genes) database.\n\n1. Download the COG Database\n# Download the COG database\nupdate_blastdb.pl --decompress Cog\n\n\n2. Identify Your COG of Interest\nFind the Uniprot protein ID and search for it on http://eggnog5.embl.de\nNote the COG ID (e.g., COG0001, COG0002) for reference.\n\n\n3. Search Against Genome Database Using RPS-BLAST\n# Search proteins against the COG database\nrpsblast \\\n  -query genome_database/concatenated_orfs.faa \\\n  -db Cog \\\n  -out COG_hits.txt \\\n  -evalue 1e-5 \\\n  -outfmt \"6 qseqid sseqid pident length evalue bitscore stitle\"\n\n\n4. Filter for Your Specific COG\n# Extract hits for a specific COG (e.g., COG0001)\ngrep \"COG0001\" COG_hits.txt &gt; COG0001_hits.txt\n\n# Extract sequence IDs\ncut -f1 COG0001_hits.txt | sort -u &gt; cog_hit_ids.txt",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#broad-search-approach-hmm-based",
+    "href": "materials/comparative-genomics/gene-search/index.html#broad-search-approach-hmm-based",
+    "title": "Gene Search Pipeline",
+    "section": "Broad Search Approach (HMM-based)",
+    "text": "Broad Search Approach (HMM-based)\n\n1. Get Query Sequences from UniRef50 Cluster\n# Replace UniRef50_C2EQ21 with your cluster ID\ncurl \"https://rest.uniprot.org/uniprotkb/stream?format=fasta&query=uniref_cluster_50:UniRef50_C2EQ21\" \\\n  &gt; UniRef50_C2EQ21_all_members.fasta\n\n\n2. Align the Sequences\nmafft UniRef50_C2EQ21_all_members.fasta &gt; UniRef50_C2EQ21_aligned.fasta\n\n\n3. Build the HMM Profile\nhmmbuild UniRef50_C2EQ21.hmm UniRef50_C2EQ21_aligned.fasta\n\n\n4. Search Against Genome Database Using hmmsearch\nhmmsearch \\\n  --tblout UniRef50_C2EQ21_hits.tbl \\\n  -E 1e-10 \\\n  UniRef50_C2EQ21.hmm \\\n  genome_database/concatenated_orfs.faa",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#example-downstream-analysis",
+    "href": "materials/comparative-genomics/gene-search/index.html#example-downstream-analysis",
+    "title": "Gene Search Pipeline",
+    "section": "Example Downstream Analysis",
+    "text": "Example Downstream Analysis\nOnce you have your table of gene hits, you might do a lot of different things with them.\nOne example would be to align the gene hits together and make a tree.\nTo do this we’ll parse the gene hit table to get the hit ids, then use seqkit to get the sequences from the reference database we searched. After we have the sequences we’ll align with mafft, and then make a tree with fasttree which can be viewed on ITOL.\n\n1. Extract Hit IDs\nFor HMM search results:\n# Skip header lines and extract target names\ngrep -v '^#' UniRef50_C2EQ21_hits.tbl | awk '{print $1}' | sort -u &gt; hit_ids.txt\nFor MMseqs2 results:\ncut -f2 UniRef90_D5H0P4_hits.tsv | sort -u &gt; hit_ids.txt\nFor RPS-BLAST results:\n# Already extracted above as cog_hit_ids.txt\n# Or extract from the full results:\ncut -f1 COG_hits.txt | sort -u &gt; hit_ids.txt\n\n\n2. Retrieve Hit Sequences\nseqkit grep -f hit_ids.txt genome_database/*/*.faa &gt; hit_sequences.faa\n\n\n3. Align Hit Sequences\nOptional: Consider adding reference sequences from UniRef90 before alignment\nmafft hit_sequences.faa &gt; aligned_hit_sequences.faa\n\n\n4. Build Phylogenetic Tree\nfasttree aligned_hit_sequences.faa &gt; hit_sequences.tree",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/comparative-genomics/gene-search/index.html#notes",
+    "href": "materials/comparative-genomics/gene-search/index.html#notes",
+    "title": "Gene Search Pipeline",
+    "section": "Notes",
+    "text": "Notes\n\nE-value Thresholds\n\nMMseqs2: -e 1e-20 is stringent for specific searches\nhmmsearch: -E 1e-10 is appropriate for HMM profiles\nRPS-BLAST: -evalue 1e-5 is standard for domain searches\nAdjust thresholds based on your specific use case and desired sensitivity/specificity\n\n\n\nPerformance Tips\n\nThe tmp directory in MMseqs2 commands is used for temporary files and will be created automatically\nFor large datasets, use MAFFT’s --thread option to specify multiple CPU cores\nThe COG database requires ~500MB of disk space\n\n\n\nCOG Database Updates\n\nThe COG database was updated in 2024, increasing coverage from 1,309 to 2,296 species\nUse update_blastdb.pl --showall to see all available databases\n\n\n\nPhylogenetic Analysis\n\nFastTree produces an approximately-maximum-likelihood tree quickly\nFor more accurate phylogenies, consider using RAxML or IQ-TREE (slower but more rigorous)",
+    "crumbs": [
+      "About the Kwon Lab",
+      "Comparative Genomics",
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "materials/archive/r-tutorial/index.html",
+    "href": "materials/archive/r-tutorial/index.html",
+    "title": "R workshop",
+    "section": "",
+    "text": "Learn how to use RStudio and the tidyverse for data exploration"
+  },
+  {
+    "objectID": "materials/archive/r-tutorial/index.html#slides-intro-to-rstudio-quarto-and-r",
+    "href": "materials/archive/r-tutorial/index.html#slides-intro-to-rstudio-quarto-and-r",
+    "title": "R workshop",
+    "section": "Slides: Intro to RStudio, Quarto, and R",
+    "text": "Slides: Intro to RStudio, Quarto, and R\nMake slides full screen"
+  },
+  {
+    "objectID": "materials/archive/r-tutorial/index.html#download-the-data-for-the-workshop",
+    "href": "materials/archive/r-tutorial/index.html#download-the-data-for-the-workshop",
+    "title": "R workshop",
+    "section": "Download the data for the workshop",
+    "text": "Download the data for the workshop\nThere are five files to download and place in your R project folder.\n\nmetadata.csv\n\nEach row of this table is a well on a plate that was measured. This has the bacterial isolate that was tested, the growth condition (long chain fatty acid) and the concentration of the long chain fatty acid.\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nbug – the isolate/species that was tested in this well condition - which long chain fatty acid (LCFA) was added conc - what was the concentration of the LCFA in this well?\n\nplate_1_data.csv\nplate_2_data.csv\nplate_3_data.csv\nplate_4_data.csv\n\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nod - the optical density that was measured in this well. This is a measure of bacterial growth.\n\nRead in data\nData is often in tables, and the easiest way to store tabular data is in csv or tsv format.\ncsv - comma separated values\ntsv - tab separated values\nto read in data stored this way use read_csv(filename) or read_tsv(filename)\nmetadata &lt;- read_csv(\"data/metadata.csv\")\n\n\nbinding tables together\nWe have data from 4 different plates in separate csv files. Use bind_rows to make a single table with all the data.\nplate_1 &lt;- read_csv(\"data/plate_1_data.csv\")\nplate_2 &lt;- read_csv(\"data/plate_2_data.csv\")\nplate_3 &lt;- read_csv(\"data/plate_3_data.csv\")\nplate_4 &lt;- read_csv(\"data/plate_4_data.csv\")\n\nall_plate_data &lt;- bind_rows(plate_1, plate_2, plate_3, plate_4)\n\n\njoining metadata to the data\nConnect the metadata to the plate reader data using left_join\n\njoined_data &lt;- all_plate_data %&gt;%\n  left_join(metadata)"
+  },
+  {
+    "objectID": "materials/archive/r-tutorial/index.html#data-visualization-activity",
+    "href": "materials/archive/r-tutorial/index.html#data-visualization-activity",
+    "title": "R workshop",
+    "section": "Data visualization activity",
+    "text": "Data visualization activity\nOn excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table.\n\nOption 1: What is the spread of values you typically see in the no media controls for different concentrations of LCFA? Bonus: are there any effects of where the well is on the plate with the values measured?\nOption 2: What is the typical growth in the media of the different bugs without any LCFA?\nOption 3: How do the different LCFAs tested impact the growth of L. crispatus?\nOption 4: Are there any batch effects between plates? (What conditions are measured on multiple plates, and what conditions are only on one plate?)"
+  },
+  {
+    "objectID": "materials/archive/r-tutorial/index.html#example-answers-for-data-analysis-questions",
+    "href": "materials/archive/r-tutorial/index.html#example-answers-for-data-analysis-questions",
+    "title": "R workshop",
+    "section": "Example answers for data analysis questions:",
+    "text": "Example answers for data analysis questions:\n\n\n\n\n\n\nCalculate media backgrounds and bacterial growth with no LCFA\n\n\n\n\n\nmedia_background &lt;- joined_data %&gt;%\n  filter(bug == \"CTRL\") \n\nmedia_background_medians &lt;- media_background %&gt;%\n  group_by(plate_id, condition, conc) %&gt;%\n  summarise(no_bacteria_control = median(od))\n\nbug_no_lcfa_control &lt;- joined_data %&gt;%\n  filter(condition == \"CTRL\") %&gt;%\n  filter(bug != \"CTRL\") %&gt;%\n  left_join(media_background_averages) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control)\n  \nbug_no_lcfa_control_medians &lt;- bug_no_lcfa_control %&gt;%\n  group_by(plate_id, bug) %&gt;%\n  summarise(no_lcfa_control = median(background_subtracted_od)) %&gt;%\n  ungroup()\n\n\n\n\n\n\n\n\n\nCalculate relative growths for each bug in each concentration of LCFA\n\n\n\n\n\nrelative_growths &lt;- joined_data %&gt;%\n  filter(condition != \"CTRL\", bug !=\"CTRL\") %&gt;%\n  left_join(media_background_medians) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control) %&gt;%\n  left_join(bug_no_lcfa_control_medians) %&gt;%\n  mutate(relative_growth = background_subtracted_od/ no_lcfa_control) \n\n\n\n\n\n\n\n\n\nExample plots\n\n\n\n\n\n\nmedia_background %&gt;% \n  ggplot(aes(x=od)) +\n  geom_histogram(binwidth = 0.01) +\n  facet_wrap(~condition+conc)\n\n\n\n\n\n\n\n\n\nbug_no_lcfa_control %&gt;%\n  ggplot(aes(x=background_subtracted_od)) +\n  geom_histogram(binwidth = 0.05) +\n  facet_wrap(~bug)\n\n\n\n\n\n\n\n\n\nrelative_growths %&gt;%\n  mutate(conc = as.factor(conc)) %&gt;%\n  ggplot(aes(x=conc, y=relative_growth)) +\n  geom_boxplot(outlier.shape = NA) +\n  ggbeeswarm::geom_quasirandom() +\n  scale_y_continuous(trans=scales::log2_trans()) +\n  facet_wrap(~condition+bug, ncol=6)"
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html",
+    "href": "materials/16S/valencia/index.html",
+    "title": "Generating CSTs with Valencia",
+    "section": "",
+    "text": "The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.\nValencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#introduction",
+    "href": "materials/16S/valencia/index.html#introduction",
+    "title": "Generating CSTs with Valencia",
+    "section": "",
+    "text": "The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.\nValencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#installation",
+    "href": "materials/16S/valencia/index.html#installation",
+    "title": "Generating CSTs with Valencia",
+    "section": "Installation",
+    "text": "Installation\n\nInstall R, RStudio\nFollow the instructions on the Durban workshop series website.\n\n\nInstall R dependencies\nAfter you’ve installed the packages on there, you can also install phyloseq and microViz:\n\ninstall.packages(c(\"tidyverse\", \"cowplot\", \"gtsummary\", \"ggdendro\", \"ggdist\", \"ggforce\",\"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"colorspace\", \"patchwork\", \"quarto\"))\n\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) install.packages(\"BiocManager\")\nBiocManager::install(c(\"phyloseq\", \"microbiome\", \"ComplexHeatmap\"), update = FALSE)\n\ninstall.packages(\n  \"microViz\",\n  repos = c(davidbarnett = \"https://david-barnett.r-universe.dev\", getOption(\"repos\"))\n)\n\n\n\nInstall conda for package management\nCheck if you have conda installed:\n\nOpen a terminal\nType which conda\nIf it says conda not found or nothing shows up, run the following:\n\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\nWhen prompted agree to the lisence with yes and ask it to add itself to your shell startup with yes.\nClose and reopen your terminal.\n\nIf you conda is already installed, run the following to ensure you have the most recent version:\n\nconda update conda && conda install mamba -n base -c conda-forge\n\n\n\nInstall SpeciateIT and Valencia\nMake a new conda environment for these pieces of software:\n\nmamba create -n speciateit_valencia -c conda-forge python pandas\n\nThen, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. Make note of the location where you put the speciateIT folder.\nTo install Valencia, download the script by going here , then right click, Save As, and save where you want. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#running-the-steps",
+    "href": "materials/16S/valencia/index.html#running-the-steps",
+    "title": "Generating CSTs with Valencia",
+    "section": "Running the steps",
+    "text": "Running the steps\nPhew, we’ve installed everything. Now we can run the next steps.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/valencia/index.html#get-your-asvs-and-count-table-from-your-phyloseq-object",
+    "href": "materials/16S/valencia/index.html#get-your-asvs-and-count-table-from-your-phyloseq-object",
+    "title": "Generating CSTs with Valencia",
+    "section": "Get your ASVs and count table from your phyloseq object",
+    "text": "Get your ASVs and count table from your phyloseq object\n\nFirst, make a new RStudio project in a new folder. (instructions here if you need them)\nDownload the example phyloseq and put it in the new project folder you just created. Download from here\nOpen up a new quarto document, and make a code chunk for the following code.\nThe following code reads in your phyloseq object, and writes out two files:\n\na fasta file containing your ASVs\na count table with samples as rows and ASVs as columns.\n\n\nBoth these files are required for CST assignment.\n\nlibrary(tidyverse)\nlibrary(phyloseq)\nlibrary(microViz)\n\nps &lt;- readRDS(\"example_phyloseq.RDS\") \n\nasvs_to_write &lt;- tibble(asv=microViz::otu_get(ps) %&gt;% colnames()) %&gt;% mutate(fasta_id=str_c(\"&gt;\",asv, \"\\n\")) %&gt;% mutate(asv = str_c(asv, \"\\n\"))\n\nasvs_to_write %&gt;%\n  mutate(line_to_write=map2_chr(fasta_id, asv, str_c)) %&gt;%\n  pull(line_to_write) %&gt;%\n  reduce(str_c) %&gt;%\n  write_file(\"asvs.fa\")\n\nps %&gt;%\n  otu_get() %&gt;%\n  as.data.frame() %&gt;%\n  write.csv(\"count_table.csv\") # using base R write.csv since we need the rownames\n\n\nRun SpeciateIT and Valencia\nFirst, run SpeciateIT’s classify program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the “V4V4” databse, although newer data will start to be “V3V4”)\n\nconda activate speciateit_valencia\n\nclassify -d ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 \\\n  -i asvs.fa \\\n  -o speciateit_output\n\nThen, take the output from classify and your count table and use it to prepare the input for Valencia. Make sure to replace the path to count_table.py so it is correct for your system:\n\npython ~/dev/speciateIT-master/bin/count_table.py \\\n  -c count_table.csv \\\n  -s speciateit_output/MC_order7_results.txt\n\nNow run Valencia. The CST centroids file should be from the SpeciateIT github repository download here for convenience, and the Valencia python script should be downloaded from here (which you may have already done in the installation section above).\n\npython Valencia_v1.1.py \\\n  -ref VALENCIA2_CST_centroids_20Mar2024.csv \\\n  -i count_table_speciateIT.csv \\\n  -o cst_assignments\n\n\n\nAdd CSTs back to phyloseq object\nNow we have CST assignments for each sample. We need to add it back to the phyloseq object so we can use them in R.\nWe’ll use ps_join() from the microViz package to add the CSTs back to the phyloseq object\n\ncst_assignments &lt;- read_csv(\"cst_assignments.csv\")\n\nps_with_csts &lt;- ps_join(ps, match_sample_names = \"sampleID\",\n  cst_assignments %&gt;% select(sampleID, CST, subCST, score))\n\nps_with_csts %&gt;%\n tax_transform(rank = \"unique\", trans = \"compositional\") %&gt;%\n dist_calc(dist = \"bray\") %&gt;%\n ord_calc(\n  method = \"auto\"\n ) %&gt;% \n ord_plot(\n  axes = c(1, 2),\n  colour = \"subCST\", fill = \"subCST\",\n  shape = \"circle\", alpha = \"score\",\n  size = 2\n )\n\nTo save your phyloseq object with the added CSTs, run the following:\n\nps_with_csts %&gt;% saveRDS(\"phyloseq_object_with_csts.RDS\")\n\nThis code will be useful for exploring the phyloseq object interactively.\n\nps_with_csts %&gt;% ord_explore()",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Assigning CSTs with Valencia"
+    ]
+  },
+  {
+    "objectID": "materials/16S/background/index.html",
+    "href": "materials/16S/background/index.html",
+    "title": "16S Background",
+    "section": "",
+    "text": "Coming soon",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "Background"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kwon Lab Pipelines",
+    "section": "",
+    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html",
+    "href": "materials/16S/16s_pipeline/index.html",
+    "title": "16S Pipeline Tutorial",
+    "section": "",
+    "text": "A Snakemake workflow for processing 16S rRNA sequencing data using DADA2, VALENCIA for community state type (CST) classification, and custom scripts for spike-in adjustments.\nThis workflow assumes your reads are demultiplexed.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#prerequisites",
+    "href": "materials/16S/16s_pipeline/index.html#prerequisites",
+    "title": "16S Pipeline Tutorial",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nRequired Software:\n\nSnakemake (v8.20 or higher)\nConda or Mamba\nPython 3.10 or higher\nR 4.3 or higher\n\nRequired Databases:\n\nHISAT2 human reference database\nGTDB reference databases\nSpeciateIT VALENCIA database",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#installation",
+    "href": "materials/16S/16s_pipeline/index.html#installation",
+    "title": "16S Pipeline Tutorial",
+    "section": "Installation",
+    "text": "Installation\nTo install the workflow, run:\n# Clone the repository without history and enter the project directory\ngit clone --depth=1 https://github.com/kwondry/16s_dada2_valencia.git\n\ncd 16s_dada2_valencia\nThis will create a fresh copy of the workflow without any git history.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#configuration-and-set-up",
+    "href": "materials/16S/16s_pipeline/index.html#configuration-and-set-up",
+    "title": "16S Pipeline Tutorial",
+    "section": "Configuration and set up",
+    "text": "Configuration and set up\n\nDatabase Paths: Edit config/config.yaml to set the paths to your reference databases:\nhisat_db: \"/path/to/hisat2/human/reference\"  # Path to HISAT2 index of T2T human genome\ngtdb_tax_db: \"/path/to/GTDB/taxonomy/database\"  # DADA2 GTDB taxonomy database\ngtdb_species_db: \"/path/to/GTDB/species/database\"  # DADA2 GTDB species database \nspeciateit_db: \"/path/to/speciateit_valencia\"  # SpeciateIT VALENCIA database\nTo obtain these databases:\n\nHISAT2 human reference: Download the T2T human genome from NCBI and index it using HISAT2’s hisat2-build command\nGTDB databases: Download the DADA2-formatted GTDB reference files from Zenodo\nSpeciateIT database: Clone the speciateIT databases and VALENCIA scripts from the Ravel Lab GitHub\n\nDADA2 Parameters: The workflow includes default parameters for DADA2 processing. You can modify these in config/config.yaml:\ndada2:\n  pe:\n    maxEE: 3\n    truncLen: [286, 260]\n    trimLeft: [10, 10]\n    merge:\n      minOverlap: 8\n      maxMismatch: 1\n  se:\n    maxEE: 1\n    truncLen: 230\n    trimLeft: 10\nPrimer Sequences: Update the primer sequences in config/config.yaml if using different primers:\nprimers:\n  v3v4:\n    forward: \"ACTCCTRCGGGAGGCAGCAG\"\n    reverse: \"GGACTACHVGGGTWTCTAAT\"",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#input-data",
+    "href": "materials/16S/16s_pipeline/index.html#input-data",
+    "title": "16S Pipeline Tutorial",
+    "section": "Input Data",
+    "text": "Input Data\nThis workflow can run process multiple sequencing runs in parralel.\n\nNote the folder path of demultiplexed .fastq files and mapping file for each run.\nCreate/edit a sequencing runsheet CSV file with the following columns:\n\nrun_id: Run identifier\nmapping_file: Path to mapping file containing sample IDs\nfastq_dir: Path to directory containing FASTQ files\nregion: Sequencing region used (V4 or V3V4)\n\nThe mapping file should contain unique sample identifiers in a column #SampleID that match the FASTQ filenames in the fastq_dir.\nThe workflow will automatically process both single-end and paired-end data based on the FASTQ files present.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#running-the-workflow",
+    "href": "materials/16S/16s_pipeline/index.html#running-the-workflow",
+    "title": "16S Pipeline Tutorial",
+    "section": "Running the Workflow",
+    "text": "Running the Workflow\n\nTest Run:\nsnakemake -n\nLocal Execution:\nsnakemake --use-conda --cores all\nSLURM Execution:\n sbatch submit_jobs.sh",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/16s_pipeline/index.html#output",
+    "href": "materials/16S/16s_pipeline/index.html#output",
+    "title": "16S Pipeline Tutorial",
+    "section": "Output",
+    "text": "Output\nThe workflow generates two main outputs in the outputs/results directory:\n\nTwo versions of a phyloseq object containing ASV counts, taxonomy assignments, CST assignment, and sample metadata with either a vaginal-specific taxonomy db, speciateIT or GTDB.\nA MultiQC report summarizing read quality metrics and taxonomic composition",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "16S Pipeline"
+    ]
+  },
+  {
+    "objectID": "materials/16S/kwon_sequencing_data_transfer/index.html",
+    "href": "materials/16S/kwon_sequencing_data_transfer/index.html",
+    "title": "NextSeq2000 / NovaSeq Demultiplexing and Data Transfer",
+    "section": "",
+    "text": "Mount the remote SMB server. You must be on a secure network (MGBWifi or set up a partners vpn)\n\nsudo mount -t cifs //10.212.9.248/KwonLabSequenceData ~/remoteDir -o \"username=Sequser-read,password=1234R@g0n\"\n\nMake sure you are able to access the SMB via your file explorer.\n\n\nTransfer from SMB onto O2 scratch with RSync\n\nrsync -avt ./{sequencing_folder} {hms_id}@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_letter_hms_id}/{hms_id}\n\nMake demultiplexing samplesheet\n\nbclConvert header\nSample_ID as the unique identifier\nindex2 as the\nindex1 as the\n\n\n\n\nUpload demultiplexing samplesheet to o2 via o2 portal\nValidate and upload mapping file with sequencing metadata for dada2 to data1 folder\n\nMake sure format is consistent with old miseq runs\n#SampleID as the unique identifier\nEnsure no special characters in the unique identifier and only (alphanumeric and underscores)\n\n\n\n\nRun bclConvert\n\nEnsure you are on an interactive node with at least 96GB of memory\n\n\nmodule load bclConvert\nbcl-convert --bcl-input-directory . --output-directory fastqs --sample-sheet vibrant_sample_sheet_pool11.csv\n\nMove fastqs to data1 folder\n\n\nn/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/2025_05_07_NextSeq_V3V4/\n├── Demultiplexed\n├── Reports\n└── vibrant_pool10.csv\nThe sequencing run is now demultiplexed, in the proper directory on O2, and ready for further processing.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "16S",
+      "SMB Data Transfer and Demultiplexing"
+    ]
+  },
+  {
+    "objectID": "materials/archive/r-tutorial/images/ex-2.html",
+    "href": "materials/archive/r-tutorial/images/ex-2.html",
+    "title": "Kwon Lab Pipelines",
+    "section": "",
+    "text": "Spatial Logical Toy Inventor: Erno Rubik Assignee: Politoys Ipari Szovetkezet, Budapest, Hungary The first patent by the inventor is registered in Hungary. Appl. No.: 289,192 Filed: Aug. 3, 1981 Background of the Invention The invention relates to a spatial logical toy having a total of eighteen toy elements which form a regular or an irregular spatial body, preferably an oblong body, in the assembled state. Spatial logical toys are well known, such as that described in the HU-PS No. 170 062 of the same applicant, which relates to a spatial logical toy consisting of twenty-seven solids which form a cube in the assembled state. The toy elements, in the shape of small cubes, may be turned along the spatial axes of the cube by means of connecting elements arranged in the geometric center of the large cube. The surfaces of the small cubes forming each surface of the large cube are colored or carry numbers, figures or any other symbols which can be assembled into the predetermined logical order of sequence by simultaneously rotating the nine toy elements forming the surfaces of the large cube. Summary of the Invention The logical toy according to the present invention represents an improved form of the previously described spatial logical toy. The construction is based on the same principles, however, the internal connection is performed by means of absolutely new and particular solids. The key feature according to the invention, i.e. shape, name, sounds, mode of interconnection and central fixture will be described in detail by means of two preferred embodiments, by the aid of the accompanying drawings, wherein. Component blocks of the spatial logial toy. ex-2-figs.png What is claimed is: 1. In a spatial logical toy assembled from a plurality of toy elements, of which a predetermined number may be rotated in the direction of the spatial axes starting from the geometrical center of the logical toy, the improvement wherein the spatial logical toy is formed by a total of eighteen toy elements. Two sets of eight toy elements each comprise substantially cubiforms with integally formed cam elements and each of the sets comprise eight identical toy elements, and two connecting toy elements, and means for joining the connecting toy elements to coact with the cam elements to form an integrated toy body, the joining means comprising a single screw enclosed by a spring. The spatial logical toy as claimed in claim 1, wherein the toy has the shape of a regular geometrical body in the assembled state. The toy elements thereof belonging to one set comprise eight cubiform homologous elements each having a first cam element connected to one corner thereof. Two confining surfaces of which lie at a unit distance from two surfaces of the cube and are parallel therewith and are cut-off in the form of an ellipsis-quarter, and a third confining surface thereof is coplanar with another surface of the cube and between the two confining faces of the first cam element running parallel with the cube and the cube there is a hollow with a convex spherical surface."
+  },
+  {
     "objectID": "materials/archive/r-tutorial/slides.html#section",
     "href": "materials/archive/r-tutorial/slides.html#section",
     "title": "tidyverse for data analysis",
@@ -1246,28 +1571,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        4 c          4 gasseri   VCA          50\n2        1 d          7 jensenii  OA          100\n3        1 h         11 CTRL      CTRL          0\n4        4 d         11 CTRL      LNA         400\n5        1 h          3 crispatus CTRL          0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 g          4 crispatus LNA          50\n2        4 c         10 piotii    VCA          50\n3        1 a          8 iners     CTRL          0\n4        3 e          7 vaginalis OA           50\n5        1 a          3 crispatus CTRL          0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        3 g          2 gasseri   VCA         200\n2        4 e         10 piotii    LNA         200\n3        4 c          6 vaginalis VCA          50\n4        1 e          3 crispatus OA           50\n5        3 c          5 vaginalis OA          200"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 a         12 CTRL      CTRL          0\n2        3 d          5 vaginalis OA          100\n3        4 b          5 vaginalis VCA         100\n4        3 g          2 gasseri   VCA         200\n5        4 f          8 piotii    LNA         100"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        1 d          8 iners     OA          100     0.1\n2        4 b          6 vaginalis VCA         100     0.1\n3        3 h          7 vaginalis CTRL          0     0  \n4        4 e          9 piotii    LNA         200     0.2\n5        3 g          9 piotii    VCA         200     0.2"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug   condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 g         12 CTRL  LNA          50    0.05\n2        2 a          9 iners CTRL          0    0   \n3        1 d          1 CTRL  OA          100    0.1 \n4        3 d          1 CTRL  OA          100    0.1 \n5        3 b          1 CTRL  OA          400    0.4"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        1 h          5 jensenii  CTRL          0    0          0\n2        3 g          6 vaginalis VCA         200    0.2   200000\n3        1 a          5 jensenii  CTRL          0    0          0\n4        2 g          5 jensenii  LNA          50    0.05   50000\n5        4 g         10 piotii    LNA          50    0.05   50000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        3 g          5 vaginalis VCA         200    0.2   200000\n2        1 f          9 iners     VCA         400    0.4   400000\n3        2 d          4 crispatus LNA         400    0.4   400000\n4        1 f          5 jensenii  VCA         400    0.4   400000\n5        3 e          5 vaginalis OA           50    0.05   50000"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
@@ -1618,223 +1943,6 @@
     "title": "tidyverse for data analysis",
     "section": "Note, merging tables vertically is bind_rows(), not a join",
     "text": "Note, merging tables vertically is bind_rows(), not a join\n\n\ntable_a %&gt;% bind_rows(table_b)\n\n\n\n\nback to module"
-  },
-  {
-    "objectID": "materials/archive/r-tutorial/images/ex-2.html",
-    "href": "materials/archive/r-tutorial/images/ex-2.html",
-    "title": "Kwon Lab Pipelines",
-    "section": "",
-    "text": "Spatial Logical Toy Inventor: Erno Rubik Assignee: Politoys Ipari Szovetkezet, Budapest, Hungary The first patent by the inventor is registered in Hungary. Appl. No.: 289,192 Filed: Aug. 3, 1981 Background of the Invention The invention relates to a spatial logical toy having a total of eighteen toy elements which form a regular or an irregular spatial body, preferably an oblong body, in the assembled state. Spatial logical toys are well known, such as that described in the HU-PS No. 170 062 of the same applicant, which relates to a spatial logical toy consisting of twenty-seven solids which form a cube in the assembled state. The toy elements, in the shape of small cubes, may be turned along the spatial axes of the cube by means of connecting elements arranged in the geometric center of the large cube. The surfaces of the small cubes forming each surface of the large cube are colored or carry numbers, figures or any other symbols which can be assembled into the predetermined logical order of sequence by simultaneously rotating the nine toy elements forming the surfaces of the large cube. Summary of the Invention The logical toy according to the present invention represents an improved form of the previously described spatial logical toy. The construction is based on the same principles, however, the internal connection is performed by means of absolutely new and particular solids. The key feature according to the invention, i.e. shape, name, sounds, mode of interconnection and central fixture will be described in detail by means of two preferred embodiments, by the aid of the accompanying drawings, wherein. Component blocks of the spatial logial toy. ex-2-figs.png What is claimed is: 1. In a spatial logical toy assembled from a plurality of toy elements, of which a predetermined number may be rotated in the direction of the spatial axes starting from the geometrical center of the logical toy, the improvement wherein the spatial logical toy is formed by a total of eighteen toy elements. Two sets of eight toy elements each comprise substantially cubiforms with integally formed cam elements and each of the sets comprise eight identical toy elements, and two connecting toy elements, and means for joining the connecting toy elements to coact with the cam elements to form an integrated toy body, the joining means comprising a single screw enclosed by a spring. The spatial logical toy as claimed in claim 1, wherein the toy has the shape of a regular geometrical body in the assembled state. The toy elements thereof belonging to one set comprise eight cubiform homologous elements each having a first cam element connected to one corner thereof. Two confining surfaces of which lie at a unit distance from two surfaces of the cube and are parallel therewith and are cut-off in the form of an ellipsis-quarter, and a third confining surface thereof is coplanar with another surface of the cube and between the two confining faces of the first cam element running parallel with the cube and the cube there is a hollow with a convex spherical surface."
-  },
-  {
-    "objectID": "materials/16S/kwon_sequencing_data_transfer/index.html",
-    "href": "materials/16S/kwon_sequencing_data_transfer/index.html",
-    "title": "NextSeq2000 / NovaSeq Demultiplexing and Data Transfer",
-    "section": "",
-    "text": "Mount the remote SMB server. You must be on a secure network (MGBWifi or set up a partners vpn)\n\nsudo mount -t cifs //10.212.9.248/KwonLabSequenceData ~/remoteDir -o \"username=Sequser-read,password=1234R@g0n\"\n\nMake sure you are able to access the SMB via your file explorer.\n\n\nTransfer from SMB onto O2 scratch with RSync\n\nrsync -avt ./{sequencing_folder} {hms_id}@transfer.rc.hms.harvard.edu:/n/scratch/users/{first_letter_hms_id}/{hms_id}\n\nMake demultiplexing samplesheet\n\nbclConvert header\nSample_ID as the unique identifier\nindex2 as the\nindex1 as the\n\n\n\n\nUpload demultiplexing samplesheet to o2 via o2 portal\nValidate and upload mapping file with sequencing metadata for dada2 to data1 folder\n\nMake sure format is consistent with old miseq runs\n#SampleID as the unique identifier\nEnsure no special characters in the unique identifier and only (alphanumeric and underscores)\n\n\n\n\nRun bclConvert\n\nEnsure you are on an interactive node with at least 96GB of memory\n\n\nmodule load bclConvert\nbcl-convert --bcl-input-directory . --output-directory fastqs --sample-sheet vibrant_sample_sheet_pool11.csv\n\nMove fastqs to data1 folder\n\n\nn/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/2025_05_07_NextSeq_V3V4/\n├── Demultiplexed\n├── Reports\n└── vibrant_pool10.csv\nThe sequencing run is now demultiplexed, in the proper directory on O2, and ready for further processing.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "SMB Data Transfer and Demultiplexing"
-    ]
-  },
-  {
-    "objectID": "materials/16S/16s_pipeline/index.html",
-    "href": "materials/16S/16s_pipeline/index.html",
-    "title": "16S Pipeline Tutorial",
-    "section": "",
-    "text": "A Snakemake workflow for processing 16S rRNA sequencing data using DADA2, VALENCIA for community state type (CST) classification, and custom scripts for spike-in adjustments.\nThis workflow assumes your reads are demultiplexed.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "16S Pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/16S/16s_pipeline/index.html#prerequisites",
-    "href": "materials/16S/16s_pipeline/index.html#prerequisites",
-    "title": "16S Pipeline Tutorial",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nRequired Software:\n\nSnakemake (v8.20 or higher)\nConda or Mamba\nPython 3.10 or higher\nR 4.3 or higher\n\nRequired Databases:\n\nHISAT2 human reference database\nGTDB reference databases\nSpeciateIT VALENCIA database",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "16S Pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/16S/16s_pipeline/index.html#installation",
-    "href": "materials/16S/16s_pipeline/index.html#installation",
-    "title": "16S Pipeline Tutorial",
-    "section": "Installation",
-    "text": "Installation\nTo install the workflow, run:\n# Clone the repository without history and enter the project directory\ngit clone --depth=1 https://github.com/kwondry/16s_dada2_valencia.git\n\ncd 16s_dada2_valencia\nThis will create a fresh copy of the workflow without any git history.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "16S Pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/16S/16s_pipeline/index.html#configuration-and-set-up",
-    "href": "materials/16S/16s_pipeline/index.html#configuration-and-set-up",
-    "title": "16S Pipeline Tutorial",
-    "section": "Configuration and set up",
-    "text": "Configuration and set up\n\nDatabase Paths: Edit config/config.yaml to set the paths to your reference databases:\nhisat_db: \"/path/to/hisat2/human/reference\"  # Path to HISAT2 index of T2T human genome\ngtdb_tax_db: \"/path/to/GTDB/taxonomy/database\"  # DADA2 GTDB taxonomy database\ngtdb_species_db: \"/path/to/GTDB/species/database\"  # DADA2 GTDB species database \nspeciateit_db: \"/path/to/speciateit_valencia\"  # SpeciateIT VALENCIA database\nTo obtain these databases:\n\nHISAT2 human reference: Download the T2T human genome from NCBI and index it using HISAT2’s hisat2-build command\nGTDB databases: Download the DADA2-formatted GTDB reference files from Zenodo\nSpeciateIT database: Clone the speciateIT databases and VALENCIA scripts from the Ravel Lab GitHub\n\nDADA2 Parameters: The workflow includes default parameters for DADA2 processing. You can modify these in config/config.yaml:\ndada2:\n  pe:\n    maxEE: 3\n    truncLen: [286, 260]\n    trimLeft: [10, 10]\n    merge:\n      minOverlap: 8\n      maxMismatch: 1\n  se:\n    maxEE: 1\n    truncLen: 230\n    trimLeft: 10\nPrimer Sequences: Update the primer sequences in config/config.yaml if using different primers:\nprimers:\n  v3v4:\n    forward: \"ACTCCTRCGGGAGGCAGCAG\"\n    reverse: \"GGACTACHVGGGTWTCTAAT\"",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "16S Pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/16S/16s_pipeline/index.html#input-data",
-    "href": "materials/16S/16s_pipeline/index.html#input-data",
-    "title": "16S Pipeline Tutorial",
-    "section": "Input Data",
-    "text": "Input Data\nThis workflow can run process multiple sequencing runs in parralel.\n\nNote the folder path of demultiplexed .fastq files and mapping file for each run.\nCreate/edit a sequencing runsheet CSV file with the following columns:\n\nrun_id: Run identifier\nmapping_file: Path to mapping file containing sample IDs\nfastq_dir: Path to directory containing FASTQ files\nregion: Sequencing region used (V4 or V3V4)\n\nThe mapping file should contain unique sample identifiers in a column #SampleID that match the FASTQ filenames in the fastq_dir.\nThe workflow will automatically process both single-end and paired-end data based on the FASTQ files present.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "16S Pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/16S/16s_pipeline/index.html#running-the-workflow",
-    "href": "materials/16S/16s_pipeline/index.html#running-the-workflow",
-    "title": "16S Pipeline Tutorial",
-    "section": "Running the Workflow",
-    "text": "Running the Workflow\n\nTest Run:\nsnakemake -n\nLocal Execution:\nsnakemake --use-conda --cores all\nSLURM Execution:\n sbatch submit_jobs.sh",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "16S Pipeline"
-    ]
-  },
-  {
-    "objectID": "materials/16S/16s_pipeline/index.html#output",
-    "href": "materials/16S/16s_pipeline/index.html#output",
-    "title": "16S Pipeline Tutorial",
-    "section": "Output",
-    "text": "Output\nThe workflow generates two main outputs in the outputs/results directory:\n\nTwo versions of a phyloseq object containing ASV counts, taxonomy assignments, CST assignment, and sample metadata with either a vaginal-specific taxonomy db, speciateIT or GTDB.\nA MultiQC report summarizing read quality metrics and taxonomic composition",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "16S Pipeline"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kwon Lab Pipelines",
-    "section": "",
-    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
-  },
-  {
-    "objectID": "materials/16S/background/index.html",
-    "href": "materials/16S/background/index.html",
-    "title": "16S Background",
-    "section": "",
-    "text": "Coming soon",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "Background"
-    ]
-  },
-  {
-    "objectID": "materials/16S/valencia/index.html",
-    "href": "materials/16S/valencia/index.html",
-    "title": "Generating CSTs with Valencia",
-    "section": "",
-    "text": "The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.\nValencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "Assigning CSTs with Valencia"
-    ]
-  },
-  {
-    "objectID": "materials/16S/valencia/index.html#introduction",
-    "href": "materials/16S/valencia/index.html#introduction",
-    "title": "Generating CSTs with Valencia",
-    "section": "",
-    "text": "The goal of this tutorial is to show the current best-practice way to assign CSTs to your human cervicovaginal 16S data. This tutorial assumes you have a phyloseq object that contains the ASVs for your samples.\nValencia compares your 16S data to a set of curated centroid communities and determines which one each of your samples is closest to.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "Assigning CSTs with Valencia"
-    ]
-  },
-  {
-    "objectID": "materials/16S/valencia/index.html#installation",
-    "href": "materials/16S/valencia/index.html#installation",
-    "title": "Generating CSTs with Valencia",
-    "section": "Installation",
-    "text": "Installation\n\nInstall R, RStudio\nFollow the instructions on the Durban workshop series website.\n\n\nInstall R dependencies\nAfter you’ve installed the packages on there, you can also install phyloseq and microViz:\n\ninstall.packages(c(\"tidyverse\", \"cowplot\", \"gtsummary\", \"ggdendro\", \"ggdist\", \"ggforce\",\"ggplot2movies\", \"ggrepel\", \"ggridges\", \"ggthemes\", \"colorspace\", \"patchwork\", \"quarto\"))\n\n\nif (!requireNamespace(\"BiocManager\", quietly = TRUE)) install.packages(\"BiocManager\")\nBiocManager::install(c(\"phyloseq\", \"microbiome\", \"ComplexHeatmap\"), update = FALSE)\n\ninstall.packages(\n  \"microViz\",\n  repos = c(davidbarnett = \"https://david-barnett.r-universe.dev\", getOption(\"repos\"))\n)\n\n\n\nInstall conda for package management\nCheck if you have conda installed:\n\nOpen a terminal\nType which conda\nIf it says conda not found or nothing shows up, run the following:\n\n\ncd ~;\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh\";\nbash Mambaforge-$(uname)-$(uname -m).sh;\n\n\nWhen prompted agree to the lisence with yes and ask it to add itself to your shell startup with yes.\nClose and reopen your terminal.\n\nIf you conda is already installed, run the following to ensure you have the most recent version:\n\nconda update conda && conda install mamba -n base -c conda-forge\n\n\n\nInstall SpeciateIT and Valencia\nMake a new conda environment for these pieces of software:\n\nmamba create -n speciateit_valencia -c conda-forge python pandas\n\nThen, follow the instructions on https://github.com/ravel-lab/speciateIT/ to install. Make note of the location where you put the speciateIT folder.\nTo install Valencia, download the script by going here , then right click, Save As, and save where you want. This version of the script is from Michael France as of June 2024 and as of that time was the correct way to run Valencia.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "Assigning CSTs with Valencia"
-    ]
-  },
-  {
-    "objectID": "materials/16S/valencia/index.html#running-the-steps",
-    "href": "materials/16S/valencia/index.html#running-the-steps",
-    "title": "Generating CSTs with Valencia",
-    "section": "Running the steps",
-    "text": "Running the steps\nPhew, we’ve installed everything. Now we can run the next steps.",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "Assigning CSTs with Valencia"
-    ]
-  },
-  {
-    "objectID": "materials/16S/valencia/index.html#get-your-asvs-and-count-table-from-your-phyloseq-object",
-    "href": "materials/16S/valencia/index.html#get-your-asvs-and-count-table-from-your-phyloseq-object",
-    "title": "Generating CSTs with Valencia",
-    "section": "Get your ASVs and count table from your phyloseq object",
-    "text": "Get your ASVs and count table from your phyloseq object\n\nFirst, make a new RStudio project in a new folder. (instructions here if you need them)\nDownload the example phyloseq and put it in the new project folder you just created. Download from here\nOpen up a new quarto document, and make a code chunk for the following code.\nThe following code reads in your phyloseq object, and writes out two files:\n\na fasta file containing your ASVs\na count table with samples as rows and ASVs as columns.\n\n\nBoth these files are required for CST assignment.\n\nlibrary(tidyverse)\nlibrary(phyloseq)\nlibrary(microViz)\n\nps &lt;- readRDS(\"example_phyloseq.RDS\") \n\nasvs_to_write &lt;- tibble(asv=microViz::otu_get(ps) %&gt;% colnames()) %&gt;% mutate(fasta_id=str_c(\"&gt;\",asv, \"\\n\")) %&gt;% mutate(asv = str_c(asv, \"\\n\"))\n\nasvs_to_write %&gt;%\n  mutate(line_to_write=map2_chr(fasta_id, asv, str_c)) %&gt;%\n  pull(line_to_write) %&gt;%\n  reduce(str_c) %&gt;%\n  write_file(\"asvs.fa\")\n\nps %&gt;%\n  otu_get() %&gt;%\n  as.data.frame() %&gt;%\n  write.csv(\"count_table.csv\") # using base R write.csv since we need the rownames\n\n\nRun SpeciateIT and Valencia\nFirst, run SpeciateIT’s classify program, which takes the asv fasta file as input. Replace the path to the database with the correct path for your computer. Make sure the database is using the correct region corresponding to your 16S amplicon (for the typical Kwon lab workflow use the “V4V4” databse, although newer data will start to be “V3V4”)\n\nconda activate speciateit_valencia\n\nclassify -d ~/dev/speciateIT-master/vSpeciateDB_models/vSpeciateIT_V4V4 \\\n  -i asvs.fa \\\n  -o speciateit_output\n\nThen, take the output from classify and your count table and use it to prepare the input for Valencia. Make sure to replace the path to count_table.py so it is correct for your system:\n\npython ~/dev/speciateIT-master/bin/count_table.py \\\n  -c count_table.csv \\\n  -s speciateit_output/MC_order7_results.txt\n\nNow run Valencia. The CST centroids file should be from the SpeciateIT github repository download here for convenience, and the Valencia python script should be downloaded from here (which you may have already done in the installation section above).\n\npython Valencia_v1.1.py \\\n  -ref VALENCIA2_CST_centroids_20Mar2024.csv \\\n  -i count_table_speciateIT.csv \\\n  -o cst_assignments\n\n\n\nAdd CSTs back to phyloseq object\nNow we have CST assignments for each sample. We need to add it back to the phyloseq object so we can use them in R.\nWe’ll use ps_join() from the microViz package to add the CSTs back to the phyloseq object\n\ncst_assignments &lt;- read_csv(\"cst_assignments.csv\")\n\nps_with_csts &lt;- ps_join(ps, match_sample_names = \"sampleID\",\n  cst_assignments %&gt;% select(sampleID, CST, subCST, score))\n\nps_with_csts %&gt;%\n tax_transform(rank = \"unique\", trans = \"compositional\") %&gt;%\n dist_calc(dist = \"bray\") %&gt;%\n ord_calc(\n  method = \"auto\"\n ) %&gt;% \n ord_plot(\n  axes = c(1, 2),\n  colour = \"subCST\", fill = \"subCST\",\n  shape = \"circle\", alpha = \"score\",\n  size = 2\n )\n\nTo save your phyloseq object with the added CSTs, run the following:\n\nps_with_csts %&gt;% saveRDS(\"phyloseq_object_with_csts.RDS\")\n\nThis code will be useful for exploring the phyloseq object interactively.\n\nps_with_csts %&gt;% ord_explore()",
-    "crumbs": [
-      "About the Kwon Lab",
-      "16S",
-      "Assigning CSTs with Valencia"
-    ]
-  },
-  {
-    "objectID": "materials/archive/r-tutorial/index.html",
-    "href": "materials/archive/r-tutorial/index.html",
-    "title": "R workshop",
-    "section": "",
-    "text": "Learn how to use RStudio and the tidyverse for data exploration"
-  },
-  {
-    "objectID": "materials/archive/r-tutorial/index.html#slides-intro-to-rstudio-quarto-and-r",
-    "href": "materials/archive/r-tutorial/index.html#slides-intro-to-rstudio-quarto-and-r",
-    "title": "R workshop",
-    "section": "Slides: Intro to RStudio, Quarto, and R",
-    "text": "Slides: Intro to RStudio, Quarto, and R\nMake slides full screen"
-  },
-  {
-    "objectID": "materials/archive/r-tutorial/index.html#download-the-data-for-the-workshop",
-    "href": "materials/archive/r-tutorial/index.html#download-the-data-for-the-workshop",
-    "title": "R workshop",
-    "section": "Download the data for the workshop",
-    "text": "Download the data for the workshop\nThere are five files to download and place in your R project folder.\n\nmetadata.csv\n\nEach row of this table is a well on a plate that was measured. This has the bacterial isolate that was tested, the growth condition (long chain fatty acid) and the concentration of the long chain fatty acid.\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nbug – the isolate/species that was tested in this well condition - which long chain fatty acid (LCFA) was added conc - what was the concentration of the LCFA in this well?\n\nplate_1_data.csv\nplate_2_data.csv\nplate_3_data.csv\nplate_4_data.csv\n\nplate_id – an identifier of which plate was measured\nrow – row of the plate (A-H)\ncolumn – column of the plate (1-12)\nod - the optical density that was measured in this well. This is a measure of bacterial growth.\n\nRead in data\nData is often in tables, and the easiest way to store tabular data is in csv or tsv format.\ncsv - comma separated values\ntsv - tab separated values\nto read in data stored this way use read_csv(filename) or read_tsv(filename)\nmetadata &lt;- read_csv(\"data/metadata.csv\")\n\n\nbinding tables together\nWe have data from 4 different plates in separate csv files. Use bind_rows to make a single table with all the data.\nplate_1 &lt;- read_csv(\"data/plate_1_data.csv\")\nplate_2 &lt;- read_csv(\"data/plate_2_data.csv\")\nplate_3 &lt;- read_csv(\"data/plate_3_data.csv\")\nplate_4 &lt;- read_csv(\"data/plate_4_data.csv\")\n\nall_plate_data &lt;- bind_rows(plate_1, plate_2, plate_3, plate_4)\n\n\njoining metadata to the data\nConnect the metadata to the plate reader data using left_join\n\njoined_data &lt;- all_plate_data %&gt;%\n  left_join(metadata)"
-  },
-  {
-    "objectID": "materials/archive/r-tutorial/index.html#data-visualization-activity",
-    "href": "materials/archive/r-tutorial/index.html#data-visualization-activity",
-    "title": "R workshop",
-    "section": "Data visualization activity",
-    "text": "Data visualization activity\nOn excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table.\n\nOption 1: What is the spread of values you typically see in the no media controls for different concentrations of LCFA? Bonus: are there any effects of where the well is on the plate with the values measured?\nOption 2: What is the typical growth in the media of the different bugs without any LCFA?\nOption 3: How do the different LCFAs tested impact the growth of L. crispatus?\nOption 4: Are there any batch effects between plates? (What conditions are measured on multiple plates, and what conditions are only on one plate?)"
-  },
-  {
-    "objectID": "materials/archive/r-tutorial/index.html#example-answers-for-data-analysis-questions",
-    "href": "materials/archive/r-tutorial/index.html#example-answers-for-data-analysis-questions",
-    "title": "R workshop",
-    "section": "Example answers for data analysis questions:",
-    "text": "Example answers for data analysis questions:\n\n\n\n\n\n\nCalculate media backgrounds and bacterial growth with no LCFA\n\n\n\n\n\nmedia_background &lt;- joined_data %&gt;%\n  filter(bug == \"CTRL\") \n\nmedia_background_medians &lt;- media_background %&gt;%\n  group_by(plate_id, condition, conc) %&gt;%\n  summarise(no_bacteria_control = median(od))\n\nbug_no_lcfa_control &lt;- joined_data %&gt;%\n  filter(condition == \"CTRL\") %&gt;%\n  filter(bug != \"CTRL\") %&gt;%\n  left_join(media_background_averages) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control)\n  \nbug_no_lcfa_control_medians &lt;- bug_no_lcfa_control %&gt;%\n  group_by(plate_id, bug) %&gt;%\n  summarise(no_lcfa_control = median(background_subtracted_od)) %&gt;%\n  ungroup()\n\n\n\n\n\n\n\n\n\nCalculate relative growths for each bug in each concentration of LCFA\n\n\n\n\n\nrelative_growths &lt;- joined_data %&gt;%\n  filter(condition != \"CTRL\", bug !=\"CTRL\") %&gt;%\n  left_join(media_background_medians) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control) %&gt;%\n  left_join(bug_no_lcfa_control_medians) %&gt;%\n  mutate(relative_growth = background_subtracted_od/ no_lcfa_control) \n\n\n\n\n\n\n\n\n\nExample plots\n\n\n\n\n\n\nmedia_background %&gt;% \n  ggplot(aes(x=od)) +\n  geom_histogram(binwidth = 0.01) +\n  facet_wrap(~condition+conc)\n\n\n\n\n\n\n\n\n\nbug_no_lcfa_control %&gt;%\n  ggplot(aes(x=background_subtracted_od)) +\n  geom_histogram(binwidth = 0.05) +\n  facet_wrap(~bug)\n\n\n\n\n\n\n\n\n\nrelative_growths %&gt;%\n  mutate(conc = as.factor(conc)) %&gt;%\n  ggplot(aes(x=conc, y=relative_growth)) +\n  geom_boxplot(outlier.shape = NA) +\n  ggbeeswarm::geom_quasirandom() +\n  scale_y_continuous(trans=scales::log2_trans()) +\n  facet_wrap(~condition+bug, ncol=6)"
   },
   {
     "objectID": "materials/getting-started/installation/index.html",
