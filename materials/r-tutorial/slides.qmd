@@ -605,16 +605,27 @@ table_02 %>%
 
 ## Exercise {.your-turn}
 
-That's enough slides for now time to try for yourself! Go to [the module](index.html) and go to the second exercise.
+That's enough slides for now time to try for yourself! Go to [the module](index.html) and go to Exercise 1.
 
 ```{r}
-countdown::countdown(30)
+countdown::countdown(20)
 ```
 
 
 
-
 # Aesthetics - the elements of data visualization
+
+## Exercise 2 {.your-turn}
+
+```{r}
+#| echo: false
+
+countdown(30)
+
+```
+
+Get in groups of three. On [excalidraw.com](excalidraw.com) or pen and paper, create a visualization to answer the questions below. Check out [the data visualization  cheatsheet](https://rstudio.github.io/cheatsheets/data-visualization.pdf) for inspiration. Think about values you'd have to compute, or if you have everything you need already in our `joined_data` table. 
+
 
 ## Plots map data onto graphical elements.
 
@@ -874,11 +885,11 @@ countdown(30)
 
 ```
 
-Time to try it yourself. Go to [the first coding exercise](index.html#coding-exercise-3.1).
+Time to try it yourself. Go to [Exercise 3](index.html).
 
 ![](images/sticky.jpeg){fig-alt="Picture of a laptop with a red sticky note stuck to the top." width=540}
 
-During an activity, place a [**blue**]{style="color: DarkTurquoise"}  sticky on your laptop if you're good to go and a [**pink**]{style="color: hotpink"} sticky if you want help.
+During an activity, place a [**yellow**]{style="color: yellow"}  sticky on your laptop if you're good to go and a [**pink**]{style="color: hotpink"} sticky if you want help.
 
 
 # Visualizing distributions
