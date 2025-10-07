@@ -908,21 +908,9 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html",
     "href": "materials/comparative-genomics/gene-search/index.html",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "",
-    "text": "Mamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nMamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nType which mamba to check if you have mamba installed. If not, check if you have conda with which conda\n\n\nIf you already have conda installed:\nconda install -n base -c conda-forge mamba\n\n\n\nMiniforge comes with mamba pre-installed:\n# Download and install Miniforge\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\nbash Miniforge3-$(uname)-$(uname -m).sh\nAfter installing Miniforge, you should type conda init and then log out and back into the shell.\n\n\n\n\nOnce you are sure you have mamba installed (which mamba), install the necessary tools for this searching.\n# Install all tools in one command\nmamba create --name=gene_search -c conda-forge -c bioconda mmseqs2 hmmer seqkit mafft fasttree blast\n\n\nconda activate gene_search\nmmseqs version\nhmmbuild -h\nseqkit version\nmafft --version\nfasttree -help\nrpsblast -version",
-    "crumbs": [
-      "About the Kwon Lab",
-      "Comparative Genomics",
-      "Gene Search"
-    ]
-  },
-  {
-    "objectID": "materials/comparative-genomics/gene-search/index.html#installation",
-    "href": "materials/comparative-genomics/gene-search/index.html#installation",
-    "title": "Gene Search Pipeline",
-    "section": "",
-    "text": "Mamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nMamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.\nType which mamba to check if you have mamba installed. If not, check if you have conda with which conda\n\n\nIf you already have conda installed:\nconda install -n base -c conda-forge mamba\n\n\n\nMiniforge comes with mamba pre-installed:\n# Download and install Miniforge\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh\"\nbash Miniforge3-$(uname)-$(uname -m).sh\nAfter installing Miniforge, you should type conda init and then log out and back into the shell.\n\n\n\n\nOnce you are sure you have mamba installed (which mamba), install the necessary tools for this searching.\n# Install all tools in one command\nmamba create --name=gene_search -c conda-forge -c bioconda mmseqs2 hmmer seqkit mafft fasttree blast\n\n\nconda activate gene_search\nmmseqs version\nhmmbuild -h\nseqkit version\nmafft --version\nfasttree -help\nrpsblast -version",
+    "text": "Do you have a gene (or several) that you want to get out of a genome (or several)? This guide will explain some common ways you can search genomes for genes.",
     "crumbs": [
       "About the Kwon Lab",
       "Comparative Genomics",
@@ -932,9 +920,9 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html#preparing-your-reference-database",
     "href": "materials/comparative-genomics/gene-search/index.html#preparing-your-reference-database",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "Preparing Your Reference Database",
-    "text": "Preparing Your Reference Database\nBefore searching for genes, you need to prepare a combined reference database from your genome files.\n\nCombine Genome Protein Files\n# Combine all .faa files from your genome database into a single file\ncat input/genome_database/*/*.faa &gt; genome_database/concatenated_orfs.faa\n\n# Verify the combined file\ngrep -c \"^&gt;\" genome_database/concatenated_orfs.faa  # Count number of sequences\n\n\nAlternative: Combine with Custom Glob Pattern\n# If your files are in a different location or pattern\ncat path/to/genomes/**/*.faa &gt; concatenated_orfs.faa\n\n# Or combine specific genome files\ncat genome1.faa genome2.faa genome3.faa &gt; concatenated_orfs.faa\nNote: Ensure sequence headers are unique across all input files to avoid ambiguity in search results.",
+    "text": "Preparing Your Reference Database\nWhat genomes are you searching? Before searching for genes, you need to prepare a combined reference database from your genome files. If you are searching just a single genome, you can proceed to the next section.\n\nCombine Genome Protein Files\n# Combine all .faa files from your genome database into a single file\ncat input/genome_database/*/*.faa &gt; genome_database/concatenated_orfs.faa\n\n# Verify the combined file\ngrep -c \"^&gt;\" genome_database/concatenated_orfs.faa  # Count number of sequences\n\n\nAlternative: Combine with Custom Glob Pattern\n# If your files are in a different location or pattern\ncat path/to/genomes/**/*.faa &gt; concatenated_orfs.faa\n\n# Or combine specific genome files\ncat genome1.faa genome2.faa genome3.faa &gt; concatenated_orfs.faa\nNote: Ensure sequence headers are unique across all input files to avoid ambiguity in search results.",
     "crumbs": [
       "About the Kwon Lab",
       "Comparative Genomics",
@@ -944,9 +932,9 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html#getting-your-query-gene",
     "href": "materials/comparative-genomics/gene-search/index.html#getting-your-query-gene",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "Getting Your Query Gene",
-    "text": "Getting Your Query Gene\n\nStep 1: Find Your Taxon and Annotation\nGo to one of these resources to find your taxon of interest: - https://www.ebi.ac.uk/interpro/taxonomy/uniprot/ - https://www.kegg.jp/kegg/tables/br08606.html\nThen search within that taxon for your annotation of interest.\n\n\nStep 2: Decide on Search Strategy\nQuestion: Am I searching broadly for this protein coding gene or specifically?\n\nSpecifically: Search the exact sequence - best for closely related genomes with high sequence similarity\nBy orthologous group: Use pre-built PSSM profiles from NCBI’s COG database - best when searching for functional orthologs across different species\nBroadly: Get the UniRef50 cluster for that gene and generate an alignment and HMM of all sequences in the cluster - best for capturing diverse homologs while maintaining some specificity",
+    "text": "Getting Your Query Gene\n\nStep 1: Find Your Taxon and Annotation\nGo to one of these resources to find your taxon of interest: - https://www.ebi.ac.uk/interpro/taxonomy/uniprot/\n- https://www.kegg.jp/kegg/tables/br08606.html\nThen search within that taxon for your annotation of interest.\n\n\nStep 2: Decide on Search Strategy\nQuestion: Am I searching broadly for this protein coding gene or specifically?\n\nSpecifically: Search the exact sequence - best for closely related genomes with high sequence similarity\nBy orthologous group: Use pre-built PSSM profiles from NCBI’s COG database - best when searching for functional orthologs across different species\nBroadly: Get the UniRef50 cluster for that gene and generate an alignment and HMM of all sequences in the cluster - best for capturing diverse homologs while maintaining some specificity",
     "crumbs": [
       "About the Kwon Lab",
       "Comparative Genomics",
@@ -956,7 +944,7 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html#specific-search-approach-sequence-based",
     "href": "materials/comparative-genomics/gene-search/index.html#specific-search-approach-sequence-based",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "Specific Search Approach (Sequence-based)",
     "text": "Specific Search Approach (Sequence-based)\n\n1. Get the UniRef90 Representative Sequence\nYou can search for the exact sequence you are interested in. Or, it could be more reproducible to search the UniRef90 representative sequence of your gene of interest:\nIf going the Uniref90 route, you can search for your sequence at https://www.uniprot.org/blast and get the uniref90 cluster for that sequence.\nOr if you got your sequence from kegg.jp, you can click on the uniprot cross reference, then on “similar proteins” then on the Uniref_90 cluster.\nThen, download the uniref_90 representative sequence.\n# Replace UniRef90_D5H0P4 with your cluster ID from Uniprot\ncurl \"https://rest.uniprot.org/uniref/UniRef90_D5H0P4.fasta\" -o UniRef90_D5H0P4.fasta\n\n\n2. Search Against Genome Database Using MMseqs2\nmmseqs easy-search \\\n  input/UniRef90_D5H0P4.faa \\\n  input/genome_database/concatenated_orfs.faa \\\n  UniRef90_D5H0P4_hits.tsv \\\n  -e 1e-20 \\\n  tmp \\\n  --format-output \"query,target,pident,alnlen,evalue\" \\\n  --format-mode 4",
     "crumbs": [
@@ -968,9 +956,9 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html#domain-based-search-approach-using-ncbi-cog-pssms",
     "href": "materials/comparative-genomics/gene-search/index.html#domain-based-search-approach-using-ncbi-cog-pssms",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "Domain-based Search Approach (Using NCBI COG PSSMs)",
-    "text": "Domain-based Search Approach (Using NCBI COG PSSMs)\nThis approach uses pre-built Position-Specific Scoring Matrices (PSSMs) from NCBI’s COG (Clusters of Orthologous Genes) database.\n\n1. Download the COG Database\n# Download the COG database\nupdate_blastdb.pl --decompress Cog\n\n\n2. Identify Your COG of Interest\nFind the Uniprot protein ID and search for it on http://eggnog5.embl.de\nNote the COG ID (e.g., COG0001, COG0002) for reference.\n\n\n3. Search Against Genome Database Using RPS-BLAST\n# Search proteins against the COG database\nrpsblast \\\n  -query genome_database/concatenated_orfs.faa \\\n  -db Cog \\\n  -out COG_hits.txt \\\n  -evalue 1e-5 \\\n  -outfmt \"6 qseqid sseqid pident length evalue bitscore stitle\"\n\n\n4. Filter for Your Specific COG\n# Extract hits for a specific COG (e.g., COG0001)\ngrep \"COG0001\" COG_hits.txt &gt; COG0001_hits.txt\n\n# Extract sequence IDs\ncut -f1 COG0001_hits.txt | sort -u &gt; cog_hit_ids.txt",
+    "text": "Domain-based Search Approach (Using NCBI COG PSSMs)\nThis approach uses pre-built Position-Specific Scoring Matrices (PSSMs) from NCBI’s COG (Clusters of Orthologous Genes) database.\nNote: COGs can be very broad. Make sure the COG you are looking for is specific enough to the function you are interested in. For reference, there are fewer than 5,000 COGs in the 2024 database.\n\n1. Download the COG Database\n# Download the COG database\nupdate_blastdb.pl --decompress Cog\n\n\n2. Identify Your COG of Interest\nFind the Uniprot protein ID and search for it on http://eggnog5.embl.de\nNote the COG ID (e.g., COG0001, COG4716) for reference.\n\n\n3. Search Against Genome Database Using RPS-BLAST\n# Search proteins against the COG database\nrpsblast \\\n  -query genome_database/concatenated_orfs.faa \\\n  -db Cog \\\n  -out COG_hits.txt \\\n  -evalue 1e-5 \\\n  -outfmt \"6 qseqid sseqid pident length evalue bitscore stitle\"\n\n\n4. Filter for Your Specific COG\n# Extract hits for a specific COG (e.g., COG0001)\ngrep \"COG0001\" COG_hits.txt &gt; COG0001_hits.txt\n\n# Extract sequence IDs\ncut -f1 COG0001_hits.txt | sort -u &gt; cog_hit_ids.txt",
     "crumbs": [
       "About the Kwon Lab",
       "Comparative Genomics",
@@ -980,7 +968,7 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html#broad-search-approach-hmm-based",
     "href": "materials/comparative-genomics/gene-search/index.html#broad-search-approach-hmm-based",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "Broad Search Approach (HMM-based)",
     "text": "Broad Search Approach (HMM-based)\n\n1. Get Query Sequences from UniRef50 Cluster\n# Replace UniRef50_C2EQ21 with your cluster ID\ncurl \"https://rest.uniprot.org/uniprotkb/stream?format=fasta&query=uniref_cluster_50:UniRef50_C2EQ21\" \\\n  &gt; UniRef50_C2EQ21_all_members.fasta\n\n\n2. Align the Sequences\nmafft UniRef50_C2EQ21_all_members.fasta &gt; UniRef50_C2EQ21_aligned.fasta\n\n\n3. Build the HMM Profile\nhmmbuild UniRef50_C2EQ21.hmm UniRef50_C2EQ21_aligned.fasta\n\n\n4. Search Against Genome Database Using hmmsearch\nhmmsearch \\\n  --tblout UniRef50_C2EQ21_hits.tbl \\\n  -E 1e-10 \\\n  UniRef50_C2EQ21.hmm \\\n  genome_database/concatenated_orfs.faa",
     "crumbs": [
@@ -992,9 +980,9 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html#example-downstream-analysis",
     "href": "materials/comparative-genomics/gene-search/index.html#example-downstream-analysis",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "Example Downstream Analysis",
-    "text": "Example Downstream Analysis\nOnce you have your table of gene hits, you might do a lot of different things with them.\nOne example would be to align the gene hits together and make a tree.\nTo do this we’ll parse the gene hit table to get the hit ids, then use seqkit to get the sequences from the reference database we searched. After we have the sequences we’ll align with mafft, and then make a tree with fasttree which can be viewed on ITOL.\n\n1. Extract Hit IDs\nFor HMM search results:\n# Skip header lines and extract target names\ngrep -v '^#' UniRef50_C2EQ21_hits.tbl | awk '{print $1}' | sort -u &gt; hit_ids.txt\nFor MMseqs2 results:\ncut -f2 UniRef90_D5H0P4_hits.tsv | sort -u &gt; hit_ids.txt\nFor RPS-BLAST results:\n# Already extracted above as cog_hit_ids.txt\n# Or extract from the full results:\ncut -f1 COG_hits.txt | sort -u &gt; hit_ids.txt\n\n\n2. Retrieve Hit Sequences\nseqkit grep -f hit_ids.txt genome_database/*/*.faa &gt; hit_sequences.faa\n\n\n3. Align Hit Sequences\nOptional: Consider adding reference sequences from UniRef90 before alignment\nmafft hit_sequences.faa &gt; aligned_hit_sequences.faa\n\n\n4. Build Phylogenetic Tree\nfasttree aligned_hit_sequences.faa &gt; hit_sequences.tree",
+    "text": "Example Downstream Analysis\nOnce you have your table of gene hits, you might do a lot of different things with them.\nOne example would be to align the gene hits together and make a tree.\nTo do this we’ll parse the gene hit table to get the hit ids, then use seqkit to get the sequences from the reference database we searched. After we have the sequences we’ll align with mafft, and then make a tree with fasttree which can be viewed on ITOL.\n\n1. Extract Hit IDs\nFor MMseqs2 results:\ncut -f2 UniRef90_D5H0P4_hits.tsv | sort -u &gt; hit_ids.txt\nFor RPS-BLAST results:\n# Already extracted above as cog_hit_ids.txt\n# Or extract from the full results:\ncut -f1 COG_hits.txt | sort -u &gt; hit_ids.txt\nFor HMM search results:\n# Skip header lines and extract target names\ngrep -v '^#' UniRef50_C2EQ21_hits.tbl | awk '{print $1}' | sort -u &gt; hit_ids.txt\n\n\n2. Retrieve Hit Sequences\nTo add the filename (strain ID) to each sequence header:\nfor file in genome_database/*/*.faa; do\n  seqkit grep -f hit_ids.txt \"$file\" | \\\n    seqkit replace -p '^' -r \"$(basename ${file%.faa})_\"\ndone &gt; hit_sequences.faa\nOr without filename prefix:\nseqkit grep -f hit_ids.txt genome_database/*/*.faa &gt; hit_sequences.faa\n\n\n3. Align Hit Sequencess\nOptional: Consider adding reference sequences from UniRef90 before alignment\nmafft hit_sequences.faa &gt; aligned_hit_sequences.faa\n\n\n4. Build Phylogenetic Tree\nfasttree aligned_hit_sequences.faa &gt; hit_sequences.tree",
     "crumbs": [
       "About the Kwon Lab",
       "Comparative Genomics",
@@ -1004,9 +992,9 @@
   {
     "objectID": "materials/comparative-genomics/gene-search/index.html#notes",
     "href": "materials/comparative-genomics/gene-search/index.html#notes",
-    "title": "Gene Search Pipeline",
+    "title": "Searching for genes in bacterial genomes",
     "section": "Notes",
-    "text": "Notes\n\nE-value Thresholds\n\nMMseqs2: -e 1e-20 is stringent for specific searches\nhmmsearch: -E 1e-10 is appropriate for HMM profiles\nRPS-BLAST: -evalue 1e-5 is standard for domain searches\nAdjust thresholds based on your specific use case and desired sensitivity/specificity\n\n\n\nPerformance Tips\n\nThe tmp directory in MMseqs2 commands is used for temporary files and will be created automatically\nFor large datasets, use MAFFT’s --thread option to specify multiple CPU cores\nThe COG database requires ~500MB of disk space\n\n\n\nCOG Database Updates\n\nThe COG database was updated in 2024, increasing coverage from 1,309 to 2,296 species\nUse update_blastdb.pl --showall to see all available databases\n\n\n\nPhylogenetic Analysis\n\nFastTree produces an approximately-maximum-likelihood tree quickly\nFor more accurate phylogenies, consider using RAxML or IQ-TREE (slower but more rigorous)",
+    "text": "Notes\n\nE-value Thresholds\n\nMMseqs2: -e 1e-20 is stringent for specific searches\nhmmsearch: -E 1e-10 is appropriate for HMM profiles\nRPS-BLAST: -evalue 1e-5 is standard for domain searches\nAdjust thresholds based on your specific use case and desired sensitivity/specificity\n\n\n\nPerformance Tips\n\nThe tmp directory in MMseqs2 commands is used for temporary files and will be created automatically\nFor large datasets, use MAFFT’s --thread option to specify multiple CPU cores\nThe COG database requires ~500MB of disk space\n\n\n\nCOG Database Updates\n\nThe COG database was updated in 2024, increasing coverage from 1,309 to 2,296 species\nUse update_blastdb.pl --showall to see all available databases\n\n\n\nPhylogenetic Analysis\n\nFastTree produces an approximately-maximum-likelihood tree quickly\nFor more accurate phylogenies, consider using RAxML or IQ-TREE",
     "crumbs": [
       "About the Kwon Lab",
       "Comparative Genomics",
@@ -1571,28 +1559,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 g          4 crispatus LNA          50\n2        4 c         10 piotii    VCA          50\n3        1 a          8 iners     CTRL          0\n4        3 e          7 vaginalis OA           50\n5        1 a          3 crispatus CTRL          0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug    condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n1        4 f          9 piotii LNA         100\n2        4 e         10 piotii LNA         200\n3        2 a         12 CTRL   CTRL          0\n4        4 h         10 piotii CTRL          0\n5        3 b          9 piotii OA          400"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 a         12 CTRL      CTRL          0\n2        3 d          5 vaginalis OA          100\n3        4 b          5 vaginalis VCA         100\n4        3 g          2 gasseri   VCA         200\n5        4 f          8 piotii    LNA         100"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 e          8 iners     LNA         200\n2        2 d          9 iners     LNA         400\n3        2 g          5 jensenii  LNA          50\n4        3 e         12 CTRL      OA           50\n5        1 e          4 crispatus OA           50"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug   condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 g         12 CTRL  LNA          50    0.05\n2        2 a          9 iners CTRL          0    0   \n3        1 d          1 CTRL  OA          100    0.1 \n4        3 d          1 CTRL  OA          100    0.1 \n5        3 b          1 CTRL  OA          400    0.4"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug      condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 b          8 iners    VCA         100    0.1 \n2        3 c         10 piotii   OA          200    0.2 \n3        2 c         11 CTRL     VCA          50    0.05\n4        4 g          1 CTRL     LNA          50    0.05\n5        2 h          6 jensenii CTRL          0    0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        3 g          5 vaginalis VCA         200    0.2   200000\n2        1 f          9 iners     VCA         400    0.4   400000\n3        2 d          4 crispatus LNA         400    0.4   400000\n4        1 f          5 jensenii  VCA         400    0.4   400000\n5        3 e          5 vaginalis OA           50    0.05   50000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        1 h          5 jensenii CTRL          0    0          0\n2        3 g         12 CTRL     VCA         200    0.2   200000\n3        1 b         12 CTRL     OA          400    0.4   400000\n4        4 g         10 piotii   LNA          50    0.05   50000\n5        2 a         12 CTRL     CTRL          0    0          0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",

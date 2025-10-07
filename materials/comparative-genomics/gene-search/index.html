@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kwon Lab Pipelines - Gene Search Pipeline</title>
+<title>Kwon Lab Pipelines - Searching for genes in bacterial genomes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Gene Search Pipeline</h1>
+          <h1 class="quarto-secondary-nav-title">Searching for genes in bacterial genomes</h1>
         </a>     
     </div>
   </nav>
@@ -310,12 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a>
-  <ul class="collapse">
-  <li><a href="#installing-mamba" id="toc-installing-mamba" class="nav-link" data-scroll-target="#installing-mamba">Installing Mamba</a></li>
-  <li><a href="#installing-required-bioinformatics-tools" id="toc-installing-required-bioinformatics-tools" class="nav-link" data-scroll-target="#installing-required-bioinformatics-tools">Installing Required Bioinformatics Tools</a></li>
-  </ul></li>
-  <li><a href="#preparing-your-reference-database" id="toc-preparing-your-reference-database" class="nav-link" data-scroll-target="#preparing-your-reference-database">Preparing Your Reference Database</a>
+  <li><a href="#preparing-your-reference-database" id="toc-preparing-your-reference-database" class="nav-link active" data-scroll-target="#preparing-your-reference-database">Preparing Your Reference Database</a>
   <ul class="collapse">
   <li><a href="#combine-genome-protein-files" id="toc-combine-genome-protein-files" class="nav-link" data-scroll-target="#combine-genome-protein-files">Combine Genome Protein Files</a></li>
   <li><a href="#alternative-combine-with-custom-glob-pattern" id="toc-alternative-combine-with-custom-glob-pattern" class="nav-link" data-scroll-target="#alternative-combine-with-custom-glob-pattern">Alternative: Combine with Custom Glob Pattern</a></li>
@@ -348,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#extract-hit-ids" id="toc-extract-hit-ids" class="nav-link" data-scroll-target="#extract-hit-ids">1. Extract Hit IDs</a></li>
   <li><a href="#retrieve-hit-sequences" id="toc-retrieve-hit-sequences" class="nav-link" data-scroll-target="#retrieve-hit-sequences">2. Retrieve Hit Sequences</a></li>
-  <li><a href="#align-hit-sequences" id="toc-align-hit-sequences" class="nav-link" data-scroll-target="#align-hit-sequences">3. Align Hit Sequences</a></li>
+  <li><a href="#align-hit-sequencess" id="toc-align-hit-sequencess" class="nav-link" data-scroll-target="#align-hit-sequencess">3. Align Hit Sequencess</a></li>
   <li><a href="#build-phylogenetic-tree" id="toc-build-phylogenetic-tree" class="nav-link" data-scroll-target="#build-phylogenetic-tree">4. Build Phylogenetic Tree</a></li>
   </ul></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
@@ -366,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Gene Search Pipeline</h1>
+<h1 class="title d-none d-lg-block">Searching for genes in bacterial genomes</h1>
 </div>
 
 
@@ -383,8 +378,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>Do you have a gene (or several) that you want to get out of a genome (or several)? This guide will explain some common ways you can search genomes for genes.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preflight checks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <section id="installing-mamba" class="level3">
 <h3 class="anchored" data-anchor-id="installing-mamba">Installing Mamba</h3>
 <p>Mamba is a fast, drop-in replacement for conda that significantly speeds up package installation and dependency resolution.</p>
@@ -420,10 +426,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">rpsblast</span> <span class="at">-version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-</section>
+</div>
+</div>
+</div>
 <section id="preparing-your-reference-database" class="level2">
 <h2 class="anchored" data-anchor-id="preparing-your-reference-database">Preparing Your Reference Database</h2>
-<p>Before searching for genes, you need to prepare a combined reference database from your genome files.</p>
+<p>What genomes are you searching? Before searching for genes, you need to prepare a combined reference database from your genome files. If you are searching just a single genome, you can proceed to the next section.</p>
 <section id="combine-genome-protein-files" class="level3">
 <h3 class="anchored" data-anchor-id="combine-genome-protein-files">Combine Genome Protein Files</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all .faa files from your genome database into a single file</span></span>
@@ -446,7 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="getting-your-query-gene">Getting Your Query Gene</h2>
 <section id="step-1-find-your-taxon-and-annotation" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-find-your-taxon-and-annotation">Step 1: Find Your Taxon and Annotation</h3>
-<p>Go to one of these resources to find your taxon of interest: - https://www.ebi.ac.uk/interpro/taxonomy/uniprot/ - https://www.kegg.jp/kegg/tables/br08606.html</p>
+<p>Go to one of these resources to find your taxon of interest: - https://www.ebi.ac.uk/interpro/taxonomy/uniprot/<br>
+- https://www.kegg.jp/kegg/tables/br08606.html</p>
 <p>Then search within that taxon for your annotation of interest.</p>
 </section>
 <section id="step-2-decide-on-search-strategy" class="level3">
@@ -485,6 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="domain-based-search-approach-using-ncbi-cog-pssms" class="level2">
 <h2 class="anchored" data-anchor-id="domain-based-search-approach-using-ncbi-cog-pssms">Domain-based Search Approach (Using NCBI COG PSSMs)</h2>
 <p>This approach uses pre-built Position-Specific Scoring Matrices (PSSMs) from NCBI’s COG (Clusters of Orthologous Genes) database.</p>
+<p><strong>Note: COGs can be <em>very</em> broad. Make sure the COG you are looking for is specific enough to the function you are interested in. For reference, there are fewer than 5,000 COGs in the 2024 database.</strong></p>
 <section id="download-the-cog-database" class="level3">
 <h3 class="anchored" data-anchor-id="download-the-cog-database">1. Download the COG Database</h3>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the COG database</span></span>
@@ -493,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="identify-your-cog-of-interest" class="level3">
 <h3 class="anchored" data-anchor-id="identify-your-cog-of-interest">2. Identify Your COG of Interest</h3>
 <p>Find the Uniprot protein ID and search for it on http://eggnog5.embl.de</p>
-<p>Note the COG ID (e.g., COG0001, COG0002) for reference.</p>
+<p>Note the COG ID (e.g., COG0001, COG4716) for reference.</p>
 </section>
 <section id="search-against-genome-database-using-rps-blast" class="level3">
 <h3 class="anchored" data-anchor-id="search-against-genome-database-using-rps-blast">3. Search Against Genome Database Using RPS-BLAST</h3>
@@ -546,28 +556,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To do this we’ll parse the gene hit table to get the hit ids, then use seqkit to get the sequences from the reference database we searched. After we have the sequences we’ll align with mafft, and then make a tree with fasttree which can be viewed on ITOL.</p>
 <section id="extract-hit-ids" class="level3">
 <h3 class="anchored" data-anchor-id="extract-hit-ids">1. Extract Hit IDs</h3>
-<p>For HMM search results:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip header lines and extract target names</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">'^#'</span> UniRef50_C2EQ21_hits.tbl <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $1}'</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> hit_ids.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For MMseqs2 results:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f2</span> UniRef90_D5H0P4_hits.tsv <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> hit_ids.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f2</span> UniRef90_D5H0P4_hits.tsv <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> hit_ids.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For RPS-BLAST results:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Already extracted above as cog_hit_ids.txt</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Or extract from the full results:</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> COG_hits.txt <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> hit_ids.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Already extracted above as cog_hit_ids.txt</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Or extract from the full results:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1</span> COG_hits.txt <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> hit_ids.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For HMM search results:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip header lines and extract target names</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">'^#'</span> UniRef50_C2EQ21_hits.tbl <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $1}'</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> hit_ids.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="retrieve-hit-sequences" class="level3">
 <h3 class="anchored" data-anchor-id="retrieve-hit-sequences">2. Retrieve Hit Sequences</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> grep <span class="at">-f</span> hit_ids.txt genome_database/<span class="pp">*</span>/<span class="pp">*</span>.faa <span class="op">&gt;</span> hit_sequences.faa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To add the filename (strain ID) to each sequence header:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> genome_database/<span class="pp">*</span>/<span class="pp">*</span>.faa<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">seqkit</span> grep <span class="at">-f</span> hit_ids.txt <span class="st">"</span><span class="va">$file</span><span class="st">"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">seqkit</span> replace <span class="at">-p</span> <span class="st">'^'</span> <span class="at">-r</span> <span class="st">"</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">${file</span><span class="op">%</span>.faa<span class="va">})</span><span class="st">_"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="op">&gt;</span> hit_sequences.faa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or without filename prefix:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> grep <span class="at">-f</span> hit_ids.txt genome_database/<span class="pp">*</span>/<span class="pp">*</span>.faa <span class="op">&gt;</span> hit_sequences.faa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="align-hit-sequences" class="level3">
-<h3 class="anchored" data-anchor-id="align-hit-sequences">3. Align Hit Sequences</h3>
+<section id="align-hit-sequencess" class="level3">
+<h3 class="anchored" data-anchor-id="align-hit-sequencess">3. Align Hit Sequencess</h3>
 <p>Optional: Consider adding reference sequences from UniRef90 before alignment</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> hit_sequences.faa <span class="op">&gt;</span> aligned_hit_sequences.faa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mafft</span> hit_sequences.faa <span class="op">&gt;</span> aligned_hit_sequences.faa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="build-phylogenetic-tree" class="level3">
 <h3 class="anchored" data-anchor-id="build-phylogenetic-tree">4. Build Phylogenetic Tree</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasttree</span> aligned_hit_sequences.faa <span class="op">&gt;</span> hit_sequences.tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasttree</span> aligned_hit_sequences.faa <span class="op">&gt;</span> hit_sequences.tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="notes" class="level2">
@@ -600,7 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="phylogenetic-analysis">Phylogenetic Analysis</h3>
 <ul>
 <li>FastTree produces an approximately-maximum-likelihood tree quickly</li>
-<li>For more accurate phylogenies, consider using RAxML or IQ-TREE (slower but more rigorous)</li>
+<li>For more accurate phylogenies, consider using RAxML or IQ-TREE</li>
 </ul>
 
 

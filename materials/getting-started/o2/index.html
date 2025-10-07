@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="accessing-o2" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-o2">Accessing O2</h3>
 <p>Using your computer’s terminal, use the following command to access O2 and enter your credentials accordingly.</p>
-<div id="83ee5aee" class="cell" data-execution_count="1">
+<div id="9090016f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh <span class="op">&lt;</span>hms_id<span class="op">&gt;@</span>o2.hms.harvard.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="../../images/o2_login.png" class="img-fluid" style="width:50.0%"></p>
@@ -390,11 +390,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>(On the login node) Run the following on O2 terminal:</p>
 <p>For push: (recommended, but only if you already have Duo push!)</p>
-<div id="5c7228f1" class="cell" data-execution_count="2">
+<div id="c75dbdaa" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=push'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For phone call:</p>
-<div id="765da972" class="cell" data-execution_count="3">
+<div id="5251ba86" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'export DUO_PASSCODE=phone'</span> <span class="op">&gt;&gt;</span> $HOME<span class="op">/</span>.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -416,12 +416,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="request-access-to-the-ngroupskwon-groups-folder">Request access to the <code>/n/groups/kwon/</code> groups folder</h3>
 <p>To request access, email <a href="mailto:rchelp@hms.harvard.edu">rchelp@hms.harvard.edu</a> to ask for access to the group folder <code>/n/groups/kwon</code> on O2. Please copy <a href="mailto:dkwon@mgh.harvard.edu">dkwon@mgh.harvard.edu</a> and <a href="mailto:jelsherbini@mgh.harvard.edu">jelsherbini@mgh.harvard.edu</a>.</p>
 <p>Use the following command in the O2 terminal to access the Kwon Lab folder and make a folder under your own name:</p>
-<div id="b4274ce5" class="cell" data-execution_count="4">
+<div id="863a2803" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>kwon<span class="op">/</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">&lt;</span>your name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To access your own folder within the Kwon Lab group folder on the O2 terminal:</p>
-<div id="cdd3fb24" class="cell" data-execution_count="5">
+<div id="e08ddbb7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>kwon<span class="op">/&lt;</span>your name<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -429,11 +429,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="making-a-scratch-directory">Making a scratch directory</h3>
 <p>Note: the scratch directory is for <strong>TEMPORARY STORAGE</strong>. All files in scratch are automatically deleted <strong>45 days</strong> after their last modification date. Everything you want to keep needs to be moved to your folder in <code>/n/groups/kwon/&lt;your name&gt;</code>.</p>
 <p><strong>(On the login node)</strong> Run the following on O2 terminal:</p>
-<div id="4126becd" class="cell" data-execution_count="6">
+<div id="290ba8d5" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>n<span class="op">/</span>cluster<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>scratch_create_directory.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To access scratch directory:</p>
-<div id="be2a6918" class="cell" data-execution_count="7">
+<div id="ea6f7b28" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cd <span class="op">/</span>n<span class="op">/</span>groups<span class="op">/</span>scratch<span class="op">/</span>users<span class="op">/&lt;</span>first_letter_of_hms_id<span class="op">&gt;/&lt;</span>hms_id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br>
