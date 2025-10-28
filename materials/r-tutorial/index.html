@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../materials/rnaseq/background/index.html" rel="next">
+<link href="../../materials/multiomics-primer/index.html" rel="next">
 <link href="../../materials/getting-started/local_R/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -199,6 +199,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../materials/r-tutorial/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"> R workshop</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../materials/multiomics-primer/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"> Multiomics primer</span></a>
   </div>
 </li>
       </ul>
@@ -381,13 +387,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="download-the-instructional-dataset">Download the instructional dataset:</h2>
 <p>The main data set for use in lectures is split into 5 tables. The idea of this dataset is that there is a randomized controlled trial of a drug aimed at reducing HIV risk by reducing inflammation. There were 23 participants in the placebo arm and 21 in the treatment arm. There were 3 visits for the trial – baseline (before any treatment occurred), week_1 (1 week after treatment) and week_7 (7 weeks after treatment). At each time point inflammation was measured using luminex (elisa_cytokines table) and immune cells counts were measured from a pap-smear (flow_cytometry table).</p>
 <ul>
-<li><a href="datasets/instructional_dataset/00_sample_ids.csv"><code>00_sample_ids.csv</code></a></li>
+<li><a href="../../datasets/instructional_dataset/00_sample_ids.csv"><code>00_sample_ids.csv</code></a></li>
 </ul>
 <p><code>pid</code> – participant id<br>
 <code>time_point</code> – “baseline”, “week_1”, or “week_7” <code>arm</code> – “treatment” or “placebo”<br>
 <code>sample_id</code> – the “wet-lab” sample id associated with this timepoint</p>
 <ul>
-<li><a href="datasets/instructional_dataset/01_participant_metadata.csv"><code>01_participant_metadata.csv</code></a></li>
+<li><a href="../../datasets/instructional_dataset/01_participant_metadata.csv"><code>01_participant_metadata.csv</code></a></li>
 </ul>
 <p><code>pid</code> - participant id<br>
 <code>arm</code> - “treatment” or “placebo”<br>
@@ -396,21 +402,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>education</code> – 4 options (“less than grade 9”, “grade 10-12, not matriculated”, “grade 10-12, matriculated”, “post-secondary”)<br>
 <code>sex</code> – all participants are “Female”</p>
 <ul>
-<li><a href="datasets/instructional_dataset/02_visit_clinical_measurements.csv"><code>02_visit_clinical_measurements.csv</code></a></li>
+<li><a href="../../datasets/instructional_dataset/02_visit_clinical_measurements.csv"><code>02_visit_clinical_measurements.csv</code></a></li>
 </ul>
 <p><code>pid</code> – particpant id<br>
 <code>time_point</code> – “baseline”, “week_1”, or “week_7”<br>
 <code>arm</code> – “treatment” or “placebo”<br>
 <code>nugent_score</code> – <a href="https://en.wikipedia.org/wiki/Nugent_score">Nugent Score</a>, a number from 0-10. 0-3 is no BV, 4-6 is intermediate BV, and 7-10 is BV . <code>crp_blood</code> – decimal number representing C-reactive protein blood test (CRP) <code>ph</code> – vaginal pH</p>
 <ul>
-<li><a href="datasets/instructional_dataset/03_elisa_cytokines.csv"><code>03_elisa_cytokines.csv</code></a></li>
+<li><a href="../../datasets/instructional_dataset/03_elisa_cytokines.csv"><code>03_elisa_cytokines.csv</code></a></li>
 </ul>
 <p><code>sample_id</code> - the “wet-lab” sample id associated with this timepoint<br>
 <code>cytokine</code> - “IL-1a”, “IL-10”, “IL-1b”, “IL-8”, “IL-6”, “TNFa”, “IP-10”, “MIG”, “IFN-Y”, “MIP-3a”<br>
 <code>conc</code> – decimal number representing concentration<br>
 <code>limits</code> – either “within limits” or “out of range”</p>
 <ul>
-<li><a href="datasets/instructional_dataset/04_flow_cytometry.csv"><code>04_flow_cytometry.csv</code></a></li>
+<li><a href="../../datasets/instructional_dataset/04_flow_cytometry.csv"><code>04_flow_cytometry.csv</code></a></li>
 </ul>
 <p><code>sample_id</code> - the “wet-lab” sample id associated with this timepoint<br>
 All other columns – the integer count of this type of cell in this sample</p>
@@ -1107,8 +1113,8 @@ Table&nbsp;2: Expression levels for a set of genes
 <section id="advanced-next-steps" class="level2">
 <h2 class="anchored" data-anchor-id="advanced-next-steps">Advanced next steps</h2>
 <p>Join together the cytokine data and the metadata and explore the relationships between timepoint, arm, and the different cytokines.</p>
-<p>Note, to do this you will need to use <a href="datasets/instructional_dataset/00_sample_ids.csv"><code>00_sample_ids.csv</code></a>, <a href="datasets/instructional_dataset/01_participant_metadata.csv"><code>01_participant_metadata.csv</code></a>, and <a href="datasets/instructional_dataset/03_elisa_cytokines.csv"><code>03_elisa_cytokines.csv</code></a> .</p>
-<p>Also look at the relationship of vaginal pH to the different cytokines. Now you’ll need to join the <a href="datasets/instructional_dataset/02_visit_clinical_measurements.csv"><code>02_visit_clinical_measurements.csv</code></a> table as well.</p>
+<p>Note, to do this you will need to use <a href="../../datasets/instructional_dataset/00_sample_ids.csv"><code>00_sample_ids.csv</code></a>, <a href="../../datasets/instructional_dataset/01_participant_metadata.csv"><code>01_participant_metadata.csv</code></a>, and <a href="../../datasets/instructional_dataset/03_elisa_cytokines.csv"><code>03_elisa_cytokines.csv</code></a> .</p>
+<p>Also look at the relationship of vaginal pH to the different cytokines. Now you’ll need to join the <a href="../../datasets/instructional_dataset/02_visit_clinical_measurements.csv"><code>02_visit_clinical_measurements.csv</code></a> table as well.</p>
 
 
 </section>
@@ -1530,8 +1536,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../materials/rnaseq/background/index.html" class="pagination-link" aria-label="Background">
-        <span class="nav-page-text">Background</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../materials/multiomics-primer/index.html" class="pagination-link" aria-label="</b> Multiomics primer">
+        <span class="nav-page-text"> Multiomics primer</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

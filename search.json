@@ -774,6 +774,42 @@
     "text": "Spatial Logical Toy Inventor: Erno Rubik Assignee: Politoys Ipari Szovetkezet, Budapest, Hungary The first patent by the inventor is registered in Hungary. Appl. No.: 289,192 Filed: Aug. 3, 1981 Background of the Invention The invention relates to a spatial logical toy having a total of eighteen toy elements which form a regular or an irregular spatial body, preferably an oblong body, in the assembled state. Spatial logical toys are well known, such as that described in the HU-PS No. 170 062 of the same applicant, which relates to a spatial logical toy consisting of twenty-seven solids which form a cube in the assembled state. The toy elements, in the shape of small cubes, may be turned along the spatial axes of the cube by means of connecting elements arranged in the geometric center of the large cube. The surfaces of the small cubes forming each surface of the large cube are colored or carry numbers, figures or any other symbols which can be assembled into the predetermined logical order of sequence by simultaneously rotating the nine toy elements forming the surfaces of the large cube. Summary of the Invention The logical toy according to the present invention represents an improved form of the previously described spatial logical toy. The construction is based on the same principles, however, the internal connection is performed by means of absolutely new and particular solids. The key feature according to the invention, i.e. shape, name, sounds, mode of interconnection and central fixture will be described in detail by means of two preferred embodiments, by the aid of the accompanying drawings, wherein. Component blocks of the spatial logial toy. ex-2-figs.png What is claimed is: 1. In a spatial logical toy assembled from a plurality of toy elements, of which a predetermined number may be rotated in the direction of the spatial axes starting from the geometrical center of the logical toy, the improvement wherein the spatial logical toy is formed by a total of eighteen toy elements. Two sets of eight toy elements each comprise substantially cubiforms with integally formed cam elements and each of the sets comprise eight identical toy elements, and two connecting toy elements, and means for joining the connecting toy elements to coact with the cam elements to form an integrated toy body, the joining means comprising a single screw enclosed by a spring. The spatial logical toy as claimed in claim 1, wherein the toy has the shape of a regular geometrical body in the assembled state. The toy elements thereof belonging to one set comprise eight cubiform homologous elements each having a first cam element connected to one corner thereof. Two confining surfaces of which lie at a unit distance from two surfaces of the cube and are parallel therewith and are cut-off in the form of an ellipsis-quarter, and a third confining surface thereof is coplanar with another surface of the cube and between the two confining faces of the first cam element running parallel with the cube and the cube there is a hollow with a convex spherical surface."
   },
   {
+    "objectID": "materials/multiomics-primer/index.html",
+    "href": "materials/multiomics-primer/index.html",
+    "title": "Multi-omics primer",
+    "section": "",
+    "text": "Make slides full screen",
+    "crumbs": [
+      "About the Kwon Lab",
+      "R and R Studio",
+      "</b> Multiomics primer"
+    ]
+  },
+  {
+    "objectID": "materials/multiomics-primer/index.html#slides-multi-omics-primer",
+    "href": "materials/multiomics-primer/index.html#slides-multi-omics-primer",
+    "title": "Multi-omics primer",
+    "section": "",
+    "text": "Make slides full screen",
+    "crumbs": [
+      "About the Kwon Lab",
+      "R and R Studio",
+      "</b> Multiomics primer"
+    ]
+  },
+  {
+    "objectID": "materials/multiomics-primer/index.html#download-the-instructional-dataset",
+    "href": "materials/multiomics-primer/index.html#download-the-instructional-dataset",
+    "title": "Multi-omics primer",
+    "section": "Download the instructional dataset:",
+    "text": "Download the instructional dataset:\n\n01_timepoint_metadata.csv\n\nsample_id - sample id time_point - time point (week 18, week 24, week 34) pid - participant id\noutcome - pregnancy outcome, either “term” or “preterm” amine_wt - Amsel criteria whiff test\ndisch - Amsel criteria discharge\nclue_cells- Amsel criteria clue cells\np_h - Amsel criteria pH test\n\n02_16S_abundances.csv)\n\nsample_id - sample id ... - each column is a bacterial taxa, with the contents being the counts of sequences in a sample assigned to that taxa\n\n03_cytokine_concentrations.csv\n\nsample_id - sample id ... - each column is a cytokine, with the contents being the concentration of that cytokine in a sample",
+    "crumbs": [
+      "About the Kwon Lab",
+      "R and R Studio",
+      "</b> Multiomics primer"
+    ]
+  },
+  {
     "objectID": "materials/metagenomics/background/index.html",
     "href": "materials/metagenomics/background/index.html",
     "title": "Shotgun Metagenomics Background",
@@ -1559,28 +1595,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug    condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n1        4 f          9 piotii LNA         100\n2        4 e         10 piotii LNA         200\n3        2 a         12 CTRL   CTRL          0\n4        4 h         10 piotii CTRL          0\n5        3 b          9 piotii OA          400"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        3 f          9 piotii    VCA         400\n2        2 f          4 crispatus LNA         100\n3        4 c          4 gasseri   VCA          50\n4        2 f         11 CTRL      LNA         100\n5        1 g         12 CTRL      VCA         200"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 e          8 iners     LNA         200\n2        2 d          9 iners     LNA         400\n3        2 g          5 jensenii  LNA          50\n4        3 e         12 CTRL      OA           50\n5        1 e          4 crispatus OA           50"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 b          7 jensenii  VCA         100\n2        2 b         11 CTRL      VCA         100\n3        3 f          8 piotii    VCA         400\n4        4 h          1 CTRL      CTRL          0\n5        2 h          3 crispatus CTRL          0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug      condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 b          8 iners    VCA         100    0.1 \n2        3 c         10 piotii   OA          200    0.2 \n3        2 c         11 CTRL     VCA          50    0.05\n4        4 g          1 CTRL     LNA          50    0.05\n5        2 h          6 jensenii CTRL          0    0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 h          3 gasseri   CTRL          0     0  \n2        4 e          5 vaginalis LNA         200     0.2\n3        1 c          4 crispatus OA          200     0.2\n4        3 a         10 piotii    CTRL          0     0  \n5        1 c          2 crispatus OA          200     0.2"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        1 h          5 jensenii CTRL          0    0          0\n2        3 g         12 CTRL     VCA         200    0.2   200000\n3        1 b         12 CTRL     OA          400    0.4   400000\n4        4 g         10 piotii   LNA          50    0.05   50000\n5        2 a         12 CTRL     CTRL          0    0          0"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 c          2 gasseri   VCA          50    0.05   50000\n2        1 a          1 CTRL      CTRL          0    0          0\n3        2 g          1 CTRL      LNA          50    0.05   50000\n4        4 a          2 gasseri   CTRL          0    0          0\n5        3 b          6 vaginalis OA          400    0.4   400000"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
@@ -2135,6 +2171,188 @@
       "Metagenomics",
       "VIRGO2 Pipeline"
     ]
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#section",
+    "href": "materials/multiomics-primer/slides.html#section",
+    "title": "Multiomics primer",
+    "section": "",
+    "text": "Workshop materials are here:\nhttps://kwondry.github.io/documentation/"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#section-1",
+    "href": "materials/multiomics-primer/slides.html#section-1",
+    "title": "Multiomics primer",
+    "section": "",
+    "text": "Goals for this session\n\n\nDiscuss common ’omics issues\nCommon strategies for adressing them\nSimple “integration” methods\nFull integration methods (Manon Martin)"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#non-goals-for-today",
+    "href": "materials/multiomics-primer/slides.html#non-goals-for-today",
+    "title": "Multiomics primer",
+    "section": "Non-goals for today",
+    "text": "Non-goals for today\nWe can’t give you all the answers today (and we don’t have them!) We hope to give you the right questions to start\n\n\nWhat are my omics datasets really measuring?\n\nDo I need to transform my data?\n\nAre my data compositional?\n\nAre my data sparse?\n\nWhat is my goal in combining ’omics data?\n\nWhat techniques should I try to connect?"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#lets-take-a-poll",
+    "href": "materials/multiomics-primer/slides.html#lets-take-a-poll",
+    "title": "Multiomics primer",
+    "section": "Let’s take a poll",
+    "text": "Let’s take a poll\nGo to the event on wooclap"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#single-omics-challenges",
+    "href": "materials/multiomics-primer/slides.html#single-omics-challenges",
+    "title": "Multiomics primer",
+    "section": "Single ’omics Challenges",
+    "text": "Single ’omics Challenges\nWhat did all those ’omics datasets have in common?"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#what-is-your-research-question",
+    "href": "materials/multiomics-primer/slides.html#what-is-your-research-question",
+    "title": "Multiomics primer",
+    "section": "What is your research question?",
+    "text": "What is your research question?\nDefine your biological question clearly before choosing methods\n\n\nDiscovery: Find patterns, generate hypotheses\n\nPrediction: Build models to predict outcomes\n\nInference: Test specific biological hypotheses"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#what-are-you-really-measuring",
+    "href": "materials/multiomics-primer/slides.html#what-are-you-really-measuring",
+    "title": "Multiomics primer",
+    "section": "What are you really measuring?",
+    "text": "What are you really measuring?\nUnderstanding your data type matters for analysis choices\n\n\nCounts: RNA-seq, 16S - discrete, compositional\n\nIntensities: Proteomics, metabolomics - continuous, batch effects\n\nBinary/Categorical: Presence/absence, SNPs\n\nEach has different assumptions and appropriate methods"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#do-i-need-to-transform-my-data",
+    "href": "materials/multiomics-primer/slides.html#do-i-need-to-transform-my-data",
+    "title": "Multiomics primer",
+    "section": "Do I need to transform my data?",
+    "text": "Do I need to transform my data?\nRaw data often needs transformation for valid statistical analysis\n\n\nLog transformation: Stabilizes variance, handles skewness\n\nVariance stabilizing: DESeq2’s VST, edgeR’s voom\n\nScaling/Centering: Makes features comparable\n\nBatch correction: attempts to remove technical variation\n\nCheck distributions before and after!"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#are-my-data-compositional",
+    "href": "materials/multiomics-primer/slides.html#are-my-data-compositional",
+    "title": "Multiomics primer",
+    "section": "Are my data compositional?",
+    "text": "Are my data compositional?\nCompositional data requires special care\n\n\nWhat is it: Parts of a whole (relative abundance, %)\n\nThe problem: Sum to 1 constraint creates spurious correlations\n\nExamples: Microbiome, some metabolomics, cell type proportions\n\nSolutions: CLR transformation, ALR, isometric log-ratio\nReal Solutions Spike-ins, integrating absolute quantification methods"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#are-my-data-sparse",
+    "href": "materials/multiomics-primer/slides.html#are-my-data-sparse",
+    "title": "Multiomics primer",
+    "section": "Are my data sparse?",
+    "text": "Are my data sparse?\nSparsity (many zeros) affects method choice\n\n\nTechnical zeros: Below detection limit - consider imputation\nBiological zeros: Truly absent\n\nCommon in: Microbiome, single-cell RNA-seq, proteomics\n\nApproaches: Zero-inflated models, filtering, imputation\n\nTrade-off: Filter too much vs. keep noise"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#lets-take-a-poll-1",
+    "href": "materials/multiomics-primer/slides.html#lets-take-a-poll-1",
+    "title": "Multiomics primer",
+    "section": "Let’s take a poll",
+    "text": "Let’s take a poll\nGo to the event on wooclap"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#case-study-preterm-birth",
+    "href": "materials/multiomics-primer/slides.html#case-study-preterm-birth",
+    "title": "Multiomics primer",
+    "section": "Case study: Preterm birth",
+    "text": "Case study: Preterm birth\n\n\nWe know the vaginal microbiome is associated with preterm birth\nWe know preterm birth is often accompanied by inappropriate inflammation\nLet’s measure inflammation and the microbiome at the same time, and figure out what our question is later!"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#clinical-measurments-ad-metadata",
+    "href": "materials/multiomics-primer/slides.html#clinical-measurments-ad-metadata",
+    "title": "Multiomics primer",
+    "section": "Clinical measurments ad metadata",
+    "text": "Clinical measurments ad metadata\nBirth outcome, either “preterm” or “term”\nAmsel criteria - a measure of Bacterial vaginosis\n\npH\n\ndischarge - thin, watery, greyish\n\nwhiff test - “fishy” polyamine odor\n\nclue cells - human cells covered in bacteria under microscope"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#measuring-inflammation",
+    "href": "materials/multiomics-primer/slides.html#measuring-inflammation",
+    "title": "Multiomics primer",
+    "section": "Measuring inflammation",
+    "text": "Measuring inflammation\n“Inflammation” isn’t one thing - it is an incredibly complex and varied process with cells changing phenotype, proliferating and dying, and signaling each other."
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#measuring-cytokines",
+    "href": "materials/multiomics-primer/slides.html#measuring-cytokines",
+    "title": "Multiomics primer",
+    "section": "Measuring cytokines",
+    "text": "Measuring cytokines\nIn our case, we’re measuring cytokines which are small secreted peptides that signal immune cells and epithelial cells.\nCytokines are often expressed together and might be redundant. What do we expect when we measure them?"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#excalidraw-to-talk-about-cytokine-measurement",
+    "href": "materials/multiomics-primer/slides.html#excalidraw-to-talk-about-cytokine-measurement",
+    "title": "Multiomics primer",
+    "section": "Excalidraw to talk about cytokine measurement",
+    "text": "Excalidraw to talk about cytokine measurement"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#live-coding-to-show-reading-plotting-and-transforming-cytokine-data",
+    "href": "materials/multiomics-primer/slides.html#live-coding-to-show-reading-plotting-and-transforming-cytokine-data",
+    "title": "Multiomics primer",
+    "section": "Live coding to show reading, plotting, and transforming cytokine data",
+    "text": "Live coding to show reading, plotting, and transforming cytokine data"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#measuring-microbiota",
+    "href": "materials/multiomics-primer/slides.html#measuring-microbiota",
+    "title": "Multiomics primer",
+    "section": "Measuring microbiota",
+    "text": "Measuring microbiota\nWhat are 3 ways we can measure complex microbial communities?"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#excalidraw-talking-about-16s",
+    "href": "materials/multiomics-primer/slides.html#excalidraw-talking-about-16s",
+    "title": "Multiomics primer",
+    "section": "Excalidraw talking about 16S",
+    "text": "Excalidraw talking about 16S"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#live-coding-of-16s-analysis",
+    "href": "materials/multiomics-primer/slides.html#live-coding-of-16s-analysis",
+    "title": "Multiomics primer",
+    "section": "Live coding of 16S analysis",
+    "text": "Live coding of 16S analysis\n\ndimensionality reduction"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#what-is-your-goal-in-combining-omics-data",
+    "href": "materials/multiomics-primer/slides.html#what-is-your-goal-in-combining-omics-data",
+    "title": "Multiomics primer",
+    "section": "What is your goal in combining ’omics data?",
+    "text": "What is your goal in combining ’omics data?\nDifferent goals require different integration strategies\n\n\nImprove prediction: Combine features for better models\n\nFind associations: Correlate features across layers\n\nIdentify pathways: Connect molecular changes\n\nUnderstand mechanisms: Causal relationships between layers\n\nYour goal determines the method!"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#what-techniques-should-i-try-to-connect",
+    "href": "materials/multiomics-primer/slides.html#what-techniques-should-i-try-to-connect",
+    "title": "Multiomics primer",
+    "section": "What techniques should I try to connect?",
+    "text": "What techniques should I try to connect?\nStart simple, then increase complexity as needed\n\n\nSimple: Correlation, differential abundance + metadata\nIntermediate: CCA, PLS, multi-block methods\nComplex: MOFA, DIABLO, network approaches\nConsider: Sample size, data types, computational resources\nValidate: Are results biologically meaningful?"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#what-are-your-goals-for-combining-datasets",
+    "href": "materials/multiomics-primer/slides.html#what-are-your-goals-for-combining-datasets",
+    "title": "Multiomics primer",
+    "section": "What are your goals for combining datasets?",
+    "text": "What are your goals for combining datasets?\nGet together with a neighbor who doesn’t know your research.\nPartner A:\n\nExplain the research question you have\nExplain the ’omics data you have / want to generate\nExplain how combining the data could be useful (either “metadata” with ‘omics, or multiple high-dimensional datasets’)\n\n\n\n\n−+\n20:00"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#reporting-back",
+    "href": "materials/multiomics-primer/slides.html#reporting-back",
+    "title": "Multiomics primer",
+    "section": "Reporting back",
+    "text": "Reporting back\nGo to the event on wooclap"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#reporting-back-1",
+    "href": "materials/multiomics-primer/slides.html#reporting-back-1",
+    "title": "Multiomics primer",
+    "section": "Reporting back",
+    "text": "Reporting back\nOne brave soul explain your partner’s project and why they want to integrate multiple ’omics datasets\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "materials/multiomics-primer/slides.html#methods-for-multi-omics-integration",
+    "href": "materials/multiomics-primer/slides.html#methods-for-multi-omics-integration",
+    "title": "Multiomics primer",
+    "section": "Methods for Multi-omics integration",
+    "text": "Methods for Multi-omics integration\nManon Martin, Laura Symul, and Laura Vermeren\n\n\n\nback to module"
   },
   {
     "objectID": "materials/r-tutorial/index.html",
