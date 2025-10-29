@@ -645,7 +645,7 @@ Ignoring empty aesthetic: `width`.</code></pre>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>my_ps <span class="ot">&lt;-</span> <span class="fu">phyloseq</span>(ps_count_table,ps_sample_data,ps_taxa_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Let’s use Bray-Curtis distance, which is less sensitive to</p>
+<p>Let’s use Bray-Curtis distance, which is less sensitive to rare taxa changing and weights more abundant taxa higher than something like Euclidean distance.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>my_ps <span class="sc">%&gt;%</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">tax_transform</span>(<span class="at">rank =</span> <span class="st">"unique"</span>, <span class="at">trans =</span> <span class="st">"identity"</span>) <span class="sc">%&gt;%</span></span>
