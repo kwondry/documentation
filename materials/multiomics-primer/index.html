@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -285,6 +319,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#slides-multi-omics-primer" id="toc-slides-multi-omics-primer" class="nav-link active" data-scroll-target="#slides-multi-omics-primer">Slides: Multi-omics primer</a></li>
   <li><a href="#download-the-instructional-dataset" id="toc-download-the-instructional-dataset" class="nav-link" data-scroll-target="#download-the-instructional-dataset">Download the instructional dataset:</a></li>
+  <li><a href="#beginnings-of-the-live-coding-session" id="toc-beginnings-of-the-live-coding-session" class="nav-link" data-scroll-target="#beginnings-of-the-live-coding-session">Beginnings of the live-coding session:</a>
+  <ul class="collapse">
+  <li><a href="#plotting-one-cytokine-at-a-time---il_1a" id="toc-plotting-one-cytokine-at-a-time---il_1a" class="nav-link" data-scroll-target="#plotting-one-cytokine-at-a-time---il_1a">plotting one cytokine at a time - il_1a</a></li>
+  <li><a href="#plotting-all-the-cytokines" id="toc-plotting-all-the-cytokines" class="nav-link" data-scroll-target="#plotting-all-the-cytokines">plotting all the cytokines</a></li>
+  <li><a href="#are-my-cytokines-correlated" id="toc-are-my-cytokines-correlated" class="nav-link" data-scroll-target="#are-my-cytokines-correlated">Are my cytokines correlated?</a></li>
+  <li><a href="#should-we-do-dimensionality-reduction" id="toc-should-we-do-dimensionality-reduction" class="nav-link" data-scroll-target="#should-we-do-dimensionality-reduction">should we do dimensionality reduction?</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -338,8 +379,221 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>This is the taxonomic table in the right format to make a <code>phyoloseq</code> object from the 16S data.</p>
 <p>Read this with <code>readRDS('path/to/04_16s_taxa_table.RDS')</code></p>
+</section>
+<section id="beginnings-of-the-live-coding-session" class="level2">
+<h2 class="anchored" data-anchor-id="beginnings-of-the-live-coding-session">Beginnings of the live-coding session:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.2
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microViz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>microViz version 0.12.7 - Copyright (C) 2021-2025 David Barnett
+! Website: https://david-barnett.github.io/microViz
+✔ Useful?  For citation details, run: `citation("microViz")`
+✖ Silence? `suppressPackageStartupMessages(library(microViz))`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mixOmics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: MASS
+
+Attaching package: 'MASS'
+
+The following object is masked from 'package:dplyr':
+
+    select
+
+Loading required package: lattice
+
+Loaded mixOmics 6.32.0
+Thank you for using mixOmics!
+Tutorials: http://mixomics.org
+Bookdown vignette: https://mixomicsteam.github.io/Bookdown
+Questions, issues: Follow the prompts at http://mixomics.org/contact-us
+Cite us:  citation('mixOmics')
 
 
+Attaching package: 'mixOmics'
+
+The following object is masked from 'package:purrr':
+
+    map</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>corrplot 0.95 loaded</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../../datasets/multiomics_dataset/01_timepoint_metadata.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 453 Columns: 11
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (6): sample_id, time_point, pid, amine_wt, disch, outcome
+dbl (3): n_since_lpipv_sex, clue_cells, p_h
+lgl (2): curr_v_abio, curr_o_abio
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cytokines <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../../datasets/multiomics_dataset/03_cytokine_concentrations.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 453 Columns: 14
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): sample_id
+dbl (13): itac, mig, ip_10, ifng, il_17, il_1a, il_1b, mip_1a, mip_1b, mip_3...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>microbiome <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../../datasets/multiomics_dataset/02_16S_abundances.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 453 Columns: 221
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (1): sample_id
+dbl (220): lactobacillus_iners, lactobacillus_crispatus, gardnerella_swidsin...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<section id="plotting-one-cytokine-at-a-time---il_1a" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-one-cytokine-at-a-time---il_1a">plotting one cytokine at a time - il_1a</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cytokines <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>il_1a)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-all-the-cytokines" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-all-the-cytokines">plotting all the cytokines</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to fill in</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="are-my-cytokines-correlated" class="level3">
+<h3 class="anchored" data-anchor-id="are-my-cytokines-correlated">Are my cytokines correlated?</h3>
+<p>plot one against another</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to fill in</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>plot all the correlations using <code>corplot</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cytokine_cor_matrix <span class="ot">&lt;-</span> cytokines <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="st">"sample_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cor</span>(<span class="at">method=</span><span class="st">"spearman"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cytokine_cor_matrix, </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,           <span class="co"># Show only upper triangle</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"hclust"</span>,         <span class="co"># Cluster similar peptides</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>,    <span class="co"># Add correlation coefficients</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col =</span> <span class="st">"black"</span>,         <span class="co"># Text label color</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt =</span> <span class="dv">45</span>,              <span class="co"># Rotate text labels 45 degrees</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">diag =</span> <span class="cn">FALSE</span>)             <span class="co"># Hide diagonal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="should-we-do-dimensionality-reduction" class="level3">
+<h3 class="anchored" data-anchor-id="should-we-do-dimensionality-reduction">should we do dimensionality reduction?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pca_result <span class="ot">&lt;-</span> cytokines <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="st">"sample_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log10</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prcomp</span>(<span class="at">scale. =</span> <span class="cn">TRUE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scree plot</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca_result, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_bar(stat = "identity", fill = barfill, color = barcolor, :
+Ignoring empty aesthetic: `width`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biplot with better aesthetics</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_biplot</span>(pca_result, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">repel =</span> <span class="cn">TRUE</span>,           <span class="co"># Avoid text overlap</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"point"</span>),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">col.var =</span> <span class="st">"red"</span>,        <span class="co"># Variables color</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">col.ind =</span> <span class="st">"blue"</span>,       <span class="co"># Individuals color</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">"PCA Biplot - Cytokine Concentrations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+ℹ The deprecated feature was likely used in the ggpubr package.
+  Please report the issue at &lt;https://github.com/kassambara/ggpubr/issues&gt;.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ps_count_table <span class="ot">&lt;-</span> microbiome <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="st">"sample_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(<span class="at">taxa_are_rows =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ps_sample_data <span class="ot">&lt;-</span> metadata <span class="sc">%&gt;%</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(cytokines) <span class="sc">%&gt;%</span> <span class="co">#integration!</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="st">"sample_id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    phyloseq<span class="sc">::</span><span class="fu">sample_data</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(sample_id)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ps_taxa_table <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../../datasets/multiomics_dataset/04_16s_taxa_table.RDS"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>my_ps <span class="ot">&lt;-</span> <span class="fu">phyloseq</span>(ps_count_table,ps_sample_data,ps_taxa_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
