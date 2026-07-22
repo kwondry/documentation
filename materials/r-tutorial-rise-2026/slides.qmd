@@ -1,0 +1,121 @@
+---
+title: "Intro to Data Visualization in R"
+subtitle: "<em>RISE 2026</em>"
+format: qmdrslides-revealjs
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(palmerpenguins)
+theme_set(theme_minimal(base_size = 18))
+```
+
+## Why make a plot?
+
+Two datasets. Same averages. Very different stories.
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 3.5
+datasets::anscombe |>
+  pivot_longer(everything(),
+    names_to = c(".value", "set"),
+    names_pattern = "(.)(.)") |>
+  ggplot(aes(x, y)) +
+  geom_point(size = 2, color = "#0072B2") +
+  facet_wrap(~ set, nrow = 1) +
+  labs(x = NULL, y = NULL)
+```
+
+A picture shows what a table of numbers hides.
+
+## The one big idea
+
+**Every row in your table becomes one mark on the plot.**
+
+::: {.fragment}
+- **geom** — the *kind* of mark and the rule for drawing it
+- **mark** — what you actually see
+- **mapping** — links a *column* to a *property* of the mark (in `aes()`)
+:::
+
+## Three words, one plot
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 4
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+```
+
+Mark = dot · Mapping = flipper→x, mass→y, species→colour · one row = one dot.
+
+## Anatomy of `ggplot()`
+
+```r
+ggplot(penguins,                    # the data
+       aes(x = flipper_length_mm,   # mapping: column -> x
+           y = body_mass_g,         # mapping: column -> y
+           color = species)) +      # mapping: column -> colour
+  geom_point()                      # geom: draw a dot per row
+```
+
+## Same data, different geom
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 3.8
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot()
+```
+
+A **box** summarises **many** rows. The mappings still mean the same thing.
+
+## Mapping vs. setting
+
+::: {.columns}
+::: {.column width="50%"}
+**Inside `aes()` = mapping** (from data)
+```r
+geom_point(aes(color = species))
+```
+:::
+::: {.column width="50%"}
+**Outside `aes()` = setting** (one fixed value)
+```r
+geom_point(color = "navy")
+```
+:::
+:::
+
+The most common beginner mix-up. Colour from a **column** vs. one **fixed** colour.
+
+## The pipe: `|>`
+
+`|>` means **"take this data, then…"**
+
+```{r}
+#| echo: true
+#| fig-width: 6
+#| fig-height: 3.4
+penguins |>
+  filter(species == "Gentoo") |>
+  ggplot(aes(flipper_length_mm, body_mass_g)) +
+  geom_point()
+```
+
+## Your turn
+
+Open `notebooks/01-visualization.qmd` and, for each plot, ask:
+
+1. What is the **mark**?
+2. Which **column** → which **property**?
+3. How many **rows** make one mark?
