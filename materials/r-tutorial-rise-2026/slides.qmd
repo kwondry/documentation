@@ -17,7 +17,7 @@ theme_set(theme_minimal(base_size = 18))
 
 ## Why make a plot?
 
-Two datasets. Same averages. Very different stories.
+Four datasets. Same summary statistics. Very different stories.
 
 ```{r}
 #| echo: false

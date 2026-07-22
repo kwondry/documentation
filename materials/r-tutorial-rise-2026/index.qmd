@@ -4,6 +4,9 @@ format:
   html:
     toc: true
     code-link: true
+execute:
+  warning: false
+  message: false
 ---
 
 > A 2-hour, hands-on introduction to making plots in R with `ggplot2`, using
