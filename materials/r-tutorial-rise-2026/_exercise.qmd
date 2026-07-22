@@ -1,7 +1,8 @@
 ## Hands-on worksheet
 
 > You will do this inside your Codespace, in `notebooks/01-visualization.qmd`.
-> The same steps are shown here so you can read along.
+> The same steps are shown here so you can read along. We work in three short
+> parts, with a little teaching before each.
 
 ### The one big idea
 
@@ -9,6 +10,8 @@ Every **row** in a table becomes one **mark** on a plot. The **geom** decides
 what kind of mark (dots, boxes, bars) and how to draw it. The **mapping**,
 written inside `aes()`, links a **column** to a **property** of the mark (its
 x position, its y position, its colour).
+
+## Part A — Read and build a plot
 
 ### Read a plot
 
@@ -60,3 +63,74 @@ penguins |>
   ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 ```
+
+## Part B — The shape of one variable
+
+Sometimes you have a single column of numbers and want to see its **shape**.
+A **histogram** cuts the range into bins and counts how many rows land in each:
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 250)
+```
+
+Try changing `binwidth` (e.g. `100`, `500`) and watch the shape change.
+
+A **boxplot** squeezes each distribution into one box, which is handy for
+comparing groups:
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot()
+```
+
+Both answer the same question — *what do these numbers look like?* — a histogram
+in full detail, a boxplot as a compact summary for comparing.
+
+## Part C — Tidy data: reshape, then plot
+
+Real data often comes off a machine in **wide** format — one row per sample, with
+a separate column for each measurement. Here is a small plate-reader result for
+four genes measured in ten samples:
+
+```{r}
+plate <- tribble(
+  ~sample, ~group,    ~gene_A, ~gene_B, ~gene_C, ~gene_D,
+  "s01",   "control",     102,      88,      41,      59,
+  "s02",   "control",      98,      91,      44,      62,
+  "s03",   "control",     105,      86,      39,      58,
+  "s04",   "control",     100,      93,      43,      61,
+  "s05",   "control",      97,      89,      40,      60,
+  "s06",   "treated",     101,      90,      87,     108,
+  "s07",   "treated",      99,      92,      91,     112,
+  "s08",   "treated",     104,      87,      85,     105,
+  "s09",   "treated",      98,      94,      90,     110,
+  "s10",   "treated",     103,      88,      88,     107
+)
+plate
+```
+
+> In your Codespace you will instead **read this from a file** with
+> `read_csv("data/qpcr_plate_wide.csv")` — same data, straight off the machine.
+
+ggplot wants **tidy** data: one row per observation, one column per variable. One
+gene measured in one sample is an observation, so it should be its own row. Use
+`pivot_longer()` to stack the four gene columns into two — a `gene` column and a
+`signal` column:
+
+```{r}
+plate_long <- plate |>
+  pivot_longer(gene_A:gene_D, names_to = "gene", values_to = "signal")
+plate_long
+```
+
+Now every row is one measurement, and we can plot it — comparing the two groups
+gene by gene:
+
+```{r}
+ggplot(plate_long, aes(x = gene, y = signal, fill = group)) +
+  geom_boxplot()
+```
+
+The wide table could not make this plot. One `pivot_longer()` unlocked it — and
+the pattern (genes C and D switch on with treatment) jumps right out.

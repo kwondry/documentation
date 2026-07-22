@@ -31,11 +31,21 @@ Everything runs in **GitHub Codespaces** — nothing to install.
 <iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
 ```
 
-## The dataset
+## The datasets
 
-We use `palmerpenguins`: measurements of 344 penguins from three species
-(Adelie, Chinstrap, Gentoo) across three islands. Each **row** is one penguin;
-each **column** is something measured about it (flipper length, body mass,
-species, island, …).
+Most of today uses `palmerpenguins`: measurements of 344 penguins from three
+species (Adelie, Chinstrap, Gentoo) across three islands. Each **row** is one
+penguin; each **column** is something measured about it (flipper length, body
+mass, species, island, …).
+
+In the last part we switch to a small **plate-reader** result — four genes
+measured in ten samples — to see what real machine data looks like and how to
+reshape it for plotting.
+
+The session runs in three short cycles of *learn a little, then try it*:
+
+- **Part A** — the elements of a plot: geom, mark, mapping
+- **Part B** — distributions: histograms and boxplots
+- **Part C** — tidy data: reshaping wide machine data with `pivot_longer()`
 
 {{< include _exercise.qmd >}}
