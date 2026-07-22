@@ -55,6 +55,10 @@ website:
             - text: "</b> R workshop"
               contents:
               href: materials/r-tutorial/index.qmd
+          - section: "RISE 2026 — Data Viz"
+            contents:
+            - text: "Intro to Data Visualization in R"
+              href: materials/r-tutorial-rise-2026/index.qmd
           - section: "RNAseq"
             contents:
             - text: "Background"
