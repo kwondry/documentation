@@ -1,0 +1,62 @@
+## Hands-on worksheet
+
+> You will do this inside your Codespace, in `notebooks/01-visualization.qmd`.
+> The same steps are shown here so you can read along.
+
+### The one big idea
+
+Every **row** in a table becomes one **mark** on a plot. The **geom** decides
+what kind of mark (dots, boxes, bars) and how to draw it. The **mapping**,
+written inside `aes()`, links a **column** to a **property** of the mark (its
+x position, its y position, its colour).
+
+### Read a plot
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+```
+
+- **Mark:** a dot. **Mapping:** `flipper_length_mm` → x, `body_mass_g` → y,
+  `species` → colour. **Rows per mark:** one row = one dot.
+
+### Build it up, one line at a time
+
+Start simple, then add one piece at a time:
+
+```{r}
+#| eval: false
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()                          # step 1: bare scatter
+```
+
+Add `color = species` **inside** `aes()` to map colour to a column. Compare that
+with putting `color = "navy"` **outside** `aes()` (inside `geom_point()`), which
+sets every dot to the same colour — a setting, not a mapping.
+
+### Change the geom, keep the rules
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot() +
+  labs(x = "Species", y = "Body mass (g)", fill = "Species")
+```
+
+Same idea, new mark: each **box** summarises **many** rows (a five-number
+summary) instead of one row per mark.
+
+### One wrangling move: the pipe
+
+`|>` means "take this data, then…". Filter first, then plot:
+
+```{r}
+penguins |>
+  filter(species == "Gentoo") |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+```
