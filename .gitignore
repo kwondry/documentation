@@ -4,3 +4,8 @@ docs/
 **/.DS_Store
 **/.Rhistory
 
+
+# local planning notes, not for publication
+notes/
+
+**/*.quarto_ipynb
