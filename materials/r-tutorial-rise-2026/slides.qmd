@@ -13,7 +13,30 @@ execute:
 library(tidyverse)
 library(palmerpenguins)
 theme_set(theme_minimal(base_size = 18))
+
+# Small wide "plate reader" dataset used in the Tidy data section.
+# One row per sample; each gene column is a separate measurement.
+plate <- tribble(
+  ~sample, ~group,    ~gene_A, ~gene_B, ~gene_C, ~gene_D,
+  "s01",   "control",     102,      88,      41,      59,
+  "s02",   "control",      98,      91,      44,      62,
+  "s03",   "control",     105,      86,      39,      58,
+  "s04",   "control",     100,      93,      43,      61,
+  "s05",   "control",      97,      89,      40,      60,
+  "s06",   "treated",     101,      90,      87,     108,
+  "s07",   "treated",      99,      92,      91,     112,
+  "s08",   "treated",     104,      87,      85,     105,
+  "s09",   "treated",      98,      94,      90,     110,
+  "s10",   "treated",     103,      88,      88,     107
+)
+
+plate_long <- plate |>
+  pivot_longer(gene_A:gene_D, names_to = "gene", values_to = "signal")
 ```
+
+## Let's warm up {.your-turn}
+
+{{< include _wooclap.qmd >}}
 
 ## Why make a plot?
 
@@ -112,10 +135,143 @@ penguins |>
   geom_point()
 ```
 
-## Your turn
+## Quick check — before you build {.your-turn}
 
-Open `notebooks/01-visualization.qmd` and, for each plot, ask:
+{{< include _wooclap.qmd >}}
+
+## Your turn — Exercise A {.your-turn}
+
+Open `notebooks/01-visualization.qmd`, **Part A**. For each plot, ask:
 
 1. What is the **mark**?
 2. Which **column** → which **property**?
 3. How many **rows** make one mark?
+
+Then build a scatter one line at a time, and swap in a boxplot.
+
+# Distributions {background-color="#1c4966"}
+
+### What does **one** variable look like?
+
+## One variable, many values
+
+So far every plot compared **two** things (x vs y).
+
+Sometimes you have just **one** column of numbers — say, the body mass of every
+penguin — and you want to see its **shape**:
+
+- Where do most values sit?
+- Are they spread out or bunched up?
+- Are there any surprises?
+
+## `geom_histogram` — count rows into bins
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 3.6
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 250)
+```
+
+Cut the range into **bins**, then count how many **rows** fall in each. The bar's
+height *is* a count of rows. (Still: every row lands in exactly one mark.)
+
+## The boxplot is a distribution too
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 3.4
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot()
+```
+
+A histogram shows one distribution in detail. A **boxplot** squeezes each
+distribution into one **box** — handy for comparing groups side by side.
+
+## Same question, different geoms
+
+- **`geom_histogram`** — the full shape of *one* distribution
+- **`geom_boxplot`** — a compact summary, great for *comparing* groups
+- Both answer: *"what do these numbers look like?"*
+
+## Your turn — Exercise B {.your-turn}
+
+In `notebooks/01-visualization.qmd`, **Part B**:
+
+1. Make a **histogram** of `flipper_length_mm`.
+2. Change the `binwidth` and watch the shape change.
+3. Make a **boxplot** of `body_mass_g` by `species`.
+
+## Quick check — reshaping data {.your-turn}
+
+{{< include _wooclap.qmd >}}
+
+# Tidy data {background-color="#1c4966"}
+
+### Real data rarely arrives plot-ready
+
+## Data off a machine
+
+A plate reader gives you one row per sample, with a **separate column for each
+gene** it measured:
+
+```{r}
+#| echo: false
+plate |> head(4) |> knitr::kable()
+```
+
+Four measurements are crammed into **one row**. This is *wide* format — easy for
+the machine, hard for ggplot.
+
+## ggplot wants **tidy** data
+
+The rule: **one row = one observation**, **one column = one variable**.
+
+One measurement of one gene in one sample *is* an observation — so it should be
+its **own row**, with a `gene` column and a `signal` column.
+
+## `pivot_longer` — from wide to long
+
+```{r}
+#| echo: true
+plate_long <- plate |>
+  pivot_longer(gene_A:gene_D, names_to = "gene", values_to = "signal")
+```
+
+```{r}
+#| echo: false
+plate_long |> head(4) |> knitr::kable()
+```
+
+The gene **column names** become values in a `gene` column; the numbers stack
+into a `signal` column. Now each row is one measurement.
+
+## The payoff: now you can plot it
+
+```{r}
+#| echo: true
+#| fig-width: 7
+#| fig-height: 3.4
+ggplot(plate_long, aes(x = gene, y = signal, fill = group)) +
+  geom_boxplot()
+```
+
+Wide data couldn't make this plot. One `pivot_longer` unlocked it — and the
+treatment story (genes C & D switch on) jumps right out.
+
+## Your turn — Exercise C {.your-turn}
+
+In `notebooks/01-visualization.qmd`, **Part C**:
+
+1. `read_csv()` the wide plate file and look at it.
+2. `pivot_longer()` the gene columns into `gene` and `signal`.
+3. Plot `signal` by `gene`, filled by `group`.
+
+## What you learned today
+
+- Every **row** becomes a **mark**; the **geom** draws it; `aes()` **maps**
+  columns to properties.
+- **Distributions:** `geom_histogram` and `geom_boxplot` show the shape of numbers.
+- **Tidy data:** real data often arrives *wide*; `pivot_longer` makes it plottable.
