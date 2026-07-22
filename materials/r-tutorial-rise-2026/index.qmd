@@ -17,8 +17,8 @@ execute:
 
 Everything runs in **GitHub Codespaces** — nothing to install.
 
-1. Go to the participant environment repo and click **"Use this template" →
-   "Create a new repository"**.
+1. Go to the [participant environment repo](https://github.com/kwondry/r-tutorial-rise-2026)
+   and click **"Use this template" → "Create a new repository"**.
 2. On your copy: **"Code" → "Codespaces" → "Create codespace on main"**.
 3. When it finishes building, open `notebooks/00-hello.qmd` and run the cell.
    A penguin chart should appear — that means you are ready.
