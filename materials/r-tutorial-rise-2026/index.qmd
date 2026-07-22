@@ -1,0 +1,38 @@
+---
+title: "Intro to Data Visualization in R"
+format:
+  html:
+    toc: true
+    code-link: true
+---
+
+> A 2-hour, hands-on introduction to making plots in R with `ggplot2`, using
+> the Palmer Penguins dataset. For RISE 2026 summer researchers — no prior R
+> needed.
+
+## Set up your environment
+
+Everything runs in **GitHub Codespaces** — nothing to install.
+
+1. Go to the participant environment repo and click **"Use this template" →
+   "Create a new repository"**.
+2. On your copy: **"Code" → "Codespaces" → "Create codespace on main"**.
+3. When it finishes building, open `notebooks/00-hello.qmd` and run the cell.
+   A penguin chart should appear — that means you are ready.
+
+## Slides
+
+[Open the slides full screen](slides.qmd)
+
+```{=html}
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+## The dataset
+
+We use `palmerpenguins`: measurements of 344 penguins from three species
+(Adelie, Chinstrap, Gentoo) across three islands. Each **row** is one penguin;
+each **column** is something measured about it (flipper length, body mass,
+species, island, …).
+
+{{< include _exercise.qmd >}}
