@@ -17,7 +17,9 @@ execute:
 
 Everything runs in the cloud with **GitHub Codespaces** — there is nothing to
 install on your laptop. You only need a web browser and a free GitHub account.
-No API keys, no setup beyond the four steps below.
+No API keys required.
+
+::: {.callout-tip collapse="true" title="👉 New here? Click to open the step-by-step setup instructions"}
 
 ### 1. Sign in to GitHub
 
@@ -64,6 +66,10 @@ Once the codespace has finished building:
    through it with the class.
 
 If you get stuck, ask an instructor.
+
+<p style="text-align:center; margin-top:1.5em;"><a href="#" onclick="this.closest('.callout').querySelector('.callout-header').click(); return false;">▲ Collapse these steps</a></p>
+
+:::
 
 ## Slides
 
