@@ -318,23 +318,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#set-up-your-environment" id="toc-set-up-your-environment" class="nav-link active" data-scroll-target="#set-up-your-environment">Set up your environment</a></li>
   <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
   <li><a href="#the-datasets" id="toc-the-datasets" class="nav-link" data-scroll-target="#the-datasets">The datasets</a></li>
-  <li>
-<a href="#hands-on-worksheet" id="toc-hands-on-worksheet" class="nav-link" data-scroll-target="#hands-on-worksheet">Hands-on worksheet</a>
-  <ul class="collapse">
-<li><a href="#the-one-big-idea" id="toc-the-one-big-idea" class="nav-link" data-scroll-target="#the-one-big-idea">The one big idea</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#part-a-read-and-build-a-plot" id="toc-part-a-read-and-build-a-plot" class="nav-link" data-scroll-target="#part-a-read-and-build-a-plot">Part A — Read and build a plot</a>
-  <ul class="collapse">
-<li><a href="#read-a-plot" id="toc-read-a-plot" class="nav-link" data-scroll-target="#read-a-plot">Read a plot</a></li>
-  <li><a href="#build-it-up-one-line-at-a-time" id="toc-build-it-up-one-line-at-a-time" class="nav-link" data-scroll-target="#build-it-up-one-line-at-a-time">Build it up, one line at a time</a></li>
-  <li><a href="#change-the-geom-keep-the-rules" id="toc-change-the-geom-keep-the-rules" class="nav-link" data-scroll-target="#change-the-geom-keep-the-rules">Change the geom, keep the rules</a></li>
-  <li><a href="#one-wrangling-move-the-pipe" id="toc-one-wrangling-move-the-pipe" class="nav-link" data-scroll-target="#one-wrangling-move-the-pipe">One wrangling move: the pipe</a></li>
-  </ul>
-</li>
-  <li><a href="#part-b-the-shape-of-one-variable" id="toc-part-b-the-shape-of-one-variable" class="nav-link" data-scroll-target="#part-b-the-shape-of-one-variable">Part B — The shape of one variable</a></li>
-  <li><a href="#part-c-tidy-data-reshape-then-plot" id="toc-part-c-tidy-data-reshape-then-plot" class="nav-link" data-scroll-target="#part-c-tidy-data-reshape-then-plot">Part C — Tidy data: reshape, then plot</a></li>
+  <li><a href="#hands-on-worksheet" id="toc-hands-on-worksheet" class="nav-link" data-scroll-target="#hands-on-worksheet">Hands-on worksheet</a></li>
+  <li><a href="#exercise-1-the-elements-of-a-plot" id="toc-exercise-1-the-elements-of-a-plot" class="nav-link" data-scroll-target="#exercise-1-the-elements-of-a-plot">Exercise 1 — The elements of a plot</a></li>
+  <li><a href="#exercise-2-the-shape-of-one-variable" id="toc-exercise-2-the-shape-of-one-variable" class="nav-link" data-scroll-target="#exercise-2-the-shape-of-one-variable">Exercise 2 — The shape of one variable</a></li>
+  <li><a href="#exercise-3-tidy-data-reshape-then-plot" id="toc-exercise-3-tidy-data-reshape-then-plot" class="nav-link" data-scroll-target="#exercise-3-tidy-data-reshape-then-plot">Exercise 3 — Tidy data: reshape, then plot</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -423,44 +410,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <strong>Part B</strong> — distributions: histograms and boxplots</li>
 <li>
-<strong>Part C</strong> — tidy data: reshaping wide machine data with <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>
+<strong>Part C</strong> — tidy data: reshaping wide machine data with <code>pivot_longer()</code>
 </li>
 </ul></section><section id="hands-on-worksheet" class="level2"><h2 class="anchored" data-anchor-id="hands-on-worksheet">Hands-on worksheet</h2>
 <blockquote class="blockquote">
-<p>You will do this inside your Codespace, in <code>notebooks/01-visualization.qmd</code>. The same steps are shown here so you can read along. We work in three short parts, with a little teaching before each.</p>
+<p>You’ll do the real work in your Codespace, in <code>notebooks/01-visualization.qmd</code>. This page lists the <strong>tasks</strong>. Try each one <strong>yourself first</strong> — the collapsible <strong>“Show an example”</strong> boxes are hints to peek at only if you get stuck.</p>
 </blockquote>
-<section id="the-one-big-idea" class="level3"><h3 class="anchored" data-anchor-id="the-one-big-idea">The one big idea</h3>
-<p>Every <strong>row</strong> in a table becomes one <strong>mark</strong> on a plot. The <strong>geom</strong> decides what kind of mark (dots, boxes, bars) and how to draw it. The <strong>mapping</strong>, written inside <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, links a <strong>column</strong> to a <strong>property</strong> of the mark (its x position, its y position, its colour).</p>
-</section></section><section id="part-a-read-and-build-a-plot" class="level2"><h2 class="anchored" data-anchor-id="part-a-read-and-build-a-plot">Part A — Read and build a plot</h2>
-<section id="read-a-plot" class="level3"><h3 class="anchored" data-anchor-id="read-a-plot">Read a plot</h3>
+<p>Each task has a number so we can point to it out loud. The first number is the exercise and the second is the task — so <strong>2.3</strong> means “Exercise 2, task 3.”</p>
+</section><section id="exercise-1-the-elements-of-a-plot" class="level2"><h2 class="anchored" data-anchor-id="exercise-1-the-elements-of-a-plot">Exercise 1 — The elements of a plot</h2>
+<p>Every <strong>row</strong> in a table becomes one <strong>mark</strong> on a plot. The <strong>geom</strong> decides what <em>kind</em> of mark; the <strong>mapping</strong> (written inside <code>aes()</code>) links a <strong>column</strong> to a property of the mark. We use the <code>palmerpenguins</code> data.</p>
+<p><strong>1.1 — Read a plot.</strong> Look at the plot below and answer in your own words: (a) What is the <strong>mark</strong>? (b) Which column controls <strong>x</strong>, <strong>y</strong>, and <strong>colour</strong>? (c) How many <strong>rows</strong> of the table made one mark?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show the answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
 <li>
-<strong>Mark:</strong> a dot. <strong>Mapping:</strong> <code>flipper_length_mm</code> → x, <code>body_mass_g</code> → y, <code>species</code> → colour. <strong>Rows per mark:</strong> one row = one dot.</li>
-</ul></section><section id="build-it-up-one-line-at-a-time" class="level3"><h3 class="anchored" data-anchor-id="build-it-up-one-line-at-a-time">Build it up, one line at a time</h3>
-<p>Start simple, then add one piece at a time:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>                          <span class="co"># step 1: bare scatter</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<strong>Mark:</strong> a dot. <strong>Mappings:</strong> <code>flipper_length_mm</code> → x, <code>body_mass_g</code> → y, <code>species</code> → colour. <strong>Rows per mark:</strong> one row = one dot.</li>
+</ul>
 </div>
-<p>Add <code>color = species</code> <strong>inside</strong> <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> to map colour to a column. Compare that with putting <code>color = "navy"</code> <strong>outside</strong> <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> (inside <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>), which sets every dot to the same colour — a setting, not a mapping.</p>
-</section><section id="change-the-geom-keep-the-rules" class="level3"><h3 class="anchored" data-anchor-id="change-the-geom-keep-the-rules">Change the geom, keep the rules</h3>
+</div>
+</div>
+<p><strong>1.2 — Build a scatter.</strong> Make a scatter plot of <code>flipper_length_mm</code> (x) against <code>body_mass_g</code> (y) using <code>geom_point()</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example of a working plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example of a working plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Species"</span>, y <span class="op">=</span> <span class="st">"Body mass (g)"</span>, fill <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -468,14 +470,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Same idea, new mark: each <strong>box</strong> summarises <strong>many</strong> rows (a five-number summary) instead of one row per mark.</p>
-</section><section id="one-wrangling-move-the-pipe" class="level3"><h3 class="anchored" data-anchor-id="one-wrangling-move-the-pipe">One wrangling move: the pipe</h3>
-<p><code>|&gt;</code> means “take this data, then…”. Filter first, then plot:</p>
+</div>
+</div>
+</div>
+<p><strong>1.3 — Colour by a column.</strong> Add <code>color = species</code> <strong>inside</strong> <code>aes()</code> so each species gets its own colour.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example of a working plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example of a working plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Gentoo"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
@@ -483,11 +496,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="part-b-the-shape-of-one-variable" class="level2"><h2 class="anchored" data-anchor-id="part-b-the-shape-of-one-variable">Part B — The shape of one variable</h2>
-<p>Sometimes you have a single column of numbers and want to see its <strong>shape</strong>. A <strong>histogram</strong> cuts the range into bins and counts how many rows land in each:</p>
+</div>
+</div>
+</div>
+<p><strong>1.4 — Mapping vs.&nbsp;setting.</strong> Make <em>all</em> the dots the same fixed colour (say, navy). Does <code>color = "navy"</code> go <strong>inside</strong> <code>aes()</code> or <strong>outside</strong>? Why?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show the answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>It goes <strong>outside</strong> <code>aes()</code>, inside the geom — it’s a fixed value, not a column mapping:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">250</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"navy"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
@@ -495,11 +523,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Try changing <code>binwidth</code> (e.g.&nbsp;<code>100</code>, <code>500</code>) and watch the shape change.</p>
-<p>A <strong>boxplot</strong> squeezes each distribution into one box, which is handy for comparing groups:</p>
+</div>
+</div>
+</div>
+<p><strong>1.5 — Change the geom.</strong> Compare body mass across species with a boxplot: map <code>species</code> to x, <code>body_mass_g</code> to y, and use <code>geom_boxplot()</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example of a working plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example of a working plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
@@ -507,24 +549,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Both answer the same question — <em>what do these numbers look like?</em> — a histogram in full detail, a boxplot as a compact summary for comparing.</p>
-</section><section id="part-c-tidy-data-reshape-then-plot" class="level2"><h2 class="anchored" data-anchor-id="part-c-tidy-data-reshape-then-plot">Part C — Tidy data: reshape, then plot</h2>
-<p>Real data often comes off a machine in <strong>wide</strong> format — one row per sample, with a separate column for each measurement. Here is a small plate-reader result for four genes measured in ten samples:</p>
+</div>
+</div>
+</div>
+<p><strong>1.6 — Filter with the pipe.</strong> Use <code>|&gt;</code> to keep only one species (your choice), then make a scatter of just those penguins.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example of a working plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example of a working plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">sample</span>, <span class="op">~</span><span class="va">group</span>,    <span class="op">~</span><span class="va">gene_A</span>, <span class="op">~</span><span class="va">gene_B</span>, <span class="op">~</span><span class="va">gene_C</span>, <span class="op">~</span><span class="va">gene_D</span>,</span>
-<span>  <span class="st">"s01"</span>,   <span class="st">"control"</span>,     <span class="fl">102</span>,      <span class="fl">88</span>,      <span class="fl">41</span>,      <span class="fl">59</span>,</span>
-<span>  <span class="st">"s02"</span>,   <span class="st">"control"</span>,      <span class="fl">98</span>,      <span class="fl">91</span>,      <span class="fl">44</span>,      <span class="fl">62</span>,</span>
-<span>  <span class="st">"s03"</span>,   <span class="st">"control"</span>,     <span class="fl">105</span>,      <span class="fl">86</span>,      <span class="fl">39</span>,      <span class="fl">58</span>,</span>
-<span>  <span class="st">"s04"</span>,   <span class="st">"control"</span>,     <span class="fl">100</span>,      <span class="fl">93</span>,      <span class="fl">43</span>,      <span class="fl">61</span>,</span>
-<span>  <span class="st">"s05"</span>,   <span class="st">"control"</span>,      <span class="fl">97</span>,      <span class="fl">89</span>,      <span class="fl">40</span>,      <span class="fl">60</span>,</span>
-<span>  <span class="st">"s06"</span>,   <span class="st">"treated"</span>,     <span class="fl">101</span>,      <span class="fl">90</span>,      <span class="fl">87</span>,     <span class="fl">108</span>,</span>
-<span>  <span class="st">"s07"</span>,   <span class="st">"treated"</span>,      <span class="fl">99</span>,      <span class="fl">92</span>,      <span class="fl">91</span>,     <span class="fl">112</span>,</span>
-<span>  <span class="st">"s08"</span>,   <span class="st">"treated"</span>,     <span class="fl">104</span>,      <span class="fl">87</span>,      <span class="fl">85</span>,     <span class="fl">105</span>,</span>
-<span>  <span class="st">"s09"</span>,   <span class="st">"treated"</span>,      <span class="fl">98</span>,      <span class="fl">94</span>,      <span class="fl">90</span>,     <span class="fl">110</span>,</span>
-<span>  <span class="st">"s10"</span>,   <span class="st">"treated"</span>,     <span class="fl">103</span>,      <span class="fl">88</span>,      <span class="fl">88</span>,     <span class="fl">107</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">plate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Gentoo"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="exercise-2-the-shape-of-one-variable" class="level2"><h2 class="anchored" data-anchor-id="exercise-2-the-shape-of-one-variable">Exercise 2 — The shape of one variable</h2>
+<p>A <strong>histogram</strong> cuts one numeric column into bins and counts the rows in each. A <strong>boxplot</strong> is a compact summary, handy for comparing groups.</p>
+<p><strong>2.1 — Make a histogram</strong> of <code>flipper_length_mm</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example of a working plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example of a working plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_length_mm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>2.2 — Change the binwidth.</strong> Try <code>binwidth = 2</code>, then <code>binwidth = 20</code>. In a sentence, what happens to the shape? (No new plot to hand in — just look.)</p>
+<p><strong>2.3 — Compare groups with a boxplot</strong> of <code>body_mass_g</code> for each <code>species</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example of a working plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example of a working plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="exercise-3-tidy-data-reshape-then-plot" class="level2"><h2 class="anchored" data-anchor-id="exercise-3-tidy-data-reshape-then-plot">Exercise 3 — Tidy data: reshape, then plot</h2>
+<p>Real data often comes off a machine in <strong>wide</strong> format — one row per sample, with a separate column for each measurement. Here is a small plate-reader result for four genes in ten samples:</p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 6
    sample group   gene_A gene_B gene_C gene_D
@@ -542,12 +655,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <blockquote class="blockquote">
-<p>In your Codespace you will instead <strong>read this from a file</strong> with <code>read_csv("data/qpcr_plate_wide.csv")</code> — same data, straight off the machine.</p>
+<p>In your Codespace you’ll read this from a file with <code>read_csv("data/qpcr_plate_wide.csv")</code> — same data, straight off the machine.</p>
 </blockquote>
-<p>ggplot wants <strong>tidy</strong> data: one row per observation, one column per variable. One gene measured in one sample is an observation, so it should be its own row. Use <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> to stack the four gene columns into two — a <code>gene</code> column and a <code>signal</code> column:</p>
+<p><strong>3.1 — Read the table.</strong> What does one <strong>row</strong> represent, and how many separate measurements are packed into each row?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show the answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Each row is one <strong>sample</strong>, and it holds <strong>four</strong> measurements (<code>gene_A</code>–<code>gene_D</code>). That is <em>wide</em> format — <code>ggplot</code> can’t plot it directly yet.</p>
+</div>
+</div>
+</div>
+<p><strong>3.2 — Reshape to long.</strong> Use <code>pivot_longer()</code> to stack the four gene columns into a <code>gene</code> column and a <code>signal</code> column.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plate_long</span> <span class="op">&lt;-</span> <span class="va">plate</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">gene_A</span><span class="op">:</span><span class="va">gene_D</span>, names_to <span class="op">=</span> <span class="st">"gene"</span>, values_to <span class="op">=</span> <span class="st">"signal"</span><span class="op">)</span></span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="va">gene_A</span><span class="op">:</span><span class="va">gene_D</span>, names_to <span class="op">=</span> <span class="st">"gene"</span>, values_to <span class="op">=</span> <span class="st">"signal"</span><span class="op">)</span></span>
 <span><span class="va">plate_long</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 40 × 4
@@ -566,18 +708,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 30 more rows</code></pre>
 </div>
 </div>
-<p>Now every row is one measurement, and we can plot it — comparing the two groups gene by gene:</p>
+</div>
+</div>
+</div>
+<p><strong>3.3 — Plot it.</strong> Make a boxplot of <code>signal</code> by <code>gene</code>, filled by <code>group</code>. Which genes change between the <code>control</code> and <code>treated</code> samples?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Show an example of a working plot">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Show an example of a working plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plate_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gene</span>, y <span class="op">=</span> <span class="va">signal</span>, fill <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">plate_long</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gene</span>, y <span class="op">=</span> <span class="va">signal</span>, fill <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The wide table could not make this plot. One <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> unlocked it — and the pattern (genes C and D switch on with treatment) jumps right out.</p>
+</div>
+</div>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

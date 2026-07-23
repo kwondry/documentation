@@ -64,7 +64,7 @@
     "href": "materials/r-tutorial-rise-2026/slides.html#lets-warm-up",
     "title": "Intro to Data Visualization in R",
     "section": "Let’s warm up",
-    "text": "Let’s warm up\n\nGo to wooclap.com and enter event code DURBAN — or scan:"
+    "text": "Let’s warm up\n\nGo to wooclap.com and enter event code RAGON — or scan:"
   },
   {
     "objectID": "materials/r-tutorial-rise-2026/slides.html#why-make-a-plot",
@@ -120,14 +120,14 @@
     "href": "materials/r-tutorial-rise-2026/slides.html#quick-check-before-you-build",
     "title": "Intro to Data Visualization in R",
     "section": "Quick check — before you build",
-    "text": "Quick check — before you build\n\nGo to wooclap.com and enter event code DURBAN — or scan:"
+    "text": "Quick check — before you build\n\nGo to wooclap.com and enter event code RAGON — or scan:"
   },
   {
-    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-a",
-    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-a",
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-1",
+    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-1",
     "title": "Intro to Data Visualization in R",
-    "section": "Your turn — Exercise A",
-    "text": "Your turn — Exercise A\nOpen notebooks/01-visualization.qmd, Part A. For each plot, ask:\n\nWhat is the mark?\nWhich column → which property?\nHow many rows make one mark?\n\nThen build a scatter one line at a time, and swap in a boxplot."
+    "section": "Your turn — Exercise 1",
+    "text": "Your turn — Exercise 1\nOpen notebooks/01-visualization.qmd, Exercise 1. For each plot, ask:\n\nWhat is the mark?\nWhich column → which property?\nHow many rows make one mark?\n\nThen build a scatter one line at a time, and swap in a boxplot."
   },
   {
     "objectID": "materials/r-tutorial-rise-2026/slides.html#one-variable-many-values",
@@ -158,18 +158,18 @@
     "text": "Same question, different geoms\n\ngeom_histogram — the full shape of one distribution\ngeom_boxplot — a compact summary, great for comparing groups\nBoth answer: “what do these numbers look like?”"
   },
   {
-    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-b",
-    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-b",
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-2",
+    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-2",
     "title": "Intro to Data Visualization in R",
-    "section": "Your turn — Exercise B",
-    "text": "Your turn — Exercise B\nIn notebooks/01-visualization.qmd, Part B:\n\nMake a histogram of flipper_length_mm.\nChange the binwidth and watch the shape change.\nMake a boxplot of body_mass_g by species."
+    "section": "Your turn — Exercise 2",
+    "text": "Your turn — Exercise 2\nIn notebooks/01-visualization.qmd, Exercise 2:\n\nMake a histogram of flipper_length_mm.\nChange the binwidth and watch the shape change.\nMake a boxplot of body_mass_g by species."
   },
   {
     "objectID": "materials/r-tutorial-rise-2026/slides.html#quick-check-reshaping-data",
     "href": "materials/r-tutorial-rise-2026/slides.html#quick-check-reshaping-data",
     "title": "Intro to Data Visualization in R",
     "section": "Quick check — reshaping data",
-    "text": "Quick check — reshaping data\n\nGo to wooclap.com and enter event code DURBAN — or scan:"
+    "text": "Quick check — reshaping data\n\nGo to wooclap.com and enter event code RAGON — or scan:"
   },
   {
     "objectID": "materials/r-tutorial-rise-2026/slides.html#data-off-a-machine",
@@ -200,11 +200,11 @@
     "text": "The payoff: now you can plot it\n\nggplot(plate_long, aes(x = gene, y = signal, fill = group)) +\n  geom_boxplot()\n\n\nWide data couldn’t make this plot. One pivot_longer unlocked it — and the treatment story (genes C & D switch on) jumps right out."
   },
   {
-    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-c",
-    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-c",
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-3",
+    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-3",
     "title": "Intro to Data Visualization in R",
-    "section": "Your turn — Exercise C",
-    "text": "Your turn — Exercise C\nIn notebooks/01-visualization.qmd, Part C:\n\nread_csv() the wide plate file and look at it.\npivot_longer() the gene columns into gene and signal.\nPlot signal by gene, filled by group."
+    "section": "Your turn — Exercise 3",
+    "text": "Your turn — Exercise 3\nIn notebooks/01-visualization.qmd, Exercise 3:\n\nread_csv() the wide plate file and look at it.\npivot_longer() the gene columns into gene and signal.\nPlot signal by gene, filled by group."
   },
   {
     "objectID": "materials/r-tutorial-rise-2026/slides.html#what-you-learned-today",
@@ -1713,28 +1713,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        1 g          2 crispatus VCA         200\n2        1 c          4 crispatus OA          200\n3        1 h          6 jensenii  CTRL          0\n4        2 e          7 jensenii  LNA         200\n5        2 c          7 jensenii  VCA          50"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug    condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n1        3 h         11 CTRL   CTRL          0\n2        1 f         10 iners  VCA         400\n3        4 e          1 CTRL   LNA         200\n4        4 f         10 piotii LNA         100\n5        3 d          9 piotii OA          100"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        1 c         11 CTRL      OA          200\n2        4 c          6 vaginalis VCA          50\n3        3 h          4 gasseri   CTRL          0\n4        2 a          5 jensenii  CTRL          0\n5        4 c          7 vaginalis VCA          50"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug     condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;\n1        2 h          1 CTRL    CTRL          0\n2        1 b          8 iners   OA          400\n3        3 c          3 gasseri OA          200\n4        1 e         10 iners   OA           50\n5        4 f          8 piotii  LNA         100"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug      condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 h         11 CTRL     CTRL          0     0  \n2        2 h          7 jensenii CTRL          0     0  \n3        3 g         10 piotii   VCA         200     0.2\n4        1 d          7 jensenii OA          100     0.1\n5        3 c         12 CTRL     OA          200     0.2"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug     condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 a          2 gasseri CTRL          0    0   \n2        3 b          9 piotii  OA          400    0.4 \n3        3 e         11 CTRL    OA           50    0.05\n4        3 c         11 CTRL    OA          200    0.2 \n5        4 d         10 piotii  LNA         400    0.4"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        3 b          3 gasseri   OA          400     0.4  400000\n2        1 b          5 jensenii  OA          400     0.4  400000\n3        3 a         11 CTRL      CTRL          0     0         0\n4        1 g          7 jensenii  VCA         200     0.2  200000\n5        3 b          7 vaginalis OA          400     0.4  400000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 c         11 CTRL     VCA          50    0.05   50000\n2        2 g          5 jensenii LNA          50    0.05   50000\n3        2 f          1 CTRL     LNA         100    0.1   100000\n4        4 h          8 piotii   CTRL          0    0          0\n5        4 b          3 gasseri  VCA         100    0.1   100000"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
@@ -2439,7 +2439,7 @@
     "href": "materials/r-tutorial-rise-2026/index.html#hands-on-worksheet",
     "title": "Intro to Data Visualization in R",
     "section": "Hands-on worksheet",
-    "text": "Hands-on worksheet\n\nYou will do this inside your Codespace, in notebooks/01-visualization.qmd. The same steps are shown here so you can read along. We work in three short parts, with a little teaching before each.\n\nThe one big idea\nEvery row in a table becomes one mark on a plot. The geom decides what kind of mark (dots, boxes, bars) and how to draw it. The mapping, written inside aes(), links a column to a property of the mark (its x position, its y position, its colour).",
+    "text": "Hands-on worksheet\n\nYou’ll do the real work in your Codespace, in notebooks/01-visualization.qmd. This page lists the tasks. Try each one yourself first — the collapsible “Show an example” boxes are hints to peek at only if you get stuck.\n\nEach task has a number so we can point to it out loud. The first number is the exercise and the second is the task — so 2.3 means “Exercise 2, task 3.”",
     "crumbs": [
       "About the Kwon Lab",
       "RISE Workshops",
@@ -2447,11 +2447,11 @@
     ]
   },
   {
-    "objectID": "materials/r-tutorial-rise-2026/index.html#part-a-read-and-build-a-plot",
-    "href": "materials/r-tutorial-rise-2026/index.html#part-a-read-and-build-a-plot",
+    "objectID": "materials/r-tutorial-rise-2026/index.html#exercise-1-the-elements-of-a-plot",
+    "href": "materials/r-tutorial-rise-2026/index.html#exercise-1-the-elements-of-a-plot",
     "title": "Intro to Data Visualization in R",
-    "section": "Part A — Read and build a plot",
-    "text": "Part A — Read and build a plot\nRead a plot\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nMark: a dot. Mapping: flipper_length_mm → x, body_mass_g → y, species → colour. Rows per mark: one row = one dot.\nBuild it up, one line at a time\nStart simple, then add one piece at a time:\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()                          # step 1: bare scatter\n\nAdd color = species inside aes() to map colour to a column. Compare that with putting color = \"navy\" outside aes() (inside geom_point()), which sets every dot to the same colour — a setting, not a mapping.\nChange the geom, keep the rules\n\nggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot() +\n  labs(x = \"Species\", y = \"Body mass (g)\", fill = \"Species\")\n\n\n\n\n\n\n\nSame idea, new mark: each box summarises many rows (a five-number summary) instead of one row per mark.\nOne wrangling move: the pipe\n|&gt; means “take this data, then…”. Filter first, then plot:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()",
+    "section": "Exercise 1 — The elements of a plot",
+    "text": "Exercise 1 — The elements of a plot\nEvery row in a table becomes one mark on a plot. The geom decides what kind of mark; the mapping (written inside aes()) links a column to a property of the mark. We use the palmerpenguins data.\n1.1 — Read a plot. Look at the plot below and answer in your own words: (a) What is the mark? (b) Which column controls x, y, and colour? (c) How many rows of the table made one mark?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipShow the answer\n\n\n\n\n\n\n\nMark: a dot. Mappings: flipper_length_mm → x, body_mass_g → y, species → colour. Rows per mark: one row = one dot.\n\n\n\n\n1.2 — Build a scatter. Make a scatter plot of flipper_length_mm (x) against body_mass_g (y) using geom_point().\n\n\n\n\n\n\nTipShow an example of a working plot\n\n\n\n\n\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n1.3 — Colour by a column. Add color = species inside aes() so each species gets its own colour.\n\n\n\n\n\n\nTipShow an example of a working plot\n\n\n\n\n\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n1.4 — Mapping vs. setting. Make all the dots the same fixed colour (say, navy). Does color = \"navy\" go inside aes() or outside? Why?\n\n\n\n\n\n\nTipShow the answer\n\n\n\n\n\nIt goes outside aes(), inside the geom — it’s a fixed value, not a column mapping:\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(color = \"navy\")\n\n\n\n\n\n\n\n\n\n\n1.5 — Change the geom. Compare body mass across species with a boxplot: map species to x, body_mass_g to y, and use geom_boxplot().\n\n\n\n\n\n\nTipShow an example of a working plot\n\n\n\n\n\n\nggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot()\n\n\n\n\n\n\n\n\n\n\n1.6 — Filter with the pipe. Use |&gt; to keep only one species (your choice), then make a scatter of just those penguins.\n\n\n\n\n\n\nTipShow an example of a working plot\n\n\n\n\n\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()",
     "crumbs": [
       "About the Kwon Lab",
       "RISE Workshops",
@@ -2459,11 +2459,11 @@
     ]
   },
   {
-    "objectID": "materials/r-tutorial-rise-2026/index.html#part-b-the-shape-of-one-variable",
-    "href": "materials/r-tutorial-rise-2026/index.html#part-b-the-shape-of-one-variable",
+    "objectID": "materials/r-tutorial-rise-2026/index.html#exercise-2-the-shape-of-one-variable",
+    "href": "materials/r-tutorial-rise-2026/index.html#exercise-2-the-shape-of-one-variable",
     "title": "Intro to Data Visualization in R",
-    "section": "Part B — The shape of one variable",
-    "text": "Part B — The shape of one variable\nSometimes you have a single column of numbers and want to see its shape. A histogram cuts the range into bins and counts how many rows land in each:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250)\n\n\n\n\n\n\n\nTry changing binwidth (e.g. 100, 500) and watch the shape change.\nA boxplot squeezes each distribution into one box, which is handy for comparing groups:\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot()\n\n\n\n\n\n\n\nBoth answer the same question — what do these numbers look like? — a histogram in full detail, a boxplot as a compact summary for comparing.",
+    "section": "Exercise 2 — The shape of one variable",
+    "text": "Exercise 2 — The shape of one variable\nA histogram cuts one numeric column into bins and counts the rows in each. A boxplot is a compact summary, handy for comparing groups.\n2.1 — Make a histogram of flipper_length_mm.\n\n\n\n\n\n\nTipShow an example of a working plot\n\n\n\n\n\n\nggplot(penguins, aes(x = flipper_length_mm)) +\n  geom_histogram(binwidth = 5)\n\n\n\n\n\n\n\n\n\n\n2.2 — Change the binwidth. Try binwidth = 2, then binwidth = 20. In a sentence, what happens to the shape? (No new plot to hand in — just look.)\n2.3 — Compare groups with a boxplot of body_mass_g for each species.\n\n\n\n\n\n\nTipShow an example of a working plot\n\n\n\n\n\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot()",
     "crumbs": [
       "About the Kwon Lab",
       "RISE Workshops",
@@ -2471,11 +2471,11 @@
     ]
   },
   {
-    "objectID": "materials/r-tutorial-rise-2026/index.html#part-c-tidy-data-reshape-then-plot",
-    "href": "materials/r-tutorial-rise-2026/index.html#part-c-tidy-data-reshape-then-plot",
+    "objectID": "materials/r-tutorial-rise-2026/index.html#exercise-3-tidy-data-reshape-then-plot",
+    "href": "materials/r-tutorial-rise-2026/index.html#exercise-3-tidy-data-reshape-then-plot",
     "title": "Intro to Data Visualization in R",
-    "section": "Part C — Tidy data: reshape, then plot",
-    "text": "Part C — Tidy data: reshape, then plot\nReal data often comes off a machine in wide format — one row per sample, with a separate column for each measurement. Here is a small plate-reader result for four genes measured in ten samples:\n\nplate &lt;- tribble(\n  ~sample, ~group,    ~gene_A, ~gene_B, ~gene_C, ~gene_D,\n  \"s01\",   \"control\",     102,      88,      41,      59,\n  \"s02\",   \"control\",      98,      91,      44,      62,\n  \"s03\",   \"control\",     105,      86,      39,      58,\n  \"s04\",   \"control\",     100,      93,      43,      61,\n  \"s05\",   \"control\",      97,      89,      40,      60,\n  \"s06\",   \"treated\",     101,      90,      87,     108,\n  \"s07\",   \"treated\",      99,      92,      91,     112,\n  \"s08\",   \"treated\",     104,      87,      85,     105,\n  \"s09\",   \"treated\",      98,      94,      90,     110,\n  \"s10\",   \"treated\",     103,      88,      88,     107\n)\nplate\n\n# A tibble: 10 × 6\n   sample group   gene_A gene_B gene_C gene_D\n   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n 1 s01    control    102     88     41     59\n 2 s02    control     98     91     44     62\n 3 s03    control    105     86     39     58\n 4 s04    control    100     93     43     61\n 5 s05    control     97     89     40     60\n 6 s06    treated    101     90     87    108\n 7 s07    treated     99     92     91    112\n 8 s08    treated    104     87     85    105\n 9 s09    treated     98     94     90    110\n10 s10    treated    103     88     88    107\n\n\n\nIn your Codespace you will instead read this from a file with read_csv(\"data/qpcr_plate_wide.csv\") — same data, straight off the machine.\n\nggplot wants tidy data: one row per observation, one column per variable. One gene measured in one sample is an observation, so it should be its own row. Use pivot_longer() to stack the four gene columns into two — a gene column and a signal column:\n\nplate_long &lt;- plate |&gt;\n  pivot_longer(gene_A:gene_D, names_to = \"gene\", values_to = \"signal\")\nplate_long\n\n# A tibble: 40 × 4\n   sample group   gene   signal\n   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;\n 1 s01    control gene_A    102\n 2 s01    control gene_B     88\n 3 s01    control gene_C     41\n 4 s01    control gene_D     59\n 5 s02    control gene_A     98\n 6 s02    control gene_B     91\n 7 s02    control gene_C     44\n 8 s02    control gene_D     62\n 9 s03    control gene_A    105\n10 s03    control gene_B     86\n# ℹ 30 more rows\n\n\nNow every row is one measurement, and we can plot it — comparing the two groups gene by gene:\n\nggplot(plate_long, aes(x = gene, y = signal, fill = group)) +\n  geom_boxplot()\n\n\n\n\n\n\n\nThe wide table could not make this plot. One pivot_longer() unlocked it — and the pattern (genes C and D switch on with treatment) jumps right out.",
+    "section": "Exercise 3 — Tidy data: reshape, then plot",
+    "text": "Exercise 3 — Tidy data: reshape, then plot\nReal data often comes off a machine in wide format — one row per sample, with a separate column for each measurement. Here is a small plate-reader result for four genes in ten samples:\n\n\n# A tibble: 10 × 6\n   sample group   gene_A gene_B gene_C gene_D\n   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n 1 s01    control    102     88     41     59\n 2 s02    control     98     91     44     62\n 3 s03    control    105     86     39     58\n 4 s04    control    100     93     43     61\n 5 s05    control     97     89     40     60\n 6 s06    treated    101     90     87    108\n 7 s07    treated     99     92     91    112\n 8 s08    treated    104     87     85    105\n 9 s09    treated     98     94     90    110\n10 s10    treated    103     88     88    107\n\n\n\nIn your Codespace you’ll read this from a file with read_csv(\"data/qpcr_plate_wide.csv\") — same data, straight off the machine.\n\n3.1 — Read the table. What does one row represent, and how many separate measurements are packed into each row?\n\n\n\n\n\n\nTipShow the answer\n\n\n\n\n\nEach row is one sample, and it holds four measurements (gene_A–gene_D). That is wide format — ggplot can’t plot it directly yet.\n\n\n\n3.2 — Reshape to long. Use pivot_longer() to stack the four gene columns into a gene column and a signal column.\n\n\n\n\n\n\nTipShow an example\n\n\n\n\n\n\nplate_long &lt;- plate |&gt;\n  pivot_longer(gene_A:gene_D, names_to = \"gene\", values_to = \"signal\")\nplate_long\n\n# A tibble: 40 × 4\n   sample group   gene   signal\n   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;\n 1 s01    control gene_A    102\n 2 s01    control gene_B     88\n 3 s01    control gene_C     41\n 4 s01    control gene_D     59\n 5 s02    control gene_A     98\n 6 s02    control gene_B     91\n 7 s02    control gene_C     44\n 8 s02    control gene_D     62\n 9 s03    control gene_A    105\n10 s03    control gene_B     86\n# ℹ 30 more rows\n\n\n\n\n\n3.3 — Plot it. Make a boxplot of signal by gene, filled by group. Which genes change between the control and treated samples?\n\n\n\n\n\n\nTipShow an example of a working plot\n\n\n\n\n\n\nggplot(plate_long, aes(x = gene, y = signal, fill = group)) +\n  geom_boxplot()",
     "crumbs": [
       "About the Kwon Lab",
       "RISE Workshops",
