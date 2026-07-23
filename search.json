@@ -60,778 +60,872 @@
     ]
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#section",
-    "href": "materials/r-tutorial/slides.html#section",
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#lets-warm-up",
+    "href": "materials/r-tutorial-rise-2026/slides.html#lets-warm-up",
+    "title": "Intro to Data Visualization in R",
+    "section": "Let’s warm up",
+    "text": "Let’s warm up\n\nGo to wooclap.com and enter event code DURBAN — or scan:"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#why-make-a-plot",
+    "href": "materials/r-tutorial-rise-2026/slides.html#why-make-a-plot",
+    "title": "Intro to Data Visualization in R",
+    "section": "Why make a plot?",
+    "text": "Why make a plot?\nFour datasets. Same summary statistics. Very different stories.\n\nA picture shows what a table of numbers hides."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#the-one-big-idea",
+    "href": "materials/r-tutorial-rise-2026/slides.html#the-one-big-idea",
+    "title": "Intro to Data Visualization in R",
+    "section": "The one big idea",
+    "text": "The one big idea\nEvery row in your table becomes one mark on the plot.\n\n\ngeom — the kind of mark and the rule for drawing it\nmark — what you actually see\nmapping — links a column to a property of the mark (in aes())"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#three-words-one-plot",
+    "href": "materials/r-tutorial-rise-2026/slides.html#three-words-one-plot",
+    "title": "Intro to Data Visualization in R",
+    "section": "Three words, one plot",
+    "text": "Three words, one plot\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +\n  geom_point()\n\n\nMark = dot · Mapping = flipper→x, mass→y, species→colour · one row = one dot."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#anatomy-of-ggplot",
+    "href": "materials/r-tutorial-rise-2026/slides.html#anatomy-of-ggplot",
+    "title": "Intro to Data Visualization in R",
+    "section": "Anatomy of ggplot()",
+    "text": "Anatomy of ggplot()\nggplot(penguins,                    # the data\n       aes(x = flipper_length_mm,   # mapping: column -&gt; x\n           y = body_mass_g,         # mapping: column -&gt; y\n           color = species)) +      # mapping: column -&gt; colour\n  geom_point()                      # geom: draw a dot per row"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#same-data-different-geom",
+    "href": "materials/r-tutorial-rise-2026/slides.html#same-data-different-geom",
+    "title": "Intro to Data Visualization in R",
+    "section": "Same data, different geom",
+    "text": "Same data, different geom\n\nggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot()\n\n\nA box summarises many rows. The mappings still mean the same thing."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#mapping-vs.-setting",
+    "href": "materials/r-tutorial-rise-2026/slides.html#mapping-vs.-setting",
+    "title": "Intro to Data Visualization in R",
+    "section": "Mapping vs. setting",
+    "text": "Mapping vs. setting\n\n\nInside aes() = mapping (from data)\ngeom_point(aes(color = species))\n\nOutside aes() = setting (one fixed value)\ngeom_point(color = \"navy\")\n\nThe most common beginner mix-up. Colour from a column vs. one fixed colour."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#the-pipe",
+    "href": "materials/r-tutorial-rise-2026/slides.html#the-pipe",
+    "title": "Intro to Data Visualization in R",
+    "section": "The pipe: |>",
+    "text": "The pipe: |&gt;\n|&gt; means “take this data, then…”\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  ggplot(aes(flipper_length_mm, body_mass_g)) +\n  geom_point()"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#quick-check-before-you-build",
+    "href": "materials/r-tutorial-rise-2026/slides.html#quick-check-before-you-build",
+    "title": "Intro to Data Visualization in R",
+    "section": "Quick check — before you build",
+    "text": "Quick check — before you build\n\nGo to wooclap.com and enter event code DURBAN — or scan:"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-a",
+    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-a",
+    "title": "Intro to Data Visualization in R",
+    "section": "Your turn — Exercise A",
+    "text": "Your turn — Exercise A\nOpen notebooks/01-visualization.qmd, Part A. For each plot, ask:\n\nWhat is the mark?\nWhich column → which property?\nHow many rows make one mark?\n\nThen build a scatter one line at a time, and swap in a boxplot."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#one-variable-many-values",
+    "href": "materials/r-tutorial-rise-2026/slides.html#one-variable-many-values",
+    "title": "Intro to Data Visualization in R",
+    "section": "One variable, many values",
+    "text": "One variable, many values\nSo far every plot compared two things (x vs y).\nSometimes you have just one column of numbers — say, the body mass of every penguin — and you want to see its shape:\n\nWhere do most values sit?\nAre they spread out or bunched up?\nAre there any surprises?"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#geom_histogram-count-rows-into-bins",
+    "href": "materials/r-tutorial-rise-2026/slides.html#geom_histogram-count-rows-into-bins",
+    "title": "Intro to Data Visualization in R",
+    "section": "geom_histogram — count rows into bins",
+    "text": "geom_histogram — count rows into bins\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250)\n\n\nCut the range into bins, then count how many rows fall in each. The bar’s height is a count of rows. (Still: every row lands in exactly one mark.)"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#the-boxplot-is-a-distribution-too",
+    "href": "materials/r-tutorial-rise-2026/slides.html#the-boxplot-is-a-distribution-too",
+    "title": "Intro to Data Visualization in R",
+    "section": "The boxplot is a distribution too",
+    "text": "The boxplot is a distribution too\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot()\n\n\nA histogram shows one distribution in detail. A boxplot squeezes each distribution into one box — handy for comparing groups side by side."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#same-question-different-geoms",
+    "href": "materials/r-tutorial-rise-2026/slides.html#same-question-different-geoms",
+    "title": "Intro to Data Visualization in R",
+    "section": "Same question, different geoms",
+    "text": "Same question, different geoms\n\ngeom_histogram — the full shape of one distribution\ngeom_boxplot — a compact summary, great for comparing groups\nBoth answer: “what do these numbers look like?”"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-b",
+    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-b",
+    "title": "Intro to Data Visualization in R",
+    "section": "Your turn — Exercise B",
+    "text": "Your turn — Exercise B\nIn notebooks/01-visualization.qmd, Part B:\n\nMake a histogram of flipper_length_mm.\nChange the binwidth and watch the shape change.\nMake a boxplot of body_mass_g by species."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#quick-check-reshaping-data",
+    "href": "materials/r-tutorial-rise-2026/slides.html#quick-check-reshaping-data",
+    "title": "Intro to Data Visualization in R",
+    "section": "Quick check — reshaping data",
+    "text": "Quick check — reshaping data\n\nGo to wooclap.com and enter event code DURBAN — or scan:"
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#data-off-a-machine",
+    "href": "materials/r-tutorial-rise-2026/slides.html#data-off-a-machine",
+    "title": "Intro to Data Visualization in R",
+    "section": "Data off a machine",
+    "text": "Data off a machine\nA plate reader gives you one row per sample, with a separate column for each gene it measured:\n\n\n\n\n\nsample\ngroup\ngene_A\ngene_B\ngene_C\ngene_D\n\n\n\n\ns01\ncontrol\n102\n88\n41\n59\n\n\ns02\ncontrol\n98\n91\n44\n62\n\n\ns03\ncontrol\n105\n86\n39\n58\n\n\ns04\ncontrol\n100\n93\n43\n61\n\n\n\n\n\nFour measurements are crammed into one row. This is wide format — easy for the machine, hard for ggplot."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#ggplot-wants-tidy-data",
+    "href": "materials/r-tutorial-rise-2026/slides.html#ggplot-wants-tidy-data",
+    "title": "Intro to Data Visualization in R",
+    "section": "ggplot wants tidy data",
+    "text": "ggplot wants tidy data\nThe rule: one row = one observation, one column = one variable.\nOne measurement of one gene in one sample is an observation — so it should be its own row, with a gene column and a signal column."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#pivot_longer-from-wide-to-long",
+    "href": "materials/r-tutorial-rise-2026/slides.html#pivot_longer-from-wide-to-long",
+    "title": "Intro to Data Visualization in R",
+    "section": "pivot_longer — from wide to long",
+    "text": "pivot_longer — from wide to long\n\nplate_long &lt;- plate |&gt;\n  pivot_longer(gene_A:gene_D, names_to = \"gene\", values_to = \"signal\")\n\n\n\n\n\n\nsample\ngroup\ngene\nsignal\n\n\n\n\ns01\ncontrol\ngene_A\n102\n\n\ns01\ncontrol\ngene_B\n88\n\n\ns01\ncontrol\ngene_C\n41\n\n\ns01\ncontrol\ngene_D\n59\n\n\n\n\n\nThe gene column names become values in a gene column; the numbers stack into a signal column. Now each row is one measurement."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#the-payoff-now-you-can-plot-it",
+    "href": "materials/r-tutorial-rise-2026/slides.html#the-payoff-now-you-can-plot-it",
+    "title": "Intro to Data Visualization in R",
+    "section": "The payoff: now you can plot it",
+    "text": "The payoff: now you can plot it\n\nggplot(plate_long, aes(x = gene, y = signal, fill = group)) +\n  geom_boxplot()\n\n\nWide data couldn’t make this plot. One pivot_longer unlocked it — and the treatment story (genes C & D switch on) jumps right out."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-c",
+    "href": "materials/r-tutorial-rise-2026/slides.html#your-turn-exercise-c",
+    "title": "Intro to Data Visualization in R",
+    "section": "Your turn — Exercise C",
+    "text": "Your turn — Exercise C\nIn notebooks/01-visualization.qmd, Part C:\n\nread_csv() the wide plate file and look at it.\npivot_longer() the gene columns into gene and signal.\nPlot signal by gene, filled by group."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#what-you-learned-today",
+    "href": "materials/r-tutorial-rise-2026/slides.html#what-you-learned-today",
+    "title": "Intro to Data Visualization in R",
+    "section": "What you learned today",
+    "text": "What you learned today\n\nEvery row becomes a mark; the geom draws it; aes() maps columns to properties.\nDistributions: geom_histogram and geom_boxplot show the shape of numbers.\nTidy data: real data often arrives wide; pivot_longer makes it plottable."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#section",
+    "href": "materials/r-tutorial-rise-2025/slides.html#section",
     "title": "tidyverse for data analysis",
     "section": "",
     "text": "Workshop materials are here:\nhttps://kwondry.github.io/documentation/"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#section-1",
-    "href": "materials/r-tutorial/slides.html#section-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#section-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#section-1",
     "title": "tidyverse for data analysis",
     "section": "",
     "text": "Goals for this session\n\n\nRStudio and the Quarto notebook\nLoading and writing tabular data\nData wrangling and make plots with the tidyverse\nTables and statistics"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#lets-take-a-poll",
-    "href": "materials/r-tutorial/slides.html#lets-take-a-poll",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll",
+    "href": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll",
     "title": "tidyverse for data analysis",
     "section": "Let’s take a poll",
     "text": "Let’s take a poll\nGo to the event on wooclap"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#create-a-project",
-    "href": "materials/r-tutorial/slides.html#create-a-project",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#create-a-project",
+    "href": "materials/r-tutorial-rise-2025/slides.html#create-a-project",
     "title": "tidyverse for data analysis",
     "section": "Create a project",
     "text": "Create a project"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#lets-take-a-poll-1",
-    "href": "materials/r-tutorial/slides.html#lets-take-a-poll-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll-1",
     "title": "tidyverse for data analysis",
     "section": "Let’s take a poll",
     "text": "Let’s take a poll\nGo to the event on wooclap"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#installing-and-loading-packages",
-    "href": "materials/r-tutorial/slides.html#installing-and-loading-packages",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#installing-and-loading-packages",
+    "href": "materials/r-tutorial-rise-2025/slides.html#installing-and-loading-packages",
     "title": "tidyverse for data analysis",
     "section": "Installing and loading packages",
     "text": "Installing and loading packages\n\nPackages are a collection of functions and objects that are shared for free to use.\nIn the console, you can type e.g. install.packages(\"tidyverse\") to install most R packages.\nSometimes R packages need to be installed a different way, and the documentation of the package will tell you how.\nThen, to load a package, add library(\"tidyverse\") in a code chunk (usually in the first code cell of your document)"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#quartos-code-chunk",
-    "href": "materials/r-tutorial/slides.html#quartos-code-chunk",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#quartos-code-chunk",
+    "href": "materials/r-tutorial-rise-2025/slides.html#quartos-code-chunk",
     "title": "tidyverse for data analysis",
     "section": "Quarto’s Code Chunk",
     "text": "Quarto’s Code Chunk\nYou can quickly insert chunks like these into your file with\n\nthe keyboard shortcut Ctrl + Alt + I (OS X: Shift + Command + I)\nthe Add Chunk  command in the editor toolbar\n\nor by typing the chunk delimiters\n```{r}\n```\n\nExample chunk:\n\n\n```{r}\n10 + 5\n```\n\nTry writing a math expression in a code chunk, and hitting the  button or Ctrl + Alt + Enter (OS X: Cmd + Option + Enter) to run the chunk."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#writing-code-assigning-variables",
-    "href": "materials/r-tutorial/slides.html#writing-code-assigning-variables",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#writing-code-assigning-variables",
+    "href": "materials/r-tutorial-rise-2025/slides.html#writing-code-assigning-variables",
     "title": "tidyverse for data analysis",
     "section": "Writing code: assigning variables",
     "text": "Writing code: assigning variables\nYou can use &lt;- or = to assign values to variables\na &lt;- 6\nb = 8\nc &lt;- 5.44\nd = TRUE\ne = \"hello world\" \ne &lt;- 'hello world' # same as double quote\nWe will use &lt;- for all examples going forward."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#naming-variables",
-    "href": "materials/r-tutorial/slides.html#naming-variables",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#naming-variables",
+    "href": "materials/r-tutorial-rise-2025/slides.html#naming-variables",
     "title": "tidyverse for data analysis",
     "section": "Naming variables",
     "text": "Naming variables\nA lot of R people use . inside variable names, but in most languages besides R this would be an error. It’s good practice these days to use the _ underscore if you want separation in your variable names.\nr.people.sometimes.put.dots &lt;- TRUE\ndots.are.confusing &lt;- \"maybe\"\njust_use_underscores &lt;- \"please\""
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#functions",
-    "href": "materials/r-tutorial/slides.html#functions",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#functions",
+    "href": "materials/r-tutorial-rise-2025/slides.html#functions",
     "title": "tidyverse for data analysis",
     "section": "Functions",
     "text": "Functions\nFunctions are named bits of code that take parameters as input and return some output\n\nlibrary(tidyverse)\nword_1 &lt;- \"hello\"\nword_2 &lt;- \"world\"\nstr_c(word_1, word_2, sep = \" \")\n\n[1] \"hello world\"\n\n\nstr_c is a function that puts concatenates strings.\nfunctions can have named parameters as well as positional parameters.\nnamed parameters always take an = sign for assignment."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#getting-help-with-functions",
-    "href": "materials/r-tutorial/slides.html#getting-help-with-functions",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#getting-help-with-functions",
+    "href": "materials/r-tutorial-rise-2025/slides.html#getting-help-with-functions",
     "title": "tidyverse for data analysis",
     "section": "Getting help with functions",
     "text": "Getting help with functions\n\n\n\nType ?str_c in the console to get a help page. check out this guide on how to read the R help pages.\nGoogle! Add “tidyverse” to search queries to get more relevant results.\nphind.com and chat.deepseek.com are good free AI services for getting help with code."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#value-types-in-r",
-    "href": "materials/r-tutorial/slides.html#value-types-in-r",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#value-types-in-r",
+    "href": "materials/r-tutorial-rise-2025/slides.html#value-types-in-r",
     "title": "tidyverse for data analysis",
     "section": "Value types in R",
     "text": "Value types in R\nThe type of the value can be\n# numeric\nc(1,2,3,4) \n\n# character\nc(\"a\",\"b\",\"c\",\"d\")\n\n# boolean\nc(TRUE, FALSE)\n\n# factor\nc(\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\") %&gt;% as_factor()\n\n\n\n−+\n05:00"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#tibbles-aka-data-frames",
-    "href": "materials/r-tutorial/slides.html#tibbles-aka-data-frames",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#tibbles-aka-data-frames",
+    "href": "materials/r-tutorial-rise-2025/slides.html#tibbles-aka-data-frames",
     "title": "tidyverse for data analysis",
     "section": "tibbles (aka data frames)",
     "text": "tibbles (aka data frames)\ntibbles are the big reason R is great for working with tabular data.\nA data frame is a rectangular collection of variables (in the columns) and observations (in the rows).\n\ntable_02\n\n# A tibble: 132 × 6\n   pid    time_point arm     nugent_score crp_blood    ph\n   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n 1 pid_01 baseline   placebo            8      0.44   5.7\n 2 pid_01 week_1     placebo            7      1.66   5.2\n 3 pid_01 week_7     placebo            7      1.44   5.4\n 4 pid_02 baseline   placebo            7      1.55   5.2\n 5 pid_02 week_1     placebo            7      0.75   4.8\n 6 pid_02 week_7     placebo            4      1.17   4.2\n 7 pid_03 baseline   placebo            6      1.78   4.8\n 8 pid_03 week_1     placebo           10      0.57   5.3\n 9 pid_03 week_7     placebo            7      1.79   5.2\n10 pid_04 baseline   placebo            5      1.76   4.8\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#examples-of-coding",
-    "href": "materials/r-tutorial/slides.html#examples-of-coding",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#examples-of-coding",
+    "href": "materials/r-tutorial-rise-2025/slides.html#examples-of-coding",
     "title": "tidyverse for data analysis",
     "section": "Examples of coding",
     "text": "Examples of coding\nQuick live demo of doing some work in R\n\nAssigning variables\nVectors are magic\nFunctions and getting help"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#how-to-read-in-data",
-    "href": "materials/r-tutorial/slides.html#how-to-read-in-data",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#how-to-read-in-data",
+    "href": "materials/r-tutorial-rise-2025/slides.html#how-to-read-in-data",
     "title": "tidyverse for data analysis",
     "section": "How to read in data?",
     "text": "How to read in data?\nData is often in tables, and the easiest way to store tabular data is in csv or tsv format.\ncsv - comma separated values\ntsv - tab separated values\nto read in data stored this way use read_csv(filename) or read_tsv(filename)\ntable_02 &lt;- read_csv(\"data/02_visit_clinical_measurements.csv\")"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#but-first-the-pipe-operator",
-    "href": "materials/r-tutorial/slides.html#but-first-the-pipe-operator",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#but-first-the-pipe-operator",
+    "href": "materials/r-tutorial-rise-2025/slides.html#but-first-the-pipe-operator",
     "title": "tidyverse for data analysis",
     "section": "But first: the pipe operator %>%",
     "text": "But first: the pipe operator %&gt;%"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#but-first-the-pipe-operator-1",
-    "href": "materials/r-tutorial/slides.html#but-first-the-pipe-operator-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#but-first-the-pipe-operator-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#but-first-the-pipe-operator-1",
     "title": "tidyverse for data analysis",
     "section": "But first: the pipe operator %>%",
     "text": "But first: the pipe operator %&gt;%\n\n%&gt;% is pronounced “and then”"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions",
-    "href": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions",
     "title": "tidyverse for data analysis",
     "section": "The pipe %>% feeds data into functions",
     "text": "The pipe %&gt;% feeds data into functions\n\n```{r}\nhead(table_02)\n```\n\n# A tibble: 6 × 6\n  pid    time_point arm     nugent_score crp_blood    ph\n  &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1 pid_01 baseline   placebo            8      0.44   5.7\n2 pid_01 week_1     placebo            7      1.66   5.2\n3 pid_01 week_7     placebo            7      1.44   5.4\n4 pid_02 baseline   placebo            7      1.55   5.2\n5 pid_02 week_1     placebo            7      0.75   4.8\n6 pid_02 week_7     placebo            4      1.17   4.2"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions-1",
-    "href": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions-1",
     "title": "tidyverse for data analysis",
     "section": "The pipe %>% feeds data into functions",
     "text": "The pipe %&gt;% feeds data into functions\n\n```{r}\n# head(table_02)\ntable_02 %&gt;%\n  head()\n```\n\n# A tibble: 6 × 6\n  pid    time_point arm     nugent_score crp_blood    ph\n  &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1 pid_01 baseline   placebo            8      0.44   5.7\n2 pid_01 week_1     placebo            7      1.66   5.2\n3 pid_01 week_7     placebo            7      1.44   5.4\n4 pid_02 baseline   placebo            7      1.55   5.2\n5 pid_02 week_1     placebo            7      0.75   4.8\n6 pid_02 week_7     placebo            4      1.17   4.2"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions-2",
-    "href": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions-2",
     "title": "tidyverse for data analysis",
     "section": "The pipe %>% feeds data into functions",
     "text": "The pipe %&gt;% feeds data into functions\n\n```{r}\nggplot(table_02, aes(crp_blood, ph, color = arm)) + geom_point()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions-3",
-    "href": "materials/r-tutorial/slides.html#the-pipe-feeds-data-into-functions-3",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions-3",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-pipe-feeds-data-into-functions-3",
     "title": "tidyverse for data analysis",
     "section": "The pipe %>% feeds data into functions",
     "text": "The pipe %&gt;% feeds data into functions\n\n```{r}\ntable_02 %&gt;%\n  ggplot(aes(crp_blood, ph, color = arm)) + geom_point()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#since-r-4.1-native-pipe",
-    "href": "materials/r-tutorial/slides.html#since-r-4.1-native-pipe",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#since-r-4.1-native-pipe",
+    "href": "materials/r-tutorial-rise-2025/slides.html#since-r-4.1-native-pipe",
     "title": "tidyverse for data analysis",
     "section": "Since R 4.1: Native pipe |>",
     "text": "Since R 4.1: Native pipe |&gt;\n\n```{r}\ntable_02 |&gt;\n  ggplot(aes(crp_blood, ph, color = arm)) + geom_point()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#which-to-use-native-pipe-or-old-school-pipe",
-    "href": "materials/r-tutorial/slides.html#which-to-use-native-pipe-or-old-school-pipe",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#which-to-use-native-pipe-or-old-school-pipe",
+    "href": "materials/r-tutorial-rise-2025/slides.html#which-to-use-native-pipe-or-old-school-pipe",
     "title": "tidyverse for data analysis",
     "section": "Which to use? Native pipe or old-school pipe?",
     "text": "Which to use? Native pipe or old-school pipe?\n\n\n|&gt; is the future. If you can, use it.\n%&gt;% works on older installations. It’s the safe choice for now.\n\nWe use %&gt;% here because many people still run older R versions. Also, we’re old school."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#pick-rows-from-a-table-filter",
-    "href": "materials/r-tutorial/slides.html#pick-rows-from-a-table-filter",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#pick-rows-from-a-table-filter",
+    "href": "materials/r-tutorial-rise-2025/slides.html#pick-rows-from-a-table-filter",
     "title": "tidyverse for data analysis",
     "section": "Pick rows from a table: filter()",
     "text": "Pick rows from a table: filter()"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#filter-only-placebo",
-    "href": "materials/r-tutorial/slides.html#filter-only-placebo",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#filter-only-placebo",
+    "href": "materials/r-tutorial-rise-2025/slides.html#filter-only-placebo",
     "title": "tidyverse for data analysis",
     "section": "Filter only placebo",
     "text": "Filter only placebo\n\n```{r}\ntable_02 %&gt;%\n  filter(arm == \"placebo\")\n```\n\n# A tibble: 69 × 6\n   pid    time_point arm     nugent_score crp_blood    ph\n   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n 1 pid_01 baseline   placebo            8      0.44   5.7\n 2 pid_01 week_1     placebo            7      1.66   5.2\n 3 pid_01 week_7     placebo            7      1.44   5.4\n 4 pid_02 baseline   placebo            7      1.55   5.2\n 5 pid_02 week_1     placebo            7      0.75   4.8\n 6 pid_02 week_7     placebo            4      1.17   4.2\n 7 pid_03 baseline   placebo            6      1.78   4.8\n 8 pid_03 week_1     placebo           10      0.57   5.3\n 9 pid_03 week_7     placebo            7      1.79   5.2\n10 pid_04 baseline   placebo            5      1.76   4.8\n# ℹ 59 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#filter-out-samples-with-ph-4",
-    "href": "materials/r-tutorial/slides.html#filter-out-samples-with-ph-4",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#filter-out-samples-with-ph-4",
+    "href": "materials/r-tutorial-rise-2025/slides.html#filter-out-samples-with-ph-4",
     "title": "tidyverse for data analysis",
     "section": "Filter out samples with ph < 4",
     "text": "Filter out samples with ph &lt; 4\n\n```{r}\ntable_02 %&gt;%\n  filter(ph &lt; 4)\n```\n\n# A tibble: 39 × 6\n   pid    time_point arm       nugent_score crp_blood    ph\n   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n 1 pid_05 week_1     treatment            3      0.19   3.2\n 2 pid_05 week_7     treatment            2      0.45   3.5\n 3 pid_09 week_1     treatment            3      0.27   3.6\n 4 pid_10 week_1     treatment            0      0.01   3.5\n 5 pid_10 week_7     treatment            1      2.87   2.9\n 6 pid_11 week_1     treatment            1      0.1    3.3\n 7 pid_15 week_1     treatment            3      0.84   3.4\n 8 pid_15 week_7     treatment            3      0.68   3.5\n 9 pid_16 week_1     treatment            0      0.03   3.7\n10 pid_16 week_7     treatment            2      0.5    3.2\n# ℹ 29 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#pick-columns-from-a-table-select",
-    "href": "materials/r-tutorial/slides.html#pick-columns-from-a-table-select",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#pick-columns-from-a-table-select",
+    "href": "materials/r-tutorial-rise-2025/slides.html#pick-columns-from-a-table-select",
     "title": "tidyverse for data analysis",
     "section": "Pick columns from a table: select()",
     "text": "Pick columns from a table: select()"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#pick-columns-pid-ph-and-nugent",
-    "href": "materials/r-tutorial/slides.html#pick-columns-pid-ph-and-nugent",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#pick-columns-pid-ph-and-nugent",
+    "href": "materials/r-tutorial-rise-2025/slides.html#pick-columns-pid-ph-and-nugent",
     "title": "tidyverse for data analysis",
     "section": "Pick columns pid, ph, and nugent",
     "text": "Pick columns pid, ph, and nugent\n\n```{r}\ntable_02 %&gt;%\n  select(pid, ph, nugent_score)\n```\n\n# A tibble: 132 × 3\n   pid       ph nugent_score\n   &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;\n 1 pid_01   5.7            8\n 2 pid_01   5.2            7\n 3 pid_01   5.4            7\n 4 pid_02   5.2            7\n 5 pid_02   4.8            7\n 6 pid_02   4.2            4\n 7 pid_03   4.8            6\n 8 pid_03   5.3           10\n 9 pid_03   5.2            7\n10 pid_04   4.8            5\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#rename-columns-and-subset-with-select",
-    "href": "materials/r-tutorial/slides.html#rename-columns-and-subset-with-select",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#rename-columns-and-subset-with-select",
+    "href": "materials/r-tutorial-rise-2025/slides.html#rename-columns-and-subset-with-select",
     "title": "tidyverse for data analysis",
     "section": "Rename columns and subset with select",
     "text": "Rename columns and subset with select\n\n```{r}\ntable_02 %&gt;%\n  select(participant_id = pid, ph, nugent_score)\n```\n\n# A tibble: 132 × 3\n   participant_id    ph nugent_score\n   &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;\n 1 pid_01           5.7            8\n 2 pid_01           5.2            7\n 3 pid_01           5.4            7\n 4 pid_02           5.2            7\n 5 pid_02           4.8            7\n 6 pid_02           4.2            4\n 7 pid_03           4.8            6\n 8 pid_03           5.3           10\n 9 pid_03           5.2            7\n10 pid_04           4.8            5\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#sort-the-rows-in-a-table-arrange",
-    "href": "materials/r-tutorial/slides.html#sort-the-rows-in-a-table-arrange",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#sort-the-rows-in-a-table-arrange",
+    "href": "materials/r-tutorial-rise-2025/slides.html#sort-the-rows-in-a-table-arrange",
     "title": "tidyverse for data analysis",
     "section": "Sort the rows in a table: arrange()",
     "text": "Sort the rows in a table: arrange()"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#sort-samples-by-ph-ascending",
-    "href": "materials/r-tutorial/slides.html#sort-samples-by-ph-ascending",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#sort-samples-by-ph-ascending",
+    "href": "materials/r-tutorial-rise-2025/slides.html#sort-samples-by-ph-ascending",
     "title": "tidyverse for data analysis",
     "section": "Sort samples by ph ascending",
     "text": "Sort samples by ph ascending\n\n```{r}\ntable_02 %&gt;%\n  arrange(ph)\n```\n\n# A tibble: 132 × 6\n   pid    time_point arm       nugent_score crp_blood    ph\n   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n 1 pid_31 week_7     treatment            2      1.36   2.8\n 2 pid_10 week_7     treatment            1      2.87   2.9\n 3 pid_28 baseline   treatment            3      0.67   2.9\n 4 pid_26 week_1     treatment            0      0.11   3  \n 5 pid_23 week_7     placebo              3      3.67   3.1\n 6 pid_40 baseline   treatment            3      1.48   3.1\n 7 pid_40 week_1     treatment            2      0.17   3.1\n 8 pid_05 week_1     treatment            3      0.19   3.2\n 9 pid_16 week_7     treatment            2      0.5    3.2\n10 pid_37 week_7     treatment            2      0.7    3.2\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#sort-samples-by-ph-descending",
-    "href": "materials/r-tutorial/slides.html#sort-samples-by-ph-descending",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#sort-samples-by-ph-descending",
+    "href": "materials/r-tutorial-rise-2025/slides.html#sort-samples-by-ph-descending",
     "title": "tidyverse for data analysis",
     "section": "Sort samples by ph, descending",
     "text": "Sort samples by ph, descending\n\n```{r}\ntable_02 %&gt;%\n  arrange(desc(ph))\n```\n\n# A tibble: 132 × 6\n   pid    time_point arm       nugent_score crp_blood    ph\n   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n 1 pid_29 baseline   placebo              7      2.39   5.8\n 2 pid_01 baseline   placebo              8      0.44   5.7\n 3 pid_16 baseline   treatment            6      1.91   5.7\n 4 pid_06 week_1     placebo              8      1.72   5.6\n 5 pid_26 baseline   treatment            7      0.94   5.6\n 6 pid_13 week_1     placebo              7      2.57   5.5\n 7 pid_23 week_1     placebo              8      0.8    5.5\n 8 pid_27 baseline   placebo              7      1.17   5.5\n 9 pid_01 week_7     placebo              7      1.44   5.4\n10 pid_04 week_7     placebo              7      5.68   5.4\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#counting-things",
-    "href": "materials/r-tutorial/slides.html#counting-things",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#counting-things",
+    "href": "materials/r-tutorial-rise-2025/slides.html#counting-things",
     "title": "tidyverse for data analysis",
     "section": "Counting things",
     "text": "Counting things\nTo demonstrate counting, let’s switch to table_01\n\n```{r}\ntable_01\n```\n\n# A tibble: 44 × 6\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#counting-things-1",
-    "href": "materials/r-tutorial/slides.html#counting-things-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#counting-things-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#counting-things-1",
     "title": "tidyverse for data analysis",
     "section": "Counting things",
     "text": "Counting things\n\n```{r}\ntable_01 %&gt;%\n  count(smoker)\n```\n\n# A tibble: 2 × 2\n  smoker         n\n  &lt;chr&gt;      &lt;int&gt;\n1 non-smoker    27\n2 smoker        17"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#counting-things-2",
-    "href": "materials/r-tutorial/slides.html#counting-things-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#counting-things-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#counting-things-2",
     "title": "tidyverse for data analysis",
     "section": "Counting things",
     "text": "Counting things\n\n```{r}\ntable_01 %&gt;%\n  count(arm, smoker)\n```\n\n# A tibble: 4 × 3\n  arm       smoker         n\n  &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;\n1 placebo   non-smoker    12\n2 placebo   smoker        11\n3 treatment non-smoker    15\n4 treatment smoker         6"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#lets-take-a-poll-2",
-    "href": "materials/r-tutorial/slides.html#lets-take-a-poll-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll-2",
     "title": "tidyverse for data analysis",
     "section": "Let’s take a poll",
     "text": "Let’s take a poll\nGo to the event on wooclap\n\nM2. Does filter get rid of rows that match TRUE, or keep rows that match TRUE?"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#use-the-pipe-to-build-analysis-pipelines",
-    "href": "materials/r-tutorial/slides.html#use-the-pipe-to-build-analysis-pipelines",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#use-the-pipe-to-build-analysis-pipelines",
+    "href": "materials/r-tutorial-rise-2025/slides.html#use-the-pipe-to-build-analysis-pipelines",
     "title": "tidyverse for data analysis",
     "section": "Use the pipe to build analysis pipelines",
     "text": "Use the pipe to build analysis pipelines\n\n```{r}\ntable_01 %&gt;%\n  filter(arm == \"placebo\")\n```\n\n# A tibble: 23 × 6\n   pid    arm     smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo smoker        30 post-secondary                Female\n 4 pid_04 placebo non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_06 placebo smoker        34 post-secondary                Female\n 6 pid_07 placebo non-smoker    31 grade 10-12, not matriculated Female\n 7 pid_08 placebo smoker        30 grade 10-12, not matriculated Female\n 8 pid_12 placebo non-smoker    31 grade 10-12, matriculated     Female\n 9 pid_13 placebo non-smoker    32 post-secondary                Female\n10 pid_14 placebo smoker        32 grade 10-12, matriculated     Female\n# ℹ 13 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#use-the-pipe-to-build-analysis-pipelines-1",
-    "href": "materials/r-tutorial/slides.html#use-the-pipe-to-build-analysis-pipelines-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#use-the-pipe-to-build-analysis-pipelines-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#use-the-pipe-to-build-analysis-pipelines-1",
     "title": "tidyverse for data analysis",
     "section": "Use the pipe to build analysis pipelines",
     "text": "Use the pipe to build analysis pipelines\n\n```{r}\ntable_01 %&gt;%\n  filter(age &lt; 30) %&gt;%\n  select(pid, arm, smoker)\n```\n\n# A tibble: 12 × 3\n   pid    arm       smoker    \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     \n 1 pid_01 placebo   non-smoker\n 2 pid_05 treatment non-smoker\n 3 pid_15 treatment non-smoker\n 4 pid_17 treatment non-smoker\n 5 pid_21 treatment non-smoker\n 6 pid_27 placebo   smoker    \n 7 pid_30 placebo   non-smoker\n 8 pid_31 treatment non-smoker\n 9 pid_35 placebo   non-smoker\n10 pid_36 placebo   non-smoker\n11 pid_41 treatment smoker    \n12 pid_44 treatment non-smoker"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#use-the-pipe-to-build-analysis-pipelines-2",
-    "href": "materials/r-tutorial/slides.html#use-the-pipe-to-build-analysis-pipelines-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#use-the-pipe-to-build-analysis-pipelines-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#use-the-pipe-to-build-analysis-pipelines-2",
     "title": "tidyverse for data analysis",
     "section": "Use the pipe to build analysis pipelines",
     "text": "Use the pipe to build analysis pipelines\n\n```{r}\ntable_01 %&gt;%\n  filter(age &lt; 30) %&gt;%\n  select(pid, arm, smoker) %&gt;%\n  count(arm, smoker)\n```\n\n# A tibble: 4 × 3\n  arm       smoker         n\n  &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;\n1 placebo   non-smoker     4\n2 placebo   smoker         1\n3 treatment non-smoker     6\n4 treatment smoker         1"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#adding-new-columns-to-a-table",
-    "href": "materials/r-tutorial/slides.html#adding-new-columns-to-a-table",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#adding-new-columns-to-a-table",
+    "href": "materials/r-tutorial-rise-2025/slides.html#adding-new-columns-to-a-table",
     "title": "tidyverse for data analysis",
     "section": "Adding new columns to a table",
     "text": "Adding new columns to a table"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#make-a-new-table-column-mutate",
-    "href": "materials/r-tutorial/slides.html#make-a-new-table-column-mutate",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#make-a-new-table-column-mutate",
+    "href": "materials/r-tutorial-rise-2025/slides.html#make-a-new-table-column-mutate",
     "title": "tidyverse for data analysis",
     "section": "Make a new table column: mutate()",
     "text": "Make a new table column: mutate()"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-c-reactive-protein",
-    "href": "materials/r-tutorial/slides.html#example-c-reactive-protein",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-c-reactive-protein",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-c-reactive-protein",
     "title": "tidyverse for data analysis",
     "section": "Example: C-reactive protein",
     "text": "Example: C-reactive protein\nThe crp_blood column is in units of mg/L. What if you needed it in ug/ul? What’s the calculation?\n\n```{r}\ntable_02 %&gt;%\n  select(pid, time_point, crp_blood)\n```\n\n# A tibble: 132 × 3\n   pid    time_point crp_blood\n   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;\n 1 pid_01 baseline        0.44\n 2 pid_01 week_1          1.66\n 3 pid_01 week_7          1.44\n 4 pid_02 baseline        1.55\n 5 pid_02 week_1          0.75\n 6 pid_02 week_7          1.17\n 7 pid_03 baseline        1.78\n 8 pid_03 week_1          0.57\n 9 pid_03 week_7          1.79\n10 pid_04 baseline        1.76\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-c-reactive-protein-1",
-    "href": "materials/r-tutorial/slides.html#example-c-reactive-protein-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-c-reactive-protein-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-c-reactive-protein-1",
     "title": "tidyverse for data analysis",
     "section": "Example: C-reactive protein",
     "text": "Example: C-reactive protein\nThe crp_blood column is in units of mg/L. What if you needed it in ug/ul? What’s the calculation?\nTo get ug/L you would multiply by 1000. To get ug/ul you need to then divide by 1000000\n\n```{r}\ntable_02 %&gt;%\n  select(pid, time_point, crp_blood)\n```\n\n# A tibble: 132 × 3\n   pid    time_point crp_blood\n   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;\n 1 pid_01 baseline        0.44\n 2 pid_01 week_1          1.66\n 3 pid_01 week_7          1.44\n 4 pid_02 baseline        1.55\n 5 pid_02 week_1          0.75\n 6 pid_02 week_7          1.17\n 7 pid_03 baseline        1.78\n 8 pid_03 week_1          0.57\n 9 pid_03 week_7          1.79\n10 pid_04 baseline        1.76\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-c-reactive-protein-2",
-    "href": "materials/r-tutorial/slides.html#example-c-reactive-protein-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-c-reactive-protein-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-c-reactive-protein-2",
     "title": "tidyverse for data analysis",
     "section": "Example: C-reactive protein",
     "text": "Example: C-reactive protein\nThe crp_blood column is in units of mg/L. What if you needed it in ug/ul? What’s the calculation?\nTo get ug/L you would multiply by 1000. To get ug/ul you need to then divide by 1000000\n\n```{r}\ntable_02 %&gt;%\n  select(pid, time_point, crp_blood) %&gt;%\n  mutate(crp_blood_ugul = crp_blood / 1000)\n```\n\n# A tibble: 132 × 4\n   pid    time_point crp_blood crp_blood_ugul\n   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt;\n 1 pid_01 baseline        0.44        0.00044\n 2 pid_01 week_1          1.66        0.00166\n 3 pid_01 week_7          1.44        0.00144\n 4 pid_02 baseline        1.55        0.00155\n 5 pid_02 week_1          0.75        0.00075\n 6 pid_02 week_7          1.17        0.00117\n 7 pid_03 baseline        1.78        0.00178\n 8 pid_03 week_1          0.57        0.00057\n 9 pid_03 week_7          1.79        0.00179\n10 pid_04 baseline        1.76        0.00176\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
-    "href": "materials/r-tutorial/slides.html#make-multiple-columns-at-once",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#make-multiple-columns-at-once",
+    "href": "materials/r-tutorial-rise-2025/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
     "text": "Make multiple columns at once\n\n```{r}\ntable_02 %&gt;%\n  select(pid, time_point, crp_blood) %&gt;%\n  mutate(crp_blood_ugul = crp_blood / 1000,\n         crp_blood_ugl = crp_blood * 1000)\n```\n\n# A tibble: 132 × 5\n   pid    time_point crp_blood crp_blood_ugul crp_blood_ugl\n   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;          &lt;dbl&gt;         &lt;dbl&gt;\n 1 pid_01 baseline        0.44        0.00044           440\n 2 pid_01 week_1          1.66        0.00166          1660\n 3 pid_01 week_7          1.44        0.00144          1440\n 4 pid_02 baseline        1.55        0.00155          1550\n 5 pid_02 week_1          0.75        0.00075           750\n 6 pid_02 week_7          1.17        0.00117          1170\n 7 pid_03 baseline        1.78        0.00178          1780\n 8 pid_03 week_1          0.57        0.00057           570\n 9 pid_03 week_7          1.79        0.00179          1790\n10 pid_04 baseline        1.76        0.00176          1760\n# ℹ 122 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#exercise",
-    "href": "materials/r-tutorial/slides.html#exercise",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#exercise",
+    "href": "materials/r-tutorial-rise-2025/slides.html#exercise",
     "title": "tidyverse for data analysis",
     "section": "Exercise",
     "text": "Exercise\nThat’s enough slides for now time to try for yourself! Go to the module and go to Exercise 1.\n\n\n\n−+\n20:00"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#exercise-2",
-    "href": "materials/r-tutorial/slides.html#exercise-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#exercise-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#exercise-2",
     "title": "tidyverse for data analysis",
     "section": "Exercise 2",
     "text": "Exercise 2\n\n\n\n−+\n30:00\n\n\n\nGet in groups of three. On excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#plots-map-data-onto-graphical-elements.",
-    "href": "materials/r-tutorial/slides.html#plots-map-data-onto-graphical-elements.",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#plots-map-data-onto-graphical-elements.",
+    "href": "materials/r-tutorial-rise-2025/slides.html#plots-map-data-onto-graphical-elements.",
     "title": "tidyverse for data analysis",
     "section": "Plots map data onto graphical elements.",
     "text": "Plots map data onto graphical elements.\n\n\n\n\nTable 1: 02_visit_clinical_measurements_UKZN_workshop_2023.csv\n\n\n\n\n\n\npid\ntime_point\narm\nnugent_score\ncrp_blood\nph\n\n\n\n\npid_01\nbaseline\nplacebo\n8\n0.44\n5.7\n\n\npid_01\nweek_1\nplacebo\n7\n1.66\n5.2\n\n\npid_01\nweek_7\nplacebo\n7\n1.44\n5.4\n\n\npid_02\nbaseline\nplacebo\n7\n1.55\n5.2\n\n\npid_02\nweek_1\nplacebo\n7\n0.75\n4.8\n\n\npid_02\nweek_7\nplacebo\n4\n1.17\n4.2"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#ph-mapped-to-y-position",
-    "href": "materials/r-tutorial/slides.html#ph-mapped-to-y-position",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#ph-mapped-to-y-position",
+    "href": "materials/r-tutorial-rise-2025/slides.html#ph-mapped-to-y-position",
     "title": "tidyverse for data analysis",
     "section": "pH mapped to y position",
     "text": "pH mapped to y position"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#ph-mapped-to-color",
-    "href": "materials/r-tutorial/slides.html#ph-mapped-to-color",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#ph-mapped-to-color",
+    "href": "materials/r-tutorial-rise-2025/slides.html#ph-mapped-to-color",
     "title": "tidyverse for data analysis",
     "section": "pH mapped to color",
     "text": "pH mapped to color"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#commonly-used-aesthetics",
-    "href": "materials/r-tutorial/slides.html#commonly-used-aesthetics",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#commonly-used-aesthetics",
+    "href": "materials/r-tutorial-rise-2025/slides.html#commonly-used-aesthetics",
     "title": "tidyverse for data analysis",
     "section": "Commonly used aesthetics",
     "text": "Commonly used aesthetics\n\nFigure from  Claus O. Wilke. Fundamentals of Data Visualization. O’Reilly, 2019"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
-    "href": "materials/r-tutorial/slides.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-same-data-values-can-be-mapped-to-different-aesthetics",
     "title": "tidyverse for data analysis",
     "section": "The same data values can be mapped to different aesthetics",
     "text": "The same data values can be mapped to different aesthetics\n\nFigure from  Claus O. Wilke. Fundamentals of Data Visualization. O’Reilly, 2019"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#we-can-use-many-different-aesthetics-at-once",
-    "href": "materials/r-tutorial/slides.html#we-can-use-many-different-aesthetics-at-once",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#we-can-use-many-different-aesthetics-at-once",
+    "href": "materials/r-tutorial-rise-2025/slides.html#we-can-use-many-different-aesthetics-at-once",
     "title": "tidyverse for data analysis",
     "section": "We can use many different aesthetics at once",
     "text": "We can use many different aesthetics at once"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#we-define-the-mapping-with-aes",
-    "href": "materials/r-tutorial/slides.html#we-define-the-mapping-with-aes",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#we-define-the-mapping-with-aes",
+    "href": "materials/r-tutorial-rise-2025/slides.html#we-define-the-mapping-with-aes",
     "title": "tidyverse for data analysis",
     "section": "We define the mapping with aes()",
     "text": "We define the mapping with aes()\n\n```{r}\ntable_02 %&gt;%\n  ggplot(mapping = aes(x = time_point, y = ph, color = ph)) +\n  geom_jitter()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#we-frequently-omit-argument-names",
-    "href": "materials/r-tutorial/slides.html#we-frequently-omit-argument-names",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#we-frequently-omit-argument-names",
+    "href": "materials/r-tutorial-rise-2025/slides.html#we-frequently-omit-argument-names",
     "title": "tidyverse for data analysis",
     "section": "We frequently omit argument names",
     "text": "We frequently omit argument names\nLong form, all arguments are named:\n\n```{r}\n#| eval: false\n\nggplot(\n  data= table_02,\n  mapping = aes(x = time_point, y = ph, color = ph)\n) +\n  geom_jitter()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#we-frequently-omit-argument-names-1",
-    "href": "materials/r-tutorial/slides.html#we-frequently-omit-argument-names-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#we-frequently-omit-argument-names-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#we-frequently-omit-argument-names-1",
     "title": "tidyverse for data analysis",
     "section": "We frequently omit argument names",
     "text": "We frequently omit argument names\nAbbreviated form, common arguments remain unnamed:\n\n```{r}\n#| eval: false\n\nggplot(table_02, aes(x = time_point, y = ph, color = ph)) +\n  geom_jitter()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-geom-determines-how-the-data-is-shown",
-    "href": "materials/r-tutorial/slides.html#the-geom-determines-how-the-data-is-shown",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-geom-determines-how-the-data-is-shown",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-geom-determines-how-the-data-is-shown",
     "title": "tidyverse for data analysis",
     "section": "The geom determines how the data is shown",
     "text": "The geom determines how the data is shown\n\n```{r}\nggplot(table_02, aes(x = time_point, y = ph, color = ph)) +\n  geom_point()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-geom-determines-how-the-data-is-shown-1",
-    "href": "materials/r-tutorial/slides.html#the-geom-determines-how-the-data-is-shown-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-geom-determines-how-the-data-is-shown-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-geom-determines-how-the-data-is-shown-1",
     "title": "tidyverse for data analysis",
     "section": "The geom determines how the data is shown",
     "text": "The geom determines how the data is shown\n\n```{r}\nggplot(table_02, aes(x = time_point, y = ph, color = ph)) +\n  geom_boxplot()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#the-geom-determines-how-the-data-is-shown-2",
-    "href": "materials/r-tutorial/slides.html#the-geom-determines-how-the-data-is-shown-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#the-geom-determines-how-the-data-is-shown-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#the-geom-determines-how-the-data-is-shown-2",
     "title": "tidyverse for data analysis",
     "section": "The geom determines how the data is shown",
     "text": "The geom determines how the data is shown\n\n```{r}\nggplot(table_02, aes(x = time_point, y = ph, color = ph)) +\n  geom_jitter()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#different-geoms-have-parameters-for-control",
-    "href": "materials/r-tutorial/slides.html#different-geoms-have-parameters-for-control",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#different-geoms-have-parameters-for-control",
+    "href": "materials/r-tutorial-rise-2025/slides.html#different-geoms-have-parameters-for-control",
     "title": "tidyverse for data analysis",
     "section": "Different geoms have parameters for control",
     "text": "Different geoms have parameters for control\n\n```{r}\nggplot(table_02, aes(x = time_point, y = ph, color = ph)) +\n  geom_jitter(size=3)\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#different-geoms-have-parameters-for-control-1",
-    "href": "materials/r-tutorial/slides.html#different-geoms-have-parameters-for-control-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#different-geoms-have-parameters-for-control-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#different-geoms-have-parameters-for-control-1",
     "title": "tidyverse for data analysis",
     "section": "Different geoms have parameters for control",
     "text": "Different geoms have parameters for control\n\n```{r}\nggplot(table_02, aes(x = time_point, y = ph, color = ph)) +\n  geom_jitter(size=3, width = 0.2)\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#important-color-and-fill-apply-to-different-elements",
-    "href": "materials/r-tutorial/slides.html#important-color-and-fill-apply-to-different-elements",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#important-color-and-fill-apply-to-different-elements",
+    "href": "materials/r-tutorial-rise-2025/slides.html#important-color-and-fill-apply-to-different-elements",
     "title": "tidyverse for data analysis",
     "section": "Important: color and fill apply to different elements",
     "text": "Important: color and fill apply to different elements\ncolor Applies color to points, lines, text, borders\nfill Applies color to any filled areas"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#many-geoms-have-both-color-and-fill-aesthetics",
-    "href": "materials/r-tutorial/slides.html#many-geoms-have-both-color-and-fill-aesthetics",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#many-geoms-have-both-color-and-fill-aesthetics",
+    "href": "materials/r-tutorial-rise-2025/slides.html#many-geoms-have-both-color-and-fill-aesthetics",
     "title": "tidyverse for data analysis",
     "section": "Many geoms have both color and fill aesthetics",
     "text": "Many geoms have both color and fill aesthetics\n\n\n```{r}\n#| output-location: column\nggplot(\n  data = table_02,\n  mapping = aes(\n    x = time_point,\n    y = ph,\n    color = time_point\n  )\n) + geom_boxplot()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#many-geoms-have-both-color-and-fill-aesthetics-1",
-    "href": "materials/r-tutorial/slides.html#many-geoms-have-both-color-and-fill-aesthetics-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#many-geoms-have-both-color-and-fill-aesthetics-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#many-geoms-have-both-color-and-fill-aesthetics-1",
     "title": "tidyverse for data analysis",
     "section": "Many geoms have both color and fill aesthetics",
     "text": "Many geoms have both color and fill aesthetics\n\n\n```{r}\n#| output-location: column\nggplot(\n  data = table_02,\n  mapping = aes(\n    x = time_point,\n    y = ph,\n    fill = time_point\n  )\n) + geom_boxplot()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#many-geoms-have-both-color-and-fill-aesthetics-2",
-    "href": "materials/r-tutorial/slides.html#many-geoms-have-both-color-and-fill-aesthetics-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#many-geoms-have-both-color-and-fill-aesthetics-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#many-geoms-have-both-color-and-fill-aesthetics-2",
     "title": "tidyverse for data analysis",
     "section": "Many geoms have both color and fill aesthetics",
     "text": "Many geoms have both color and fill aesthetics\n\n\n```{r}\n#| output-location: column\nggplot(\n  data = table_02,\n  mapping = aes(\n    x = time_point,\n    y = ph,\n    fill = time_point,\n    color = time_point\n  )\n) + geom_boxplot()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms",
-    "href": "materials/r-tutorial/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms",
+    "href": "materials/r-tutorial-rise-2025/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms",
     "title": "tidyverse for data analysis",
     "section": "Aesthetics can also be used as parameters in geoms",
     "text": "Aesthetics can also be used as parameters in geoms\n\n\n```{r}\n#| output-location: column\nggplot(\n  data = table_02,\n  mapping = aes(\n    x = time_point,\n    y = ph\n  )\n) + geom_boxplot()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms-1",
-    "href": "materials/r-tutorial/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#aesthetics-can-also-be-used-as-parameters-in-geoms-1",
     "title": "tidyverse for data analysis",
     "section": "Aesthetics can also be used as parameters in geoms",
     "text": "Aesthetics can also be used as parameters in geoms\n\n\n```{r}\n#| output-location: column\nggplot(\n  data = table_02,\n  mapping = aes(\n    x = time_point,\n    y = ph\n  )\n) + geom_boxplot(fill=\"orange\")\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#exercise-1",
-    "href": "materials/r-tutorial/slides.html#exercise-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#exercise-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#exercise-1",
     "title": "tidyverse for data analysis",
     "section": "Exercise",
     "text": "Exercise\n\n\n\n−+\n30:00\n\n\n\nTime to try it yourself. Go to Exercise 3.\n\nDuring an activity, place a yellow sticky on your laptop if you’re good to go and a pink sticky if you want help."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#histograms-and-density-plots",
-    "href": "materials/r-tutorial/slides.html#histograms-and-density-plots",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#histograms-and-density-plots",
+    "href": "materials/r-tutorial-rise-2025/slides.html#histograms-and-density-plots",
     "title": "tidyverse for data analysis",
     "section": "Histograms and density plots",
     "text": "Histograms and density plots\n\n\n\n\n\n\n\nage\nsex\nclass\nsurvived\n\n\n\n\n0.17\nfemale\n3rd\nsurvived\n\n\n0.33\nmale\n3rd\ndied\n\n\n0.80\nmale\n2nd\nsurvived\n\n\n0.83\nmale\n2nd\nsurvived\n\n\n0.83\nmale\n3rd\nsurvived\n\n\n0.92\nmale\n1st\nsurvived\n\n\n1.00\nfemale\n2nd\nsurvived\n\n\n1.00\nfemale\n3rd\nsurvived\n\n\n1.00\nmale\n2nd\nsurvived\n\n\n1.00\nmale\n2nd\nsurvived\n\n\n1.00\nmale\n3rd\nsurvived\n\n\n1.50\nfemale\n3rd\ndied\n\n\n\n\n\n\n\n\n\n\n\nage\nsex\nclass\nsurvived\n\n\n\n\n1.5\nfemale\n3rd\ndied\n\n\n2.0\nfemale\n1st\ndied\n\n\n2.0\nfemale\n2nd\nsurvived\n\n\n2.0\nfemale\n3rd\ndied\n\n\n2.0\nfemale\n3rd\ndied\n\n\n2.0\nmale\n2nd\nsurvived\n\n\n2.0\nmale\n2nd\nsurvived\n\n\n2.0\nmale\n2nd\nsurvived\n\n\n3.0\nfemale\n2nd\nsurvived\n\n\n3.0\nfemale\n3rd\nsurvived\n\n\n3.0\nmale\n2nd\nsurvived\n\n\n3.0\nmale\n2nd\nsurvived\n\n\n\n\n\n\n\n\n\n\n\nage\nsex\nclass\nsurvived\n\n\n\n\n3\nmale\n3rd\nsurvived\n\n\n3\nmale\n3rd\nsurvived\n\n\n4\nfemale\n2nd\nsurvived\n\n\n4\nfemale\n2nd\nsurvived\n\n\n4\nfemale\n3rd\nsurvived\n\n\n4\nfemale\n3rd\nsurvived\n\n\n4\nmale\n1st\nsurvived\n\n\n4\nmale\n3rd\ndied\n\n\n4\nmale\n3rd\nsurvived\n\n\n5\nfemale\n3rd\nsurvived\n\n\n5\nfemale\n3rd\nsurvived\n\n\n5\nmale\n3rd\ndied"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#histograms-depend-on-the-chosen-bin-width",
-    "href": "materials/r-tutorial/slides.html#histograms-depend-on-the-chosen-bin-width",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#histograms-depend-on-the-chosen-bin-width",
+    "href": "materials/r-tutorial-rise-2025/slides.html#histograms-depend-on-the-chosen-bin-width",
     "title": "tidyverse for data analysis",
     "section": "Histograms depend on the chosen bin width",
     "text": "Histograms depend on the chosen bin width"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#lets-take-a-poll-3",
-    "href": "materials/r-tutorial/slides.html#lets-take-a-poll-3",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll-3",
+    "href": "materials/r-tutorial-rise-2025/slides.html#lets-take-a-poll-3",
     "title": "tidyverse for data analysis",
     "section": "Let’s take a poll",
     "text": "Let’s take a poll\nGo to the event on wooclap"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#making-histograms-with-ggplot-geom_histogram",
-    "href": "materials/r-tutorial/slides.html#making-histograms-with-ggplot-geom_histogram",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#making-histograms-with-ggplot-geom_histogram",
+    "href": "materials/r-tutorial-rise-2025/slides.html#making-histograms-with-ggplot-geom_histogram",
     "title": "tidyverse for data analysis",
     "section": "Making histograms with ggplot: geom_histogram()",
     "text": "Making histograms with ggplot: geom_histogram()\n\n```{r}\nggplot(titanic, aes(age)) +\n  geom_histogram()\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#setting-the-bin-width",
-    "href": "materials/r-tutorial/slides.html#setting-the-bin-width",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#setting-the-bin-width",
+    "href": "materials/r-tutorial-rise-2025/slides.html#setting-the-bin-width",
     "title": "tidyverse for data analysis",
     "section": "Setting the bin width",
     "text": "Setting the bin width\n\n```{r}\nggplot(titanic, aes(age)) +\n  geom_histogram(binwidth = 5)\n```\n\n\n\nDo you like where there bins are? What does the first bin say?"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#always-set-the-center-as-well-to-half-the-bin_width",
-    "href": "materials/r-tutorial/slides.html#always-set-the-center-as-well-to-half-the-bin_width",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#always-set-the-center-as-well-to-half-the-bin_width",
+    "href": "materials/r-tutorial-rise-2025/slides.html#always-set-the-center-as-well-to-half-the-bin_width",
     "title": "tidyverse for data analysis",
     "section": "Always set the center as well, to half the bin_width",
     "text": "Always set the center as well, to half the bin_width\n\n```{r}\nggplot(titanic, aes(age)) +\n  geom_histogram(binwidth = 5, center=2.5)\n```\n\n\n\nSetting center 2.5 makes the bars start 0-5, 5-10, etc. instead of 2.5-7.5, etc. You could instead use the argument boundary=5 to accomplish the same behavior."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#making-density-plots-with-ggplot-geom_density",
-    "href": "materials/r-tutorial/slides.html#making-density-plots-with-ggplot-geom_density",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#making-density-plots-with-ggplot-geom_density",
+    "href": "materials/r-tutorial-rise-2025/slides.html#making-density-plots-with-ggplot-geom_density",
     "title": "tidyverse for data analysis",
     "section": "Making density plots with ggplot: geom_density()",
     "text": "Making density plots with ggplot: geom_density()\n\n```{r}\nggplot(titanic, aes(age)) +\n  geom_density(fill = \"skyblue\")\n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#making-density-plots-with-ggplot-geom_density-1",
-    "href": "materials/r-tutorial/slides.html#making-density-plots-with-ggplot-geom_density-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#making-density-plots-with-ggplot-geom_density-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#making-density-plots-with-ggplot-geom_density-1",
     "title": "tidyverse for data analysis",
     "section": "Making density plots with ggplot: geom_density()",
     "text": "Making density plots with ggplot: geom_density()\n\n```{r}\nggplot(titanic, aes(age)) +\n  geom_density()\n```\n\n\nwithout fill"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#boxplots-showing-values-along-y-conditions-along-x",
-    "href": "materials/r-tutorial/slides.html#boxplots-showing-values-along-y-conditions-along-x",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#boxplots-showing-values-along-y-conditions-along-x",
+    "href": "materials/r-tutorial-rise-2025/slides.html#boxplots-showing-values-along-y-conditions-along-x",
     "title": "tidyverse for data analysis",
     "section": "Boxplots: Showing values along y, conditions along x",
     "text": "Boxplots: Showing values along y, conditions along x\n\nA boxplot is a crude way of visualizing a distribution."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#how-to-read-a-boxplot",
-    "href": "materials/r-tutorial/slides.html#how-to-read-a-boxplot",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#how-to-read-a-boxplot",
+    "href": "materials/r-tutorial-rise-2025/slides.html#how-to-read-a-boxplot",
     "title": "tidyverse for data analysis",
     "section": "How to read a boxplot",
     "text": "How to read a boxplot"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#if-you-like-density-plots-consider-violins",
-    "href": "materials/r-tutorial/slides.html#if-you-like-density-plots-consider-violins",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#if-you-like-density-plots-consider-violins",
+    "href": "materials/r-tutorial-rise-2025/slides.html#if-you-like-density-plots-consider-violins",
     "title": "tidyverse for data analysis",
     "section": "If you like density plots, consider violins",
     "text": "If you like density plots, consider violins\n\n\nA violin plot is a density plot rotated 90 degrees and then mirrored."
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#how-to-read-a-violin-plot",
-    "href": "materials/r-tutorial/slides.html#how-to-read-a-violin-plot",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#how-to-read-a-violin-plot",
+    "href": "materials/r-tutorial-rise-2025/slides.html#how-to-read-a-violin-plot",
     "title": "tidyverse for data analysis",
     "section": "How to read a violin plot",
     "text": "How to read a violin plot"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#making-boxplots-violins-etc.-in-ggplot2-1",
-    "href": "materials/r-tutorial/slides.html#making-boxplots-violins-etc.-in-ggplot2-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#making-boxplots-violins-etc.-in-ggplot2-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#making-boxplots-violins-etc.-in-ggplot2-1",
     "title": "tidyverse for data analysis",
     "section": "Making boxplots, violins, etc. in ggplot2",
     "text": "Making boxplots, violins, etc. in ggplot2\n\n\n\n\n\n\n\n\nPlot type\nGeom\nNotes\n\n\n\n\nboxplot\ngeom_boxplot()\n\n\n\nviolin plot\ngeom_violin()\n\n\n\nstrip chart\ngeom_point()\nJittering requires position_jitter()\n\n\nsina plot\ngeom_sina()\nFrom package ggforce\n\n\nscatter-density plot\ngeom_quasirandom()\nFrom package ggbeeswarm\n\n\nridgeline\ngeom_density_ridges()\nFrom package ggridges"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#examples-boxplot",
-    "href": "materials/r-tutorial/slides.html#examples-boxplot",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#examples-boxplot",
+    "href": "materials/r-tutorial-rise-2025/slides.html#examples-boxplot",
     "title": "tidyverse for data analysis",
     "section": "Examples: Boxplot",
     "text": "Examples: Boxplot\n\n```{r}\nggplot(lincoln_temps, aes(x = month, y = mean_temp)) +\n  geom_boxplot(fill = \"skyblue\") \n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#examples-violins",
-    "href": "materials/r-tutorial/slides.html#examples-violins",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#examples-violins",
+    "href": "materials/r-tutorial-rise-2025/slides.html#examples-violins",
     "title": "tidyverse for data analysis",
     "section": "Examples: Violins",
     "text": "Examples: Violins\n\n```{r}\nggplot(lincoln_temps, aes(x = month, y = mean_temp)) +\n  geom_violin(fill = \"skyblue\") \n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#examples-strip-chart-no-jitter",
-    "href": "materials/r-tutorial/slides.html#examples-strip-chart-no-jitter",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#examples-strip-chart-no-jitter",
+    "href": "materials/r-tutorial-rise-2025/slides.html#examples-strip-chart-no-jitter",
     "title": "tidyverse for data analysis",
     "section": "Examples: Strip chart (no jitter)",
     "text": "Examples: Strip chart (no jitter)\n\n```{r}\nggplot(lincoln_temps, aes(x = month, y = mean_temp)) +\n  geom_point(color = \"skyblue\") \n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#examples-strip-chart-w-jitter",
-    "href": "materials/r-tutorial/slides.html#examples-strip-chart-w-jitter",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#examples-strip-chart-w-jitter",
+    "href": "materials/r-tutorial-rise-2025/slides.html#examples-strip-chart-w-jitter",
     "title": "tidyverse for data analysis",
     "section": "Examples: Strip chart (w/ jitter)",
     "text": "Examples: Strip chart (w/ jitter)\n\n```{r}\nggplot(lincoln_temps, aes(x = month, y = mean_temp)) +\n  geom_jitter(color = \"skyblue\") \n```"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#analyze-subsets-group_by-and-summarize",
-    "href": "materials/r-tutorial/slides.html#analyze-subsets-group_by-and-summarize",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#analyze-subsets-group_by-and-summarize",
+    "href": "materials/r-tutorial-rise-2025/slides.html#analyze-subsets-group_by-and-summarize",
     "title": "tidyverse for data analysis",
     "section": "Analyze subsets: group_by() and summarize()",
     "text": "Analyze subsets: group_by() and summarize()"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-application-of-grouping-counting",
-    "href": "materials/r-tutorial/slides.html#example-application-of-grouping-counting",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting",
     "title": "tidyverse for data analysis",
     "section": "Example application of grouping: Counting",
     "text": "Example application of grouping: Counting\nPreviously we used count, now we group the data\n\n```{r}\ntable_01 %&gt;%\n  group_by(smoker)\n```\n\n# A tibble: 44 × 6\n# Groups:   smoker [2]\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-1",
-    "href": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-1",
     "title": "tidyverse for data analysis",
     "section": "Example application of grouping: Counting",
     "text": "Example application of grouping: Counting\nPreviously we used count, now we group the data, and then summarise\n\n```{r}\ntable_01 %&gt;%\n  group_by(smoker) %&gt;%\n  summarise(\n    n = n() # n() returns the number of observations per group\n    )\n```\n\n# A tibble: 2 × 2\n  smoker         n\n  &lt;chr&gt;      &lt;int&gt;\n1 non-smoker    27\n2 smoker        17"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-2",
-    "href": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-2",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-2",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-2",
     "title": "tidyverse for data analysis",
     "section": "Example application of grouping: Counting",
     "text": "Example application of grouping: Counting\nNow let’s group by multiple variables\n\n```{r}\ntable_01 %&gt;%\n  group_by(smoker, arm)\n```\n\n# A tibble: 44 × 6\n# Groups:   smoker, arm [4]\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-3",
-    "href": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-3",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-3",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-3",
     "title": "tidyverse for data analysis",
     "section": "Example application of grouping: Counting",
     "text": "Example application of grouping: Counting\nNow let’s group by multiple variables, and summarise\n\n```{r}\ntable_01 %&gt;%\n  group_by(smoker, arm) %&gt;%\n    summarise(\n    n = n() # n() returns the number of observations per group\n    )\n```\n\n# A tibble: 4 × 3\n# Groups:   smoker [2]\n  smoker     arm           n\n  &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt;\n1 non-smoker placebo      12\n2 non-smoker treatment    15\n3 smoker     placebo      11\n4 smoker     treatment     6"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-4",
-    "href": "materials/r-tutorial/slides.html#example-application-of-grouping-counting-4",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-4",
+    "href": "materials/r-tutorial-rise-2025/slides.html#example-application-of-grouping-counting-4",
     "title": "tidyverse for data analysis",
     "section": "Example application of grouping: Counting",
     "text": "Example application of grouping: Counting\ncount(...) is a short-cut for group_by(...) %&gt;% summarize(n = n()) group_by() and summarise()is the general method\n\n```{r}\ntable_01 %&gt;%\n  count(smoker, arm)\n\ntable_01 %&gt;%\n  group_by(smoker, arm) %&gt;%\n  summarise(median_age = median(age))\n```\n\n# A tibble: 4 × 3\n  smoker     arm           n\n  &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt;\n1 non-smoker placebo      12\n2 non-smoker treatment    15\n3 smoker     placebo      11\n4 smoker     treatment     6\n# A tibble: 4 × 3\n# Groups:   smoker [2]\n  smoker     arm       median_age\n  &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;\n1 non-smoker placebo         31  \n2 non-smoker treatment       30  \n3 smoker     placebo         33  \n4 smoker     treatment       33.5"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#you-can-make-multiple-summarise-at-once",
-    "href": "materials/r-tutorial/slides.html#you-can-make-multiple-summarise-at-once",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#you-can-make-multiple-summarise-at-once",
+    "href": "materials/r-tutorial-rise-2025/slides.html#you-can-make-multiple-summarise-at-once",
     "title": "tidyverse for data analysis",
     "section": "You can make multiple summarise at once",
     "text": "You can make multiple summarise at once\n\n```{r}\ntable_01 %&gt;%\n  group_by(smoker, arm) %&gt;%\n  summarise(\n    n = n(),\n    median_age = median(age)\n    )\n```\n\n# A tibble: 4 × 4\n# Groups:   smoker [2]\n  smoker     arm           n median_age\n  &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;\n1 non-smoker placebo      12       31  \n2 non-smoker treatment    15       30  \n3 smoker     placebo      11       33  \n4 smoker     treatment     6       33.5"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#reshape-pivot_wider-and-pivot_longer",
-    "href": "materials/r-tutorial/slides.html#reshape-pivot_wider-and-pivot_longer",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#reshape-pivot_wider-and-pivot_longer",
+    "href": "materials/r-tutorial-rise-2025/slides.html#reshape-pivot_wider-and-pivot_longer",
     "title": "tidyverse for data analysis",
     "section": "Reshape: pivot_wider() and pivot_longer()",
     "text": "Reshape: pivot_wider() and pivot_longer()"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#reshaping-example-making-a-wide-summary-table",
-    "href": "materials/r-tutorial/slides.html#reshaping-example-making-a-wide-summary-table",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#reshaping-example-making-a-wide-summary-table",
+    "href": "materials/r-tutorial-rise-2025/slides.html#reshaping-example-making-a-wide-summary-table",
     "title": "tidyverse for data analysis",
     "section": "Reshaping example: Making a wide summary table",
     "text": "Reshaping example: Making a wide summary table\n\n```{r}\ntable_01 %&gt;%\n  count(education, arm) %&gt;%\n  pivot_wider(names_from = arm, values_from = n)\n```\n\n# A tibble: 4 × 3\n  education                     placebo treatment\n  &lt;chr&gt;                           &lt;int&gt;     &lt;int&gt;\n1 grade 10-12, matriculated           7         9\n2 grade 10-12, not matriculated      11         7\n3 less than grade 9                   2         4\n4 post-secondary                      3         1"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#reshaping-example-making-a-wide-summary-table-1",
-    "href": "materials/r-tutorial/slides.html#reshaping-example-making-a-wide-summary-table-1",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#reshaping-example-making-a-wide-summary-table-1",
+    "href": "materials/r-tutorial-rise-2025/slides.html#reshaping-example-making-a-wide-summary-table-1",
     "title": "tidyverse for data analysis",
     "section": "Reshaping example: Making a wide summary table",
     "text": "Reshaping example: Making a wide summary table\n\n```{r}\neducation_wide &lt;- table_01 %&gt;%\n  count(education, arm) %&gt;%\n  pivot_wider(names_from = arm, values_from = n)\n\neducation_wide %&gt;%\n  pivot_longer(-education, names_to = \"arm\", values_to = \"n\")\n```\n\n# A tibble: 8 × 3\n  education                     arm           n\n  &lt;chr&gt;                         &lt;chr&gt;     &lt;int&gt;\n1 grade 10-12, matriculated     placebo       7\n2 grade 10-12, matriculated     treatment     9\n3 grade 10-12, not matriculated placebo      11\n4 grade 10-12, not matriculated treatment     7\n5 less than grade 9             placebo       2\n6 less than grade 9             treatment     4\n7 post-secondary                placebo       3\n8 post-secondary                treatment     1"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#we-use-joins-to-add-columns-from-one-table-into-another",
-    "href": "materials/r-tutorial/slides.html#we-use-joins-to-add-columns-from-one-table-into-another",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#we-use-joins-to-add-columns-from-one-table-into-another",
+    "href": "materials/r-tutorial-rise-2025/slides.html#we-use-joins-to-add-columns-from-one-table-into-another",
     "title": "tidyverse for data analysis",
     "section": "We use joins to add columns from one table into another",
     "text": "We use joins to add columns from one table into another"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#there-are-different-types-of-joins",
-    "href": "materials/r-tutorial/slides.html#there-are-different-types-of-joins",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#there-are-different-types-of-joins",
+    "href": "materials/r-tutorial-rise-2025/slides.html#there-are-different-types-of-joins",
     "title": "tidyverse for data analysis",
     "section": "There are different types of joins",
     "text": "There are different types of joins\nThe differences are all about how to handle when the two tables have different key values\n\n\n\nleft_join() - the resulting table always has the same key_values as the “left” table\nright_join() - the resulting table always has the same key_values as the “right” table\ninner_join() - the resulting table always only keeps the key_values that are in both tables\nfull_join() - the resulting table always has all key_values found in both tables"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#left-join",
-    "href": "materials/r-tutorial/slides.html#left-join",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#left-join",
+    "href": "materials/r-tutorial-rise-2025/slides.html#left-join",
     "title": "tidyverse for data analysis",
     "section": "Left Join",
     "text": "Left Join\nleft_join() - the resulting table always has the same key_values as the “left” table"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#inner_join",
-    "href": "materials/r-tutorial/slides.html#inner_join",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#inner_join",
+    "href": "materials/r-tutorial-rise-2025/slides.html#inner_join",
     "title": "tidyverse for data analysis",
     "section": "inner_join",
     "text": "inner_join\ninner_join() - the resulting table always only keeps the key_values that are in both tables\n\n\ntable_a %&gt;% inner_join(table_b)"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#note-merging-tables-vertically-is-bind_rows-not-a-join",
-    "href": "materials/r-tutorial/slides.html#note-merging-tables-vertically-is-bind_rows-not-a-join",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#note-merging-tables-vertically-is-bind_rows-not-a-join",
+    "href": "materials/r-tutorial-rise-2025/slides.html#note-merging-tables-vertically-is-bind_rows-not-a-join",
     "title": "tidyverse for data analysis",
     "section": "Note, merging tables vertically is bind_rows(), not a join",
     "text": "Note, merging tables vertically is bind_rows(), not a join"
   },
   {
-    "objectID": "materials/r-tutorial/slides.html#exercise-3",
-    "href": "materials/r-tutorial/slides.html#exercise-3",
+    "objectID": "materials/r-tutorial-rise-2025/slides.html#exercise-3",
+    "href": "materials/r-tutorial-rise-2025/slides.html#exercise-3",
     "title": "tidyverse for data analysis",
     "section": "Exercise",
-    "text": "Exercise\nThat’s enough slides for now time to try for yourself! Go to the module and go to the second exercise.\n\n\n\nback to module"
+    "text": "Exercise\nThat’s enough slides for now time to try for yourself! Go to the module and go to the second exercise."
   },
   {
-    "objectID": "materials/r-tutorial/images/ex-2.html",
-    "href": "materials/r-tutorial/images/ex-2.html",
+    "objectID": "materials/r-tutorial-rise-2025/images/ex-2.html",
+    "href": "materials/r-tutorial-rise-2025/images/ex-2.html",
     "title": "Kwon Lab Pipelines",
     "section": "",
     "text": "Spatial Logical Toy Inventor: Erno Rubik Assignee: Politoys Ipari Szovetkezet, Budapest, Hungary The first patent by the inventor is registered in Hungary. Appl. No.: 289,192 Filed: Aug. 3, 1981 Background of the Invention The invention relates to a spatial logical toy having a total of eighteen toy elements which form a regular or an irregular spatial body, preferably an oblong body, in the assembled state. Spatial logical toys are well known, such as that described in the HU-PS No. 170 062 of the same applicant, which relates to a spatial logical toy consisting of twenty-seven solids which form a cube in the assembled state. The toy elements, in the shape of small cubes, may be turned along the spatial axes of the cube by means of connecting elements arranged in the geometric center of the large cube. The surfaces of the small cubes forming each surface of the large cube are colored or carry numbers, figures or any other symbols which can be assembled into the predetermined logical order of sequence by simultaneously rotating the nine toy elements forming the surfaces of the large cube. Summary of the Invention The logical toy according to the present invention represents an improved form of the previously described spatial logical toy. The construction is based on the same principles, however, the internal connection is performed by means of absolutely new and particular solids. The key feature according to the invention, i.e. shape, name, sounds, mode of interconnection and central fixture will be described in detail by means of two preferred embodiments, by the aid of the accompanying drawings, wherein. Component blocks of the spatial logial toy. ex-2-figs.png What is claimed is: 1. In a spatial logical toy assembled from a plurality of toy elements, of which a predetermined number may be rotated in the direction of the spatial axes starting from the geometrical center of the logical toy, the improvement wherein the spatial logical toy is formed by a total of eighteen toy elements. Two sets of eight toy elements each comprise substantially cubiforms with integally formed cam elements and each of the sets comprise eight identical toy elements, and two connecting toy elements, and means for joining the connecting toy elements to coact with the cam elements to form an integrated toy body, the joining means comprising a single screw enclosed by a spring. The spatial logical toy as claimed in claim 1, wherein the toy has the shape of a regular geometrical body in the assembled state. The toy elements thereof belonging to one set comprise eight cubiform homologous elements each having a first cam element connected to one corner thereof. Two confining surfaces of which lie at a unit distance from two surfaces of the cube and are parallel therewith and are cut-off in the form of an ellipsis-quarter, and a third confining surface thereof is coplanar with another surface of the cube and between the two confining faces of the first cam element running parallel with the cube and the cube there is a hollow with a convex spherical surface."
-  },
-  {
-    "objectID": "materials/multiomics-primer/index.html",
-    "href": "materials/multiomics-primer/index.html",
-    "title": "Multi-omics primer",
-    "section": "",
-    "text": "Resources\n\n\n\n\n\n\nWorkshop materials on 16S data processing and visualization Durban Data Science for Biology Workshop\nmicroViz documentation available here\nModern Statistics for Modern Biology from Susan Holmes Wolfgang Huber",
-    "crumbs": [
-      "About the Kwon Lab",
-      "R and R Studio",
-      "</b> Multiomics primer"
-    ]
-  },
-  {
-    "objectID": "materials/multiomics-primer/index.html#slides-multiomics-primer",
-    "href": "materials/multiomics-primer/index.html#slides-multiomics-primer",
-    "title": "Multi-omics primer",
-    "section": "Slides: Multiomics primer",
-    "text": "Slides: Multiomics primer\nMake slides full screen",
-    "crumbs": [
-      "About the Kwon Lab",
-      "R and R Studio",
-      "</b> Multiomics primer"
-    ]
-  },
-  {
-    "objectID": "materials/multiomics-primer/index.html#slides-full-multiomics-integration",
-    "href": "materials/multiomics-primer/index.html#slides-full-multiomics-integration",
-    "title": "Multi-omics primer",
-    "section": "Slides: Full multiomics integration",
-    "text": "Slides: Full multiomics integration",
-    "crumbs": [
-      "About the Kwon Lab",
-      "R and R Studio",
-      "</b> Multiomics primer"
-    ]
-  },
-  {
-    "objectID": "materials/multiomics-primer/index.html#download-the-instructional-dataset",
-    "href": "materials/multiomics-primer/index.html#download-the-instructional-dataset",
-    "title": "Multi-omics primer",
-    "section": "Download the instructional dataset:",
-    "text": "Download the instructional dataset:\n\n01_timepoint_metadata.csv\n\nsample_id - sample id time_point - time point (week 18, week 24, week 34) pid - participant id\noutcome - pregnancy outcome, either “term” or “preterm” amine_wt - Amsel criteria whiff test\ndisch - Amsel criteria discharge\nclue_cells- Amsel criteria clue cells\np_h - Amsel criteria pH test\n\n02_16S_abundances.csv)\n\nsample_id - sample id ... - each column is a bacterial taxa, with the contents being the counts of sequences in a sample assigned to that taxa\n\n03_cytokine_concentrations.csv\n\nsample_id - sample id ... - each column is a cytokine, with the contents being the concentration of that cytokine in a sample\n\n04_16s_taxa_table.RDS\n\nThis is the taxonomic table in the right format to make a phyoloseq object from the 16S data.\nRead this with readRDS('path/to/04_16s_taxa_table.RDS')",
-    "crumbs": [
-      "About the Kwon Lab",
-      "R and R Studio",
-      "</b> Multiomics primer"
-    ]
-  },
-  {
-    "objectID": "materials/multiomics-primer/index.html#beginnings-of-the-live-coding-session",
-    "href": "materials/multiomics-primer/index.html#beginnings-of-the-live-coding-session",
-    "title": "Multi-omics primer",
-    "section": "Beginnings of the live-coding session:",
-    "text": "Beginnings of the live-coding session:\n\nlibrary(tidyverse)\nlibrary(phyloseq)\nlibrary(microViz)\nlibrary(mixOmics)\nlibrary(factoextra)\nlibrary(corrplot)\n\n\nmetadata &lt;- read_csv(\"../../datasets/multiomics_dataset/01_timepoint_metadata.csv\")\n\ncytokines &lt;- read_csv(\"../../datasets/multiomics_dataset/03_cytokine_concentrations.csv\")\n\nmicrobiome &lt;- read_csv(\"../../datasets/multiomics_dataset/02_16S_abundances.csv\")\n\n\nplotting one cytokine at a time - il_1a\n\ncytokines %&gt;%\n    ggplot(aes(x=il_1a)) +\n    geom_histogram() +\n    scale_x_log10()\n\n\n\n\n\n\n\n\n\n\nplotting all the cytokines\n\ncytokines %&gt;%\n    pivot_longer(-sample_id, names_to=\"cytokine\", values_to = \"concentration\") %&gt;%\n    ggplot(aes(x=concentration)) +\n    geom_histogram() +\n    scale_x_log10() +\n    facet_wrap(~cytokine, scales=\"free\")\n\n\n\n\n\n\n\n\n\n\nAre my cytokines correlated?\nPlotting one pair at a time\n\ncytokines %&gt;%\n    ggplot(aes(x=il_1a, y=ip_10)) +\n    geom_point() +\n    scale_y_log10() +\n    scale_x_log10() +\n    geom_smooth(method=\"lm\", se=TRUE)\n\n\n\n\n\n\n\n\nplot all the correlations using corplot\n\ncytokine_cor_matrix &lt;- cytokines %&gt;%\n    as.data.frame() %&gt;%\n    column_to_rownames(\"sample_id\") %&gt;%\n    as.matrix() %&gt;%\n    cor(method=\"spearman\")\n\ncorrplot(cytokine_cor_matrix, \n         method = \"color\",\n         type = \"upper\",           # Show only upper triangle\n         order = \"hclust\",         # Cluster similar peptides\n         addCoef.col = \"black\",    # Add correlation coefficients\n         tl.col = \"black\",         # Text label color\n         tl.srt = 45,              # Rotate text labels 45 degrees\n         diag = FALSE)             # Hide diagonal\n\n\n\n\n\n\n\n\n\n\nshould we do dimensionality reduction?\n\npca_result &lt;- cytokines %&gt;%\n    as.data.frame() %&gt;%\n    column_to_rownames(\"sample_id\") %&gt;%\n    as.matrix() %&gt;%\n    log10() %&gt;%\n    prcomp(scale. = TRUE, center = TRUE)\n\n\n# Scree plot\nfviz_eig(pca_result, addlabels = TRUE)\n\n\n\n\n\n\n\n# Biplot with better aesthetics\nfviz_pca_biplot(pca_result, \n                repel = TRUE,           # Avoid text overlap\n                geom = c(\"point\"),\n                col.var = \"red\",        # Variables color\n                col.ind = \"blue\",       # Individuals color\n                title = \"PCA Biplot - Cytokine Concentrations\")\n\n\n\n\n\n\n\n\n\nps_count_table &lt;- microbiome %&gt;%\n    column_to_rownames(\"sample_id\") %&gt;%\n    as.matrix() %&gt;%\n    phyloseq::otu_table(taxa_are_rows = FALSE)\n\nps_sample_data &lt;- metadata %&gt;%\n    left_join(cytokines) %&gt;% #integration!\n    column_to_rownames(\"sample_id\") %&gt;%\n    phyloseq::sample_data()\n\nps_taxa_table &lt;- readRDS(\"../../datasets/multiomics_dataset/04_16s_taxa_table.RDS\")\n\nmy_ps &lt;- phyloseq(ps_count_table,ps_sample_data,ps_taxa_table)\n\nLet’s use Bray-Curtis distance, which is less sensitive to rare taxa changing and weights more abundant taxa higher than something like Euclidean distance.\n\nmy_ps %&gt;%\n tax_transform(rank = \"unique\", trans = \"identity\") %&gt;%\n dist_calc(dist = \"bray\") %&gt;%\n ord_calc(\n  method = \"auto\"\n ) %&gt;% \n ord_plot(\n  axes = c(1, 2),\n  colour = \"outcome\", fill = \"outcome\",\n  shape = \"time_point\", alpha = 0.5,\n  size = 2\n ) + \n scale_shape_girafe_filled()",
-    "crumbs": [
-      "About the Kwon Lab",
-      "R and R Studio",
-      "</b> Multiomics primer"
-    ]
   },
   {
     "objectID": "materials/metagenomics/background/index.html",
@@ -1094,7 +1188,7 @@
     "href": "materials/archive/r-tutorial/index.html#example-answers-for-data-analysis-questions",
     "title": "R workshop",
     "section": "Example answers for data analysis questions:",
-    "text": "Example answers for data analysis questions:\n\n\n\n\n\n\nCalculate media backgrounds and bacterial growth with no LCFA\n\n\n\n\n\nmedia_background &lt;- joined_data %&gt;%\n  filter(bug == \"CTRL\") \n\nmedia_background_medians &lt;- media_background %&gt;%\n  group_by(plate_id, condition, conc) %&gt;%\n  summarise(no_bacteria_control = median(od))\n\nbug_no_lcfa_control &lt;- joined_data %&gt;%\n  filter(condition == \"CTRL\") %&gt;%\n  filter(bug != \"CTRL\") %&gt;%\n  left_join(media_background_averages) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control)\n  \nbug_no_lcfa_control_medians &lt;- bug_no_lcfa_control %&gt;%\n  group_by(plate_id, bug) %&gt;%\n  summarise(no_lcfa_control = median(background_subtracted_od)) %&gt;%\n  ungroup()\n\n\n\n\n\n\n\n\n\nCalculate relative growths for each bug in each concentration of LCFA\n\n\n\n\n\nrelative_growths &lt;- joined_data %&gt;%\n  filter(condition != \"CTRL\", bug !=\"CTRL\") %&gt;%\n  left_join(media_background_medians) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control) %&gt;%\n  left_join(bug_no_lcfa_control_medians) %&gt;%\n  mutate(relative_growth = background_subtracted_od/ no_lcfa_control) \n\n\n\n\n\n\n\n\n\nExample plots\n\n\n\n\n\n\nmedia_background %&gt;% \n  ggplot(aes(x=od)) +\n  geom_histogram(binwidth = 0.01) +\n  facet_wrap(~condition+conc)\n\n\n\n\n\n\n\n\n\nbug_no_lcfa_control %&gt;%\n  ggplot(aes(x=background_subtracted_od)) +\n  geom_histogram(binwidth = 0.05) +\n  facet_wrap(~bug)\n\n\n\n\n\n\n\n\n\nrelative_growths %&gt;%\n  mutate(conc = as.factor(conc)) %&gt;%\n  ggplot(aes(x=conc, y=relative_growth)) +\n  geom_boxplot(outlier.shape = NA) +\n  ggbeeswarm::geom_quasirandom() +\n  scale_y_continuous(trans=scales::log2_trans()) +\n  facet_wrap(~condition+bug, ncol=6)"
+    "text": "Example answers for data analysis questions:\n\n\n\n\n\n\nTipCalculate media backgrounds and bacterial growth with no LCFA\n\n\n\n\n\nmedia_background &lt;- joined_data %&gt;%\n  filter(bug == \"CTRL\") \n\nmedia_background_medians &lt;- media_background %&gt;%\n  group_by(plate_id, condition, conc) %&gt;%\n  summarise(no_bacteria_control = median(od))\n\nbug_no_lcfa_control &lt;- joined_data %&gt;%\n  filter(condition == \"CTRL\") %&gt;%\n  filter(bug != \"CTRL\") %&gt;%\n  left_join(media_background_averages) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control)\n  \nbug_no_lcfa_control_medians &lt;- bug_no_lcfa_control %&gt;%\n  group_by(plate_id, bug) %&gt;%\n  summarise(no_lcfa_control = median(background_subtracted_od)) %&gt;%\n  ungroup()\n\n\n\n\n\n\n\n\n\nTipCalculate relative growths for each bug in each concentration of LCFA\n\n\n\n\n\nrelative_growths &lt;- joined_data %&gt;%\n  filter(condition != \"CTRL\", bug !=\"CTRL\") %&gt;%\n  left_join(media_background_medians) %&gt;%\n  mutate(background_subtracted_od = od - no_bacteria_control) %&gt;%\n  left_join(bug_no_lcfa_control_medians) %&gt;%\n  mutate(relative_growth = background_subtracted_od/ no_lcfa_control) \n\n\n\n\n\n\n\n\n\nTipExample plots\n\n\n\n\n\n\nmedia_background %&gt;% \n  ggplot(aes(x=od)) +\n  geom_histogram(binwidth = 0.01) +\n  facet_wrap(~condition+conc)\n\n\n\n\n\n\n\n\n\nbug_no_lcfa_control %&gt;%\n  ggplot(aes(x=background_subtracted_od)) +\n  geom_histogram(binwidth = 0.05) +\n  facet_wrap(~bug)\n\n\n\n\n\n\n\n\n\nrelative_growths %&gt;%\n  mutate(conc = as.factor(conc)) %&gt;%\n  ggplot(aes(x=conc, y=relative_growth)) +\n  geom_boxplot(outlier.shape = NA) +\n  ggbeeswarm::geom_quasirandom() +\n  scale_y_continuous(trans=scales::log2_trans()) +\n  facet_wrap(~condition+bug, ncol=6)"
   },
   {
     "objectID": "materials/16S/valencia/index.html",
@@ -1173,7 +1267,7 @@
     "href": "index.html",
     "title": "Kwon Lab Pipelines",
     "section": "",
-    "text": "Kwon Lab Pipelines\nby Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
+    "text": "by Kwondry\n\n\nDocumentation and tutorials for reproducible research in the Kwon Lab"
   },
   {
     "objectID": "materials/16S/16s_pipeline/index.html",
@@ -1437,14 +1531,14 @@
     "href": "materials/archive/r-tutorial/slides.html#test-data-for-today",
     "title": "tidyverse for data analysis",
     "section": "Test data for today",
-    "text": "Test data for today\n\n\n \n\n\n\nBacterial growth measurements with different species\nMeasured as an optical density (OD) of the culture at the end of the experiment\nGrowth measured with different concentrations of different long-chain fatty acids added to the media"
+    "text": "Test data for today\n\n\n \n\n\nBacterial growth measurements with different species\nMeasured as an optical density (OD) of the culture at the end of the experiment\nGrowth measured with different concentrations of different long-chain fatty acids added to the media"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#get-the-data",
     "href": "materials/archive/r-tutorial/slides.html#get-the-data",
     "title": "tidyverse for data analysis",
     "section": "Get the data",
-    "text": "Get the data\nDownload the data from kwondry.github.io/documentation/r-tutorial. Put it in a folder called data inside your R project folder.\n\n\n\n⤓metadata.csv\n\n⤓plate_1_data.csv\n\n⤓plate_2_data.csv\n\n⤓plate_3_data.csv\n\n⤓plate_4_data.csv\n\n\n\n\ncodebook:\nplate_id – an identifier of which plate was measured. row – row of the plate1\ncolumn – column of the plate\nbug – the isolate/species that was tested in this well\ncondition - which long chain fatty acid (LCFA) was added\nconc - what was the concentration of the LCFA in this well?\nrow – row of the plate\ncolumn – column of the plate\nod - the optical density (OD600) that was measured in this well. This is a measure of bacterial growth."
+    "text": "Get the data\nDownload the data from kwondry.github.io/documentation/r-tutorial. Put it in a folder called data inside your R project folder.\n\n\n\n⤓metadata.csv\n\n⤓plate_1_data.csv\n\n⤓plate_2_data.csv\n\n⤓plate_3_data.csv\n\n⤓plate_4_data.csv\n\n\n\ncodebook:\nplate_id – an identifier of which plate was measured. row – row of the plate1\ncolumn – column of the plate\nbug – the isolate/species that was tested in this well\ncondition - which long chain fatty acid (LCFA) was added\nconc - what was the concentration of the LCFA in this well?\nrow – row of the plate\ncolumn – column of the plate\nod - the optical density (OD600) that was measured in this well. This is a measure of bacterial growth."
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#read-in-data",
@@ -1619,28 +1713,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug     condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;\n1        3 g          3 gasseri VCA         200\n2        4 f          1 CTRL    LNA         100\n3        4 f          4 gasseri LNA         100\n4        4 a          9 piotii  CTRL          0\n5        1 a         12 CTRL    CTRL          0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        4 b          6 vaginalis VCA         100\n2        1 b         11 CTRL      OA          400\n3        2 b          9 iners     VCA         100\n4        1 f         11 CTRL      VCA         400\n5        4 c          2 gasseri   VCA          50"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        4 d          9 piotii    LNA         400\n2        4 d          6 vaginalis LNA         400\n3        4 d          2 gasseri   LNA         400\n4        3 b          1 CTRL      OA          400\n5        1 f          5 jensenii  VCA         400"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug      condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;\n1        1 c          1 CTRL     OA          200\n2        3 g         11 CTRL     VCA         200\n3        2 a          5 jensenii CTRL          0\n4        1 g          9 iners    VCA         200\n5        1 e          5 jensenii OA           50"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        1 d         12 CTRL      OA          100    0.1 \n2        4 d         12 CTRL      LNA         400    0.4 \n3        3 e          8 piotii    OA           50    0.05\n4        1 e          2 crispatus OA           50    0.05\n5        1 c          7 jensenii  OA          200    0.2"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug   condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        2 g         12 CTRL  LNA          50    0.05\n2        2 c          1 CTRL  VCA          50    0.05\n3        1 c          8 iners OA          200    0.2 \n4        2 a         11 CTRL  CTRL          0    0   \n5        4 h         11 CTRL  CTRL          0    0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 d         10 piotii   LNA         400    0.4   400000\n2        2 d         12 CTRL     LNA         400    0.4   400000\n3        2 d          7 jensenii LNA         400    0.4   400000\n4        2 g         10 iners    LNA          50    0.05   50000\n5        1 f          5 jensenii VCA         400    0.4   400000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        1 h          3 crispatus CTRL          0     0         0\n2        3 f          4 gasseri   VCA         400     0.4  400000\n3        1 a         12 CTRL      CTRL          0     0         0\n4        3 b          5 vaginalis OA          400     0.4  400000\n5        3 g          1 CTRL      VCA         200     0.2  200000"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
@@ -1990,7 +2084,7 @@
     "href": "materials/archive/r-tutorial/slides.html#note-merging-tables-vertically-is-bind_rows-not-a-join",
     "title": "tidyverse for data analysis",
     "section": "Note, merging tables vertically is bind_rows(), not a join",
-    "text": "Note, merging tables vertically is bind_rows(), not a join\n\n\ntable_a %&gt;% bind_rows(table_b)\n\n\n\n\nback to module"
+    "text": "Note, merging tables vertically is bind_rows(), not a join\n\n\ntable_a %&gt;% bind_rows(table_b)"
   },
   {
     "objectID": "materials/getting-started/installation/index.html",
@@ -2197,281 +2291,195 @@
     ]
   },
   {
-    "objectID": "materials/multiomics-primer/slides.html#section",
-    "href": "materials/multiomics-primer/slides.html#section",
-    "title": "Multiomics primer",
-    "section": "",
-    "text": "Workshop materials are here:\nkwondry.github.io/documentation/multiomics-primer"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#section-1",
-    "href": "materials/multiomics-primer/slides.html#section-1",
-    "title": "Multiomics primer",
-    "section": "",
-    "text": "Goals for this session\n\n\nDiscuss common ’omics issues\nCommon strategies for adressing them\nSimple “integration” methods\nFull integration methods (Manon Martin)"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#non-goals-for-today",
-    "href": "materials/multiomics-primer/slides.html#non-goals-for-today",
-    "title": "Multiomics primer",
-    "section": "Non-goals for today",
-    "text": "Non-goals for today\nWe can’t give you all the answers today (and we don’t have them!) We hope to give you the right questions to start\n\n\nWhat are my omics datasets really measuring?\n\nDo I need to transform my data?\n\nAre my data compositional?\n\nAre my data sparse?\n\nWhat is my goal in combining ’omics data?\n\nWhat techniques should I try to connect?"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#lets-take-a-poll",
-    "href": "materials/multiomics-primer/slides.html#lets-take-a-poll",
-    "title": "Multiomics primer",
-    "section": "Let’s take a poll",
-    "text": "Let’s take a poll\nGo to the event on wooclap"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#single-omics-challenges",
-    "href": "materials/multiomics-primer/slides.html#single-omics-challenges",
-    "title": "Multiomics primer",
-    "section": "Single ’omics Challenges",
-    "text": "Single ’omics Challenges\nWhat did all those ’omics datasets have in common?"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#what-is-your-research-question",
-    "href": "materials/multiomics-primer/slides.html#what-is-your-research-question",
-    "title": "Multiomics primer",
-    "section": "What is your research question?",
-    "text": "What is your research question?\nDefine your biological question clearly before choosing methods\n\n\nDiscovery: Find patterns, generate hypotheses\n\nPrediction: Build models to predict outcomes\n\nInference: Test specific biological hypotheses"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#what-are-you-really-measuring",
-    "href": "materials/multiomics-primer/slides.html#what-are-you-really-measuring",
-    "title": "Multiomics primer",
-    "section": "What are you really measuring?",
-    "text": "What are you really measuring?\nUnderstanding your data type matters for analysis choices\n\n\nCounts: RNA-seq, 16S - discrete, compositional\n\nIntensities: Proteomics, metabolomics - continuous, batch effects\n\nBinary/Categorical: Presence/absence, SNPs\n\nEach has different assumptions and appropriate methods"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#do-i-need-to-transform-my-data",
-    "href": "materials/multiomics-primer/slides.html#do-i-need-to-transform-my-data",
-    "title": "Multiomics primer",
-    "section": "Do I need to transform my data?",
-    "text": "Do I need to transform my data?\nRaw data often needs transformation for valid statistical analysis\n\n\nLog transformation: Stabilizes variance, handles skewness\n\nVariance stabilizing: DESeq2’s VST, edgeR’s voom\n\nScaling/Centering: Makes features comparable\n\nBatch correction: attempts to remove technical variation\n\nCheck distributions before and after!"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#are-my-data-compositional",
-    "href": "materials/multiomics-primer/slides.html#are-my-data-compositional",
-    "title": "Multiomics primer",
-    "section": "Are my data compositional?",
-    "text": "Are my data compositional?\nCompositional data requires special care\n\n\nWhat is it: Parts of a whole (relative abundance, %)\n\nThe problem: Sum to 1 constraint creates spurious correlations\n\nExamples: Microbiome, some metabolomics, cell type proportions\n\nSolutions: CLR transformation, ALR, isometric log-ratio\nReal Solutions Spike-ins, integrating absolute quantification methods"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#are-my-data-sparse",
-    "href": "materials/multiomics-primer/slides.html#are-my-data-sparse",
-    "title": "Multiomics primer",
-    "section": "Are my data sparse?",
-    "text": "Are my data sparse?\nSparsity (many zeros) affects method choice\n\n\nTechnical zeros: Below detection limit - consider imputation\nBiological zeros: Truly absent\n\nCommon in: Microbiome, single-cell RNA-seq, proteomics\n\nApproaches: Zero-inflated models, filtering, imputation\n\nTrade-off: Filter too much vs. keep noise"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#lets-take-a-poll-1",
-    "href": "materials/multiomics-primer/slides.html#lets-take-a-poll-1",
-    "title": "Multiomics primer",
-    "section": "Let’s take a poll",
-    "text": "Let’s take a poll\nGo to the event on wooclap"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#case-study-preterm-birth",
-    "href": "materials/multiomics-primer/slides.html#case-study-preterm-birth",
-    "title": "Multiomics primer",
-    "section": "Case study: Preterm birth",
-    "text": "Case study: Preterm birth\n\n\nWe know the vaginal microbiome is associated with preterm birth\nWe know preterm birth is often accompanied by inappropriate inflammation\nLet’s measure inflammation and the microbiome at the same time, and figure out what our question is later!"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#clinical-measurments-ad-metadata",
-    "href": "materials/multiomics-primer/slides.html#clinical-measurments-ad-metadata",
-    "title": "Multiomics primer",
-    "section": "Clinical measurments ad metadata",
-    "text": "Clinical measurments ad metadata\nBirth outcome, either “preterm” or “term”\nAmsel criteria - a measure of Bacterial vaginosis\n\npH\n\ndischarge - thin, watery, greyish\n\nwhiff test - “fishy” polyamine odor\n\nclue cells - human cells covered in bacteria under microscope"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#measuring-inflammation",
-    "href": "materials/multiomics-primer/slides.html#measuring-inflammation",
-    "title": "Multiomics primer",
-    "section": "Measuring inflammation",
-    "text": "Measuring inflammation\n“Inflammation” isn’t one thing - it is an incredibly complex and varied process with cells changing phenotype, proliferating and dying, and signaling each other."
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#measuring-cytokines",
-    "href": "materials/multiomics-primer/slides.html#measuring-cytokines",
-    "title": "Multiomics primer",
-    "section": "Measuring cytokines",
-    "text": "Measuring cytokines\nIn our case, we’re measuring cytokines which are small secreted peptides that signal immune cells and epithelial cells.\nCytokines are often expressed together and might be redundant. What do we expect when we measure them?"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#excalidraw-to-talk-about-cytokine-measurement",
-    "href": "materials/multiomics-primer/slides.html#excalidraw-to-talk-about-cytokine-measurement",
-    "title": "Multiomics primer",
-    "section": "Excalidraw to talk about cytokine measurement",
-    "text": "Excalidraw to talk about cytokine measurement"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#live-coding-to-show-reading-plotting-and-transforming-cytokine-data",
-    "href": "materials/multiomics-primer/slides.html#live-coding-to-show-reading-plotting-and-transforming-cytokine-data",
-    "title": "Multiomics primer",
-    "section": "Live coding to show reading, plotting, and transforming cytokine data",
-    "text": "Live coding to show reading, plotting, and transforming cytokine data"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#measuring-microbiota",
-    "href": "materials/multiomics-primer/slides.html#measuring-microbiota",
-    "title": "Multiomics primer",
-    "section": "Measuring microbiota",
-    "text": "Measuring microbiota\nWhat are 3 ways we can measure complex microbial communities?"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#excalidraw-talking-about-16s",
-    "href": "materials/multiomics-primer/slides.html#excalidraw-talking-about-16s",
-    "title": "Multiomics primer",
-    "section": "Excalidraw talking about 16S",
-    "text": "Excalidraw talking about 16S"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#live-coding-of-16s-analysis",
-    "href": "materials/multiomics-primer/slides.html#live-coding-of-16s-analysis",
-    "title": "Multiomics primer",
-    "section": "Live coding of 16S analysis",
-    "text": "Live coding of 16S analysis\n\ndimensionality reduction"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#what-is-your-goal-in-combining-omics-data",
-    "href": "materials/multiomics-primer/slides.html#what-is-your-goal-in-combining-omics-data",
-    "title": "Multiomics primer",
-    "section": "What is your goal in combining ’omics data?",
-    "text": "What is your goal in combining ’omics data?\nDifferent goals require different integration strategies\n\n\nImprove prediction: Combine features for better models\n\nFind associations: Correlate features across layers\n\nIdentify pathways: Connect molecular changes\n\nUnderstand mechanisms: Causal relationships between layers\n\nYour goal determines the method!"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#what-techniques-should-i-try-to-connect",
-    "href": "materials/multiomics-primer/slides.html#what-techniques-should-i-try-to-connect",
-    "title": "Multiomics primer",
-    "section": "What techniques should I try to connect?",
-    "text": "What techniques should I try to connect?\nStart simple, then increase complexity as needed\n\n\nSimple: Correlation, differential abundance + metadata\nIntermediate: CCA, PLS, multi-block methods\nComplex: MOFA, DIABLO, network approaches\nConsider: Sample size, data types, computational resources\nValidate: Are results biologically meaningful?"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#what-are-your-goals-for-combining-datasets",
-    "href": "materials/multiomics-primer/slides.html#what-are-your-goals-for-combining-datasets",
-    "title": "Multiomics primer",
-    "section": "What are your goals for combining datasets?",
-    "text": "What are your goals for combining datasets?\nGet together with a neighbor who doesn’t know your research.\nPartner A:\n\nExplain the research question you have\nExplain the ’omics data you have / want to generate\nExplain how combining the data could be useful (either “metadata” with ‘omics, or multiple high-dimensional datasets’)\n\n\n\n\n−+\n20:00"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#reporting-back",
-    "href": "materials/multiomics-primer/slides.html#reporting-back",
-    "title": "Multiomics primer",
-    "section": "Reporting back",
-    "text": "Reporting back\nGo to the event on wooclap"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#reporting-back-1",
-    "href": "materials/multiomics-primer/slides.html#reporting-back-1",
-    "title": "Multiomics primer",
-    "section": "Reporting back",
-    "text": "Reporting back\nOne brave soul explain your partner’s project and why they want to integrate multiple ’omics datasets\n\n\n\n−+\n05:00"
-  },
-  {
-    "objectID": "materials/multiomics-primer/slides.html#methods-for-multi-omics-integration",
-    "href": "materials/multiomics-primer/slides.html#methods-for-multi-omics-integration",
-    "title": "Multiomics primer",
-    "section": "Methods for Multi-omics integration",
-    "text": "Methods for Multi-omics integration\nManon Martin, Laura Symul, and Laura Vermeren\n\n\n\nback to module"
-  },
-  {
-    "objectID": "materials/r-tutorial/index.html",
-    "href": "materials/r-tutorial/index.html",
+    "objectID": "materials/r-tutorial-rise-2025/index.html",
+    "href": "materials/r-tutorial-rise-2025/index.html",
     "title": "R workshop",
     "section": "",
     "text": "Learn how to use RStudio and the tidyverse for data exploration",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
     ]
   },
   {
-    "objectID": "materials/r-tutorial/index.html#slides-intro-to-rstudio-quarto-and-r",
-    "href": "materials/r-tutorial/index.html#slides-intro-to-rstudio-quarto-and-r",
+    "objectID": "materials/r-tutorial-rise-2025/index.html#slides-intro-to-rstudio-quarto-and-r",
+    "href": "materials/r-tutorial-rise-2025/index.html#slides-intro-to-rstudio-quarto-and-r",
     "title": "R workshop",
     "section": "Slides: Intro to RStudio, Quarto, and R",
     "text": "Slides: Intro to RStudio, Quarto, and R\nMake slides full screen",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
     ]
   },
   {
-    "objectID": "materials/r-tutorial/index.html#download-the-instructional-dataset",
-    "href": "materials/r-tutorial/index.html#download-the-instructional-dataset",
+    "objectID": "materials/r-tutorial-rise-2025/index.html#download-the-instructional-dataset",
+    "href": "materials/r-tutorial-rise-2025/index.html#download-the-instructional-dataset",
     "title": "R workshop",
     "section": "Download the instructional dataset:",
-    "text": "Download the instructional dataset:\nThe main data set for use in lectures is split into 5 tables. The idea of this dataset is that there is a randomized controlled trial of a drug aimed at reducing HIV risk by reducing inflammation. There were 23 participants in the placebo arm and 21 in the treatment arm. There were 3 visits for the trial – baseline (before any treatment occurred), week_1 (1 week after treatment) and week_7 (7 weeks after treatment). At each time point inflammation was measured using luminex (elisa_cytokines table) and immune cells counts were measured from a pap-smear (flow_cytometry table).\n\n00_sample_ids.csv\n\npid – participant id\ntime_point – “baseline”, “week_1”, or “week_7” arm – “treatment” or “placebo”\nsample_id – the “wet-lab” sample id associated with this timepoint\n\n01_participant_metadata.csv\n\npid - participant id\narm - “treatment” or “placebo”\nsmoker - “yes” or “no”\nage – age in years\neducation – 4 options (“less than grade 9”, “grade 10-12, not matriculated”, “grade 10-12, matriculated”, “post-secondary”)\nsex – all participants are “Female”\n\n02_visit_clinical_measurements.csv\n\npid – particpant id\ntime_point – “baseline”, “week_1”, or “week_7”\narm – “treatment” or “placebo”\nnugent_score – Nugent Score, a number from 0-10. 0-3 is no BV, 4-6 is intermediate BV, and 7-10 is BV . crp_blood – decimal number representing C-reactive protein blood test (CRP) ph – vaginal pH\n\n03_elisa_cytokines.csv\n\nsample_id - the “wet-lab” sample id associated with this timepoint\ncytokine - “IL-1a”, “IL-10”, “IL-1b”, “IL-8”, “IL-6”, “TNFa”, “IP-10”, “MIG”, “IFN-Y”, “MIP-3a”\nconc – decimal number representing concentration\nlimits – either “within limits” or “out of range”\n\n04_flow_cytometry.csv\n\nsample_id - the “wet-lab” sample id associated with this timepoint\nAll other columns – the integer count of this type of cell in this sample\ncd4_t_cells might best be analyzed as a proportion of cd3_t_cells… ### Read in data\nData is often in tables, and the easiest way to store tabular data is in csv or tsv format.\ncsv - comma separated values\ntsv - tab separated values\nto read in data stored this way use read_csv(filename) or read_tsv(filename)",
+    "text": "Download the instructional dataset:\nThe main data set for use in lectures is split into 5 tables. The idea of this dataset is that there is a randomized controlled trial of a drug aimed at reducing HIV risk by reducing inflammation. There were 23 participants in the placebo arm and 21 in the treatment arm. There were 3 visits for the trial – baseline (before any treatment occurred), week_1 (1 week after treatment) and week_7 (7 weeks after treatment). At each time point inflammation was measured using luminex (elisa_cytokines table) and immune cells counts were measured from a pap-smear (flow_cytometry table).\n\n00_sample_ids.csv\n\npid – participant idtime_point – “baseline”, “week_1”, or “week_7” arm – “treatment” or “placebo”sample_id – the “wet-lab” sample id associated with this timepoint\n\n01_participant_metadata.csv\n\npid - participant idarm - “treatment” or “placebo”smoker - “yes” or “no”age – age in yearseducation – 4 options (“less than grade 9”, “grade 10-12, not matriculated”, “grade 10-12, matriculated”, “post-secondary”)sex – all participants are “Female”\n\n02_visit_clinical_measurements.csv\n\npid – particpant idtime_point – “baseline”, “week_1”, or “week_7”arm – “treatment” or “placebo”nugent_score – Nugent Score, a number from 0-10. 0-3 is no BV, 4-6 is intermediate BV, and 7-10 is BV . crp_blood – decimal number representing C-reactive protein blood test (CRP) ph – vaginal pH\n\n03_elisa_cytokines.csv\n\nsample_id - the “wet-lab” sample id associated with this timepointcytokine - “IL-1a”, “IL-10”, “IL-1b”, “IL-8”, “IL-6”, “TNFa”, “IP-10”, “MIG”, “IFN-Y”, “MIP-3a”conc – decimal number representing concentrationlimits – either “within limits” or “out of range”\n\n04_flow_cytometry.csv\n\nsample_id - the “wet-lab” sample id associated with this timepoint\nAll other columns – the integer count of this type of cell in this sample\ncd4_t_cells might best be analyzed as a proportion of cd3_t_cells… ### Read in data\nData is often in tables, and the easiest way to store tabular data is in csv or tsv format.\ncsv - comma separated valuestsv - tab separated values\nto read in data stored this way use read_csv(filename) or read_tsv(filename)",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
     ]
   },
   {
-    "objectID": "materials/r-tutorial/index.html#exercise-1-data-wrangling-and-simple-manipulations",
-    "href": "materials/r-tutorial/index.html#exercise-1-data-wrangling-and-simple-manipulations",
+    "objectID": "materials/r-tutorial-rise-2025/index.html#exercise-1-data-wrangling-and-simple-manipulations",
+    "href": "materials/r-tutorial-rise-2025/index.html#exercise-1-data-wrangling-and-simple-manipulations",
     "title": "R workshop",
     "section": "Exercise 1: Data wrangling and simple manipulations",
-    "text": "Exercise 1: Data wrangling and simple manipulations\nIn this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.\nWe will be using the R package, tidyverse for the data manipulation functions %&gt;%, filter(), select(), arrange(), count(), and mutate().\n\n```{r}\n#| eval: false\n#| warning: false\n\nlibrary(tidyverse)\n\ntable_01 &lt;- read_csv(\"data/01_participant_metadata.csv\")\n\ntable_02 &lt;- read_csv(\"data/02_visit_clinical_measurements.csv\")\n```\n\n\nThe pipe (%&gt;%, read: “and then”)\nWhen writing complex data analysis pipelines, we frequently use the pipe operator %&gt;% to move data from one analysis step to the next. The pipe is pronounced “and then”, and it takes the data on its left and uses it as the first argument for the function on its right.\nFor example, to see the first few lines of a dataset, we often write head(data). Instead, we can write data %&gt;% head().\nTry this yourself. Write code that displays the first few lines of table_01, using %&gt;% and head():\n\ntable_01 ___ head()\n\n\n\nChoosing data rows\nThe function filter() allows you to find rows in a dataset that meet one or more specific conditions. The syntax is data %&gt;% filter(condition), where condition is a logical condition. For example, filter(x &gt; 5) would pick all rows for which the value in column x is greater than 5.\nBelow, write code to pick all measurements from the placebo arm in table_02 :\n\ntable_02 %&gt;%\n  filter(___)\n\n\n\nFiltering for multiple conditions\nYou can also state multiple conditions, separated by a comma. For example, filter(x &gt; 5, y &lt; 2) would pick all rows for which the value in the column x is greater than 5 and the value in the column y is less than 2. Note that the conditions are combined via logical and, both need to be satisfied for the row to be picked.\nTo try this out, pick all measurements at baseline for the placebo arm in table_02 :\n\ntable_02 %&gt;%\n  filter(time_point == ___, arm == ___)\n\n\n\nChoosing data columns\nThe function select() allows you to pick specific data columns by name. This is frequently useful when a dataset has many more columns than we are interested in at the time. For example, if we are only interested in the participants’ education, and sex, we could select these three columns:\n\ntable_01 %&gt;%\n  select(education, sex)\n\n# A tibble: 44 × 2\n   education                     sex   \n   &lt;chr&gt;                         &lt;chr&gt; \n 1 grade 10-12, matriculated     Female\n 2 grade 10-12, matriculated     Female\n 3 post-secondary                Female\n 4 grade 10-12, not matriculated Female\n 5 grade 10-12, matriculated     Female\n 6 post-secondary                Female\n 7 grade 10-12, not matriculated Female\n 8 grade 10-12, not matriculated Female\n 9 grade 10-12, not matriculated Female\n10 less than grade 9             Female\n# ℹ 34 more rows\n\n\nTry this yourself, picking the columns representing the participant age (age), and then study arm (arm).\n\ntable_01 %&gt;%\n  select(___)\n\n\n\nChoosing columns for removal\nAnother situation that arises frequently is one where we want to remove specific columns. We can also do this with select(), but now write select(-column) to remove one or more columns.\nTry this. Remove the column smoker.\n\ntable_01 %&gt;%\n  select(___)\n\nAnd now remove both smoker and education.\n\ntable_01 %&gt;%\n  select(-___, -___)\n\n\n\nSorting data\nThe function arrange() allows you to sort data by one or more columns. For example, data %&gt;% arrange(x) would sort the data by increasing values of x, and data %&gt;% arrange(x, y) would sort the data first by x and then, for ties in x, by y.\nSort the participants by age:\n\ntable_01 %&gt;%\n  arrange(___)\n\nTo arrange data in descending order, enclose the data column in desc(). For example, data %&gt;% arrange(desc(x)) would sort the data by decreasing values of x. (desc stands for “descending”.)\n\n\nCounting\nWe frequently want to count how many times a particular value or combination of values occurs in a dataset. We do this using the count() function. For example, the following code counts how many participants there are in each study arm in table_01.\n\ntable_01 %&gt;%\n  count(arm)\n\n# A tibble: 2 × 2\n  arm           n\n  &lt;chr&gt;     &lt;int&gt;\n1 placebo      23\n2 treatment    21\n\n\nNow try this yourself. Count how many smokers and non smokers there are.\n\ntable_01 %&gt;%\n  count(___)\n\nWe can also perform more fine-grained counts, by providing the count() function with more than one column name. See if you can count how many smokers and non smokers the dataset contains for each treatment arm\n\ntable_01 %&gt;%\n  count(___, smoker)\n\nNow count how many participants are in each study arm for each education level in the dataset\n\ntable_01 %&gt;%\n  count(___, arm)\n\n\n\nChaining analysis steps into pipelines\nWe can chain multiple analysis steps into a pipeline by continuing to add “and then” statements. For example, data %&gt;% count(...) %&gt;% arrange(...) would first count and then sort the data.\nTry this out by counting the number of participants in each study arm and then sorting by the number of participants\n\ntable_01 %&gt;%\n  count(___) %&gt;%\n  arrange(___)",
+    "text": "Exercise 1: Data wrangling and simple manipulations\nIn this worksheet, we will discuss how to perform basic data manipulations, such as filtering data rows that meet certain conditions, choosing data columns, and arranging data in ascending or descending order.\nWe will be using the R package, tidyverse for the data manipulation functions %&gt;%, filter(), select(), arrange(), count(), and mutate().\n\n```{r}\n#| eval: false\n#| warning: false\n\nlibrary(tidyverse)\n\ntable_01 &lt;- read_csv(\"data/01_participant_metadata.csv\")\n\ntable_02 &lt;- read_csv(\"data/02_visit_clinical_measurements.csv\")\n```\n\nThe pipe (%&gt;%, read: “and then”)\nWhen writing complex data analysis pipelines, we frequently use the pipe operator %&gt;% to move data from one analysis step to the next. The pipe is pronounced “and then”, and it takes the data on its left and uses it as the first argument for the function on its right.\nFor example, to see the first few lines of a dataset, we often write head(data). Instead, we can write data %&gt;% head().\nTry this yourself. Write code that displays the first few lines of table_01, using %&gt;% and head():\n\ntable_01 ___ head()\n\nChoosing data rows\nThe function filter() allows you to find rows in a dataset that meet one or more specific conditions. The syntax is data %&gt;% filter(condition), where condition is a logical condition. For example, filter(x &gt; 5) would pick all rows for which the value in column x is greater than 5.\nBelow, write code to pick all measurements from the placebo arm in table_02 :\n\ntable_02 %&gt;%\n  filter(___)\n\nFiltering for multiple conditions\nYou can also state multiple conditions, separated by a comma. For example, filter(x &gt; 5, y &lt; 2) would pick all rows for which the value in the column x is greater than 5 and the value in the column y is less than 2. Note that the conditions are combined via logical and, both need to be satisfied for the row to be picked.\nTo try this out, pick all measurements at baseline for the placebo arm in table_02 :\n\ntable_02 %&gt;%\n  filter(time_point == ___, arm == ___)\n\nChoosing data columns\nThe function select() allows you to pick specific data columns by name. This is frequently useful when a dataset has many more columns than we are interested in at the time. For example, if we are only interested in the participants’ education, and sex, we could select these three columns:\n\ntable_01 %&gt;%\n  select(education, sex)\n\n# A tibble: 44 × 2\n   education                     sex   \n   &lt;chr&gt;                         &lt;chr&gt; \n 1 grade 10-12, matriculated     Female\n 2 grade 10-12, matriculated     Female\n 3 post-secondary                Female\n 4 grade 10-12, not matriculated Female\n 5 grade 10-12, matriculated     Female\n 6 post-secondary                Female\n 7 grade 10-12, not matriculated Female\n 8 grade 10-12, not matriculated Female\n 9 grade 10-12, not matriculated Female\n10 less than grade 9             Female\n# ℹ 34 more rows\n\n\nTry this yourself, picking the columns representing the participant age (age), and then study arm (arm).\n\ntable_01 %&gt;%\n  select(___)\n\nChoosing columns for removal\nAnother situation that arises frequently is one where we want to remove specific columns. We can also do this with select(), but now write select(-column) to remove one or more columns.\nTry this. Remove the column smoker.\n\ntable_01 %&gt;%\n  select(___)\n\nAnd now remove both smoker and education.\n\ntable_01 %&gt;%\n  select(-___, -___)\n\nSorting data\nThe function arrange() allows you to sort data by one or more columns. For example, data %&gt;% arrange(x) would sort the data by increasing values of x, and data %&gt;% arrange(x, y) would sort the data first by x and then, for ties in x, by y.\nSort the participants by age:\n\ntable_01 %&gt;%\n  arrange(___)\n\nTo arrange data in descending order, enclose the data column in desc(). For example, data %&gt;% arrange(desc(x)) would sort the data by decreasing values of x. (desc stands for “descending”.)\nCounting\nWe frequently want to count how many times a particular value or combination of values occurs in a dataset. We do this using the count() function. For example, the following code counts how many participants there are in each study arm in table_01.\n\ntable_01 %&gt;%\n  count(arm)\n\n# A tibble: 2 × 2\n  arm           n\n  &lt;chr&gt;     &lt;int&gt;\n1 placebo      23\n2 treatment    21\n\n\nNow try this yourself. Count how many smokers and non smokers there are.\n\ntable_01 %&gt;%\n  count(___)\n\nWe can also perform more fine-grained counts, by providing the count() function with more than one column name. See if you can count how many smokers and non smokers the dataset contains for each treatment arm\n\ntable_01 %&gt;%\n  count(___, smoker)\n\nNow count how many participants are in each study arm for each education level in the dataset\n\ntable_01 %&gt;%\n  count(___, arm)\n\nChaining analysis steps into pipelines\nWe can chain multiple analysis steps into a pipeline by continuing to add “and then” statements. For example, data %&gt;% count(...) %&gt;% arrange(...) would first count and then sort the data.\nTry this out by counting the number of participants in each study arm and then sorting by the number of participants\n\ntable_01 %&gt;%\n  count(___) %&gt;%\n  arrange(___)",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
     ]
   },
   {
-    "objectID": "materials/r-tutorial/index.html#exercise-2-data-visualization-activity",
-    "href": "materials/r-tutorial/index.html#exercise-2-data-visualization-activity",
+    "objectID": "materials/r-tutorial-rise-2025/index.html#exercise-2-data-visualization-activity",
+    "href": "materials/r-tutorial-rise-2025/index.html#exercise-2-data-visualization-activity",
     "title": "R workshop",
     "section": "Exercise 2: Data Visualization Activity",
-    "text": "Exercise 2: Data Visualization Activity\nreproduced from a Schmidt Science Fellowship activity, thanks to Fatima Hussain\n\nPatterns are the essence of data exploration and our eyes’ ability to pick them out is integral to data understanding. Much of the data we work with, however, do not have a natural form and we need to make decisions about how they are to be represented. Try different ways to visualize the datasets so meaningful patterns may be found.\n\n\nGenetic profiles of cancer\nThese datasets contains 10 cancer samples. Table 1 describes the mutational status for a set of genes (A-E) and whether a mutation if absent (0) or present (1). Table 2 summarizes the expression levels of those genes, ranging from no expression (0) to high expression (3).\n\n\n\nTable 1: Mutational status for a set of genes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsample -&gt;\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n\n\n\n\nGene A\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n\n\nGene B\n0\n0\n0\n0\n1\n1\n1\n0\n1\n1\n\n\nGene C\n0\n0\n1\n0\n0\n0\n1\n1\n1\n1\n\n\nGene D\n1\n1\n0\n0\n1\n1\n0\n0\n0\n0\n\n\nGene E\n0\n1\n1\n0\n1\n0\n0\n0\n1\n0\n\n\n\n\n\n\n\n\n\nTable 2: Expression levels for a set of genes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsample -&gt;\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n\n\n\n\nGene A\n2\n1\n1\n2\n2\n0\n2\n1\n1\n2\n\n\nGene B\n1\n1\n2\n1\n0\n0\n0\n2\n0\n0\n\n\nGene C\n1\n1\n3\n1\n2\n2\n3\n0\n3\n0\n\n\nGene D\n0\n0\n2\n1\n3\n3\n2\n1\n1\n1\n\n\nGene E\n1\n3\n3\n1\n3\n1\n2\n1\n3\n2\n\n\n\n\n\n\n\n\n          1. Think about the problem on your own for 5 minutes.\n          2. In your groups, discuss and create different visualizations to highlight underlying patterns\n          3. Summarize the group’s approach\n          4. Elect/volunteer a spokesperson to present the solution\n\n\nOn excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table.\nConsider the following concepts when creating your visualizations\n\n\n\n\nPatterns\nPatterns are the essence of data exploration. What kinds of representation will produce the most meaningful insights?\n   \n\n\nEncodings\nSome visual estimations are easier to make than others. How might you use encodings that are less accurate but otherwise better at conveying overall trends?\n  \n\n\n\n\nColor\nColor is a powerful encoding that presents several challenges. Have you chosen a color scale that is optimal for that data type?\n   \n\n\nSalience and Relevance\nPop-out effects enable quick recognition. Are the most noticeable elements of your visualizations also the most relevant?",
+    "text": "Exercise 2: Data Visualization Activity\nreproduced from a Schmidt Science Fellowship activity, thanks to Fatima Hussain\n\nPatterns are the essence of data exploration and our eyes’ ability to pick them out is integral to data understanding. Much of the data we work with, however, do not have a natural form and we need to make decisions about how they are to be represented. Try different ways to visualize the datasets so meaningful patterns may be found.\n\nGenetic profiles of cancer\nThese datasets contains 10 cancer samples. Table 1 describes the mutational status for a set of genes (A-E) and whether a mutation if absent (0) or present (1). Table 2 summarizes the expression levels of those genes, ranging from no expression (0) to high expression (3).\n\n\nTable 1: Mutational status for a set of genes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsample -&gt;\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n\n\n\nGene A\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n\n\nGene B\n0\n0\n0\n0\n1\n1\n1\n0\n1\n1\n\n\nGene C\n0\n0\n1\n0\n0\n0\n1\n1\n1\n1\n\n\nGene D\n1\n1\n0\n0\n1\n1\n0\n0\n0\n0\n\n\nGene E\n0\n1\n1\n0\n1\n0\n0\n0\n1\n0\n\n\n\n\n\n\n\n\nTable 2: Expression levels for a set of genes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsample -&gt;\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n\n\n\nGene A\n2\n1\n1\n2\n2\n0\n2\n1\n1\n2\n\n\nGene B\n1\n1\n2\n1\n0\n0\n0\n2\n0\n0\n\n\nGene C\n1\n1\n3\n1\n2\n2\n3\n0\n3\n0\n\n\nGene D\n0\n0\n2\n1\n3\n3\n2\n1\n1\n1\n\n\nGene E\n1\n3\n3\n1\n3\n1\n2\n1\n3\n2\n\n\n\n\n\n\n\n          1. Think about the problem on your own for 5 minutes.\n          2. In your groups, discuss and create different visualizations to highlight underlying patterns\n          3. Summarize the group’s approach\n          4. Elect/volunteer a spokesperson to present the solution\n\nOn excalidraw.com or pen and paper, create a visualization to answer the questions below. Check out the data visualization cheatsheet for inspiration. Think about values you’d have to compute, or if you have everything you need already in our joined_data table.\nConsider the following concepts when creating your visualizations\n\n\nPatterns\nPatterns are the essence of data exploration. What kinds of representation will produce the most meaningful insights?\n\nEncodings\nSome visual estimations are easier to make than others. How might you use encodings that are less accurate but otherwise better at conveying overall trends?\n\n\n\n\nColor\nColor is a powerful encoding that presents several challenges. Have you chosen a color scale that is optimal for that data type?\n\nSalience and Relevance\nPop-out effects enable quick recognition. Are the most noticeable elements of your visualizations also the most relevant?",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
     ]
   },
   {
-    "objectID": "materials/r-tutorial/index.html#exercise-3-ggplot-exercise",
-    "href": "materials/r-tutorial/index.html#exercise-3-ggplot-exercise",
+    "objectID": "materials/r-tutorial-rise-2025/index.html#exercise-3-ggplot-exercise",
+    "href": "materials/r-tutorial-rise-2025/index.html#exercise-3-ggplot-exercise",
     "title": "R workshop",
     "section": "Exercise 3: ggplot exercise",
-    "text": "Exercise 3: ggplot exercise\nFor this exercise we’ll be using the instructional dataset. Download the dataset here.\nIn this worksheet, we will discuss a core concept of ggplot, the mapping of data values onto aesthetics.\nWe will be using the R package tidyverse, which includes ggplot() and related functions.\nCopy the following code chunk into your quarto document. Notice the error in the read_csv() line - it wants you to supply the file name to read. Fix the error!\n\nlibrary(tidyverse) # load the tidyverse library\n\n# we want to use the data in the visit_clinical_measurements file\nclinical_measurements &lt;- read_csv() # read in your data 02_visit_clinical_measurements.csv\n\nError in read_csv(): argument \"file\" is missing, with no default\n\n#then show the first few rows\nhead(clinical_measurements)\n\nError: object 'clinical_measurements' not found\n\n\n\nBasic use of ggplot\nIn the most basic use of ggplot, we call the ggplot() function with a dataset and an aesthetic mapping (created with aes()), and then we add a geom, such as geom_line() to draw lines or geom_point() to draw points.\nTry this for yourself. Map the column ph onto the x axis and the column crp_blood onto the y axis, and use geom_line() to display the data.\nWhenever you see ___ in the code below, that means you should swap it in with your own code.\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nTry again. Now use geom_point() instead of geom_line().\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nAnd now swap which column you map to x and which to y.\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\n\n\nMore complex geoms\nYou can use other geoms to make different types of plots. For example, geom_boxplot() will make boxplots. For boxplots, we frequently want categorical data on the x or y axis. For example, we might want a separate boxplot for each month. Try this out. Put nugent_score on the x axis, ph on the y axis, and use geom_boxplot().\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nNow try swapping the x and y axis geom_jitter()\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nNow try swapping the x and y axis\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\n\n\nAdding color\nTry again with geom_jitter(), this time using ph as the location along the y axis and arm for the color. Remember to check the ggplot cheat sheet, or type ?geom_jitter() in the console to and look at the “Aesthetics” section if you get stuck.\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\n(Hint: Try adding size = 3 as a parameter to the geom_jitter() to create larger points.)\n\n\nUsing aesthetics as parameters\nMany of the aesthetics (such as color, fill, and also size to change line size or point thickness) can be used as parameters inside a geom rather than inside an aes() statement. The difference is that when you use an aesthetic as a parameter, you specify a specific value, such as color = \"blue\", rather than a mapping, such as aes(color = arm). Notice the difference: Inside the aes() function, we don’t actually specify the specific color values, ggplot does that for us. We only say that we want the data values of the arm column to correspond to different colors. (We will learn later how to tell ggplot to use specific colors in this mapping.)\nTry this with the boxplot example from the previous section. Map arm onto the fill aesthetic but set the color of the lines to \"navyblue\".\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nNow do the reverse. Map arm onto the line colors of the boxplot, but will the box with the color \"navyblue\".\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nGreat, that’s all for now! If you are done, put a yellow sticky note on your laptop!",
+    "text": "Exercise 3: ggplot exercise\nFor this exercise we’ll be using the instructional dataset. Download the dataset here.\nIn this worksheet, we will discuss a core concept of ggplot, the mapping of data values onto aesthetics.\nWe will be using the R package tidyverse, which includes ggplot() and related functions.\nCopy the following code chunk into your quarto document. Notice the error in the read_csv() line - it wants you to supply the file name to read. Fix the error!\n\nlibrary(tidyverse) # load the tidyverse library\n\n# we want to use the data in the visit_clinical_measurements file\nclinical_measurements &lt;- read_csv() # read in your data 02_visit_clinical_measurements.csv\n\nError in read_csv(): argument \"file\" is missing, with no default\n\n#then show the first few rows\nhead(clinical_measurements)\n\nError: object 'clinical_measurements' not found\n\n\nBasic use of ggplot\nIn the most basic use of ggplot, we call the ggplot() function with a dataset and an aesthetic mapping (created with aes()), and then we add a geom, such as geom_line() to draw lines or geom_point() to draw points.\nTry this for yourself. Map the column ph onto the x axis and the column crp_blood onto the y axis, and use geom_line() to display the data.\nWhenever you see ___ in the code below, that means you should swap it in with your own code.\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nTry again. Now use geom_point() instead of geom_line().\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nAnd now swap which column you map to x and which to y.\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nMore complex geoms\nYou can use other geoms to make different types of plots. For example, geom_boxplot() will make boxplots. For boxplots, we frequently want categorical data on the x or y axis. For example, we might want a separate boxplot for each month. Try this out. Put nugent_score on the x axis, ph on the y axis, and use geom_boxplot().\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nNow try swapping the x and y axis geom_jitter()\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nNow try swapping the x and y axis\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nAdding color\nTry again with geom_jitter(), this time using ph as the location along the y axis and arm for the color. Remember to check the ggplot cheat sheet, or type ?geom_jitter() in the console to and look at the “Aesthetics” section if you get stuck.\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\n(Hint: Try adding size = 3 as a parameter to the geom_jitter() to create larger points.)\nUsing aesthetics as parameters\nMany of the aesthetics (such as color, fill, and also size to change line size or point thickness) can be used as parameters inside a geom rather than inside an aes() statement. The difference is that when you use an aesthetic as a parameter, you specify a specific value, such as color = \"blue\", rather than a mapping, such as aes(color = arm). Notice the difference: Inside the aes() function, we don’t actually specify the specific color values, ggplot does that for us. We only say that we want the data values of the arm column to correspond to different colors. (We will learn later how to tell ggplot to use specific colors in this mapping.)\nTry this with the boxplot example from the previous section. Map arm onto the fill aesthetic but set the color of the lines to \"navyblue\".\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nNow do the reverse. Map arm onto the line colors of the boxplot, but will the box with the color \"navyblue\".\n\nggplot(clinical_measurements, aes(x = ___, y = ___)) +\n  ___()\n\nGreat, that’s all for now! If you are done, put a yellow sticky note on your laptop!",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
     ]
   },
   {
-    "objectID": "materials/r-tutorial/index.html#exercise-4-data-wrangling-2",
-    "href": "materials/r-tutorial/index.html#exercise-4-data-wrangling-2",
+    "objectID": "materials/r-tutorial-rise-2025/index.html#exercise-4-data-wrangling-2",
+    "href": "materials/r-tutorial-rise-2025/index.html#exercise-4-data-wrangling-2",
     "title": "R workshop",
     "section": "Exercise 4: Data wrangling 2",
-    "text": "Exercise 4: Data wrangling 2\nIn this exercise, we will continue with basic data manipulations, now moving on to grouping and summarizing, making data tables wider or longer, and joining data tables.\nWe will be using the R package, tidyverse for the data manipulation functions %&gt;%, group_by(), summarize(), pivot_wider(), pivot_longer(), and join functions such as left_join()\nPaste the following into the top code chunk of your qmd file.\nDownload the data files from the dataset page and place all 5 files into this directory.\nPaste the following code chunk into a new qmd file in this project:\nlibrary(tidyverse)\n\ntable_01 &lt;- read_csv(\"01_participant_metadata.csv\")\n\ntable_02 &lt;- read_csv(\"02_visit_clinical_measurements.csv\")\n\nAnalyzing subsets\nIn many data analysis settings, we want to break a dataset into subsets and then perform some summary calculation on each subset. The simplest example is counting, which we have done previously with the count() function.\n\n```{r}\ntable_01 %&gt;%\n  count(arm)\n```\n\n# A tibble: 2 × 2\n  arm           n\n  &lt;chr&gt;     &lt;int&gt;\n1 placebo      23\n2 treatment    21\n\n\nThis function subdivides the penguins dataset into subsets for each species and then calculates the number n for each subset, which is the number of observations in each subset.\nThe function count() here does all the work for us, but what if instead of counting we wanted to calculate the mean weight of the penguins for each species, or calculate the mean weight and count at the same time? We need a general framework that allows us to do these kinds of calculations with maximum flexibility.\nThe tidyverse approach is to first group a dataset with group_by() and then to calculate grouped summaries with summarize().\n\n\nGrouping\nLet’s first consider just grouping. If we look at the raw R output of just the penguins table or the penguins table after running it through group_by(arm), we see that the table is the same, except in the second case there is a line # Groups: arm [2] which indicates that the table is grouped by arm and there are two groups. (Here, we need to pipe the tables into the print() function to see the raw R output instead of a formatted table that would hide the grouping information.)\n\ntable_01 %&gt;%\n  print()\n\n# A tibble: 44 × 6\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\n\ntable_01 %&gt;%\n  group_by(arm) %&gt;%\n  print()\n\n# A tibble: 44 × 6\n# Groups:   arm [2]\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\nWe can also group by multiple data columns at once, and we can undo any grouping with ungroup().\n\ntable_01 %&gt;%\n  group_by(arm, education) %&gt;%\n  print()\n\n# A tibble: 44 × 6\n# Groups:   arm, education [8]\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\n\ntable_01 %&gt;%\n  group_by(arm, education) %&gt;%\n  ungroup() %&gt;%\n  print()\n\n# A tibble: 44 × 6\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\nNow try this yourself. Group the table_01 dataset by education_level and smoker.\n\ntable_01 %&gt;%\n  ___ %&gt;%\n  print()\n\nAnswer for yourself How many distinct groups did this produce?\nNow undo the previous grouping.\n\n```{r}\n# build all the code for this exercise\n```\n\nAlso verify what the output looks like when you omit the print() function at the end.\n\n\nPerforming summaries\nOnce we have set up a grouping for a data table, we can then calculate summary data with the summarize() function. This function works similarly to mutate(), in that we provide it with statements of the form &lt;new column name&gt; = &lt;computation&gt;, where &lt;new column name&gt; stands for the name of the new column that is being created and &lt;computation&gt; stands for the computation that is used to generate the values in the new column.\nAs an example, using table_02 we want to calculate the median ph of participants, by arm, we could write summarise(median_ph = median(ph)), and this would create a new column called median_ph\nTry this out. First group by arm and then make the new column:\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___)\n\nNow see what it looks like if you instead group by timepoint\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___)\n\nNow try grouping by both timepoint and arm\n\ntable_02 %&gt;%\n  group_by(__, __) %&gt;%\n  summarise(___)\n\nWe can perform multiple summaries at once by adding more statements inside the summarise() function, separated by a ,. To try this out, calculate the median nugent in addition to the median ph\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___, ___)\n\nWhen performing summaries, we often want to know how many observations there are in each group (i.e., we want to count). We can do this with the function n(), which inside summarise() gives us the group size. So, we can count by adding a statement such as count = n() inside `summarise(). Try this out.\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___, ___)\n\n\n\nMaking tables wider or longer\nFor efficient data processing, we usually want tables in long form, where each columns is one variable and each row is one observation. However, in some applications, for example when making a table easier to read for humans, a wide format can be preferred. In a wide format, some variables are displayed as column names, and other variables are distributed over multiple columns.\nFirst, make a summary table that shows median ph by arm and time_point, just like you did above, and save it to a variable ph_summary_long\n\nph_summary_long &lt;- table_02 %&gt;%\n  group_by(___) %&gt;%\n  summarise(___)\n\nNow, try using pivot_wider() to make a column for each arm. Remember, use ?pivot_wider if you want help, and try asking google or chatGPT if you get stuck.\n\nph_summary_long %&gt;%\n  pivot_wider(____)\n\nWhat if you wanted to instead make a column for each time point, and have the arms be different rows?\n\nph_summary_long %&gt;%\n  pivot_wider(____)\n\n\n\nCombining datasets with joins\nFinally, we sometimes encounter the situation where we have two data sets that contain different pieces of information about the same subjects or objects, and we need to merge these tables for further analysis. In this situation, we need to perform a join, and there are multiple different types of joins available: left_join(), right_join(), inner_join(), full_join(). These joins all differ in how they handle cases where an observation is present in only one of the two tables but missing in the other.\nOur instructional dataset has no missing values, so all types of joins are actually equivalent. Try to join table_01 and table_02 using left_join()\n\n```{r}\n# join table_01 and table_02\n```",
+    "text": "Exercise 4: Data wrangling 2\nIn this exercise, we will continue with basic data manipulations, now moving on to grouping and summarizing, making data tables wider or longer, and joining data tables.\nWe will be using the R package, tidyverse for the data manipulation functions %&gt;%, group_by(), summarize(), pivot_wider(), pivot_longer(), and join functions such as left_join()\nPaste the following into the top code chunk of your qmd file.\nDownload the data files from the dataset page and place all 5 files into this directory.\nPaste the following code chunk into a new qmd file in this project:\nlibrary(tidyverse)\n\ntable_01 &lt;- read_csv(\"01_participant_metadata.csv\")\n\ntable_02 &lt;- read_csv(\"02_visit_clinical_measurements.csv\")\nAnalyzing subsets\nIn many data analysis settings, we want to break a dataset into subsets and then perform some summary calculation on each subset. The simplest example is counting, which we have done previously with the count() function.\n\n```{r}\ntable_01 %&gt;%\n  count(arm)\n```\n\n# A tibble: 2 × 2\n  arm           n\n  &lt;chr&gt;     &lt;int&gt;\n1 placebo      23\n2 treatment    21\n\n\nThis function subdivides the penguins dataset into subsets for each species and then calculates the number n for each subset, which is the number of observations in each subset.\nThe function count() here does all the work for us, but what if instead of counting we wanted to calculate the mean weight of the penguins for each species, or calculate the mean weight and count at the same time? We need a general framework that allows us to do these kinds of calculations with maximum flexibility.\nThe tidyverse approach is to first group a dataset with group_by() and then to calculate grouped summaries with summarize().\nGrouping\nLet’s first consider just grouping. If we look at the raw R output of just the penguins table or the penguins table after running it through group_by(arm), we see that the table is the same, except in the second case there is a line # Groups: arm [2] which indicates that the table is grouped by arm and there are two groups. (Here, we need to pipe the tables into the print() function to see the raw R output instead of a formatted table that would hide the grouping information.)\n\ntable_01 %&gt;%\n  print()\n\n# A tibble: 44 × 6\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\n\ntable_01 %&gt;%\n  group_by(arm) %&gt;%\n  print()\n\n# A tibble: 44 × 6\n# Groups:   arm [2]\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\nWe can also group by multiple data columns at once, and we can undo any grouping with ungroup().\n\ntable_01 %&gt;%\n  group_by(arm, education) %&gt;%\n  print()\n\n# A tibble: 44 × 6\n# Groups:   arm, education [8]\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\n\ntable_01 %&gt;%\n  group_by(arm, education) %&gt;%\n  ungroup() %&gt;%\n  print()\n\n# A tibble: 44 × 6\n   pid    arm       smoker       age education                     sex   \n   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt; \n 1 pid_01 placebo   non-smoker    26 grade 10-12, matriculated     Female\n 2 pid_02 placebo   smoker        33 grade 10-12, matriculated     Female\n 3 pid_03 placebo   smoker        30 post-secondary                Female\n 4 pid_04 placebo   non-smoker    34 grade 10-12, not matriculated Female\n 5 pid_05 treatment non-smoker    29 grade 10-12, matriculated     Female\n 6 pid_06 placebo   smoker        34 post-secondary                Female\n 7 pid_07 placebo   non-smoker    31 grade 10-12, not matriculated Female\n 8 pid_08 placebo   smoker        30 grade 10-12, not matriculated Female\n 9 pid_09 treatment non-smoker    35 grade 10-12, not matriculated Female\n10 pid_10 treatment non-smoker    32 less than grade 9             Female\n# ℹ 34 more rows\n\n\nNow try this yourself. Group the table_01 dataset by education_level and smoker.\n\ntable_01 %&gt;%\n  ___ %&gt;%\n  print()\n\nAnswer for yourself How many distinct groups did this produce?\nNow undo the previous grouping.\n\n```{r}\n# build all the code for this exercise\n```\n\nAlso verify what the output looks like when you omit the print() function at the end.\nPerforming summaries\nOnce we have set up a grouping for a data table, we can then calculate summary data with the summarize() function. This function works similarly to mutate(), in that we provide it with statements of the form &lt;new column name&gt; = &lt;computation&gt;, where &lt;new column name&gt; stands for the name of the new column that is being created and &lt;computation&gt; stands for the computation that is used to generate the values in the new column.\nAs an example, using table_02 we want to calculate the median ph of participants, by arm, we could write summarise(median_ph = median(ph)), and this would create a new column called median_ph\nTry this out. First group by arm and then make the new column:\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___)\n\nNow see what it looks like if you instead group by timepoint\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___)\n\nNow try grouping by both timepoint and arm\n\ntable_02 %&gt;%\n  group_by(__, __) %&gt;%\n  summarise(___)\n\nWe can perform multiple summaries at once by adding more statements inside the summarise() function, separated by a ,. To try this out, calculate the median nugent in addition to the median ph\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___, ___)\n\nWhen performing summaries, we often want to know how many observations there are in each group (i.e., we want to count). We can do this with the function n(), which inside summarise() gives us the group size. So, we can count by adding a statement such as count = n() inside `summarise(). Try this out.\n\ntable_02 %&gt;%\n  group_by(____) %&gt;%\n  summarise(___, ___)\n\nMaking tables wider or longer\nFor efficient data processing, we usually want tables in long form, where each columns is one variable and each row is one observation. However, in some applications, for example when making a table easier to read for humans, a wide format can be preferred. In a wide format, some variables are displayed as column names, and other variables are distributed over multiple columns.\nFirst, make a summary table that shows median ph by arm and time_point, just like you did above, and save it to a variable ph_summary_long\n\nph_summary_long &lt;- table_02 %&gt;%\n  group_by(___) %&gt;%\n  summarise(___)\n\nNow, try using pivot_wider() to make a column for each arm. Remember, use ?pivot_wider if you want help, and try asking google or chatGPT if you get stuck.\n\nph_summary_long %&gt;%\n  pivot_wider(____)\n\nWhat if you wanted to instead make a column for each time point, and have the arms be different rows?\n\nph_summary_long %&gt;%\n  pivot_wider(____)\n\nCombining datasets with joins\nFinally, we sometimes encounter the situation where we have two data sets that contain different pieces of information about the same subjects or objects, and we need to merge these tables for further analysis. In this situation, we need to perform a join, and there are multiple different types of joins available: left_join(), right_join(), inner_join(), full_join(). These joins all differ in how they handle cases where an observation is present in only one of the two tables but missing in the other.\nOur instructional dataset has no missing values, so all types of joins are actually equivalent. Try to join table_01 and table_02 using left_join()\n\n```{r}\n# join table_01 and table_02\n```",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
     ]
   },
   {
-    "objectID": "materials/r-tutorial/index.html#advanced-next-steps",
-    "href": "materials/r-tutorial/index.html#advanced-next-steps",
+    "objectID": "materials/r-tutorial-rise-2025/index.html#advanced-next-steps",
+    "href": "materials/r-tutorial-rise-2025/index.html#advanced-next-steps",
     "title": "R workshop",
     "section": "Advanced next steps",
     "text": "Advanced next steps\nJoin together the cytokine data and the metadata and explore the relationships between timepoint, arm, and the different cytokines.\nNote, to do this you will need to use 00_sample_ids.csv, 01_participant_metadata.csv, and 03_elisa_cytokines.csv .\nAlso look at the relationship of vaginal pH to the different cytokines. Now you’ll need to join the 02_visit_clinical_measurements.csv table as well.",
     "crumbs": [
       "About the Kwon Lab",
-      "R and R Studio",
-      "</b> R workshop"
+      "RISE Workshops",
+      "2025 — R workshop"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html",
+    "href": "materials/r-tutorial-rise-2026/index.html",
+    "title": "Intro to Data Visualization in R",
+    "section": "",
+    "text": "A 2-hour, hands-on introduction to making plots in R with ggplot2, using the Palmer Penguins dataset. For RISE 2026 summer researchers — no prior R needed.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html#set-up-your-environment",
+    "href": "materials/r-tutorial-rise-2026/index.html#set-up-your-environment",
+    "title": "Intro to Data Visualization in R",
+    "section": "Set up your environment",
+    "text": "Set up your environment\nEverything runs in GitHub Codespaces — nothing to install.\n\nGo to the participant environment repo and click “Use this template” → “Create a new repository”.\nOn your copy: “Code” → “Codespaces” → “Create codespace on main”.\nWhen it finishes building, open notebooks/00-hello.qmd and run the cell. A penguin chart should appear — that means you are ready.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html#slides",
+    "href": "materials/r-tutorial-rise-2026/index.html#slides",
+    "title": "Intro to Data Visualization in R",
+    "section": "Slides",
+    "text": "Slides\nOpen the slides full screen",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html#the-datasets",
+    "href": "materials/r-tutorial-rise-2026/index.html#the-datasets",
+    "title": "Intro to Data Visualization in R",
+    "section": "The datasets",
+    "text": "The datasets\nMost of today uses palmerpenguins: measurements of 344 penguins from three species (Adelie, Chinstrap, Gentoo) across three islands. Each row is one penguin; each column is something measured about it (flipper length, body mass, species, island, …).\nIn the last part we switch to a small plate-reader result — four genes measured in ten samples — to see what real machine data looks like and how to reshape it for plotting.\nThe session runs in three short cycles of learn a little, then try it:\n\n\nPart A — the elements of a plot: geom, mark, mapping\n\nPart B — distributions: histograms and boxplots\n\nPart C — tidy data: reshaping wide machine data with pivot_longer()",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html#hands-on-worksheet",
+    "href": "materials/r-tutorial-rise-2026/index.html#hands-on-worksheet",
+    "title": "Intro to Data Visualization in R",
+    "section": "Hands-on worksheet",
+    "text": "Hands-on worksheet\n\nYou will do this inside your Codespace, in notebooks/01-visualization.qmd. The same steps are shown here so you can read along. We work in three short parts, with a little teaching before each.\n\nThe one big idea\nEvery row in a table becomes one mark on a plot. The geom decides what kind of mark (dots, boxes, bars) and how to draw it. The mapping, written inside aes(), links a column to a property of the mark (its x position, its y position, its colour).",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html#part-a-read-and-build-a-plot",
+    "href": "materials/r-tutorial-rise-2026/index.html#part-a-read-and-build-a-plot",
+    "title": "Intro to Data Visualization in R",
+    "section": "Part A — Read and build a plot",
+    "text": "Part A — Read and build a plot\nRead a plot\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nMark: a dot. Mapping: flipper_length_mm → x, body_mass_g → y, species → colour. Rows per mark: one row = one dot.\nBuild it up, one line at a time\nStart simple, then add one piece at a time:\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()                          # step 1: bare scatter\n\nAdd color = species inside aes() to map colour to a column. Compare that with putting color = \"navy\" outside aes() (inside geom_point()), which sets every dot to the same colour — a setting, not a mapping.\nChange the geom, keep the rules\n\nggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot() +\n  labs(x = \"Species\", y = \"Body mass (g)\", fill = \"Species\")\n\n\n\n\n\n\n\nSame idea, new mark: each box summarises many rows (a five-number summary) instead of one row per mark.\nOne wrangling move: the pipe\n|&gt; means “take this data, then…”. Filter first, then plot:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html#part-b-the-shape-of-one-variable",
+    "href": "materials/r-tutorial-rise-2026/index.html#part-b-the-shape-of-one-variable",
+    "title": "Intro to Data Visualization in R",
+    "section": "Part B — The shape of one variable",
+    "text": "Part B — The shape of one variable\nSometimes you have a single column of numbers and want to see its shape. A histogram cuts the range into bins and counts how many rows land in each:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250)\n\n\n\n\n\n\n\nTry changing binwidth (e.g. 100, 500) and watch the shape change.\nA boxplot squeezes each distribution into one box, which is handy for comparing groups:\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot()\n\n\n\n\n\n\n\nBoth answer the same question — what do these numbers look like? — a histogram in full detail, a boxplot as a compact summary for comparing.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
+    ]
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/index.html#part-c-tidy-data-reshape-then-plot",
+    "href": "materials/r-tutorial-rise-2026/index.html#part-c-tidy-data-reshape-then-plot",
+    "title": "Intro to Data Visualization in R",
+    "section": "Part C — Tidy data: reshape, then plot",
+    "text": "Part C — Tidy data: reshape, then plot\nReal data often comes off a machine in wide format — one row per sample, with a separate column for each measurement. Here is a small plate-reader result for four genes measured in ten samples:\n\nplate &lt;- tribble(\n  ~sample, ~group,    ~gene_A, ~gene_B, ~gene_C, ~gene_D,\n  \"s01\",   \"control\",     102,      88,      41,      59,\n  \"s02\",   \"control\",      98,      91,      44,      62,\n  \"s03\",   \"control\",     105,      86,      39,      58,\n  \"s04\",   \"control\",     100,      93,      43,      61,\n  \"s05\",   \"control\",      97,      89,      40,      60,\n  \"s06\",   \"treated\",     101,      90,      87,     108,\n  \"s07\",   \"treated\",      99,      92,      91,     112,\n  \"s08\",   \"treated\",     104,      87,      85,     105,\n  \"s09\",   \"treated\",      98,      94,      90,     110,\n  \"s10\",   \"treated\",     103,      88,      88,     107\n)\nplate\n\n# A tibble: 10 × 6\n   sample group   gene_A gene_B gene_C gene_D\n   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n 1 s01    control    102     88     41     59\n 2 s02    control     98     91     44     62\n 3 s03    control    105     86     39     58\n 4 s04    control    100     93     43     61\n 5 s05    control     97     89     40     60\n 6 s06    treated    101     90     87    108\n 7 s07    treated     99     92     91    112\n 8 s08    treated    104     87     85    105\n 9 s09    treated     98     94     90    110\n10 s10    treated    103     88     88    107\n\n\n\nIn your Codespace you will instead read this from a file with read_csv(\"data/qpcr_plate_wide.csv\") — same data, straight off the machine.\n\nggplot wants tidy data: one row per observation, one column per variable. One gene measured in one sample is an observation, so it should be its own row. Use pivot_longer() to stack the four gene columns into two — a gene column and a signal column:\n\nplate_long &lt;- plate |&gt;\n  pivot_longer(gene_A:gene_D, names_to = \"gene\", values_to = \"signal\")\nplate_long\n\n# A tibble: 40 × 4\n   sample group   gene   signal\n   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;\n 1 s01    control gene_A    102\n 2 s01    control gene_B     88\n 3 s01    control gene_C     41\n 4 s01    control gene_D     59\n 5 s02    control gene_A     98\n 6 s02    control gene_B     91\n 7 s02    control gene_C     44\n 8 s02    control gene_D     62\n 9 s03    control gene_A    105\n10 s03    control gene_B     86\n# ℹ 30 more rows\n\n\nNow every row is one measurement, and we can plot it — comparing the two groups gene by gene:\n\nggplot(plate_long, aes(x = gene, y = signal, fill = group)) +\n  geom_boxplot()\n\n\n\n\n\n\n\nThe wide table could not make this plot. One pivot_longer() unlocked it — and the pattern (genes C and D switch on with treatment) jumps right out.",
+    "crumbs": [
+      "About the Kwon Lab",
+      "RISE Workshops",
+      "2026 — Intro to Data Visualization"
     ]
   },
   {
