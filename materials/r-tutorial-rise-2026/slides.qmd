@@ -177,6 +177,51 @@ ggplot(penguins, aes(x = body_mass_g)) +
 Cut the range into **bins**, then count how many **rows** fall in each. The bar's
 height *is* a count of rows. (Still: every row lands in exactly one mark.)
 
+## A tempting shortcut — just the average
+
+```{r}
+#| echo: true
+#| fig-width: 6.5
+#| fig-height: 3.1
+penguins |>
+  filter(!is.na(body_mass_g)) |>
+  group_by(species) |>
+  summarise(mean_mass = mean(body_mass_g)) |>
+  ggplot(aes(x = species, y = mean_mass, fill = species)) +
+  geom_col()
+```
+
+**Don't do this!** One bar per group shows only the mean and throws away the
+spread, the shape, and every individual penguin.
+
+## From a histogram to a boxplot
+
+```{r}
+#| echo: false
+#| fig-width: 9.5
+#| fig-height: 3.4
+qs <- penguins |>
+  filter(!is.na(body_mass_g)) |>
+  group_by(species) |>
+  summarise(
+    q25 = quantile(body_mass_g, 0.25),
+    q50 = median(body_mass_g),
+    q75 = quantile(body_mass_g, 0.75)
+  )
+
+penguins |>
+  filter(!is.na(body_mass_g)) |>
+  ggplot(aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 200, fill = "grey75") +
+  geom_vline(data = qs, aes(xintercept = q25), linetype = "dashed") +
+  geom_vline(data = qs, aes(xintercept = q50), linetype = "dashed", linewidth = 1) +
+  geom_vline(data = qs, aes(xintercept = q75), linetype = "dashed") +
+  facet_grid(cols = vars(species))
+```
+
+Each dashed line **cuts** the distribution: 25% of penguins fall below the
+first, half below the **median**, 75% below the third.
+
 ## The boxplot is a distribution too
 
 ```{r}
@@ -187,8 +232,9 @@ ggplot(penguins, aes(x = species, y = body_mass_g)) +
   geom_boxplot()
 ```
 
-A histogram shows one distribution in detail. A **boxplot** squeezes each
-distribution into one **box** — handy for comparing groups side by side.
+A **boxplot** is just those three cuts drawn as a box: the edges are the **25%**
+and **75%** lines, the middle line is the **median**. One box per group — easy
+to compare.
 
 ## Same question, different geoms
 
