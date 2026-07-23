@@ -15,13 +15,55 @@ execute:
 
 ## Set up your environment
 
-Everything runs in **GitHub Codespaces** — nothing to install.
+Everything runs in the cloud with **GitHub Codespaces** — there is nothing to
+install on your laptop. You only need a web browser and a free GitHub account.
+No API keys, no setup beyond the four steps below.
 
-1. Go to the [participant environment repo](https://github.com/kwondry/r-tutorial-rise-2026)
-   and click **"Use this template" → "Create a new repository"**.
-2. On your copy: **"Code" → "Codespaces" → "Create codespace on main"**.
-3. When it finishes building, open `notebooks/00-hello.qmd` and run the cell.
-   A penguin chart should appear — that means you are ready.
+### 1. Sign in to GitHub
+
+Go to [github.com/login](https://github.com/login) and sign in, or
+[create a free account](https://github.com/signup) if you don't have one.
+
+This matters because GitHub hides the **"Use this template"** and **"Code"**
+buttons from signed-out visitors — if you're not logged in, the buttons in the
+next steps won't appear.
+
+### 2. Make your own copy of the environment
+
+Open the [participant environment repo](https://github.com/kwondry/r-tutorial-rise-2026)
+and click the green **"Use this template"** button near the top right, then
+choose **"Create a new repository"**.
+
+![Click "Use this template" (your screen will show the `r-tutorial-rise-2026` repo name).](images/setup/use-this-template.png){.img-fluid fig-alt="GitHub repo page with the 'Use this template' button highlighted in the top right"}
+
+![Choose "Create a new repository".](images/setup/create-new-repository.png){.img-fluid fig-alt="Use this template dropdown with 'Create a new repository' highlighted"}
+
+Give the repository a name (for example, `rise-data-viz`) and click the green
+**"Create repository"** button. The owner can stay as your username.
+
+![Name your repository and create it.](images/setup/give-repo-name.png){.img-fluid fig-alt="New repository form with the Repository name field highlighted"}
+
+### 3. Launch your codespace
+
+Go to your new repository's page. Click the green **"Code"** button, switch to
+the **"Codespaces"** tab, and click **"Create codespace on main"**.
+
+![Code → Codespaces → Create codespace on main.](images/setup/launch-codespace.png){.img-fluid fig-alt="Repository page with the Code button and Create codespace on main button highlighted in the Codespaces tab"}
+
+The first build takes **a few minutes** while GitHub sets up R, the tidyverse,
+and Quarto for you. After this first build, reopening the codespace is fast.
+
+### 4. Open the first notebook
+
+Once the codespace has finished building:
+
+1. In the file explorer on the left, open `notebooks/00-hello.qmd`.
+2. Click the green **play button** on the code cell. A penguin chart should
+   appear — that means your environment is working and you are ready.
+3. When we start the session, open `notebooks/01-visualization.qmd` and work
+   through it with the class.
+
+If you get stuck, ask an instructor.
 
 ## Slides
 
