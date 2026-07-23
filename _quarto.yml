@@ -47,18 +47,17 @@ website:
             - text: "</b> Installing software for work on O2"
               contents:
               href: materials/getting-started/installation/index.qmd
+          - section: "RISE Workshops"
+            contents:
+            - text: "2025 — R workshop"
+              href: materials/r-tutorial-rise-2025/index.qmd
+            - text: "2026 — Intro to Data Visualization"
+              href: materials/r-tutorial-rise-2026/index.qmd
           - section: "R and R Studio"
             contents:
             - text: "</b> RStudio and recommended packages"
               contents:
               href: materials/getting-started/local_R/index.qmd
-            - text: "</b> R workshop"
-              contents:
-              href: materials/r-tutorial/index.qmd
-          - section: "RISE 2026 — Data Viz"
-            contents:
-            - text: "Intro to Data Visualization in R"
-              href: materials/r-tutorial-rise-2026/index.qmd
           - section: "RNAseq"
             contents:
             - text: "Background"
