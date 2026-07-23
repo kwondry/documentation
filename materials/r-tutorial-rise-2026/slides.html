@@ -324,14 +324,32 @@
 </div>
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="672" class="r-stretch"><p>Cut the range into <strong>bins</strong>, then count how many <strong>rows</strong> fall in each. The bar’s height <em>is</em> a count of rows. (Still: every row lands in exactly one mark.)</p>
 </section>
+<section id="a-tempting-shortcut-just-the-average" class="slide level2">
+<h2>A tempting shortcut — just the average</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g)) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_mass, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb8-6"><a></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="624" class="r-stretch"><p><strong>Don’t do this!</strong> One bar per group shows only the mean and throws away the spread, the shape, and every individual penguin.</p>
+</section>
+<section id="from-a-histogram-to-a-boxplot" class="slide level2">
+<h2>From a histogram to a boxplot</h2>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="912" class="r-stretch"><p>Each dashed line <strong>cuts</strong> the distribution: 25% of penguins fall below the first, half below the <strong>median</strong>, 75% below the third.</p>
+</section>
 <section id="the-boxplot-is-a-distribution-too" class="slide level2">
 <h2>The boxplot is a distribution too</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="672" class="r-stretch"><p>A histogram shows one distribution in detail. A <strong>boxplot</strong> squeezes each distribution into one <strong>box</strong> — handy for comparing groups side by side.</p>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="672" class="r-stretch"><p>A <strong>boxplot</strong> is just those three cuts drawn as a box: the edges are the <strong>25%</strong> and <strong>75%</strong> lines, the middle line is the <strong>median</strong>. One box per group — easy to compare.</p>
 </section>
 <section id="same-question-different-geoms" class="slide level2">
 <h2>Same question, different geoms</h2>
@@ -427,8 +445,8 @@
 <section id="pivot_longer-from-wide-to-long" class="slide level2">
 <h2><code>pivot_longer</code> — from wide to long</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>plate_long <span class="ot">&lt;-</span> plate <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">pivot_longer</span>(gene_A<span class="sc">:</span>gene_D, <span class="at">names_to =</span> <span class="st">"gene"</span>, <span class="at">values_to =</span> <span class="st">"signal"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>plate_long <span class="ot">&lt;-</span> plate <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">pivot_longer</span>(gene_A<span class="sc">:</span>gene_D, <span class="at">names_to =</span> <span class="st">"gene"</span>, <span class="at">values_to =</span> <span class="st">"signal"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -475,11 +493,11 @@
 <section id="the-payoff-now-you-can-plot-it" class="slide level2">
 <h2>The payoff: now you can plot it</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(plate_long, <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> signal, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(plate_long, <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> signal, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="672" class="r-stretch"><p>Wide data couldn’t make this plot. One <code>pivot_longer</code> unlocked it — and the treatment story (genes C &amp; D switch on) jumps right out.</p>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="672" class="r-stretch"><p>Wide data couldn’t make this plot. One <code>pivot_longer</code> unlocked it — and the treatment story (genes C &amp; D switch on) jumps right out.</p>
 </section>
 <section id="your-turn-exercise-3" class="slide level2 your-turn">
 <h2>Your turn — Exercise 3</h2>

@@ -144,11 +144,25 @@
     "text": "geom_histogram — count rows into bins\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250)\n\n\nCut the range into bins, then count how many rows fall in each. The bar’s height is a count of rows. (Still: every row lands in exactly one mark.)"
   },
   {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#a-tempting-shortcut-just-the-average",
+    "href": "materials/r-tutorial-rise-2026/slides.html#a-tempting-shortcut-just-the-average",
+    "title": "Intro to Data Visualization in R",
+    "section": "A tempting shortcut — just the average",
+    "text": "A tempting shortcut — just the average\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarise(mean_mass = mean(body_mass_g)) |&gt;\n  ggplot(aes(x = species, y = mean_mass, fill = species)) +\n  geom_col()\n\n\nDon’t do this! One bar per group shows only the mean and throws away the spread, the shape, and every individual penguin."
+  },
+  {
+    "objectID": "materials/r-tutorial-rise-2026/slides.html#from-a-histogram-to-a-boxplot",
+    "href": "materials/r-tutorial-rise-2026/slides.html#from-a-histogram-to-a-boxplot",
+    "title": "Intro to Data Visualization in R",
+    "section": "From a histogram to a boxplot",
+    "text": "From a histogram to a boxplot\n\nEach dashed line cuts the distribution: 25% of penguins fall below the first, half below the median, 75% below the third."
+  },
+  {
     "objectID": "materials/r-tutorial-rise-2026/slides.html#the-boxplot-is-a-distribution-too",
     "href": "materials/r-tutorial-rise-2026/slides.html#the-boxplot-is-a-distribution-too",
     "title": "Intro to Data Visualization in R",
     "section": "The boxplot is a distribution too",
-    "text": "The boxplot is a distribution too\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot()\n\n\nA histogram shows one distribution in detail. A boxplot squeezes each distribution into one box — handy for comparing groups side by side."
+    "text": "The boxplot is a distribution too\n\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot()\n\n\nA boxplot is just those three cuts drawn as a box: the edges are the 25% and 75% lines, the middle line is the median. One box per group — easy to compare."
   },
   {
     "objectID": "materials/r-tutorial-rise-2026/slides.html#same-question-different-geoms",
@@ -1713,28 +1727,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug    condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n1        3 h         11 CTRL   CTRL          0\n2        1 f         10 iners  VCA         400\n3        4 e          1 CTRL   LNA         200\n4        4 f         10 piotii LNA         100\n5        3 d          9 piotii OA          100"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        1 d          7 jensenii  OA          100\n2        3 b          4 gasseri   OA          400\n3        2 e         12 CTRL      LNA         200\n4        2 a          4 crispatus CTRL          0\n5        3 e          9 piotii    OA           50"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug     condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;\n1        2 h          1 CTRL    CTRL          0\n2        1 b          8 iners   OA          400\n3        3 c          3 gasseri OA          200\n4        1 e         10 iners   OA           50\n5        4 f          8 piotii  LNA         100"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        2 a          1 CTRL      CTRL          0\n2        1 c          4 crispatus OA          200\n3        3 h         10 piotii    CTRL          0\n4        4 d          5 vaginalis LNA         400\n5        3 h          6 vaginalis CTRL          0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug     condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 a          2 gasseri CTRL          0    0   \n2        3 b          9 piotii  OA          400    0.4 \n3        3 e         11 CTRL    OA           50    0.05\n4        3 c         11 CTRL    OA          200    0.2 \n5        4 d         10 piotii  LNA         400    0.4"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        1 e          4 crispatus OA           50    0.05\n2        4 f          9 piotii    LNA         100    0.1 \n3        2 f          3 crispatus LNA         100    0.1 \n4        2 c          9 iners     VCA          50    0.05\n5        1 h          9 iners     CTRL          0    0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug      condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 c         11 CTRL     VCA          50    0.05   50000\n2        2 g          5 jensenii LNA          50    0.05   50000\n3        2 f          1 CTRL     LNA         100    0.1   100000\n4        4 h          8 piotii   CTRL          0    0          0\n5        4 b          3 gasseri  VCA         100    0.1   100000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        1 g          3 crispatus VCA         200    0.2   200000\n2        1 e          4 crispatus OA           50    0.05   50000\n3        3 g          9 piotii    VCA         200    0.2   200000\n4        2 f          8 iners     LNA         100    0.1   100000\n5        4 a          8 piotii    CTRL          0    0          0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
