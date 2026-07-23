@@ -357,12 +357,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A 2-hour, hands-on introduction to making plots in R with <code>ggplot2</code>, using the Palmer Penguins dataset. For RISE 2026 summer researchers — no prior R needed.</p>
 </blockquote>
 <section id="set-up-your-environment" class="level2"><h2 class="anchored" data-anchor-id="set-up-your-environment">Set up your environment</h2>
-<p>Everything runs in <strong>GitHub Codespaces</strong> — nothing to install.</p>
+<p>Everything runs in the cloud with <strong>GitHub Codespaces</strong> — there is nothing to install on your laptop. You only need a web browser and a free GitHub account. No API keys required.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="👉 New here? Click to open the step-by-step setup instructions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>👉 New here? Click to open the step-by-step setup instructions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="sign-in-to-github" class="level3"><h3 class="anchored" data-anchor-id="sign-in-to-github">1. Sign in to GitHub</h3>
+<p>Go to <a href="https://github.com/login">github.com/login</a> and sign in, or <a href="https://github.com/signup">create a free account</a> if you don’t have one.</p>
+<p>This matters because GitHub hides the <strong>“Use this template”</strong> and <strong>“Code”</strong> buttons from signed-out visitors — if you’re not logged in, the buttons in the next steps won’t appear.</p>
+</section><section id="make-your-own-copy-of-the-environment" class="level3"><h3 class="anchored" data-anchor-id="make-your-own-copy-of-the-environment">2. Make your own copy of the environment</h3>
+<p>Open the <a href="https://github.com/kwondry/r-tutorial-rise-2026">participant environment repo</a> and click the green <strong>“Use this template”</strong> button near the top right, then choose <strong>“Create a new repository”</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/setup/use-this-template.png" class="img-fluid figure-img" alt="GitHub repo page with the 'Use this template' button highlighted in the top right"></p>
+<figcaption>Click “Use this template” (your screen will show the <code>r-tutorial-rise-2026</code> repo name).</figcaption></figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/setup/create-new-repository.png" class="img-fluid figure-img" alt="Use this template dropdown with 'Create a new repository' highlighted"></p>
+<figcaption>Choose “Create a new repository”.</figcaption></figure>
+</div>
+<p>Give the repository a name (for example, <code>rise-data-viz</code>) and click the green <strong>“Create repository”</strong> button. The owner can stay as your username.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/setup/give-repo-name.png" class="img-fluid figure-img" alt="New repository form with the Repository name field highlighted"></p>
+<figcaption>Name your repository and create it.</figcaption></figure>
+</div>
+</section><section id="launch-your-codespace" class="level3"><h3 class="anchored" data-anchor-id="launch-your-codespace">3. Launch your codespace</h3>
+<p>Go to your new repository’s page. Click the green <strong>“Code”</strong> button, switch to the <strong>“Codespaces”</strong> tab, and click <strong>“Create codespace on main”</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/setup/launch-codespace.png" class="img-fluid figure-img" alt="Repository page with the Code button and Create codespace on main button highlighted in the Codespaces tab"></p>
+<figcaption>Code → Codespaces → Create codespace on main.</figcaption></figure>
+</div>
+<p>The first build takes <strong>a few minutes</strong> while GitHub sets up R, the tidyverse, and Quarto for you. After this first build, reopening the codespace is fast.</p>
+</section><section id="open-the-first-notebook" class="level3"><h3 class="anchored" data-anchor-id="open-the-first-notebook">4. Open the first notebook</h3>
+<p>Once the codespace has finished building:</p>
 <ol type="1">
-<li>Go to the <a href="https://github.com/kwondry/r-tutorial-rise-2026">participant environment repo</a> and click <strong>“Use this template” → “Create a new repository”</strong>.</li>
-<li>On your copy: <strong>“Code” → “Codespaces” → “Create codespace on main”</strong>.</li>
-<li>When it finishes building, open <code>notebooks/00-hello.qmd</code> and run the cell. A penguin chart should appear — that means you are ready.</li>
-</ol></section><section id="slides" class="level2"><h2 class="anchored" data-anchor-id="slides">Slides</h2>
+<li>In the file explorer on the left, open <code>notebooks/00-hello.qmd</code>.</li>
+<li>Click the green <strong>play button</strong> on the code cell. A penguin chart should appear — that means your environment is working and you are ready.</li>
+<li>When we start the session, open <code>notebooks/01-visualization.qmd</code> and work through it with the class.</li>
+</ol>
+<p>If you get stuck, ask an instructor.</p>
+<p style="text-align:center; margin-top:1.5em;">
+<a href="#" onclick="this.closest('.callout').querySelector('.callout-header').click(); return false;">▲ Collapse these steps</a>
+</p>
+</section>
+</div>
+</div>
+</div>
+</section><section id="slides" class="level2"><h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <p><a href="../../materials/r-tutorial-rise-2026/slides.html">Open the slides full screen</a></p>
 <iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
 </section><section id="the-datasets" class="level2"><h2 class="anchored" data-anchor-id="the-datasets">The datasets</h2>
