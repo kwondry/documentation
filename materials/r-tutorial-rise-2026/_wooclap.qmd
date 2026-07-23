@@ -1,7 +1,7 @@
 <!-- Reusable Wooclap poll slide body, included at each poll checkpoint in
-     slides.qmd. Reuses the Durban workshop's Wooclap event (code DURBAN) and QR.
+     slides.qmd. Reuses the RISE 2025 (Ragon) Wooclap event, code RAGON.
      The questions themselves live in Wooclap. -->
 
-Go to **[wooclap.com](https://app.wooclap.com/DURBAN?from=event-page)** and enter event code **DURBAN** — or scan:
+Go to **[wooclap.com](https://app.wooclap.com/RAGON?from=event-page)** and enter event code **RAGON** — or scan:
 
-![](images/wooclap_info.png){width=760 fig-alt="Wooclap QR code and instructions, event code DURBAN"}
+![](images/ragon_wooclap.png){width=760 fig-alt="Wooclap QR code and instructions, event code RAGON"}

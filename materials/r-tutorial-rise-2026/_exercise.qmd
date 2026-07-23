@@ -1,99 +1,130 @@
 ## Hands-on worksheet
 
-> You will do this inside your Codespace, in `notebooks/01-visualization.qmd`.
-> The same steps are shown here so you can read along. We work in three short
-> parts, with a little teaching before each.
-
-### The one big idea
-
-Every **row** in a table becomes one **mark** on a plot. The **geom** decides
-what kind of mark (dots, boxes, bars) and how to draw it. The **mapping**,
-written inside `aes()`, links a **column** to a **property** of the mark (its
-x position, its y position, its colour).
-
-## Part A — Read and build a plot
-
-### Read a plot
-
 ```{r}
+#| echo: false
 #| warning: false
 #| message: false
 library(tidyverse)
 library(palmerpenguins)
+```
 
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+> You'll do the real work in your Codespace, in `notebooks/01-visualization.qmd`.
+> This page lists the **tasks**. Try each one **yourself first** — the
+> collapsible **"Show an example"** boxes are hints to peek at only if you get
+> stuck.
+
+Each task has a number so we can point to it out loud. The first number is the
+exercise and the second is the task — so **2.3** means "Exercise 2, task 3."
+
+## Exercise 1 — The elements of a plot
+
+Every **row** in a table becomes one **mark** on a plot. The **geom** decides
+what *kind* of mark; the **mapping** (written inside `aes()`) links a **column**
+to a property of the mark. We use the `palmerpenguins` data.
+
+**1.1 — Read a plot.** Look at the plot below and answer in your own words:
+(a) What is the **mark**? (b) Which column controls **x**, **y**, and **colour**?
+(c) How many **rows** of the table made one mark?
+
+```{r}
+#| echo: false
+ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
   geom_point()
 ```
 
-- **Mark:** a dot. **Mapping:** `flipper_length_mm` → x, `body_mass_g` → y,
+::: {.callout-tip collapse="true" title="Show the answer"}
+- **Mark:** a dot. **Mappings:** `flipper_length_mm` → x, `body_mass_g` → y,
   `species` → colour. **Rows per mark:** one row = one dot.
+:::
 
-### Build it up, one line at a time
+**1.2 — Build a scatter.** Make a scatter plot of `flipper_length_mm` (x)
+against `body_mass_g` (y) using `geom_point()`.
 
-Start simple, then add one piece at a time:
-
+::: {.callout-tip collapse="true" title="Show an example of a working plot"}
 ```{r}
-#| eval: false
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point()                          # step 1: bare scatter
+  geom_point()
 ```
+:::
 
-Add `color = species` **inside** `aes()` to map colour to a column. Compare that
-with putting `color = "navy"` **outside** `aes()` (inside `geom_point()`), which
-sets every dot to the same colour — a setting, not a mapping.
+**1.3 — Colour by a column.** Add `color = species` **inside** `aes()` so each
+species gets its own colour.
 
-### Change the geom, keep the rules
+::: {.callout-tip collapse="true" title="Show an example of a working plot"}
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+```
+:::
 
+**1.4 — Mapping vs. setting.** Make *all* the dots the same fixed colour (say,
+navy). Does `color = "navy"` go **inside** `aes()` or **outside**? Why?
+
+::: {.callout-tip collapse="true" title="Show the answer"}
+It goes **outside** `aes()`, inside the geom — it's a fixed value, not a column
+mapping:
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(color = "navy")
+```
+:::
+
+**1.5 — Change the geom.** Compare body mass across species with a boxplot: map
+`species` to x, `body_mass_g` to y, and use `geom_boxplot()`.
+
+::: {.callout-tip collapse="true" title="Show an example of a working plot"}
 ```{r}
 ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
-  geom_boxplot() +
-  labs(x = "Species", y = "Body mass (g)", fill = "Species")
+  geom_boxplot()
 ```
+:::
 
-Same idea, new mark: each **box** summarises **many** rows (a five-number
-summary) instead of one row per mark.
+**1.6 — Filter with the pipe.** Use `|>` to keep only one species (your choice),
+then make a scatter of just those penguins.
 
-### One wrangling move: the pipe
-
-`|>` means "take this data, then…". Filter first, then plot:
-
+::: {.callout-tip collapse="true" title="Show an example of a working plot"}
 ```{r}
 penguins |>
   filter(species == "Gentoo") |>
   ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 ```
+:::
 
-## Part B — The shape of one variable
+## Exercise 2 — The shape of one variable
 
-Sometimes you have a single column of numbers and want to see its **shape**.
-A **histogram** cuts the range into bins and counts how many rows land in each:
+A **histogram** cuts one numeric column into bins and counts the rows in each. A
+**boxplot** is a compact summary, handy for comparing groups.
 
+**2.1 — Make a histogram** of `flipper_length_mm`.
+
+::: {.callout-tip collapse="true" title="Show an example of a working plot"}
 ```{r}
-ggplot(penguins, aes(x = body_mass_g)) +
-  geom_histogram(binwidth = 250)
+ggplot(penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(binwidth = 5)
 ```
+:::
 
-Try changing `binwidth` (e.g. `100`, `500`) and watch the shape change.
+**2.2 — Change the binwidth.** Try `binwidth = 2`, then `binwidth = 20`. In a
+sentence, what happens to the shape? (No new plot to hand in — just look.)
 
-A **boxplot** squeezes each distribution into one box, which is handy for
-comparing groups:
+**2.3 — Compare groups with a boxplot** of `body_mass_g` for each `species`.
 
+::: {.callout-tip collapse="true" title="Show an example of a working plot"}
 ```{r}
 ggplot(penguins, aes(x = species, y = body_mass_g)) +
   geom_boxplot()
 ```
+:::
 
-Both answer the same question — *what do these numbers look like?* — a histogram
-in full detail, a boxplot as a compact summary for comparing.
-
-## Part C — Tidy data: reshape, then plot
+## Exercise 3 — Tidy data: reshape, then plot
 
 Real data often comes off a machine in **wide** format — one row per sample, with
 a separate column for each measurement. Here is a small plate-reader result for
-four genes measured in ten samples:
+four genes in ten samples:
 
 ```{r}
+#| echo: false
 plate <- tribble(
   ~sample, ~group,    ~gene_A, ~gene_B, ~gene_C, ~gene_D,
   "s01",   "control",     102,      88,      41,      59,
@@ -110,27 +141,34 @@ plate <- tribble(
 plate
 ```
 
-> In your Codespace you will instead **read this from a file** with
+> In your Codespace you'll read this from a file with
 > `read_csv("data/qpcr_plate_wide.csv")` — same data, straight off the machine.
 
-ggplot wants **tidy** data: one row per observation, one column per variable. One
-gene measured in one sample is an observation, so it should be its own row. Use
-`pivot_longer()` to stack the four gene columns into two — a `gene` column and a
-`signal` column:
+**3.1 — Read the table.** What does one **row** represent, and how many separate
+measurements are packed into each row?
 
+::: {.callout-tip collapse="true" title="Show the answer"}
+Each row is one **sample**, and it holds **four** measurements
+(`gene_A`–`gene_D`). That is *wide* format — `ggplot` can't plot it directly yet.
+:::
+
+**3.2 — Reshape to long.** Use `pivot_longer()` to stack the four gene columns
+into a `gene` column and a `signal` column.
+
+::: {.callout-tip collapse="true" title="Show an example"}
 ```{r}
 plate_long <- plate |>
   pivot_longer(gene_A:gene_D, names_to = "gene", values_to = "signal")
 plate_long
 ```
+:::
 
-Now every row is one measurement, and we can plot it — comparing the two groups
-gene by gene:
+**3.3 — Plot it.** Make a boxplot of `signal` by `gene`, filled by `group`.
+Which genes change between the `control` and `treated` samples?
 
+::: {.callout-tip collapse="true" title="Show an example of a working plot"}
 ```{r}
 ggplot(plate_long, aes(x = gene, y = signal, fill = group)) +
   geom_boxplot()
 ```
-
-The wide table could not make this plot. One `pivot_longer()` unlocked it — and
-the pattern (genes C and D switch on with treatment) jumps right out.
+:::

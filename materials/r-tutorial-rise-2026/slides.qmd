@@ -139,9 +139,9 @@ penguins |>
 
 {{< include _wooclap.qmd >}}
 
-## Your turn — Exercise A {.your-turn}
+## Your turn — Exercise 1 {.your-turn}
 
-Open `notebooks/01-visualization.qmd`, **Part A**. For each plot, ask:
+Open `notebooks/01-visualization.qmd`, **Exercise 1**. For each plot, ask:
 
 1. What is the **mark**?
 2. Which **column** → which **property**?
@@ -196,9 +196,9 @@ distribution into one **box** — handy for comparing groups side by side.
 - **`geom_boxplot`** — a compact summary, great for *comparing* groups
 - Both answer: *"what do these numbers look like?"*
 
-## Your turn — Exercise B {.your-turn}
+## Your turn — Exercise 2 {.your-turn}
 
-In `notebooks/01-visualization.qmd`, **Part B**:
+In `notebooks/01-visualization.qmd`, **Exercise 2**:
 
 1. Make a **histogram** of `flipper_length_mm`.
 2. Change the `binwidth` and watch the shape change.
@@ -261,9 +261,9 @@ ggplot(plate_long, aes(x = gene, y = signal, fill = group)) +
 Wide data couldn't make this plot. One `pivot_longer` unlocked it — and the
 treatment story (genes C & D switch on) jumps right out.
 
-## Your turn — Exercise C {.your-turn}
+## Your turn — Exercise 3 {.your-turn}
 
-In `notebooks/01-visualization.qmd`, **Part C**:
+In `notebooks/01-visualization.qmd`, **Exercise 3**:
 
 1. `read_csv()` the wide plate file and look at it.
 2. `pivot_longer()` the gene columns into `gene` and `signal`.
