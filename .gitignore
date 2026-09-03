@@ -9,3 +9,7 @@ docs/
 notes/
 
 **/*.quarto_ipynb
+
+# knitr render artifacts left next to source .qmd files (figures + chunk cache)
+**/*_files/
+**/*_cache/
