@@ -25,22 +25,21 @@ srun --pty -p priority -t 12:0:0 --mem=8G -c 1 bash
 
 Executing bioinformatics analyses often involve installing multiple packages/tools. Mamba is a package manager that allows users to create environments. Environments separate these package installations into individual "partitions", which helps 1) prevent users from disrupting their own base environment with the installations of these new packages, 2) facilitate easy access and removal of packages and 3) manage/create environments individually for each pipeline or type of analysis.
 
-Install mamba on O2 terminal:
+Install mamba on O2 terminal (the installer is interactive — accept the license, accept the default install location, and enter `yes` when asked to run `conda init`):
 
 ```{python}
 #| eval: false
 #| echo: true
 cd ~;
-curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh";
-bash Mambaforge-$(uname)-$(uname -m).sh;
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh";
+bash Miniforge3-$(uname)-$(uname -m).sh;
 ```
 
 Initialize mamba on O2 terminal before usage (first time only):
 
 ```{python}
 #| eval: false
-mamba init
-# close terminal and reopen
+# close terminal and reopen, or:
 source ~/.bashrc
 ```
 
