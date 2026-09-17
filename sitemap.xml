@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kwondry.github.io/documentation/materials/rnaseq/walkthrough/index.html</loc>
-    <lastmod>2024-11-20T17:54:44.802Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2025/slides.html</loc>
+    <lastmod>2026-09-08T15:03:21.067Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2026/slides.html</loc>
-    <lastmod>2026-09-03T17:35:28.096Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2025/slides.html</loc>
-    <lastmod>2026-09-03T17:35:28.093Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2025/images/ex-2.html</loc>
-    <lastmod>2026-09-03T17:35:28.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/metagenomics/background/index.html</loc>
-    <lastmod>2025-07-14T13:23:31.083Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/getting-started/local_R/index.html</loc>
-    <lastmod>2025-02-11T10:08:51.393Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/comparative-genomics/gene-search/index.html</loc>
-    <lastmod>2026-09-03T17:35:27.985Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/index.html</loc>
-    <lastmod>2026-09-03T17:35:27.984Z</lastmod>
+    <lastmod>2026-09-08T15:03:21.072Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/16S/valencia/index.html</loc>
-    <lastmod>2024-11-20T16:13:18.193Z</lastmod>
+    <lastmod>2026-09-08T15:03:20.671Z</lastmod>
   </url>
   <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/background/index.html</loc>
-    <lastmod>2025-07-14T13:23:31.082Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.911Z</lastmod>
   </url>
   <url>
-    <loc>https://kwondry.github.io/documentation/index.html</loc>
-    <lastmod>2024-11-20T16:17:50.941Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/16s_pipeline/index.html</loc>
-    <lastmod>2025-07-14T13:23:31.082Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/16S/kwon_sequencing_data_transfer/index.html</loc>
-    <lastmod>2025-07-14T13:23:31.082Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/images/ex-2.html</loc>
-    <lastmod>2026-09-03T17:35:27.857Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/slides.html</loc>
-    <lastmod>2026-09-03T17:35:27.984Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/getting-started/installation/index.html</loc>
-    <lastmod>2026-09-03T17:35:27.985Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/getting-started/o2/index.html</loc>
-    <lastmod>2024-11-20T16:17:50.942Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/metagenomics/virgo2/index.html</loc>
-    <lastmod>2025-07-14T13:23:31.083Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2025/index.html</loc>
-    <lastmod>2026-09-03T17:35:28.093Z</lastmod>
+    <loc>https://kwondry.github.io/documentation/materials/rnaseq/walkthrough/index.html</loc>
+    <lastmod>2026-09-17T19:37:02.421Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2026/index.html</loc>
-    <lastmod>2026-09-03T17:35:28.096Z</lastmod>
+    <lastmod>2026-09-08T15:03:21.072Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/metagenomics/background/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.938Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/comparative-genomics/gene-search/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.911Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/background/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.669Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.669Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/images/ex-2.html</loc>
+    <lastmod>2026-09-08T15:03:20.784Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2025/images/ex-2.html</loc>
+    <lastmod>2026-09-08T15:03:20.994Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/16s_pipeline/index.html</loc>
+    <lastmod>2026-09-17T19:44:46.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/16S/kwon_sequencing_data_transfer/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.670Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/getting-started/local_R/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.912Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/metagenomics/virgo2/index.html</loc>
+    <lastmod>2026-09-17T18:59:57.601Z</lastmod>
   </url>
   <url>
     <loc>https://kwondry.github.io/documentation/materials/rnaseq/background/index.html</loc>
-    <lastmod>2024-11-20T18:09:57.757Z</lastmod>
+    <lastmod>2026-09-08T15:03:21.073Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/r-tutorial-rise-2025/index.html</loc>
+    <lastmod>2026-09-08T15:03:21.067Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/getting-started/o2/index.html</loc>
+    <lastmod>2026-09-08T15:03:20.912Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/getting-started/installation/index.html</loc>
+    <lastmod>2026-09-17T19:35:00.342Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kwondry.github.io/documentation/materials/archive/r-tutorial/slides.html</loc>
+    <lastmod>2026-09-08T15:03:20.911Z</lastmod>
   </url>
 </urlset>
