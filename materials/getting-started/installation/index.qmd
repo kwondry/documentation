@@ -170,11 +170,11 @@ A VS Code [tunnel](https://code.visualstudio.com/docs/remote/tunnels) is general
 Once connected, any terminal you open in VS Code runs on the compute node where your job is executing.
 
 
-### Setup O2 access with VSCode: Launch VSCode on O2 login node and create a passphrase to expedite O2 access
+### Setup O2 access with VSCode: Create a passphrase to expedite O2 access
 
 While logging into O2 on the terminal only provides a command-line interface and linux commands are needed to modify files, the main advantage of accessing O2 through VSCode is it allows users to easily view and edit their files in an interactive manner within the VSCode application.
 
-After setting up VSCode, the VSCode tunnel, and establishing a connection to O2 login node through VSCode, follow these steps to launch VSCode on a compute node in O2. This is useful if you plan to use VSCode to open or edit larger files as this may be a process that is too computationally intensive for login nodes to handle, leading the O2 cluster to automatically terminate your connection to O2 through VSCode. For a more detailed description, please refer to the [official O2 documentation on VSCode](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/2051211265/VSCode+and+Code+Server+on+O2), which was used as a reference for this section.
+After setting up VSCode, the VSCode tunnel, and establishing a connection to O2 login node through VSCode tunnel, follow these steps to launch VSCode on a compute node in O2. This is useful if you plan to use VSCode to open or edit larger files as this may be a process that is too computationally intensive for login nodes to handle, leading the O2 cluster to automatically terminate your connection to O2 through VSCode. For a more detailed description, please refer to the [official O2 documentation on VSCode](https://harvardmed.atlassian.net/wiki/spaces/O2/pages/2051211265/VSCode+and+Code+Server+on+O2), which was used as a reference for this section.
 
 1.  Generate SSH key on your own computer's terminal with the following command. When prompted for file name, press enter to use the default file name. Enter a passphrase to protect your SSH keys.
 
