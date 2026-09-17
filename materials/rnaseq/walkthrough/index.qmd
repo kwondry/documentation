@@ -14,7 +14,7 @@ Here we walk through the Kwon Lab RNA-Seq pipeline. The pipeline integrates step
 
 ### Prequisites
 
- - Ensure you have O2 access with `mamba` and `snakemake` installed. For O2 setup instructions, visit [here](../../getting-started/installations/index.qmd).
+ - Ensure you have O2 access with `mamba` and `snakemake` installed. For O2 setup instructions, visit [here](../../getting-started/installation/index.qmd).
 
  - We begin with raw sequencing data ( must be .gz files) on O2 in `/n/groups/kwon/data1/sequencing_run_archive_DO_NOT_EDIT/<your sequencing run>`. Please note where the sequences for your samples are located.
 
@@ -103,8 +103,8 @@ Navigate back to the VSCode terminal and check that you are in your pipeline fol
 ```{python}
 #| eval: false
 
-# Activates the mamba environment 
-mamba activate snakemake 
+# Activates the mamba environment
+mamba activate snakemake_8_20_3
 
 # Runs the test data through the pipeline
 snakemake --use-conda test
@@ -129,8 +129,8 @@ Once you have the updated sample sheet with your samples in the input folder ins
 ```{python}
 #| eval: false
 
-# Activates the mamba environment 
-mamba activate snakemake 
+# Activates the mamba environment
+mamba activate snakemake_8_20_3
 
 # Submits a job with slurm
 sbatch submit_jobs.sh

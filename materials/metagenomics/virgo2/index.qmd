@@ -30,7 +30,7 @@ The workflow performs the following steps:
 - conda
 - Snakemake (version 8.20.0 or later)   
 
-For O2 setup instructions, visit [here](../../getting-started/installations/index.qmd).
+For O2 setup instructions, visit [here](../../getting-started/installation/index.qmd).
 
 ## Installation
 

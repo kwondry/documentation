@@ -45,7 +45,7 @@ source ~/.bashrc
 
 ## Snakemake
 
-Snakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Create your first conda environment named `snakemake_8_20_3` with the snakemake package installed with the following command.
+Snakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Snakemake 8 moved cluster support out of the core package into separate executor plugins, so submitting jobs to O2's Slurm scheduler needs one installed alongside Snakemake itself. Create your first conda environment named `snakemake_8_20_3` with Snakemake and the Slurm executor plugin installed with the following command.
 
 To read more about snakemake, please refer to the official [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/).
 
