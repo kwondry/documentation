@@ -104,7 +104,7 @@ Navigate back to the VSCode terminal and check that you are in your pipeline fol
 #| eval: false
 
 # Activates the mamba environment
-mamba activate snakemake_8_20_3
+mamba activate snakemake_9_27_0
 
 # Runs the test data through the pipeline
 snakemake --use-conda test
@@ -130,7 +130,7 @@ Once you have the updated sample sheet with your samples in the input folder ins
 #| eval: false
 
 # Activates the mamba environment
-mamba activate snakemake_8_20_3
+mamba activate snakemake_9_27_0
 
 # Submits a job with slurm
 sbatch submit_jobs.sh

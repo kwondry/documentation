@@ -14,7 +14,7 @@ A Snakemake workflow for processing 16S rRNA sequencing data using [DADA2](https
 ## Prerequisites
 
 1. **Required Software**:
-   - [Snakemake](../../getting-started/installation/index.qmd#snakemake) (v8.20 or higher)
+   - [Snakemake](../../getting-started/installation/index.qmd#snakemake) (v9.0 or higher)
    - Conda or Mamba
    - Python 3.10 or higher
    - R 4.3 or higher
