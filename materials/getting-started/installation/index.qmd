@@ -45,7 +45,7 @@ source ~/.bashrc
 
 ## Snakemake
 
-Snakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Snakemake 8 moved cluster support out of the core package into separate executor plugins, so submitting jobs to O2's Slurm scheduler needs one installed alongside Snakemake itself. Create your first conda environment named `snakemake_8_20_3` with Snakemake and the Slurm executor plugin installed with the following command.
+Snakemake is a package that helps structure and streamline code writing for bioinformatics pipelines, which is particularly useful for complicated pipelines that involve multiple steps and a huge number of files. Snakemake 8 and later moved cluster support out of the core package into separate executor plugins, so submitting jobs to O2's Slurm scheduler needs one installed alongside Snakemake itself. Create your first conda environment named `snakemake_9_27_0` with Snakemake and the Slurm executor plugin installed with the following command.
 
 To read more about snakemake, please refer to the official [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/).
 
@@ -53,14 +53,14 @@ Install snakemake on O2 terminal:
 
 ```{python}
 #| eval: false
-mamba create -n snakemake_8_20_3 -c conda-forge -c bioconda snakemake=8.20.3  snakemake-executor-plugin-slurm  snakemake-executor-plugin-slurm-jobstep
+mamba create -n snakemake_9_27_0 -c conda-forge -c bioconda snakemake=9.27.0  snakemake-executor-plugin-slurm  snakemake-executor-plugin-slurm-jobstep
 ```
 
 To use snakemake, activate this environment maintained by mamba:
 
 ```{python}
 #| eval: false
-mamba activate snakemake_8_20_3
+mamba activate snakemake_9_27_0
 ```
 
 ## VSCode
