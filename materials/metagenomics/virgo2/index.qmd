@@ -28,7 +28,7 @@ The workflow performs the following steps:
 ## Prerequisites
 
 - conda
-- Snakemake (version 9.0 or later)   
+- Snakemake (version 8.20.0 or later)   
 
 For O2 setup instructions, visit [here](../../getting-started/installation/index.qmd).
 
