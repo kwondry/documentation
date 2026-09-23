@@ -1331,7 +1331,7 @@
     "href": "materials/16S/16s_pipeline/index.html#prerequisites",
     "title": "16S Pipeline Tutorial",
     "section": "Prerequisites",
-    "text": "Prerequisites\n\nRequired Software:\n\nSnakemake (v8.20 or higher)\nConda or Mamba\nPython 3.10 or higher\nR 4.3 or higher\n\nRequired Databases:\n\nHISAT2 human reference database\nGTDB reference databases\nSpeciateIT VALENCIA database\n\n\nMake sure to create a directory for your project. It is advised to run the actual pipeline within the kwon lab scratch directory (i.e., /n/scratch/groups/mgh/kwon) but you can create a new project directory to save your eventual output files to it.\ncd /n/groups/kwon/&lt;yourname&gt;\nmkdir &lt;projectname_16S_pipeline&gt;",
+    "text": "Prerequisites\n\nRequired Software:\n\nSnakemake (v8.20 or higher)\nConda or Mamba\nPython 3.10 or higher\nR 4.3 or higher\n\nRequired Databases:\n\nHISAT2 human reference database\nGTDB reference databases\nSpeciateIT VALENCIA database",
     "crumbs": [
       "About the Kwon Lab",
       "16S",
@@ -2147,28 +2147,28 @@
     "href": "materials/archive/r-tutorial/slides.html#example-concentration",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug      condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;\n1        4 h          9 piotii   CTRL          0\n2        4 c          9 piotii   VCA          50\n3        4 f          4 gasseri  LNA         100\n4        3 c          3 gasseri  OA          200\n5        1 d          6 jensenii OA          100"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug       condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;\n1        3 e          4 gasseri   OA           50\n2        4 b          8 piotii    VCA         100\n3        1 f          3 crispatus VCA         400\n4        2 g         11 CTRL      LNA          50\n5        4 d          3 gasseri   LNA         400"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-1",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug      condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;\n1        2 g          6 jensenii LNA          50\n2        4 f          1 CTRL     LNA         100\n3        4 b          3 gasseri  VCA         100\n4        1 e          6 jensenii OA           50\n5        1 d          5 jensenii OA          100"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5)\n```\n\n# A tibble: 5 × 6\n  plate_id row   column bug     condition  conc\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;\n1        4 b          8 piotii  VCA         100\n2        4 a          2 gasseri CTRL          0\n3        4 a          1 CTRL    CTRL          0\n4        3 b          9 piotii  OA          400\n5        4 e          3 gasseri LNA         200"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "href": "materials/archive/r-tutorial/slides.html#example-concentration-2",
     "title": "tidyverse for data analysis",
     "section": "Example: concentration",
-    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        4 c          6 vaginalis VCA          50    0.05\n2        4 e          9 piotii    LNA         200    0.2 \n3        3 e          3 gasseri   OA           50    0.05\n4        4 e          2 gasseri   LNA         200    0.2 \n5        1 a          8 iners     CTRL          0    0"
+    "text": "Example: concentration\nThe conc column is in units of uM. What if you needed it in mM? What’s the calculation?\nTo get mM you would divide by 1000.\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000)\n```\n\n# A tibble: 5 × 7\n  plate_id row   column bug       condition  conc conc_mM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1        3 b          7 vaginalis OA          400    0.4 \n2        2 h          3 crispatus CTRL          0    0   \n3        4 g          6 vaginalis LNA          50    0.05\n4        2 a          5 jensenii  CTRL          0    0   \n5        2 e          5 jensenii  LNA         200    0.2"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "href": "materials/archive/r-tutorial/slides.html#make-multiple-columns-at-once",
     "title": "tidyverse for data analysis",
     "section": "Make multiple columns at once",
-    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 d          2 gasseri   LNA         400     0.4  400000\n2        2 f          2 crispatus LNA         100     0.1  100000\n3        3 d          6 vaginalis OA          100     0.1  100000\n4        2 b          2 crispatus VCA         100     0.1  100000\n5        1 c          1 CTRL      OA          200     0.2  200000"
+    "text": "Make multiple columns at once\n\n```{r}\nsample_n(metadata,5) %&gt;%\n  mutate(conc_mM = conc/1000, conc_nM = conc*1000)\n```\n\n# A tibble: 5 × 8\n  plate_id row   column bug       condition  conc conc_mM conc_nM\n     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1        4 g          5 vaginalis LNA          50    0.05   50000\n2        2 e          8 iners     LNA         200    0.2   200000\n3        1 e          6 jensenii  OA           50    0.05   50000\n4        3 h          4 gasseri   CTRL          0    0          0\n5        2 h          9 iners     CTRL          0    0          0"
   },
   {
     "objectID": "materials/archive/r-tutorial/slides.html#your-turn-to-do-some-data-wrangling",
