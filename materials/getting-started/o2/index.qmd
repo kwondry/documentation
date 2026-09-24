@@ -71,7 +71,7 @@ Please refer to SSH keys tutorial [here](https://harvardmed.atlassian.net/wiki/s
 Save all your files into one of the two locations: 
 
 1. `/n/groups/kwon/<your_name>`    Your own folder within the Kwon Lab group folder and main storage location.  
-2. `/n/groups/scratch/<first_letter_of_hms_id>/<hms_id>`    Scratch directory is for temporary storage and files are deleted in 45 days.    
+2. `/n/scratch/users/<first_letter_of_hms_id>/<hms_id>`    Scratch directory is for temporary storage and files are deleted in 45 days.    
 
 ### Request access to the `/n/groups/kwon/` groups folder
 
@@ -103,7 +103,7 @@ Note: the scratch directory is for **TEMPORARY STORAGE**. All files in scratch a
 To access scratch directory:
 ```{python}
 #| eval: false
-cd /n/groups/scratch/users/<first_letter_of_hms_id>/<hms_id>
+cd /n/scratch/users/<first_letter_of_hms_id>/<hms_id>
 ```
 
 \
